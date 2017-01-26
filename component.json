@@ -1,0 +1,37 @@
+{
+    "title": "Petstore API (Java)",
+    "description": "elastic.io component for the Petstore API",
+    "docsUrl": "https://github.com/elasticio/petstore-component-java",
+    "credentials": {
+        "fields": {
+            "apiKey": {
+                "label": "API key",
+                "required": true,
+                "viewClass": "TextFieldView"
+            }
+        }
+    },
+    "triggers": {
+        "getPetsByStatusWithGenerators": {
+            "main": "io.elastic.petstore.triggers.GetPetsByStatus",
+            "type": "polling",
+            "title": "Get Pets By Status",
+            "fields": {
+                "status": {
+                    "label": "Pet Status",
+                    "required": true,
+                    "viewClass": "SelectView",
+                    "model": {
+                        "available": "Available",
+                        "pending": "Pending",
+                        "sold": "Sold"
+                    },
+                    "prompt": "Select Pet Status"
+                }
+            },
+            "metadata": {
+                "out": "./schemas/getPetsByStatus.out.json"
+            }
+        }
+    }
+}
