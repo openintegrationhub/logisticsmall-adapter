@@ -37,7 +37,7 @@
     "getPetsByStatusWithDynamicSelectModel": {
       "main": "io.elastic.petstore.triggers.GetPetsByStatus",
       "type": "polling",
-      "title": "Get Pets By Status",
+      "title": "Get Pets By Status With Dynamic Select Model",
       "description": "Retrieves pets from the Petstore API by given pet status. The available statuses are retrieved from the Petstore API dynamically.",
       "fields": {
         "status": {
@@ -50,6 +50,16 @@
       },
       "metadata": {
         "out": "./schemas/getPetsByStatus.out.json"
+      }
+    }
+  },
+  "actions": {
+    "createPet": {
+      "main": "io.elastic.petstore.actions.CreatePet",
+      "title": "Create a Pet",
+      "metadata": {
+        "in": "./schemas/createPet.in.json",
+        "out": "./schemas/createPet.out.json"
       }
     }
   }

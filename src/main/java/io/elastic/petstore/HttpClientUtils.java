@@ -32,22 +32,42 @@ public class HttpClientUtils {
     private static final String PETSTORE_API_BASE_URL = "https://petstore-popeye.elastic.io/v2";
 
     public static JsonArray getMany(final String path,
-                                final JsonObject configuration) {
+                                    final JsonObject configuration) {
         String aPath = path.startsWith("/") ? path : "/" + path;
 
         final String requestURI = PETSTORE_API_BASE_URL + aPath;
 
         final HttpGet httpGet = new HttpGet(requestURI);
-        httpGet.addHeader(HTTP.CONTENT_TYPE, "application/json");
 
         final String response = sendRequest(httpGet, configuration);
 
         return JSON.parseArray(response);
     }
 
+    public static JsonObject post(final String path,
+                                  final JsonObject configuration,
+                                  final JsonObject body) {
+        String aPath = path.startsWith("/") ? path : "/" + path;
+
+        final String requestURI = PETSTORE_API_BASE_URL + aPath;
+
+        final HttpPost httpPost = new HttpPost(requestURI);
+        try {
+            httpPost.setEntity(new StringEntity(JSON.stringify(body)));
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
+
+        final String response = sendRequest(httpPost, configuration);
+
+        return JSON.parseObject(response);
+    }
+
 
     private static final String sendRequest(final HttpRequestBase request,
                                             final JsonObject configuration) {
+
+        request.addHeader(HTTP.CONTENT_TYPE, "application/json");
 
         // access the value of the apiKey field defined in credentials section of component.json
         final JsonString apiKey = configuration.getJsonString("apiKey");

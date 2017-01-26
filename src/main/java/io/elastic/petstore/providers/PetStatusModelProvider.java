@@ -4,10 +4,7 @@ package io.elastic.petstore.providers;
 import io.elastic.api.SelectModelProvider;
 import io.elastic.petstore.HttpClientUtils;
 
-import javax.json.Json;
-import javax.json.JsonArray;
-import javax.json.JsonObject;
-import javax.json.JsonObjectBuilder;
+import javax.json.*;
 
 public class PetStatusModelProvider implements SelectModelProvider {
 
@@ -18,8 +15,8 @@ public class PetStatusModelProvider implements SelectModelProvider {
 
         final JsonObjectBuilder builder = Json.createObjectBuilder();
 
-        statuses.stream().forEach(s -> {
-            final String key = s.toString();
+        statuses.getValuesAs(JsonString.class).stream().forEach(s -> {
+            final String key = s.getString();
             builder.add(key, key.substring(0, 1).toUpperCase() + key.substring(1));
         });
 
