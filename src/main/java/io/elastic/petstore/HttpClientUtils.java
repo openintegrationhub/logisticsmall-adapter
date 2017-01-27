@@ -3,7 +3,6 @@ package io.elastic.petstore;
 import io.elastic.api.JSON;
 import org.apache.http.HttpEntity;
 import org.apache.http.StatusLine;
-import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -12,8 +11,6 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicHeader;
-import org.apache.http.params.BasicHttpParams;
-import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
@@ -29,7 +26,7 @@ public class HttpClientUtils {
 
     private static final Logger logger = LoggerFactory.getLogger(HttpClientUtils.class);
 
-    private static final String PETSTORE_API_BASE_URL = "https://petstore-popeye.elastic.io/v2";
+    private static final String PETSTORE_API_BASE_URL = "https://petstore.elastic.io/v2";
 
     public static JsonObject getSingle(final String path,
                                     final JsonObject configuration) {
