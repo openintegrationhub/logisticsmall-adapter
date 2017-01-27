@@ -9,7 +9,8 @@
         "required": true,
         "viewClass": "TextFieldView"
       }
-    }
+    },
+    "verifier": "io.elastic.petstore.ApiKeyVerifier"
   },
   "triggers": {
     "getPetsByStatus": {
@@ -57,6 +58,7 @@
     "createPet": {
       "main": "io.elastic.petstore.actions.CreatePet",
       "title": "Create a Pet",
+      "description": "Creates a new Pet",
       "metadata": {
         "in": "./schemas/createPet.in.json",
         "out": "./schemas/createPet.out.json"

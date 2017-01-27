@@ -31,17 +31,25 @@ public class HttpClientUtils {
 
     private static final String PETSTORE_API_BASE_URL = "https://petstore-popeye.elastic.io/v2";
 
+    public static JsonObject getSingle(final String path,
+                                    final JsonObject configuration) {
+        return JSON.parseObject(get(path, configuration));
+    }
+
     public static JsonArray getMany(final String path,
                                     final JsonObject configuration) {
+        return JSON.parseArray(get(path, configuration));
+    }
+
+    private static String get(final String path,
+                              final JsonObject configuration) {
         String aPath = path.startsWith("/") ? path : "/" + path;
 
         final String requestURI = PETSTORE_API_BASE_URL + aPath;
 
         final HttpGet httpGet = new HttpGet(requestURI);
 
-        final String response = sendRequest(httpGet, configuration);
-
-        return JSON.parseArray(response);
+        return sendRequest(httpGet, configuration);
     }
 
     public static JsonObject post(final String path,
