@@ -3,6 +3,8 @@ package io.elastic.petstore;
 
 import io.elastic.api.CredentialsVerifier;
 import io.elastic.api.InvalidCredentialsException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.json.JsonObject;
 
@@ -13,10 +15,14 @@ import javax.json.JsonObject;
  */
 public class ApiKeyVerifier implements CredentialsVerifier {
 
+    private static final Logger logger = LoggerFactory.getLogger(ApiKeyVerifier.class);
+
     @Override
     public void verify(final JsonObject configuration) throws InvalidCredentialsException {
+        logger.info("About to verify the provided API key by retrieving the user");
         try {
-            HttpClientUtils.getSingle("/user/me", configuration);
+            final JsonObject user = HttpClientUtils.getSingle("/user/me", configuration);
+            logger.info("User {} successfully retrieved. Credentials are valid", user.getString("username"));
         } catch (Exception e) {
             throw new InvalidCredentialsException("Failed to verify credentials", e);
         }

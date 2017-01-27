@@ -59,21 +59,4 @@ public class GetPetsByStatus extends Component {
         // emitting the message to the platform
         getEventEmitter().emitData(data);
     }
-
-    public static void main(String[] args) {
-
-        final String path = "/pet/findByStatus?status=available";
-
-        final JsonObject configuration = Json.createObjectBuilder().add("apiKey", "elasticio").build();
-
-        final JsonArray pets = HttpClientUtils.getMany(path, configuration);
-
-        logger.info("Got {} pets", pets.size());
-
-        final JsonObject body = Json.createObjectBuilder()
-                .add("pets", pets)
-                .build();
-
-        System.err.println(JSON.stringify(body));
-    }
 }

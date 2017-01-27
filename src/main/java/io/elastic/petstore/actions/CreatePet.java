@@ -32,6 +32,7 @@ public class CreatePet extends Component {
      */
     @Override
     public void execute(final ExecutionParameters parameters) {
+        logger.info("About to create new pet");
         // incoming message
         final Message message = parameters.getMessage();
 
@@ -52,9 +53,10 @@ public class CreatePet extends Component {
         if (status == null) {
             throw new IllegalStateException("Status is required");
         }
-        logger.info("About to create new pet");
 
         final JsonObject pet = HttpClientUtils.post("/pet", configuration, body);
+
+        logger.info("Pet successfully created");
 
         final Message data
                 = new Message.Builder().body(pet).build();
