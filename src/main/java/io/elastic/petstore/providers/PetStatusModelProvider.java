@@ -34,12 +34,13 @@ public class PetStatusModelProvider implements SelectModelProvider {
 
         logger.info("Successfully retrieved {} statuses", statuses.size());
 
-        return ((JsonObjectBuilder) statuses.getValuesAs(JsonString.class).stream().reduce(
-            Json.createObjectBuilder(), 
-            (builder, s) -> {
-                final String key = s.getString();
-                return builder.add(key, key.substring(0, 1).toUpperCase() + key.substring(1));
-            }
-        )).build();
+        final JsonObjectBuilder builder = Json.createObjectBuilder();
+
+        statuses.getValuesAs(JsonString.class).stream().forEach(s -> {
+            final String key = s.getString();
+            builder.add(key, key.substring(0, 1).toUpperCase() + key.substring(1));
+        });
+
+        return builder.build();
     }
 }
