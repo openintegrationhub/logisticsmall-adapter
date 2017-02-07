@@ -1,6 +1,9 @@
 package io.elastic.petstore.triggers;
 
-import io.elastic.api.*;
+import io.elastic.api.Component;
+import io.elastic.api.EventEmitter;
+import io.elastic.api.ExecutionParameters;
+import io.elastic.api.Message;
 import io.elastic.petstore.HttpClientUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,19 +12,23 @@ import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonString;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
 
 /**
  * Trigger to get pets by status.
  */
-public class GetPetsByStatus extends Component {
-    private static final Logger logger = LoggerFactory.getLogger(GetPetsByStatus.class);
+public class GetPetsByStatusJaxRs extends Component {
+    private static final Logger logger = LoggerFactory.getLogger(GetPetsByStatusJaxRs.class);
 
     /**
      * Creates a component instance with the given {@link EventEmitter}.
      *
      * @param eventEmitter emitter to emit events
      */
-    public GetPetsByStatus(EventEmitter eventEmitter) {
+    public GetPetsByStatusJaxRs(EventEmitter eventEmitter) {
         super(eventEmitter);
     }
 
@@ -39,11 +46,21 @@ public class GetPetsByStatus extends Component {
         if (status == null) {
             throw new IllegalStateException("status field is required");
         }
+        // access the value of the apiKey field defined in credentials section of component.json
+        final JsonString apiKey = configuration.getJsonString("apiKey");
+        if (apiKey == null) {
+            throw new IllegalStateException("apiKey is required");
+        }
+
         logger.info("About to find pets by status {}", status.getString());
 
-        final String path = "/pet/findByStatus?status=" + status.getString();
-
-        final JsonArray pets = HttpClientUtils.getMany(path, configuration);
+        final JsonArray pets = ClientBuilder.newClient()
+                .target("https://petstore.elastic.io")
+                .path("v2/pet/findByStatus")
+                .queryParam("status", status.getString())
+                .request(MediaType.APPLICATION_JSON_TYPE)
+                .header("api-key", apiKey.getString())
+                .get(JsonArray.class);
 
         logger.info("Got {} pets", pets.size());
 

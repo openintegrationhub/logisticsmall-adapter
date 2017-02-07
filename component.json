@@ -16,8 +16,30 @@
     "getPetsByStatus": {
       "main": "io.elastic.petstore.triggers.GetPetsByStatus",
       "type": "polling",
-      "title": "Get Pets By Status",
-      "description": "Retrieves pets from the Petstore API by given pet status",
+      "title": "Get Pets By Status (HttpClient)",
+      "description": "Retrieves pets from the Petstore API by given pet status using Apache HttpClient",
+      "fields": {
+        "status": {
+          "label": "Pet Status",
+          "required": true,
+          "viewClass": "SelectView",
+          "model": {
+            "available": "Available",
+            "pending": "Pending",
+            "sold": "Sold"
+          },
+          "prompt": "Select Pet Status"
+        }
+      },
+      "metadata": {
+        "out": "./schemas/getPetsByStatus.out.json"
+      }
+    },
+    "getPetsByStatusJaxRs": {
+      "main": "io.elastic.petstore.triggers.GetPetsByStatusJaxRs",
+      "type": "polling",
+      "title": "Get Pets By Status (JAX-RS)",
+      "description": "Retrieves pets from the Petstore API by given pet status using Java API for RESTful Web Services (JAX-RS)",
       "fields": {
         "status": {
           "label": "Pet Status",
