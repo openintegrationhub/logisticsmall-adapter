@@ -4,6 +4,7 @@ import io.elastic.api.Component;
 import io.elastic.api.EventEmitter;
 import io.elastic.api.ExecutionParameters;
 import io.elastic.api.Message;
+import io.elastic.petstore.Constants;
 import io.elastic.petstore.HttpClientUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,15 +56,16 @@ public class GetPetsByStatusJaxRs extends Component {
         logger.info("About to find pets by status {}", status.getString());
 
         final JsonArray pets = ClientBuilder.newClient()
-                .target("https://petstore.elastic.io")
-                .path("v2/pet/findByStatus")
+                .target(Constants.PETSTORE_API_BASE_URL)
+                .path(Constants.FIND_PETS_BY_STATUS_PATH)
                 .queryParam("status", status.getString())
                 .request(MediaType.APPLICATION_JSON_TYPE)
-                .header("api-key", apiKey.getString())
+                .header(Constants.API_KEY_HEADER, apiKey.getString())
                 .get(JsonArray.class);
 
         logger.info("Got {} pets", pets.size());
 
+        // emitting naked arrays is forbidden by the platform
         final JsonObject body = Json.createObjectBuilder()
                 .add("pets", pets)
                 .build();

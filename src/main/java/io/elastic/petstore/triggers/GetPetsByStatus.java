@@ -47,6 +47,7 @@ public class GetPetsByStatus extends Component {
 
         logger.info("Got {} pets", pets.size());
 
+        // emitting naked arrays is forbidden by the platform
         final JsonObject body = Json.createObjectBuilder()
                 .add("pets", pets)
                 .build();
