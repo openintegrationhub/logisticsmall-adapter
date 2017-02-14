@@ -21,17 +21,8 @@ import javax.ws.rs.core.MediaType;
 /**
  * Trigger to get pets by status.
  */
-public class GetPetsByStatusJaxRs extends Component {
+public class GetPetsByStatusJaxRs implements Component {
     private static final Logger logger = LoggerFactory.getLogger(GetPetsByStatusJaxRs.class);
-
-    /**
-     * Creates a component instance with the given {@link EventEmitter}.
-     *
-     * @param eventEmitter emitter to emit events
-     */
-    public GetPetsByStatusJaxRs(EventEmitter eventEmitter) {
-        super(eventEmitter);
-    }
 
     /**
      * Executes the trigger's logic by sending a request to the Petstore API and emitting response to the platform.
@@ -76,6 +67,6 @@ public class GetPetsByStatusJaxRs extends Component {
         logger.info("Emitting data");
 
         // emitting the message to the platform
-        getEventEmitter().emitData(data);
+        parameters.getEventEmitter().emitData(data);
     }
 }

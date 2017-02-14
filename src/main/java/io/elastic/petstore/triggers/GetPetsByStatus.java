@@ -13,17 +13,8 @@ import javax.json.JsonString;
 /**
  * Trigger to get pets by status.
  */
-public class GetPetsByStatus extends Component {
+public class GetPetsByStatus implements Component {
     private static final Logger logger = LoggerFactory.getLogger(GetPetsByStatus.class);
-
-    /**
-     * Creates a component instance with the given {@link EventEmitter}.
-     *
-     * @param eventEmitter emitter to emit events
-     */
-    public GetPetsByStatus(EventEmitter eventEmitter) {
-        super(eventEmitter);
-    }
 
     /**
      * Executes the trigger's logic by sending a request to the Petstore API and emitting response to the platform.
@@ -58,6 +49,6 @@ public class GetPetsByStatus extends Component {
         logger.info("Emitting data");
 
         // emitting the message to the platform
-        getEventEmitter().emitData(data);
+        parameters.getEventEmitter().emitData(data);
     }
 }
