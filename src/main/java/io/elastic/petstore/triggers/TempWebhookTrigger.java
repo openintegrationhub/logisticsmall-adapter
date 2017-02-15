@@ -17,7 +17,8 @@ import javax.ws.rs.core.MediaType;
 public class TempWebhookTrigger implements Component{
 
     private static final Logger logger = LoggerFactory.getLogger(TempWebhookTrigger.class);
-    private JsonArray pets;
+    private JsonArray petsFromStartup;
+    private JsonArray petsFromInit;
     @Override
     public JsonObject startup(JsonObject configuration) {
 
@@ -29,7 +30,7 @@ public class TempWebhookTrigger implements Component{
             throw new IllegalStateException("apiKey is required");
         }
 
-        pets = ClientBuilder.newClient()
+        petsFromStartup = ClientBuilder.newClient()
                 .target(Constants.PETSTORE_API_BASE_URL)
                 .path(Constants.FIND_PETS_BY_STATUS_PATH)
                 .queryParam("status", "available")
@@ -37,9 +38,9 @@ public class TempWebhookTrigger implements Component{
                 .header(Constants.API_KEY_HEADER, apiKey.getString())
                 .get(JsonArray.class);
 
-        logger.info("Startup got {} pets", pets.size());
+        logger.info("Startup got {} pets", petsFromStartup.size());
 
-        return pets.getValuesAs(JsonObject.class).stream().findFirst().get();
+        return petsFromStartup.getValuesAs(JsonObject.class).stream().findFirst().get();
     }
 
     @Override
@@ -47,9 +48,9 @@ public class TempWebhookTrigger implements Component{
 
         logger.info("Initializing TempWebhookTrigger");
 
-        if (pets != null) {
+        if (petsFromStartup != null) {
 
-            logger.info("Init got {} pets from startup", pets.size());
+            logger.info("Init got {} pets from startup", petsFromStartup.size());
         }
 
         // access the value of the apiKey field defined in credentials section of component.json
@@ -58,7 +59,7 @@ public class TempWebhookTrigger implements Component{
             throw new IllegalStateException("apiKey is required");
         }
 
-        final JsonArray pets = ClientBuilder.newClient()
+        petsFromInit = ClientBuilder.newClient()
                 .target(Constants.PETSTORE_API_BASE_URL)
                 .path(Constants.FIND_PETS_BY_STATUS_PATH)
                 .queryParam("status", "available")
@@ -66,7 +67,7 @@ public class TempWebhookTrigger implements Component{
                 .header(Constants.API_KEY_HEADER, apiKey.getString())
                 .get(JsonArray.class);
 
-        logger.info("Init got {} pets", pets.size());
+        logger.info("Init got {} pets", petsFromInit.size());
     }
 
     @Override
@@ -74,9 +75,14 @@ public class TempWebhookTrigger implements Component{
 
         logger.info("Execute TempWebhookTrigger");
 
-        if (pets != null) {
+        if (petsFromStartup != null) {
 
-            logger.info("Execute got {} pets from startup", pets.size());
+            logger.info("Execute got {} pets from startup", petsFromStartup.size());
+        }
+
+        if (petsFromInit != null) {
+
+            logger.info("Execute got {} pets from init", petsFromInit.size());
         }
 
 
