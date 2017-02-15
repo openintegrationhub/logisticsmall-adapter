@@ -16,7 +16,7 @@
     "tempWebhookTrigger": {
       "main": "io.elastic.petstore.triggers.TempWebhookTrigger",
       "title": "TempWebhookTrigger",
-      "description": "TempWebhookTrigger xx"
+      "description": "TempWebhookTrigger x"
     },
     "getPetsByStatus": {
       "main": "io.elastic.petstore.triggers.GetPetsByStatus",
