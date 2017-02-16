@@ -1,8 +1,8 @@
 package io.elastic.petstore.triggers;
 
-import io.elastic.api.Component;
 import io.elastic.api.ExecutionParameters;
 import io.elastic.api.Message;
+import io.elastic.api.Module;
 import io.elastic.petstore.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +14,7 @@ import javax.json.JsonString;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.MediaType;
 
-public class TempWebhookTrigger implements Component{
+public class TempWebhookTrigger implements Module{
 
     private static final Logger logger = LoggerFactory.getLogger(TempWebhookTrigger.class);
     private JsonArray petsFromStartup;

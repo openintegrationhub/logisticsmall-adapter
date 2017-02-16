@@ -1,11 +1,9 @@
 package io.elastic.petstore.triggers;
 
-import io.elastic.api.Component;
-import io.elastic.api.EventEmitter;
 import io.elastic.api.ExecutionParameters;
 import io.elastic.api.Message;
+import io.elastic.api.Module;
 import io.elastic.petstore.Constants;
-import io.elastic.petstore.HttpClientUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,15 +11,13 @@ import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonString;
-import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
 /**
  * Trigger to get pets by status.
  */
-public class GetPetsByStatusJaxRs implements Component {
+public class GetPetsByStatusJaxRs implements Module {
     private static final Logger logger = LoggerFactory.getLogger(GetPetsByStatusJaxRs.class);
 
     /**
