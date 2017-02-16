@@ -13,11 +13,6 @@
     "verifier": "io.elastic.petstore.ApiKeyVerifier"
   },
   "triggers": {
-    "tempWebhookTrigger": {
-      "main": "io.elastic.petstore.triggers.TempWebhookTrigger",
-      "title": "TempWebhookTrigger",
-      "description": "TempWebhookTrigger x"
-    },
     "getPetsByStatus": {
       "main": "io.elastic.petstore.triggers.GetPetsByStatus",
       "type": "polling",
