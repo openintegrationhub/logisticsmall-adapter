@@ -1,11 +1,9 @@
 package io.elastic.petstore.triggers;
 
-import io.elastic.api.Component;
-import io.elastic.api.EventEmitter;
 import io.elastic.api.ExecutionParameters;
 import io.elastic.api.Message;
+import io.elastic.api.Module;
 import io.elastic.petstore.Constants;
-import io.elastic.petstore.HttpClientUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,25 +11,14 @@ import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonString;
-import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
 /**
  * Trigger to get pets by status.
  */
-public class GetPetsByStatusJaxRs extends Component {
+public class GetPetsByStatusJaxRs implements Module {
     private static final Logger logger = LoggerFactory.getLogger(GetPetsByStatusJaxRs.class);
-
-    /**
-     * Creates a component instance with the given {@link EventEmitter}.
-     *
-     * @param eventEmitter emitter to emit events
-     */
-    public GetPetsByStatusJaxRs(EventEmitter eventEmitter) {
-        super(eventEmitter);
-    }
 
     /**
      * Executes the trigger's logic by sending a request to the Petstore API and emitting response to the platform.
@@ -76,6 +63,6 @@ public class GetPetsByStatusJaxRs extends Component {
         logger.info("Emitting data");
 
         // emitting the message to the platform
-        getEventEmitter().emitData(data);
+        parameters.getEventEmitter().emitData(data);
     }
 }

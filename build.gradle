@@ -5,7 +5,7 @@ apply plugin: 'eclipse'
 apply plugin: 'java-library-distribution'
 
 group = 'io.elastic'
-version = '0.0.1-SNAPSHOT'
+version = '1.0.0'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -19,7 +19,7 @@ repositories {
 }
 
 dependencies {
-    compile "io.elastic:sailor-jvm:2.0.0-SNAPSHOT"
+    compile "io.elastic:sailor-jvm:2.0.0"
     compile "org.glassfish.jersey.core:jersey-client:2.25.1"
     compile "org.glassfish.jersey.media:jersey-media-json-processing:2.25.1"
 }
