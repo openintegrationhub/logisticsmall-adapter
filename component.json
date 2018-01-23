@@ -1,7 +1,7 @@
 {
-  "title": "Petstore API (Java)",
-  "description": "elastic.io component for the Petstore API",
-  "docsUrl": "https://github.com/elasticio/petstore-component-java",
+  "title": "logistics mall API",
+  "description": "elastic.io component for connecting to logistics mall",
+  "docsUrl": "https://confluence.logistics-mall.com/",
   "credentials": {
     "fields": {
       "apiKey": {
@@ -85,6 +85,15 @@
       "metadata": {
         "in": "./schemas/createPet.in.json",
         "out": "./schemas/createPet.out.json"
+      }
+    },
+    "createShipment": {
+      "main": "io.logmall.actions.CreateShipment",
+      "title": "Create a Shipment",
+      "description": "Creates a new Shipment",
+      "metadata": {
+        "in": "./schemas/createShipment.in.json",
+        "out": "./schemas/createShipment.out.json"
       }
     }
   }
