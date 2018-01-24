@@ -1,0 +1,1365 @@
+{
+   "$schema" : "http://json-schema.org/draft-04/schema#",
+   "title" : "de.fraunhofer.ccl.bo.model.bod.ChangeShipment",
+   "type" : "object",
+   "properties" : {
+      "ChangeShipment" : {
+         "type" : "object",
+         "properties" : {
+            "releaseID" : {
+               "type" : "string"
+            },
+            "versionID" : {
+               "type" : "string"
+            },
+            "systemEnvironmentCode" : {
+               "type" : "string"
+            },
+            "languageCode" : {
+               "type" : "string"
+            },
+            "ApplicationArea" : {
+               "$ref" : "#/definitions/ApplicationArea"
+            },
+            "ChangeShipmentDataArea" : {
+               "type" : "object",
+               "properties" : {
+                  "Change" : {
+                     "$ref" : "#/definitions/Change"
+                  },
+                  "Shipment" : {
+                     "type" : "array",
+                     "items" : {
+                        "$ref" : "#/definitions/Shipment"
+                     }
+                  }
+               }
+            }
+         }
+      }
+   },
+   "definitions" : {
+      "ApplicationArea" : {
+         "type" : "object",
+         "properties" : {
+            "Sender" : {
+               "$ref" : "#/definitions/Sender"
+            },
+            "Receiver" : {
+               "type" : "array",
+               "items" : {
+                  "$ref" : "#/definitions/Receiver"
+               }
+            },
+            "CreationDateTime" : {
+               "type" : "object"
+            },
+            "BODID" : {
+               "type" : "object"
+            },
+            "SecurityToken" : {
+               "type" : "string"
+            }
+         }
+      },
+      "Sender" : {
+         "type" : "object",
+         "properties" : {
+            "LogicalID" : {
+               "type" : "string"
+            },
+            "ComponentID" : {
+               "type" : "string"
+            },
+            "TaskID" : {
+               "type" : "string"
+            },
+            "ReferenceID" : {
+               "type" : "string"
+            },
+            "ConfirmationCode" : {
+               "type" : "string"
+            },
+            "AuthorizationID" : {
+               "type" : "string"
+            }
+         }
+      },
+      "Receiver" : {
+         "type" : "object",
+         "properties" : {
+            "LogicalID" : {
+               "type" : "string"
+            },
+            "ComponentID" : {
+               "type" : "string"
+            },
+            "ID" : {
+               "type" : "array",
+               "items" : {
+                  "type" : "string"
+               }
+            }
+         }
+      },
+      "Change" : {
+         "type" : "object",
+         "properties" : {
+            "ActionCriteria" : {
+               "type" : "object",
+               "properties" : {
+                  "ActionExpression" : {
+                     "type" : "object",
+                     "properties" : {
+                        "expressionLanguage" : {
+                           "type" : "string"
+                        },
+                        "actionCode" : {
+                           "type" : "string"
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      },
+      "Shipment" : {
+         "type" : "object",
+         "properties" : {
+            "ShipmentHeader" : {
+               "type" : "object",
+               "properties" : {
+                  "Type" : {
+                     "type" : "object"
+                  },
+                  "DocumentID" : {
+                     "type" : "object",
+                     "properties" : {
+                        "ID" : {
+                           "$ref" : "#/definitions/Identifier"
+                        },
+                        "RevisionID" : {
+                           "$ref" : "#/definitions/Identifier"
+                        }
+                     }
+                  },
+                  "AlternateDocumentID" : {
+                     "type" : "array",
+                     "items" : {
+                        "$ref" : "#/definitions/AlternateDocumentId"
+                     }
+                  },
+                  "LastModificationDateTime" : {
+                     "type" : "object"
+                  },
+                  "Description" : {
+                     "type" : "string"
+                  },
+                  "Note" : {
+                     "type" : "string"
+                  },
+                  "Status" : {
+                     "$ref" : "#/definitions/Status"
+                  },
+                  "ActualShipDateTime" : {
+                     "type" : "object"
+                  },
+                  "ScheduledDeliveryDateTime" : {
+                     "type" : "object"
+                  },
+                  "NetWeightMeasure" : {
+                     "$ref" : "#/definitions/SimplifiedMeasure"
+                  },
+                  "GrossWeightMeasure" : {
+                     "$ref" : "#/definitions/SimplifiedMeasure"
+                  },
+                  "TotalVolumeMeasure" : {
+                     "$ref" : "#/definitions/SimplifiedMeasure"
+                  },
+                  "ShipToParty" : {
+                     "$ref" : "#/definitions/Party"
+                  },
+                  "CarrierParty" : {
+                     "$ref" : "#/definitions/Party"
+                  },
+                  "ShipFromParty" : {
+                     "$ref" : "#/definitions/Party"
+                  },
+                  "TransportationTerm" : {
+                     "$ref" : "#/definitions/TermsOfDelivery"
+                  },
+                  "UserArea" : {
+                     "$ref" : "#/definitions/UserArea"
+                  },
+                  "TenantID" : {
+                     "$ref" : "#/definitions/Identifier"
+                  },
+                  "ReturnOfShipmentReference" : {
+                     "$ref" : "#/definitions/DocumentReference"
+                  },
+                  "LoadingMeter" : {
+                     "$ref" : "#/definitions/SimplifiedMeasure"
+                  },
+                  "RFID" : {
+                     "type" : "string"
+                  },
+                  "EPCID" : {
+                     "type" : "string"
+                  },
+                  "UPCID" : {
+                     "type" : "string"
+                  },
+                  "CreationDateTime" : {
+                     "type" : "object"
+                  }
+               }
+            },
+            "ShipmentItem" : {
+               "type" : "array",
+               "items" : {
+                  "$ref" : "#/definitions/ShipmentItemLine"
+               }
+            },
+            "ShipmentUnit" : {
+               "type" : "array",
+               "items" : {
+                  "$ref" : "#/definitions/ShipmentUnitLine"
+               }
+            }
+         }
+      },
+      "Identifier" : {
+         "type" : "object",
+         "properties" : {
+            "schemeID" : {
+               "type" : "string"
+            },
+            "schemeAgencyID" : {
+               "type" : "string"
+            },
+            "value" : {
+               "type" : "string"
+            }
+         }
+      },
+      "AlternateDocumentId" : {
+         "type" : "object",
+         "properties" : {
+            "ID" : {
+               "$ref" : "#/definitions/Identifier"
+            }
+         }
+      },
+      "Status" : {
+         "type" : "object",
+         "properties" : {
+            "Code" : {
+               "type" : "string"
+            },
+            "Reason" : {
+               "type" : "string"
+            }
+         }
+      },
+      "SimplifiedMeasure" : {
+         "type" : "object",
+         "properties" : {
+            "unit" : {
+               "type" : "string"
+            },
+            "value" : {
+               "type" : "string"
+            }
+         }
+      },
+      "Party" : {
+         "type" : "object",
+         "properties" : {
+            "PartyIDs" : {
+               "type" : "object",
+               "properties" : {
+                  "ID" : {
+                     "type" : "array",
+                     "items" : {
+                        "$ref" : "#/definitions/Identifier"
+                     }
+                  },
+                  "RevisionID" : {
+                     "$ref" : "#/definitions/Identifier"
+                  },
+                  "TenantID" : {
+                     "$ref" : "#/definitions/Identifier"
+                  }
+               }
+            },
+            "Name" : {
+               "type" : "string"
+            },
+            "Location" : {
+               "type" : "array",
+               "items" : {
+                  "$ref" : "#/definitions/Location"
+               }
+            },
+            "Contact" : {
+               "type" : "array",
+               "items" : {
+                  "$ref" : "#/definitions/OagisContact"
+               }
+            },
+            "UserArea" : {
+               "$ref" : "#/definitions/UserArea"
+            },
+            "Classification" : {
+               "type" : "array",
+               "items" : {
+                  "$ref" : "#/definitions/Classification"
+               }
+            },
+            "Status" : {
+               "$ref" : "#/definitions/Status"
+            },
+            "PartyMasterReference" : {
+               "$ref" : "#/definitions/BasicReference"
+            }
+         }
+      },
+      "Location" : {
+         "type" : "object",
+         "properties" : {
+            "ID" : {
+               "$ref" : "#/definitions/Identifier"
+            },
+            "Name" : {
+               "type" : "string"
+            },
+            "Coordinate" : {
+               "$ref" : "#/definitions/Coordinate"
+            },
+            "BillingAddress" : {
+               "$ref" : "#/definitions/Address"
+            },
+            "DeliveryAddress" : {
+               "$ref" : "#/definitions/Address"
+            },
+            "PostalAddress" : {
+               "$ref" : "#/definitions/Address"
+            },
+            "Contact" : {
+               "type" : "array",
+               "items" : {
+                  "$ref" : "#/definitions/OagisContact"
+               }
+            },
+            "Description" : {
+               "type" : "string"
+            },
+            "Note" : {
+               "type" : "string"
+            },
+            "UserArea" : {
+               "$ref" : "#/definitions/UserArea"
+            },
+            "Status" : {
+               "$ref" : "#/definitions/Status"
+            },
+            "RevisionID" : {
+               "$ref" : "#/definitions/Identifier"
+            }
+         }
+      },
+      "Coordinate" : {
+         "type" : "object",
+         "properties" : {
+            "Latitude" : {
+               "type" : "object",
+               "properties" : {
+                  "DegreeMeasure" : {
+                     "$ref" : "#/definitions/SimplifiedMeasure"
+                  },
+                  "MinuteMeasure" : {
+                     "$ref" : "#/definitions/SimplifiedMeasure"
+                  },
+                  "SecondMeasure" : {
+                     "$ref" : "#/definitions/SimplifiedMeasure"
+                  }
+               }
+            },
+            "Longitude" : {
+               "type" : "object",
+               "properties" : {
+                  "DegreeMeasure" : {
+                     "$ref" : "#/definitions/SimplifiedMeasure"
+                  },
+                  "MinuteMeasure" : {
+                     "$ref" : "#/definitions/SimplifiedMeasure"
+                  },
+                  "SecondMeasure" : {
+                     "$ref" : "#/definitions/SimplifiedMeasure"
+                  }
+               }
+            },
+            "UserArea" : {
+               "$ref" : "#/definitions/UserArea"
+            },
+            "ID" : {
+               "$ref" : "#/definitions/Identifier"
+            },
+            "RevisionID" : {
+               "$ref" : "#/definitions/Identifier"
+            }
+         }
+      },
+      "UserArea" : {
+         "type" : "object",
+         "properties" : {
+            "UserAreaIndicator" : {
+               "type" : "array",
+               "items" : {
+                  "$ref" : "#/definitions/UserAreaValueOagis"
+               }
+            },
+            "UserAreaInteger" : {
+               "type" : "array",
+               "items" : {
+                  "$ref" : "#/definitions/UserAreaValueOagis"
+               }
+            },
+            "UserAreaDecimal" : {
+               "type" : "array",
+               "items" : {
+                  "$ref" : "#/definitions/UserAreaValueOagis"
+               }
+            },
+            "UserAreaString" : {
+               "type" : "array",
+               "items" : {
+                  "$ref" : "#/definitions/UserAreaValueOagis"
+               }
+            },
+            "UserAreaMeasure" : {
+               "type" : "array",
+               "items" : {
+                  "$ref" : "#/definitions/UserAreaMeasure"
+               }
+            },
+            "UserAreaDateTime" : {
+               "type" : "array",
+               "items" : {
+                  "$ref" : "#/definitions/UserAreaValueOagis"
+               }
+            },
+            "UserAreaTimePeriod" : {
+               "type" : "array",
+               "items" : {
+                  "$ref" : "#/definitions/UserAreaInterval"
+               }
+            },
+            "UserAreaDuration" : {
+               "type" : "array",
+               "items" : {
+                  "$ref" : "#/definitions/UserAreaValueOagis"
+               }
+            },
+            "UserAreaBinaryObject" : {
+               "type" : "array",
+               "items" : {
+                  "$ref" : "#/definitions/UserAreaBinary"
+               }
+            }
+         }
+      },
+      "UserAreaValueOagis" : {
+         "type" : "object",
+         "properties" : {
+            "agencyID" : {
+               "type" : "string"
+            },
+            "name" : {
+               "type" : "string"
+            },
+            "value" : {
+               "type" : "string"
+            }
+         }
+      },
+      "UserAreaMeasure" : {
+         "type" : "object",
+         "properties" : {
+            "agencyID" : {
+               "type" : "string"
+            },
+            "name" : {
+               "type" : "string"
+            },
+            "value" : {
+               "type" : "string"
+            },
+            "unitCode" : {
+               "type" : "string"
+            }
+         }
+      },
+      "UserAreaInterval" : {
+         "type" : "object",
+         "properties" : {
+            "agencyID" : {
+               "type" : "string"
+            },
+            "name" : {
+               "type" : "string"
+            },
+            "value" : {
+               "type" : "string"
+            },
+            "interval" : {
+               "$ref" : "#/definitions/Interval"
+            }
+         }
+      },
+      "Interval" : {
+         "type" : "object",
+         "properties" : {
+            "StartDateTime" : {
+               "type" : "object"
+            },
+            "EndDateTime" : {
+               "type" : "object"
+            }
+         }
+      },
+      "UserAreaBinary" : {
+         "type" : "object",
+         "properties" : {
+            "agencyID" : {
+               "type" : "string"
+            },
+            "name" : {
+               "type" : "string"
+            },
+            "value" : {
+               "type" : "string"
+            },
+            "mimeCode" : {
+               "type" : "string"
+            }
+         }
+      },
+      "Address" : {
+         "type" : "object",
+         "properties" : {
+            "ID" : {
+               "$ref" : "#/definitions/Identifier"
+            },
+            "CareOfName" : {
+               "type" : "string"
+            },
+            "BuildingNumber" : {
+               "type" : "string"
+            },
+            "BuildingName" : {
+               "type" : "string"
+            },
+            "StreetName" : {
+               "type" : "string"
+            },
+            "PostOfficeBox" : {
+               "type" : "string"
+            },
+            "DeliveryPointCode" : {
+               "type" : "string"
+            },
+            "CityName" : {
+               "type" : "string"
+            },
+            "CountryCode" : {
+               "type" : "object"
+            },
+            "PostalCode" : {
+               "type" : "string"
+            },
+            "UserArea" : {
+               "$ref" : "#/definitions/UserArea"
+            },
+            "StreetNumber" : {
+               "type" : "string"
+            },
+            "RevisionID" : {
+               "$ref" : "#/definitions/Identifier"
+            }
+         }
+      },
+      "OagisContact" : {
+         "type" : "object",
+         "properties" : {
+            "ID" : {
+               "$ref" : "#/definitions/Identifier"
+            },
+            "DepartmentName" : {
+               "type" : "string"
+            },
+            "TelephoneCommunication" : {
+               "type" : "array",
+               "items" : {
+                  "$ref" : "#/definitions/OagisTelephoneCommunication"
+               }
+            },
+            "MobileTelephoneCommunication" : {
+               "type" : "array",
+               "items" : {
+                  "$ref" : "#/definitions/OagisTelephoneCommunication"
+               }
+            },
+            "FaxTelephoneCommunication" : {
+               "type" : "array",
+               "items" : {
+                  "$ref" : "#/definitions/OagisTelephoneCommunication"
+               }
+            },
+            "EMailAddressCommunication" : {
+               "type" : "array",
+               "items" : {
+               }
+            },
+            "PostalAddress" : {
+               "type" : "array",
+               "items" : {
+               }
+            },
+            "UserArea" : {
+               "$ref" : "#/definitions/UserArea"
+            },
+            "Title" : {
+               "type" : "object"
+            },
+            "FamilyName" : {
+               "type" : "string"
+            },
+            "GivenName" : {
+               "type" : "string"
+            },
+            "MiddleName" : {
+               "type" : "string"
+            },
+            "SuffixName" : {
+               "type" : "string"
+            },
+            "MaidenName" : {
+               "type" : "string"
+            },
+            "NationalityCountryCode" : {
+               "type" : "object"
+            },
+            "BirthDateTime" : {
+               "type" : "object"
+            },
+            "GenderCode" : {
+               "type" : "object"
+            },
+            "RevisionID" : {
+               "$ref" : "#/definitions/Identifier"
+            },
+            "JobTitle" : {
+               "type" : "string"
+            }
+         }
+      },
+      "OagisTelephoneCommunication" : {
+         "type" : "object",
+         "properties" : {
+            "CountryDialing" : {
+               "type" : "string"
+            },
+            "AreaDialing" : {
+               "type" : "string"
+            },
+            "DialNumber" : {
+               "type" : "string"
+            },
+            "Extension" : {
+               "type" : "string"
+            },
+            "Preference" : {
+               "type" : "object",
+               "properties" : {
+                  "Description" : {
+                     "type" : "string"
+                  },
+                  "Note" : {
+                     "type" : "number"
+                  }
+               }
+            }
+         }
+      },
+      "Classification" : {
+         "type" : "object",
+         "properties" : {
+            "type" : {
+               "type" : "string"
+            },
+            "Codes" : {
+               "type" : "object",
+               "properties" : {
+                  "Code" : {
+                     "type" : "string"
+                  }
+               }
+            },
+            "Description" : {
+               "type" : "string"
+            }
+         }
+      },
+      "BasicReference" : {
+         "type" : "object",
+         "properties" : {
+            "ID" : {
+               "$ref" : "#/definitions/Identifier"
+            },
+            "RevisionID" : {
+               "$ref" : "#/definitions/Identifier"
+            },
+            "DisplayID" : {
+               "$ref" : "#/definitions/Identifier"
+            }
+         }
+      },
+      "TermsOfDelivery" : {
+         "type" : "object",
+         "properties" : {
+            "IncotermsCode" : {
+               "type" : "object"
+            },
+            "PlaceOfOwnershipTransferLocation" : {
+               "$ref" : "#/definitions/Location"
+            },
+            "Description" : {
+               "type" : "string"
+            },
+            "Note" : {
+               "type" : "string"
+            },
+            "UserArea" : {
+               "$ref" : "#/definitions/UserArea"
+            },
+            "DeliveryTypeCode" : {
+               "type" : "object"
+            },
+            "ID" : {
+               "$ref" : "#/definitions/Identifier"
+            },
+            "RevisionID" : {
+               "$ref" : "#/definitions/Identifier"
+            }
+         }
+      },
+      "DocumentReference" : {
+         "type" : "object",
+         "properties" : {
+            "DocumentID" : {
+               "type" : "object",
+               "properties" : {
+                  "ID" : {
+                     "$ref" : "#/definitions/Identifier"
+                  },
+                  "RevisionID" : {
+                     "$ref" : "#/definitions/Identifier"
+                  }
+               }
+            },
+            "LineNumber" : {
+               "$ref" : "#/definitions/Identifier"
+            },
+            "DisplayID" : {
+               "$ref" : "#/definitions/Identifier"
+            }
+         }
+      },
+      "ShipmentItemLine" : {
+         "type" : "object",
+         "properties" : {
+            "Note" : {
+               "type" : "string"
+            },
+            "OrderQuantity" : {
+               "$ref" : "#/definitions/SimplifiedMeasure"
+            },
+            "Status" : {
+               "$ref" : "#/definitions/Status"
+            },
+            "TransactionDateTime" : {
+               "type" : "object"
+            },
+            "ReasonCode" : {
+               "type" : "object"
+            },
+            "ShippedQuantity" : {
+               "$ref" : "#/definitions/SimplifiedMeasure"
+            },
+            "UserArea" : {
+               "$ref" : "#/definitions/UserArea"
+            },
+            "Item" : {
+               "$ref" : "#/definitions/Item"
+            },
+            "LineNumber" : {
+               "type" : "integer"
+            },
+            "ID" : {
+               "$ref" : "#/definitions/Identifier"
+            },
+            "RevisionID" : {
+               "$ref" : "#/definitions/Identifier"
+            },
+            "WarehouseShippingOrderReference" : {
+               "$ref" : "#/definitions/DocumentReference"
+            },
+            "QualityAssuranceFlag" : {
+               "type" : "boolean"
+            }
+         }
+      },
+      "Item" : {
+         "type" : "object",
+         "properties" : {
+            "ItemID" : {
+               "type" : "array",
+               "items" : {
+                  "$ref" : "#/definitions/ItemId"
+               }
+            },
+            "UPCID" : {
+               "type" : "string"
+            },
+            "EPCID" : {
+               "type" : "string"
+            },
+            "Description" : {
+               "type" : "string"
+            },
+            "Note" : {
+               "type" : "string"
+            },
+            "Classification" : {
+               "type" : "array",
+               "items" : {
+                  "$ref" : "#/definitions/Classification"
+               }
+            },
+            "Packaging" : {
+               "type" : "array",
+               "items" : {
+                  "$ref" : "#/definitions/Packaging"
+               }
+            },
+            "CountryOfOriginCode" : {
+               "type" : "object"
+            },
+            "RFID" : {
+               "type" : "string"
+            },
+            "SerialNumber" : {
+               "type" : "string"
+            },
+            "Lot" : {
+               "type" : "object",
+               "properties" : {
+                  "LotIDs" : {
+                     "type" : "object",
+                     "properties" : {
+                        "ID" : {
+                           "type" : "string"
+                        }
+                     }
+                  }
+               }
+            },
+            "UserArea" : {
+               "$ref" : "#/definitions/UserArea"
+            },
+            "TenantID" : {
+               "$ref" : "#/definitions/Identifier"
+            },
+            "ItemStatus" : {
+               "$ref" : "#/definitions/Status"
+            },
+            "ItemValue" : {
+               "$ref" : "#/definitions/ItemValue"
+            },
+            "Rework" : {
+               "$ref" : "#/definitions/Rework"
+            },
+            "QualityReference" : {
+               "type" : "array",
+               "items" : {
+                  "$ref" : "#/definitions/Quality"
+               }
+            },
+            "ExpirationDateTime" : {
+               "type" : "object"
+            },
+            "ItemMasterReference" : {
+               "$ref" : "#/definitions/BasicReference"
+            }
+         }
+      },
+      "ItemId" : {
+         "type" : "object",
+         "properties" : {
+            "ID" : {
+               "$ref" : "#/definitions/Identifier"
+            },
+            "RevisionID" : {
+               "$ref" : "#/definitions/Identifier"
+            }
+         }
+      },
+      "Packaging" : {
+         "type" : "object",
+         "properties" : {
+            "ID" : {
+               "$ref" : "#/definitions/Identifier"
+            },
+            "Description" : {
+               "type" : "string"
+            },
+            "Note" : {
+               "type" : "string"
+            },
+            "Dimensions" : {
+               "type" : "object",
+               "properties" : {
+                  "WidthMeasure" : {
+                     "$ref" : "#/definitions/SimplifiedMeasure"
+                  },
+                  "LengthMeasure" : {
+                     "$ref" : "#/definitions/SimplifiedMeasure"
+                  },
+                  "HeightMeasure" : {
+                     "$ref" : "#/definitions/SimplifiedMeasure"
+                  },
+                  "WeightRange" : {
+                     "type" : "object",
+                     "properties" : {
+                        "MinimumWeightMeasure" : {
+                           "$ref" : "#/definitions/SimplifiedMeasure"
+                        }
+                     }
+                  }
+               }
+            },
+            "UserArea" : {
+               "$ref" : "#/definitions/UserArea"
+            },
+            "UnitCode" : {
+               "type" : "string"
+            },
+            "BaseUnitCapacity" : {
+               "type" : "number"
+            },
+            "perPackageCapacities" : {
+               "type" : "array",
+               "items" : {
+                  "$ref" : "#/definitions/PackageCapacity"
+               }
+            },
+            "RevisionID" : {
+               "$ref" : "#/definitions/Identifier"
+            }
+         }
+      },
+      "PackageCapacity" : {
+         "type" : "object",
+         "properties" : {
+            "capacity" : {
+               "type" : "number"
+            },
+            "subPackaging" : {
+               "$ref" : "#/definitions/Packaging"
+            }
+         }
+      },
+      "ItemValue" : {
+         "type" : "object",
+         "properties" : {
+            "UnitValue" : {
+               "type" : "object",
+               "properties" : {
+                  "Amount" : {
+                     "$ref" : "#/definitions/SimplifiedMeasure"
+                  },
+                  "PerQuantity" : {
+                     "$ref" : "#/definitions/SimplifiedMeasure"
+                  }
+               }
+            },
+            "CostingMethodCode" : {
+               "type" : "object"
+            },
+            "EffectiveTimePeriod" : {
+               "$ref" : "#/definitions/Interval"
+            },
+            "Description" : {
+               "type" : "string"
+            },
+            "Note" : {
+               "type" : "string"
+            },
+            "UserArea" : {
+               "$ref" : "#/definitions/UserArea"
+            },
+            "ID" : {
+               "$ref" : "#/definitions/Identifier"
+            },
+            "RevisionID" : {
+               "$ref" : "#/definitions/Identifier"
+            },
+            "Tax" : {
+               "type" : "object",
+               "properties" : {
+                  "Calculation" : {
+                     "type" : "object",
+                     "properties" : {
+                        "RateNumeric" : {
+                           "type" : "number"
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      },
+      "Rework" : {
+         "type" : "object",
+         "properties" : {
+            "Description" : {
+               "type" : "string"
+            },
+            "Note" : {
+               "type" : "string"
+            },
+            "Duration" : {
+               "type" : "object"
+            }
+         }
+      },
+      "Quality" : {
+         "type" : "object",
+         "properties" : {
+            "DocumentID" : {
+               "type" : "object",
+               "properties" : {
+                  "ID" : {
+                     "$ref" : "#/definitions/Identifier"
+                  },
+                  "RevisionID" : {
+                     "$ref" : "#/definitions/Identifier"
+                  }
+               }
+            },
+            "AlternateDocumentID" : {
+               "type" : "array",
+               "items" : {
+                  "$ref" : "#/definitions/AlternateDocumentId"
+               }
+            },
+            "TenantID" : {
+               "$ref" : "#/definitions/Identifier"
+            },
+            "CreationDateTime" : {
+               "type" : "object"
+            },
+            "LastModificationDateTime" : {
+               "type" : "object"
+            },
+            "Description" : {
+               "type" : "string"
+            },
+            "Note" : {
+               "type" : "string"
+            },
+            "Location" : {
+               "$ref" : "#/definitions/Location"
+            },
+            "RecordingDateTime" : {
+               "type" : "object"
+            },
+            "ProcessReference" : {
+               "type" : "string"
+            },
+            "TargetValue" : {
+               "$ref" : "#/definitions/SimplifiedMeasure"
+            },
+            "ActualValue" : {
+               "$ref" : "#/definitions/SimplifiedMeasure"
+            },
+            "Status" : {
+               "$ref" : "#/definitions/Status"
+            },
+            "UserArea" : {
+               "$ref" : "#/definitions/UserArea"
+            }
+         }
+      },
+      "ShipmentUnitLine" : {
+         "type" : "object",
+         "properties" : {
+            "ID" : {
+               "$ref" : "#/definitions/Identifier"
+            },
+            "Note" : {
+               "type" : "string"
+            },
+            "Status" : {
+               "$ref" : "#/definitions/Status"
+            },
+            "ShipmentUnitContainer" : {
+               "$ref" : "#/definitions/HandlingUnit"
+            },
+            "UserArea" : {
+               "$ref" : "#/definitions/UserArea"
+            },
+            "RevisionID" : {
+               "$ref" : "#/definitions/Identifier"
+            },
+            "LineNumber" : {
+               "type" : "integer"
+            }
+         }
+      },
+      "HandlingUnit" : {
+         "type" : "object",
+         "properties" : {
+            "ContainerID" : {
+               "type" : "array",
+               "items" : {
+                  "$ref" : "#/definitions/Identifier"
+               }
+            },
+            "RFID" : {
+               "type" : "string"
+            },
+            "LoadSupport" : {
+               "$ref" : "#/definitions/LoadSupport"
+            },
+            "ParentContainerID" : {
+               "$ref" : "#/definitions/Identifier"
+            },
+            "Description" : {
+               "type" : "string"
+            },
+            "Note" : {
+               "type" : "string"
+            },
+            "Dimensions" : {
+               "type" : "object",
+               "properties" : {
+                  "WidthMeasure" : {
+                     "$ref" : "#/definitions/SimplifiedMeasure"
+                  },
+                  "LengthMeasure" : {
+                     "$ref" : "#/definitions/SimplifiedMeasure"
+                  },
+                  "HeightMeasure" : {
+                     "$ref" : "#/definitions/SimplifiedMeasure"
+                  },
+                  "WeightRange" : {
+                     "type" : "object",
+                     "properties" : {
+                        "MinimumWeightMeasure" : {
+                           "$ref" : "#/definitions/SimplifiedMeasure"
+                        }
+                     }
+                  }
+               }
+            },
+            "UserArea" : {
+               "$ref" : "#/definitions/UserArea"
+            },
+            "StackHeight" : {
+               "$ref" : "#/definitions/SimplifiedMeasure"
+            },
+            "Stackable" : {
+               "type" : "boolean"
+            },
+            "Status" : {
+               "$ref" : "#/definitions/Status"
+            },
+            "TrackingID" : {
+               "type" : "string"
+            },
+            "UPCID" : {
+               "type" : "string"
+            },
+            "EPCID" : {
+               "type" : "string"
+            },
+            "RevisionID" : {
+               "$ref" : "#/definitions/Identifier"
+            },
+            "TenantID" : {
+               "$ref" : "#/definitions/Identifier"
+            },
+            "CreationDateTime" : {
+               "type" : "object"
+            },
+            "LastModificationDateTime" : {
+               "type" : "object"
+            },
+            "BinLocationReference" : {
+               "$ref" : "#/definitions/BinLocationReference"
+            },
+            "ContainedHU" : {
+               "type" : "array",
+               "items" : {
+                  "$ref" : "#/definitions/HandlingUnit"
+               }
+            }
+         }
+      },
+      "LoadSupport" : {
+         "type" : "object",
+         "properties" : {
+            "ID" : {
+               "$ref" : "#/definitions/Identifier"
+            },
+            "Description" : {
+               "type" : "string"
+            },
+            "Note" : {
+               "type" : "string"
+            },
+            "UserArea" : {
+               "$ref" : "#/definitions/UserArea"
+            },
+            "RevisionID" : {
+               "$ref" : "#/definitions/Identifier"
+            },
+            "AlternateIDs" : {
+               "type" : "object",
+               "properties" : {
+                  "ID" : {
+                     "type" : "array",
+                     "items" : {
+                        "$ref" : "#/definitions/Identifier"
+                     }
+                  }
+               }
+            },
+            "TenantID" : {
+               "$ref" : "#/definitions/Identifier"
+            },
+            "ContainerType" : {
+               "type" : "object"
+            },
+            "Dimensions" : {
+               "type" : "object",
+               "properties" : {
+                  "WidthMeasure" : {
+                     "$ref" : "#/definitions/SimplifiedMeasure"
+                  },
+                  "LengthMeasure" : {
+                     "$ref" : "#/definitions/SimplifiedMeasure"
+                  },
+                  "HeightMeasure" : {
+                     "$ref" : "#/definitions/SimplifiedMeasure"
+                  },
+                  "WeightRange" : {
+                     "type" : "object",
+                     "properties" : {
+                        "MinimumWeightMeasure" : {
+                           "$ref" : "#/definitions/SimplifiedMeasure"
+                        }
+                     }
+                  }
+               }
+            },
+            "Status" : {
+               "$ref" : "#/definitions/Status"
+            },
+            "OwnerParty" : {
+               "$ref" : "#/definitions/Party"
+            },
+            "LoadSecuring" : {
+               "$ref" : "#/definitions/LoadSecuring"
+            },
+            "EPCID" : {
+               "type" : "string"
+            },
+            "UPCID" : {
+               "type" : "string"
+            },
+            "RFID" : {
+               "type" : "string"
+            },
+            "LoadSupportMasterReference" : {
+               "$ref" : "#/definitions/BasicReference"
+            }
+         }
+      },
+      "LoadSecuring" : {
+         "type" : "object",
+         "properties" : {
+            "Description" : {
+               "type" : "string"
+            },
+            "Note" : {
+               "type" : "string"
+            },
+            "Strapping" : {
+               "type" : "boolean"
+            },
+            "Shrinking" : {
+               "type" : "boolean"
+            },
+            "Stretching" : {
+               "type" : "boolean"
+            },
+            "Material" : {
+               "type" : "string"
+            }
+         }
+      },
+      "BinLocationReference" : {
+         "type" : "object",
+         "properties" : {
+            "displayId" : {
+               "$ref" : "#/definitions/Identifier"
+            },
+            "id" : {
+               "$ref" : "#/definitions/Identifier"
+            },
+            "revisionId" : {
+               "$ref" : "#/definitions/Identifier"
+            },
+            "rackColumn" : {
+               "type" : "string"
+            },
+            "rackLevel" : {
+               "type" : "string"
+            },
+            "rackRow" : {
+               "type" : "string"
+            },
+            "warehouseLocationReference" : {
+               "$ref" : "#/definitions/WarehouseLocationReference"
+            }
+         }
+      },
+      "WarehouseLocationReference" : {
+         "type" : "object",
+         "properties" : {
+            "ID" : {
+               "$ref" : "#/definitions/Identifier"
+            },
+            "RevisionID" : {
+               "$ref" : "#/definitions/Identifier"
+            },
+            "DisplayID" : {
+               "$ref" : "#/definitions/Identifier"
+            }
+         }
+      }
+   }
+}

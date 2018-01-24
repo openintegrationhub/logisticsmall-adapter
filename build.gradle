@@ -23,6 +23,7 @@ repositories {
             url 'https://nexus.logistics-mall.com/repository/logistics-mall-public'
         
     }
+    
     mavenCentral()
    
 }
