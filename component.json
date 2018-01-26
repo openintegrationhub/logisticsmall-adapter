@@ -3,20 +3,14 @@
   "description": "elastic.io component for connecting to logistics mall",
   "docsUrl": "https://confluence.logistics-mall.com/",
   "credentials": {
-    "field": {
+    "fields": {
       "apiKey": {
         "label": "API key",
         "required": true,
         "viewClass": "TextFieldWithNoteView",
         "note": "Please use <b>elasticio</b> as API key. For more details see <a href='https://petstore.elastic.io/docs/' target='_blank'>Petstore API docs</a>."
-      },
-      "password": {
-        "label": "Password",
-        "required": true,
-        "viewClass": "TextFieldWithNoteView",
-        "note": "Please use <b>elasticio</b> as API key. For more details see <a href='https://petstore.elastic.io/docs/' target='_blank'>Petstore API docs</a>."
       }
-    },   
+    },
     "verifier": "io.elastic.petstore.ApiKeyVerifier"
   },
   "triggers": {
@@ -28,7 +22,7 @@
       "fields": {
         "status": {
           "label": "Pet Status",
-          "required": true,	
+          "required": true,
           "viewClass": "SelectView",
           "model": {
             "available": "Available",
