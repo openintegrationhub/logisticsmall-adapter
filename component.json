@@ -4,14 +4,26 @@
   "docsUrl": "https://confluence.logistics-mall.com/",
   "credentials": {
     "fields": {
-      "apiKeyField": {
-        "label": "API key",
+      "serverURLd": {
+        "label": "Managed App Server URL",
         "required": true,
         "viewClass": "TextFieldWithNoteView",
         "note": "Please use <b>elasticio</b> as API key. For more details see <a href='https://petstore.elastic.io/docs/' target='_blank'>Petstore API docs</a>."
       },
-       "apiKey": {
+      "username": {
+        "label": "Username",
+        "required": true,
+        "viewClass": "TextFieldWithNoteView",
+        "note": "Please use <b>elasticio</b> as API key. For more details see <a href='https://petstore.elastic.io/docs/' target='_blank'>Petstore API docs</a>."
+      },
+       "password": {
         "label": "Password",
+        "required": true,
+        "viewClass": "TextFieldWithNoteView",
+        "note": "Please use <b>elasticio</b> as API key. For more details see <a href='https://petstore.elastic.io/docs/' target='_blank'>Petstore API docs</a>."
+      },
+		"restApiKey": {
+        "label": "Instance-Repository REST API Key",
         "required": true,
         "viewClass": "TextFieldWithNoteView",
         "note": "Please use <b>elasticio</b> as API key. For more details see <a href='https://petstore.elastic.io/docs/' target='_blank'>Petstore API docs</a>."
