@@ -22,7 +22,7 @@
       "fields": {
         "status": {
           "label": "Pet Status",
-          "required": true,
+          "required": true,	
           "viewClass": "SelectView",
           "model": {
             "available": "Available",
