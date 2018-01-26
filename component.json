@@ -4,8 +4,14 @@
   "docsUrl": "https://confluence.logistics-mall.com/",
   "credentials": {
     "fields": {
-      "apiKey": {
+      "apiKeyField": {
         "label": "API key",
+        "required": true,
+        "viewClass": "TextFieldWithNoteView",
+        "note": "Please use <b>elasticio</b> as API key. For more details see <a href='https://petstore.elastic.io/docs/' target='_blank'>Petstore API docs</a>."
+      },
+       "apiKey": {
+        "label": "Password",
         "required": true,
         "viewClass": "TextFieldWithNoteView",
         "note": "Please use <b>elasticio</b> as API key. For more details see <a href='https://petstore.elastic.io/docs/' target='_blank'>Petstore API docs</a>."
