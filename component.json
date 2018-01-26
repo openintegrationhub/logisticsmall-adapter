@@ -78,15 +78,6 @@
     }
   },
   "actions": {
-    "createPet": {
-      "main": "io.elastic.petstore.actions.CreatePet",
-      "title": "Create a Pet",
-      "description": "Creates a new Pet",
-      "metadata": {
-        "in": "./schemas/createPet.in.json",
-        "out": "./schemas/createPet.out.json"
-      }
-    },
     "createShipment": {
       "main": "io.logmall.actions.CreateShipment",
       "title": "Create a Shipment",
