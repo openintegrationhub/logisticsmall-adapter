@@ -17,13 +17,13 @@
       },
        "password": {
         "label": "Password",
+        "viewClass": "TextFieldWithNoteView",
         "required": true
       },
 		"restApiKey": {
         "label": "Instance-Repository REST API Key",
         "required": true,
-        "viewClass": "TextFieldWithNoteView",
-        "note": "Please use <b>elasticio</b> as API key. For more details see <a href='https://petstore.elastic.io/docs/' target='_blank'>Petstore API docs</a>."
+        "viewClass": "TextFieldWithNoteView"
       }
     },
     "verifier": "io.elastic.petstore.ApiKeyVerifier"
