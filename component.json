@@ -8,19 +8,16 @@
         "label": "Managed App Server URL",
         "required": true,
         "viewClass": "TextFieldWithNoteView",
-        "note": "Please use <b>elasticio</b> as API key. For more details see <a href='https://petstore.elastic.io/docs/' target='_blank'>Petstore API docs</a>."
+        "note": "Example URL <b>https://tenant.logistics-mall.com</b>"
       },
       "username": {
         "label": "Username",
-        "required": true,
         "viewClass": "TextFieldWithNoteView",
-        "note": "Please use <b>elasticio</b> as API key. For more details see <a href='https://petstore.elastic.io/docs/' target='_blank'>Petstore API docs</a>."
+        "required": true
       },
        "password": {
         "label": "Password",
-        "required": true,
-        "viewClass": "TextFieldWithNoteView",
-        "note": "Please use <b>elasticio</b> as API key. For more details see <a href='https://petstore.elastic.io/docs/' target='_blank'>Petstore API docs</a>."
+        "required": true
       },
 		"restApiKey": {
         "label": "Instance-Repository REST API Key",
