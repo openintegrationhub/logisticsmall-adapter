@@ -17,7 +17,7 @@
       },
        "password": {
         "label": "Password",
-        "viewClass": "TextFieldWithNoteView",
+        "viewClass": "PasswordFieldWithNoteView",
         "required": true
       },
 		"restApiKey": {
