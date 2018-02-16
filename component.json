@@ -10,16 +10,6 @@
         "viewClass": "TextFieldWithNoteView",
         "note": "Example URL <b>https://tenant.logistics-mall.com</b>"
       },
-      "username": {
-        "label": "Username",
-        "viewClass": "TextFieldWithNoteView",
-        "required": true
-      },
-       "password": {
-        "label": "Password",
-        "viewClass": "PasswordFieldWithNoteView",
-        "required": true
-      },
 		"restApiKey": {
         "label": "Instance-Repository REST API Key",
         "required": true,

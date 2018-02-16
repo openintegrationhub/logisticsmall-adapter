@@ -1,6 +1,7 @@
 package io.logmall.actions;
 
 import javax.json.JsonObject;
+import javax.json.JsonString;
 import javax.xml.bind.JAXBException;
 
 import org.slf4j.Logger;
@@ -40,11 +41,14 @@ public class CreateShipment implements Module {
 
         // contains action's configuration
         final JsonObject configuration = parameters.getConfiguration();
+        JsonString serverURL = configuration.getJsonString("serverURLd");
+        
 
         try {
         	ShipmentJsonMapper shipmentJsonMapper = new ShipmentJsonMapper();
         	ChangeShipment changeShipment = shipmentJsonMapper.fromJson(body);
-			ShipmentService shipmentService = ResteasyIntegration.newInstance().createClientProxy(ShipmentService.class, "");
+			ShipmentService shipmentService = ResteasyIntegration.newInstance().createClientProxy(ShipmentService.class, serverURL.getString());
+			logger.info("Got ServerURL " + serverURL.getString());
 			BusinessObjectDocument<Respond, Shipment> response = shipmentService.put(changeShipment);
 			logger.info("Shipment successfully created");
 	        final Message data = new Message.Builder().body(shipmentJsonMapper.fromBOD(response)).build();
