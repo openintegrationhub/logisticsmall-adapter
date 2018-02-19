@@ -18,6 +18,7 @@
     },
     "verifier": "io.elastic.petstore.ApiKeyVerifier"
   },
+  
   "triggers": {
     "getPetsByStatus": {
       "main": "io.elastic.petstore.triggers.GetPetsByStatus",
