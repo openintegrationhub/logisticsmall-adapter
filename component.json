@@ -4,11 +4,10 @@
   "docsUrl": "https://confluence.logistics-mall.com/",
   "credentials": {
     "fields": {
-      "serverURLd": {
-        "label": "Managed App Server URL",
+      "restApiKey": {
+        "label": "Instance-Repository REST API Key",
         "required": true,
-        "viewClass": "TextFieldWithNoteView",
-        "note": "Example URL <b>https://tenant.logistics-mall.com</b>"
+        "viewClass": "TextFieldWithNoteView"
       }
     },
     "verifier": "io.elastic.petstore.ApiKeyVerifier"
