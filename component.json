@@ -9,11 +9,6 @@
         "required": true,
         "viewClass": "TextFieldWithNoteView",
         "note": "Example URL <b>https://tenant.logistics-mall.com</b>"
-      },
-		"restApiKey": {
-        "label": "Instance-Repository REST API Key",
-        "required": true,
-        "viewClass": "TextFieldWithNoteView"
       }
     },
     "verifier": "io.elastic.petstore.ApiKeyVerifier"
