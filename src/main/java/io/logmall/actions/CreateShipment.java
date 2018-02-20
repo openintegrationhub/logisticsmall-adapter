@@ -41,7 +41,7 @@ public class CreateShipment implements Module {
 
         // contains action's configuration
         final JsonObject configuration = parameters.getConfiguration();
-        JsonString serverURL = configuration.getJsonString("serverURLd");
+        JsonString serverURL = configuration.getJsonString("serverURL");
         
 
         try {
