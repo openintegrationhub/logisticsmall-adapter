@@ -41,7 +41,9 @@ public class CreateShipment implements Module {
 
         // contains action's configuration
         final JsonObject configuration = parameters.getConfiguration();
+       
         JsonString serverURL = configuration.getJsonString("serverURLd");
+        logger.info("App Server URL: " + serverURL.getString());
         
 
         try {
@@ -61,6 +63,5 @@ public class CreateShipment implements Module {
 			throw new IllegalStateException("Exception during API call: " + e.getMessage());
 		}
     }
-    
- 
+  
 }
