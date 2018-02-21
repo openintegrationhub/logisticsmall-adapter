@@ -16,7 +16,7 @@
   
   "triggers": {
     "getPetsByStatus": {
-      "main": "io.elastic.petstore.triggers.GetPetsByStatus",
+      "main": "io.elastic.petstore.triggers.",
       "type": "polling",
       "title": "Get Pets By Status (HttpClient)",
       "description": "Retrieves pets from the Petstore API by given pet status using Apache HttpClient",
@@ -78,6 +78,22 @@
       }
     }
   },
+  "getShipmentByStatusJaxRs": {
+      "main": "io.elastic.petstore.triggers.CreateShipment",
+      "type": "polling",
+      "title": "Get Shipment By Status (JAX-RS)",
+      "description": "Retrieves shipments from the logistics mall API by given shipment status using Java API for RESTful Web Services (JAX-RS)",
+      "fields": {
+        "status": {
+          "label": "Shipment Status",
+          "required": true,
+          "prompt": "Select Pet Status"
+        }
+      },
+      "metadata": {
+        "out": "./schemas/getPetsByStatus.out.json"
+      }
+    },
   "actions": {
     "createShipment": {
       "main": "io.logmall.actions.CreateShipment",
