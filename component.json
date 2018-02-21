@@ -42,13 +42,6 @@
       "type": "polling",
       "title": "Get Shipment By Status (JAX-RS)",
       "description": "Retrieves shipments from the logistics mall API by given shipment status using Java API for RESTful Web Services (JAX-RS)",
-      "fields": {
-        "status": {
-          "label": "Shipment Status",
-          "required": true,
-          "prompt": "Select Pet Status"
-        }
-      },
       "metadata": {
         "out": "./schemas/getPetsByStatus.out.json"
       }
