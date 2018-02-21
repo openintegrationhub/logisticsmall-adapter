@@ -30,7 +30,7 @@ dependencies {
     compile 'io.elastic:sailor-jvm:2.0.1'
     compile 'org.glassfish.jersey.core:jersey-client:2.25.1'
     compile 'org.glassfish.jersey.media:jersey-media-json-processing:2.25.1'
-    
+    compile 'org.eclipse.persistence:org.eclipse.persistence.moxy:2.5.0'
     
     compile 'de.fraunhofer.ccl.bo:instance-repository-resteasy:2.0.30:client'
     compile 'de.fraunhofer.ccl.bo:instance-repository-jaxb:2.0.30'

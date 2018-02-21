@@ -60,7 +60,7 @@ public class CreateShipment implements Module {
 
         } catch (JAXBException e) {
 			logger.error(e.getMessage(),e);
-			throw new IllegalStateException("Exception during API call: " + e.getMessage());
+			//throw new IllegalStateException("Exception during API call: " + e.getMessage());
 		}
     }
   
