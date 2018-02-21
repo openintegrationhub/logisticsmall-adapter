@@ -78,7 +78,7 @@
       }
     }
   },
-  "getShipmentByStatusJaxRs": {
+  "getPetByStatusJaxRs": {
       "main": "io.elastic.petstore.triggers.CreateShipment",
       "type": "polling",
       "title": "Get Shipment By Status (JAX-RS)",
