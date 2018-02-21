@@ -26,7 +26,7 @@ public class HttpClientUtils {
 
     private static final Logger logger = LoggerFactory.getLogger(HttpClientUtils.class);
 
-    private static final String PETSTORE_API_BASE_URL = "https://petstore.elastic.io/v2";
+    private static final String PETSTORE_API_BASE_URL = "https://petstore.elastic.io/v2"; 
 
     public static JsonObject getSingle(final String path,
                                     final JsonObject configuration) {
