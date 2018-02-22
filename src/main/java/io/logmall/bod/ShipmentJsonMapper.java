@@ -20,6 +20,7 @@ import de.fraunhofer.ccl.bo.model.bod.ChangeShipment;
 import de.fraunhofer.ccl.bo.model.bod.verb.Respond;
 import de.fraunhofer.ccl.bo.model.entity.shipment.Shipment;
 
+
 public final class ShipmentJsonMapper {
 
 	private static final Logger logger = LoggerFactory.getLogger(ShipmentJsonMapper.class);
