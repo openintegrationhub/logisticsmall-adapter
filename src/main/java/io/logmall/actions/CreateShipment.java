@@ -59,8 +59,8 @@ public class CreateShipment implements Module {
 	        parameters.getEventEmitter().emitData(data);
 
         } catch (JAXBException e) {
-//			logger.error(e.getMessage(),e);
-//			throw new IllegalStateException("Exception during API call: " + e.getMessage());
+			logger.error(e.getMessage(),e);
+			//throw new IllegalStateException("Exception during API call: " + e.getMessage());
 		}
     }
   
