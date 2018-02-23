@@ -6,6 +6,7 @@ import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import io.elastic.api.EventEmitter;
@@ -33,7 +34,7 @@ public class CreateShipmentTest {
 		eventEmitterBuilder.onSnapshot(callback);
 		eventEmitterBuilder.onUpdateKeys(callback);
 		final EventEmitter eventEmitter = eventEmitterBuilder.build();
-		
+
 		String s = "{\"serverURLd\": \"https://otc.logistics-mall.com/instance-repository-resteasy/rest\"}";
 		JsonReader jsonParser = Json.createReader(new StringReader(s));
 
@@ -42,9 +43,12 @@ public class CreateShipmentTest {
 		ExecutionParameters.Builder eBuilder = new ExecutionParameters.Builder(message, eventEmitter);
 		eBuilder.configuration(configuration);
 		ExecutionParameters parameters = eBuilder.build();
+		try {
+			new CreateShipment().execute(parameters);
 
-		new CreateShipment().execute(parameters);
-
+		} catch (Throwable e) {
+			Assert.fail(e.getMessage() + " \n Cause: \n" + e.getCause());
+		}
 	}
 
 }
