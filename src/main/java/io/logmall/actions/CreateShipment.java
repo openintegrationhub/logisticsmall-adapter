@@ -1,7 +1,8 @@
 package io.logmall.actions;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.StringReader;
 import java.util.Scanner;
 
@@ -24,7 +25,6 @@ import de.fraunhofer.ccl.bo.model.entity.shipment.Shipment;
 import io.elastic.api.ExecutionParameters;
 import io.elastic.api.Message;
 import io.elastic.api.Module;
-import io.logmall.bod.ShipmentJsonMapper;
 import io.logmall.res.ResourceResolver;
 
 /**
@@ -60,17 +60,27 @@ public class CreateShipment implements Module {
 			JsonString serverURL = configuration.getJsonString("serverURLd");
 			logger.info("App Server URL: " + serverURL.getString());
 
-			InputStream inputStream = ResourceResolver.class.getClassLoader()
-					.getResourceAsStream("io/logmall/res/ChangeShipment.xml");
-			if(inputStream == null) {
-				inputStream = ResourceResolver.class.getClassLoader()
-						.getResourceAsStream("/io/logmall/res/ChangeShipment.xml");
-			} else {
-				throw new NullPointerException("InputStream Problem");
-			}
-			InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-			scanner = new Scanner(inputStreamReader);
-			String changeShipmentXML = scanner.useDelimiter("\\A").next();
+			File file = new File(ResourceResolver.class.getClassLoader()
+					.getResource("ChangeShipment.xml").getFile());
+//			if(inputStream == null) {
+//				inputStream = ResourceResolver.class.getClassLoader()
+//						.getResourceAsStream("/io/logmall/res/ChangeShipment.xml");
+//			} else {
+//				throw new NullPointerException("InputStream Problem");
+//			}
+			
+
+		    BufferedReader br = new BufferedReader(new FileReader(file));
+		    StringBuffer fileContents = new StringBuffer();
+		    String line = br.readLine();
+		    while (line != null) {
+		        fileContents.append(line);
+		        line = br.readLine();
+		    }
+
+		    br.close();
+
+			String changeShipmentXML = fileContents.toString();
 			XmlFactory xmlFactory = new XmlFactory(new BusinessObjectContextResolver());
 			Unmarshaller unmarshaller = xmlFactory.createUnmarshaller();
 			ChangeShipment changeShipment = (ChangeShipment) unmarshaller

@@ -16,7 +16,7 @@ import io.elastic.api.Message;
 
 public class CreateShipmentTest {
 
-	//@Test
+	@Test
 	public void testExecute() {
 		Message.Builder messageBuilder = new Message.Builder();
 		final Message message = messageBuilder.build();
