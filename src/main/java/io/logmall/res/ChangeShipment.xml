@@ -1,0 +1,254 @@
+<ccl:ChangeShipment xmlns:ccl="http://www.ccl.fraunhofer.de/oagis/1"
+	xmlns:oa="http://www.openapplications.org/oagis/9" versionID="${project.version}">
+	<ccl:ApplicationArea>
+		<oa:CreationDateTime>2017-02-03T10:23:44.499+01:00
+		</oa:CreationDateTime>
+		<oa:BODID>9ceb9107-0b47-4319-b588-ca21589e9759</oa:BODID>
+	</ccl:ApplicationArea>
+	<ccl:ChangeShipmentDataArea>
+		<ccl:Change>
+			<oa:ActionCriteria>
+				<oa:ActionExpression actionCode="CREATE" />
+			</oa:ActionCriteria>
+		</ccl:Change>
+		<ccl:Shipment>
+			<ccl:ShipmentHeader>
+				<ccl:Type>ASN</ccl:Type>
+				<oa:AlternateDocumentID>
+					<oa:ID schemeID="DISPLAY_IDENTIFIER" schemeAgencyID="www.logisticsmall.com">ASN-00001
+					</oa:ID>
+				</oa:AlternateDocumentID>
+				<oa:AlternateDocumentID>
+					<oa:ID schemeID="my_item_id" schemeAgencyID="my_compay_agency_id">4711</oa:ID>
+				</oa:AlternateDocumentID>
+				<oa:Description>Description of Shipment</oa:Description>
+				<oa:Note>Note about Shipment-ASN-00001</oa:Note>
+				<oa:Status>
+					<oa:Code>ANNOUNCED</oa:Code>
+				</oa:Status>
+				<oa:ActualShipDateTime>2017-02-03T10:23:44.045+01:00
+				</oa:ActualShipDateTime>
+				<oa:ScheduledDeliveryDateTime>2017-02-03T10:23:44.083+01:00
+				</oa:ScheduledDeliveryDateTime>
+				<oa:NetWeightMeasure>
+					<ccl:unit>kg</ccl:unit>
+					<ccl:value>900</ccl:value>
+				</oa:NetWeightMeasure>
+				<oa:GrossWeightMeasure>
+					<ccl:unit>t</ccl:unit>
+					<ccl:value>1</ccl:value>
+				</oa:GrossWeightMeasure>
+				<oa:TotalVolumeMeasure>
+					<ccl:unit>t</ccl:unit>
+					<ccl:value>10.0</ccl:value>
+				</oa:TotalVolumeMeasure>
+				<ccl:ShipToParty>
+					<ccl:PartyIDs>
+						<oa:ID schemeID="DISPLAY_IDENTIFIER" schemeAgencyID="www.logisticsmall.com">customer
+						</oa:ID>
+					</ccl:PartyIDs>
+					<oa:Name>The ShipTo name</oa:Name>
+					<ccl:Location>
+						<oa:Name>Ship To Location A</oa:Name>
+						<ccl:PostalAddress>
+							<oa:StreetName>Eine andere Strasse</oa:StreetName>
+							<oa:CityName>Bocholt</oa:CityName>
+							<oa:PostalCode>12345</oa:PostalCode>
+							<ccl:StreetNumber>44a</ccl:StreetNumber>
+						</ccl:PostalAddress>
+						<oa:Description>Ship To Location A descritpion</oa:Description>
+					</ccl:Location>
+					<ccl:Location>
+						<oa:Name>Ship To Location B</oa:Name>
+						<ccl:PostalAddress>
+							<oa:StreetName>Eine andere Strasse</oa:StreetName>
+							<oa:CityName>Dortmund</oa:CityName>
+							<oa:PostalCode>12345</oa:PostalCode>
+							<ccl:StreetNumber>44b</ccl:StreetNumber>
+						</ccl:PostalAddress>
+						<oa:Description>Ship To Location B descritpion</oa:Description>
+					</ccl:Location>
+					<ccl:PartyMasterReference>
+						<oa:ID schemeID="BOID" schemeAgencyID="www.logisticsmall.com" />
+						<oa:DisplayID schemeID="DISPLAY_IDENTIFIER"
+							schemeAgencyID="www.logisticsmall.com">customer</oa:DisplayID>
+					</ccl:PartyMasterReference>
+				</ccl:ShipToParty>
+				<ccl:CarrierParty>
+					<ccl:PartyIDs>
+						<oa:ID schemeID="DISPLAY_IDENTIFIER" schemeAgencyID="www.logisticsmall.com">customer
+						</oa:ID>
+					</ccl:PartyIDs>
+					<oa:Name>The Carrier name</oa:Name>
+					<ccl:Location>
+						<oa:Name>Carrier Location B</oa:Name>
+						<ccl:PostalAddress>
+							<oa:StreetName>Carrier Strasse</oa:StreetName>
+							<oa:CityName>Duesseldorf</oa:CityName>
+							<oa:PostalCode>12345</oa:PostalCode>
+							<ccl:StreetNumber>55b</ccl:StreetNumber>
+						</ccl:PostalAddress>
+						<oa:Description>Carrier Location B descritpion</oa:Description>
+					</ccl:Location>
+					<ccl:Location>
+						<oa:Name>Carrier Location A</oa:Name>
+						<ccl:PostalAddress>
+							<oa:StreetName>Carrier Strasse</oa:StreetName>
+							<oa:CityName>Duesseldorf</oa:CityName>
+							<oa:PostalCode>12345</oa:PostalCode>
+							<ccl:StreetNumber>55a</ccl:StreetNumber>
+						</ccl:PostalAddress>
+						<oa:Description>Carrier Location A descritpion</oa:Description>
+					</ccl:Location>
+					<ccl:PartyMasterReference>
+						<oa:ID schemeID="BOID" schemeAgencyID="www.logisticsmall.com" />
+						<oa:DisplayID schemeID="DISPLAY_IDENTIFIER"
+							schemeAgencyID="www.logisticsmall.com">customer</oa:DisplayID>
+					</ccl:PartyMasterReference>
+				</ccl:CarrierParty>
+				<ccl:ShipFromParty>
+					<ccl:PartyIDs>
+						<oa:ID schemeID="DISPLAY_IDENTIFIER" schemeAgencyID="www.logisticsmall.com">customer
+						</oa:ID>
+					</ccl:PartyIDs>
+					<oa:Name>The ShipFrom name</oa:Name>
+					<ccl:Location>
+						<oa:Name>Ship From Location A</oa:Name>
+						<ccl:PostalAddress>
+							<oa:StreetName>Die Strasse</oa:StreetName>
+							<oa:CityName>Dortmund</oa:CityName>
+							<oa:PostalCode>12345</oa:PostalCode>
+							<ccl:StreetNumber>33a</ccl:StreetNumber>
+						</ccl:PostalAddress>
+						<oa:Description>Ship From Location A description</oa:Description>
+					</ccl:Location>
+					<ccl:Location>
+						<oa:Name>Ship From Location B</oa:Name>
+						<ccl:PostalAddress>
+							<oa:StreetName>Die Strasse</oa:StreetName>
+							<oa:CityName>Dortmund</oa:CityName>
+							<oa:PostalCode>12345</oa:PostalCode>
+							<ccl:StreetNumber>33b</ccl:StreetNumber>
+						</ccl:PostalAddress>
+						<oa:Description>Ship From Location B descritpion</oa:Description>
+					</ccl:Location>
+					<ccl:PartyMasterReference>
+						<oa:ID schemeID="BOID" schemeAgencyID="www.logisticsmall.com" />
+						<oa:DisplayID schemeID="DISPLAY_IDENTIFIER"
+							schemeAgencyID="www.logisticsmall.com">customer</oa:DisplayID>
+					</ccl:PartyMasterReference>
+				</ccl:ShipFromParty>
+				<ccl:TransportationTerm>
+					<oa:IncotermsCode>INVOICE</oa:IncotermsCode>
+					<oa:Description>A description of the Terms Of Delivery
+					</oa:Description>
+					<oa:Note>A note about the Terms of Delivery</oa:Note>
+					<ccl:DeliveryTypeCode>DOOR</ccl:DeliveryTypeCode>
+				</ccl:TransportationTerm>
+				<!--oa:UserArea>
+					<ccl:UserAreaString agencyID="my_compay_agency_id"
+						name="Additional note">An additional customer specific note</ccl:UserAreaString>
+				</oa:UserArea-->
+				<ccl:TenantID schemeID="TENANT_DISPLAY_IDENTIFIER"
+					schemeAgencyID="www.logisticsmall.com">customer</ccl:TenantID>
+				<ccl:LoadingMeter>
+					<ccl:unit>m</ccl:unit>
+					<ccl:value>13.6</ccl:value>
+				</ccl:LoadingMeter>
+				<oa:RFID>bca01a1121ed46e282635f80027d1d37</oa:RFID>
+				<oa:EPCID>01.12345567.891011.001122DBC</oa:EPCID>
+				<oa:UPCID>5 0123456789 0</oa:UPCID>
+			</ccl:ShipmentHeader>
+			<ccl:ShipmentItem>
+				<oa:OrderQuantity>
+					<ccl:unit>Stk</ccl:unit>
+					<ccl:value>99</ccl:value>
+				</oa:OrderQuantity>
+				<oa:ShippedQuantity>
+					<ccl:unit>Stk</ccl:unit>
+					<ccl:value>0</ccl:value>
+				</oa:ShippedQuantity>
+				<ccl:Item>
+					<oa:ItemID>
+						<oa:ID schemeID="DISPLAY_IDENTIFIER" schemeAgencyID="www.logisticsmall.com">TEST
+						</oa:ID>
+					</oa:ItemID>
+					<oa:Description></oa:Description>
+					<oa:CountryOfOriginCode>DE</oa:CountryOfOriginCode>
+					<oa:SerialNumber>000000123</oa:SerialNumber>
+					<oa:Lot>
+						<oa:LotIDs>
+							<oa:ID>2017000001</oa:ID>
+						</oa:LotIDs>
+					</oa:Lot>
+					<ccl:ItemValue>
+						<oa:UnitValue>
+							<oa:Amount>
+								<ccl:unit>EUR</ccl:unit>
+								<ccl:value>79.00</ccl:value>
+							</oa:Amount>
+							<oa:PerQuantity>
+								<ccl:unit>Stk</ccl:unit>
+								<ccl:value>1</ccl:value>
+							</oa:PerQuantity>
+						</oa:UnitValue>
+						<oa:CostingMethodCode>INV</oa:CostingMethodCode>
+					</ccl:ItemValue>
+					<ccl:ExpirationDateTime>2017-02-03T10:23:44.486+01:00
+					</ccl:ExpirationDateTime>
+					<ccl:ItemMasterReference>
+						<oa:ID schemeID="BOID" schemeAgencyID="www.logisticsmall.com" />
+						<oa:DisplayID schemeID="DISPLAY_IDENTIFIER"
+							schemeAgencyID="www.logisticsmall.com">TEST</oa:DisplayID>
+					</ccl:ItemMasterReference>
+				</ccl:Item>
+				<ccl:QualityAssuranceFlag>false</ccl:QualityAssuranceFlag>
+			</ccl:ShipmentItem>
+			<ccl:ShipmentItem>
+				<oa:OrderQuantity>
+					<ccl:unit>Packaging</ccl:unit>
+					<ccl:value>1</ccl:value>
+				</oa:OrderQuantity>
+				<oa:ShippedQuantity>
+					<ccl:unit>Stk</ccl:unit>
+					<ccl:value>0</ccl:value>
+				</oa:ShippedQuantity>
+				<ccl:Item>
+					<oa:ItemID>
+						<oa:ID schemeID="DISPLAY_IDENTIFIER" schemeAgencyID="www.logisticsmall.com">TEST
+						</oa:ID>
+					</oa:ItemID>
+					<oa:Description></oa:Description>
+					<oa:CountryOfOriginCode>DE</oa:CountryOfOriginCode>
+					<oa:SerialNumber>000000123</oa:SerialNumber>
+					<oa:Lot>
+						<oa:LotIDs>
+							<oa:ID>2017000001</oa:ID>
+						</oa:LotIDs>
+					</oa:Lot>
+					<ccl:ItemValue>
+						<oa:UnitValue>
+							<oa:Amount>
+								<ccl:unit>EUR</ccl:unit>
+								<ccl:value>79.00</ccl:value>
+							</oa:Amount>
+							<oa:PerQuantity>
+								<ccl:unit>Stk</ccl:unit>
+								<ccl:value>1</ccl:value>
+							</oa:PerQuantity>
+						</oa:UnitValue>
+						<oa:CostingMethodCode>INV</oa:CostingMethodCode>
+					</ccl:ItemValue>
+					<ccl:ExpirationDateTime>2017-02-03T10:23:44.486+01:00
+					</ccl:ExpirationDateTime>
+					<ccl:ItemMasterReference>
+						<oa:ID schemeID="BOID" schemeAgencyID="www.logisticsmall.com" />
+						<oa:DisplayID schemeID="DISPLAY_IDENTIFIER"
+							schemeAgencyID="www.logisticsmall.com">TEST</oa:DisplayID>
+					</ccl:ItemMasterReference>
+				</ccl:Item>
+				<ccl:QualityAssuranceFlag>false</ccl:QualityAssuranceFlag>
+			</ccl:ShipmentItem>
+		</ccl:Shipment>
+	</ccl:ChangeShipmentDataArea>
+</ccl:ChangeShipment>
