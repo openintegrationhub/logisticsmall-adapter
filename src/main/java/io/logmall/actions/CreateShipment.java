@@ -31,64 +31,69 @@ import io.logmall.res.ResourceResolver;
  * Action to create a Shipment.
  */
 public class CreateShipment implements Module {
-    
+
 	private static final Logger logger = LoggerFactory.getLogger(CreateShipment.class);
 
-    /**
-     * Executes the actions's logic by sending a request to the logmall API and emitting response to the platform.
-     *
-     * @param parameters execution parameters
-     */
-    @Override
-    public void execute(final ExecutionParameters parameters) {
-    	
-        logger.info("Going to create new shipment");
-        // incoming message
-        final Message message = parameters.getMessage();
+	/**
+	 * Executes the actions's logic by sending a request to the logmall API and
+	 * emitting response to the platform.
+	 *
+	 * @param parameters
+	 *            execution parameters
+	 */
+	@Override
+	public void execute(final ExecutionParameters parameters) {
 
-        // body contains the mapped data
-        final JsonObject body = message.getBody();
+		logger.info("Going to create new shipment");
+		Scanner scanner = null;
+		try {
 
-        // contains action's configuration
-        final JsonObject configuration = parameters.getConfiguration();
-       
-        JsonString serverURL = configuration.getJsonString("serverURLd");
-        logger.info("App Server URL: " + serverURL.getString());
-        
-        
-        String changeShipmentXML;
-        Scanner scanner = null;
-        
-        try {
-        	
-        	InputStream inputStream = ResourceResolver.class.getClassLoader().getResourceAsStream("io/logmall/res/ChangeShipment.xml");
-        	InputStreamReader inputStreamReader = new InputStreamReader(inputStream); 
-        	scanner = new Scanner(inputStreamReader);
-        	changeShipmentXML = scanner.useDelimiter("\\A").next();
-        	XmlFactory xmlFactory = new XmlFactory(new BusinessObjectContextResolver());
-        	Unmarshaller unmarshaller = xmlFactory.createUnmarshaller();
-			ChangeShipment changeShipment = (ChangeShipment) unmarshaller.unmarshal(new StringReader(changeShipmentXML));
-        	
-//            ShipmentJsonMapper shipmentJsonMapper = new ShipmentJsonMapper();
-//        	ChangeShipment changeShipment = shipmentJsonMapper.fromJson(body);
-			ShipmentService shipmentService = ResteasyIntegration.newInstance().createClientProxy(ShipmentService.class, serverURL.getString());
+			// incoming message
+			final Message message = parameters.getMessage();
+
+			// body contains the mapped data
+			final JsonObject body = message.getBody();
+
+			// contains action's configuration
+			final JsonObject configuration = parameters.getConfiguration();
+
+			JsonString serverURL = configuration.getJsonString("serverURLd");
+			logger.info("App Server URL: " + serverURL.getString());
+
+			InputStream inputStream = ResourceResolver.class.getClassLoader()
+					.getResourceAsStream("io/logmall/res/ChangeShipment.xml");
+			InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+			scanner = new Scanner(inputStreamReader);
+			String changeShipmentXML = scanner.useDelimiter("\\A").next();
+			XmlFactory xmlFactory = new XmlFactory(new BusinessObjectContextResolver());
+			Unmarshaller unmarshaller = xmlFactory.createUnmarshaller();
+			ChangeShipment changeShipment = (ChangeShipment) unmarshaller
+					.unmarshal(new StringReader(changeShipmentXML));
+
+			// ShipmentJsonMapper shipmentJsonMapper = new ShipmentJsonMapper();
+			// ChangeShipment changeShipment = shipmentJsonMapper.fromJson(body);
+			ShipmentService shipmentService = ResteasyIntegration.newInstance().createClientProxy(ShipmentService.class,
+					serverURL.getString());
 			logger.info("Got ServerURL " + serverURL.getString());
 			BusinessObjectDocument<Respond, Shipment> response = shipmentService.put(changeShipment);
 			logger.info("Shipment successfully created");
-//	        final Message data = new Message.Builder().body(shipmentJsonMapper.fromBOD(response)).build();
-	        logger.info("Emitting data: " + response);
-	        // emitting the message to the platform
-	       // parameters.getEventEmitter().emitData(data);
+			// final Message data = new
+			// Message.Builder().body(shipmentJsonMapper.fromBOD(response)).build();
+			logger.info("Emitting data: " + response);
+			// emitting the message to the platform
+			// parameters.getEventEmitter().emitData(data);
 
-        } catch (JAXBException e) {
-			logger.error(e.getMessage(),e);
+		} catch (JAXBException e) {
+			logger.error(e.getMessage(), e);
 			throw new IllegalStateException("Exception during API call: " + e.getMessage());
+		} catch (Throwable e) {
+			logger.error(e.getMessage(), e);
+			throw new IllegalStateException("Exception during API call: " + e.getMessage());
+		} finally {
+			if (scanner != null) {
+				scanner.close();
+			}
 		}
-        finally{
-        	if(scanner != null) {
-        	scanner.close();
-        	}
-        }
-    }
-  
+	}
+
 }
