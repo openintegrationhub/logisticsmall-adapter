@@ -82,16 +82,12 @@ dependencies {
 
 	runtime 'de.fraunhofer.ccl.bo:instance-repository-jaxb:2.0.30'
     runtime 'org.eclipse.persistence:org.eclipse.persistence.moxy:2.5.0'
-   
-   	
    	testCompile 'junit:junit:4.11'
-   	testRuntime 'org.eclipse.persistence:org.eclipse.persistence.moxy:2.5.0'
-    
+   	testRuntime 'org.eclipse.persistence:org.eclipse.persistence.moxy:2.5.0' 
 }
 
 
 sourceSets {
-
     test {
         java {
             srcDirs = ['src/test/java']
