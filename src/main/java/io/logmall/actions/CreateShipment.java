@@ -61,7 +61,7 @@ public class CreateShipment implements Module {
 			logger.info("App Server URL: " + serverURL.getString());
 
 			InputStream inputStream = ResourceResolver.class.getClassLoader()
-					.getResourceAsStream("io/logmall/res/ChangeShipment.xml");
+					.getResourceAsStream("/io/logmall/res/ChangeShipment.xml");
 			InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
 			scanner = new Scanner(inputStreamReader);
 			String changeShipmentXML = scanner.useDelimiter("\\A").next();
