@@ -27,19 +27,65 @@ repositories {
 }
 
 dependencies {
-    compile 'io.elastic:sailor-jvm:2.0.1'
+
     compile 'org.glassfish.jersey.core:jersey-client:2.25.1'
     compile 'org.glassfish.jersey.media:jersey-media-json-processing:2.25.1'
-    compile 'org.eclipse.persistence:org.eclipse.persistence.moxy:2.5.0'
-    runtime 'de.fraunhofer.ccl.bo:instance-repository-jaxb:2.0.30'
-    runtime 'org.eclipse.persistence:org.eclipse.persistence.moxy:2.5.0'
     
-    compile 'de.fraunhofer.ccl.bo:instance-repository-resteasy:2.0.30:client'
+	compile 'org.jboss.logging:jboss-logging:3.1.4.GA'
+	compile 'org.joda:joda-money:0.6'
+	compile 'joda-time:joda-time:2.6'
+
+ 	compile 'org.eclipse.persistence:org.eclipse.persistence.moxy:2.5.0'
+	compile 'org.eclipse.persistence:org.eclipse.persistence.antlr:2.5.0'
+  	compile 'org.eclipse.persistence:org.eclipse.persistence.asm:2.5.0'
+	compile 'org.eclipse.persistence:org.eclipse.persistence.core:2.5.0'
+   
+    compile 'org.jboss.resteasy:resteasy-client:3.0.14.Final'
+
+	compile 'org.jboss.resteasy:resteasy-client:3.0.14.Final'
+	compile 'org.jadira.usertype:usertype.core:3.0.0.CR1'
+	compile 'org.jadira.usertype:usertype.spi:3.0.0.CR1'
+   
     compile 'de.fraunhofer.ccl.bo:instance-repository-jaxb:2.0.30'
+    compile 'de.fraunhofer.ccl.bo:instance-repository-resteasy:2.0.30:client'
     compile 'de.fraunhofer.ccl.bo:instance-repository-businessobjects:2.0.30'
    	compile 'com.google.code.gson:gson:2.8.2'
+    compile 'io.elastic:sailor-jvm:2.0.1'
+
+   	runtime 'org.glassfish.jersey.core:jersey-client:2.25.1'
+    runtime 'org.glassfish.jersey.media:jersey-media-json-processing:2.25.1'
+   	
+   	runtime 'org.jboss.logging:jboss-logging:3.1.4.GA'
+	runtime 'org.joda:joda-money:0.6'
+	runtime 'joda-time:joda-time:2.6'
+
+	runtime 'org.eclipse.persistence:org.eclipse.persistence.antlr:2.5.0'
+  	runtime 'org.eclipse.persistence:org.eclipse.persistence.asm:2.5.0'
+	runtime 'org.eclipse.persistence:org.eclipse.persistence.core:2.5.0'
+    runtime 'org.eclipse.persistence:org.eclipse.persistence.moxy:2.5.0'
+    runtime 'org.jboss.resteasy:resteasy-client:3.0.14.Final'
+
+	runtime 'org.jboss.resteasy:resteasy-client:3.0.14.Final'
+	runtime 'org.jboss.resteasy:resteasy-client:3.0.14.Final'
+	runtime 'org.jadira.usertype:usertype.core:3.0.0.CR1'
+	runtime 'org.jadira.usertype:usertype.spi:3.0.0.CR1'
+   
+    runtime 'de.fraunhofer.ccl.bo:instance-repository-jaxb:2.0.30'
+    runtime 'org.eclipse.persistence:org.eclipse.persistence.moxy:2.5.0'
+   
+    runtime 'de.fraunhofer.ccl.bo:instance-repository-resteasy:2.0.30:client'
+    runtime 'de.fraunhofer.ccl.bo:instance-repository-jaxb:2.0.30'
+    runtime 'de.fraunhofer.ccl.bo:instance-repository-businessobjects:2.0.30'
+   	runtime 'com.google.code.gson:gson:2.8.2'
+    runtime 'io.elastic:sailor-jvm:2.0.1'
+
+
+	runtime 'de.fraunhofer.ccl.bo:instance-repository-jaxb:2.0.30'
+    runtime 'org.eclipse.persistence:org.eclipse.persistence.moxy:2.5.0'
+   
    	
    	testCompile 'junit:junit:4.11'
+   	testRuntime 'org.eclipse.persistence:org.eclipse.persistence.moxy:2.5.0'
     
 }
 
