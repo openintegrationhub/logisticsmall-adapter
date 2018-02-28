@@ -37,10 +37,10 @@
         "out": "./schemas/getPetsByStatus.out.json"
       }
     },
-     "getShipmentByStatusJaxRs": {
+     "getShipment": {
       "main": "io.logmall.actions.CreateShipment",
       "type": "polling",
-      "title": "Get Shipment By Status (JAX-RS)",
+      "title": "Get Shipment (JAX-RS)",
       "description": "Retrieves shipments from the logistics mall API by given shipment status using Java API for RESTful Web Services (JAX-RS)",
       "metadata": {
         "out": "./schemas/getPetsByStatus.out.json"

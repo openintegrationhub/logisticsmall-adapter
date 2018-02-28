@@ -3,11 +3,16 @@ package io.logmall.actions;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.StringReader;
+import java.io.Writer;
 import java.util.Scanner;
 
+import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonString;
+import javax.json.JsonWriter;
+import javax.json.JsonWriterFactory;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
@@ -15,6 +20,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.fraunhofer.ccl.bo.converter.xml.oagis.BusinessObjectContextResolver;
+import de.fraunhofer.ccl.bo.converter.xml.oagis.JsonFactory;
 import de.fraunhofer.ccl.bo.converter.xml.oagis.XmlFactory;
 import de.fraunhofer.ccl.bo.instancerepository.boundary.rest.api.ShipmentService;
 import de.fraunhofer.ccl.bo.integration.resteasy.ResteasyIntegration;
@@ -25,6 +31,7 @@ import de.fraunhofer.ccl.bo.model.entity.shipment.Shipment;
 import io.elastic.api.ExecutionParameters;
 import io.elastic.api.Message;
 import io.elastic.api.Module;
+import io.logmall.bod.ShipmentJsonMapper;
 import io.logmall.res.ResourceResolver;
 
 /**
@@ -45,7 +52,7 @@ public class CreateShipment implements Module {
 	public void execute(final ExecutionParameters parameters) {
 
 		logger.info("Going to create new shipment");
-		Scanner scanner = null;
+
 		try {
 
 			// incoming message
@@ -60,34 +67,14 @@ public class CreateShipment implements Module {
 			JsonString serverURL = configuration.getJsonString("serverURLd");
 			logger.info("App Server URL: " + serverURL.getString());
 
-			File file = new File(ResourceResolver.class.getClassLoader()
-					.getResource("ChangeShipment.xml").getFile());
-//			if(inputStream == null) {
-//				inputStream = ResourceResolver.class.getClassLoader()
-//						.getResourceAsStream("/io/logmall/res/ChangeShipment.xml");
-//			} else {
-//				throw new NullPointerException("InputStream Problem");
-//			}
-			
+//			JsonFactory jsonFactory = new JsonFactory(new BusinessObjectContextResolver());
+//			Unmarshaller unmarshaller = jsonFactory.createUnmarshaller();	
+//			ChangeShipment changeShipment = (ChangeShipment) unmarshaller
+//					.unmarshal(new StringReader(changeShipmentXML));
 
-		    BufferedReader br = new BufferedReader(new FileReader(file));
-		    StringBuffer fileContents = new StringBuffer();
-		    String line = br.readLine();
-		    while (line != null) {
-		        fileContents.append(line);
-		        line = br.readLine();
-		    }
-
-		    br.close();
-
-			String changeShipmentXML = fileContents.toString();
-			XmlFactory xmlFactory = new XmlFactory(new BusinessObjectContextResolver());
-			Unmarshaller unmarshaller = xmlFactory.createUnmarshaller();
-			ChangeShipment changeShipment = (ChangeShipment) unmarshaller
-					.unmarshal(new StringReader(changeShipmentXML));
-
-			// ShipmentJsonMapper shipmentJsonMapper = new ShipmentJsonMapper();
-			// ChangeShipment changeShipment = shipmentJsonMapper.fromJson(body);
+			ShipmentJsonMapper shipmentJsonMapper = new ShipmentJsonMapper();
+			ChangeShipment changeShipment = shipmentJsonMapper.fromJson(body);
+			 
 			ShipmentService shipmentService = ResteasyIntegration.newInstance().createClientProxy(ShipmentService.class,
 					serverURL.getString());
 			logger.info("Got ServerURL " + serverURL.getString());
@@ -105,10 +92,6 @@ public class CreateShipment implements Module {
 		} catch (Throwable e) {
 			logger.error(e.getMessage(), e);
 			throw new IllegalStateException("Exception during API call: " + e.getMessage());
-		} finally {
-			if (scanner != null) {
-				scanner.close();
-			}
 		}
 	}
 
