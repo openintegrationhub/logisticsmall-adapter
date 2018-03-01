@@ -25,7 +25,6 @@ import io.elastic.api.Message;
 public class CreateOrReplaceShipmentTest {
 	Scanner scanner = null;
 
-	@Ignore
 	@Test
 	public void testExecute() {
 		File file = new File(ResourceResolver.class.getClassLoader().getResource("ChangeShipment.json").getFile());

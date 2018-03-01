@@ -1,6 +1,5 @@
 package io.logmall.actions;
 
-
 import javax.json.JsonObject;
 import javax.json.JsonString;
 import javax.xml.bind.JAXBException;
@@ -33,6 +32,7 @@ public class CreateOrReplaceShipment implements Module {
 	 * @param parameters
 	 *            execution parameters
 	 */
+
 	@Override
 	public void execute(final ExecutionParameters parameters) {
 
@@ -49,22 +49,27 @@ public class CreateOrReplaceShipment implements Module {
 			// contains action's configuration
 			final JsonObject configuration = parameters.getConfiguration();
 
+			// access the value of the apiKey field defined in credentials section of
+			// component.json
+			// final JsonString apiKey = configuration.getJsonString("apiKey");
+			// if (apiKey == null) {
+			// throw new IllegalStateException("apiKey is required");
+			// }
+
+			// access the value of the status field defined in trigger's fields section of
+			// component.json
 			JsonString serverURL = configuration.getJsonString("serverURLd");
 			logger.info("App Server URL: " + serverURL.getString());
-
-			ShipmentJsonMapper shipmentJsonMapper = new ShipmentJsonMapper();
-			ChangeShipment changeShipment = shipmentJsonMapper.fromJson(body);
-			 
 			ShipmentService shipmentService = ResteasyIntegration.newInstance().createClientProxy(ShipmentService.class,
 					serverURL.getString());
 			logger.info("Got ServerURL " + serverURL.getString());
+
+			ShipmentJsonMapper shipmentJsonMapper = new ShipmentJsonMapper();
+			ChangeShipment changeShipment = shipmentJsonMapper.fromJson(body);
+
 			BusinessObjectDocument<Respond, Shipment> response = shipmentService.put(changeShipment);
 			logger.info("Shipment successfully created");
-			// final Message data = new
-			// Message.Builder().body(shipmentJsonMapper.fromBOD(response)).build();
 			logger.info("Emitting data: " + response);
-			// emitting the message to the platform
-			// parameters.getEventEmitter().emitData(data);
 
 		} catch (JAXBException e) {
 			logger.error(e.getMessage(), e);
