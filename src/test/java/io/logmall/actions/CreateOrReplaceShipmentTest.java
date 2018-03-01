@@ -13,6 +13,7 @@ import javax.json.JsonObject;
 import javax.json.JsonReader;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import io.elastic.api.EventEmitter;
@@ -24,6 +25,7 @@ import io.elastic.api.Message;
 public class CreateOrReplaceShipmentTest {
 	Scanner scanner = null;
 
+	@Ignore
 	@Test
 	public void testExecute() {
 		File file = new File(ResourceResolver.class.getClassLoader().getResource("ChangeShipment.json").getFile());
