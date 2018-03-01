@@ -38,7 +38,7 @@
       }
     },
      "getShipment": {
-      "main": "io.logmall.actions.CreateShipment",
+      "main": "io.logmall.actions.CreateOrReplaceShipment",
       "type": "polling",
       "title": "Get Shipment (JAX-RS)",
       "description": "Retrieves shipments from the logistics mall API by given shipment status using Java API for RESTful Web Services (JAX-RS)",
