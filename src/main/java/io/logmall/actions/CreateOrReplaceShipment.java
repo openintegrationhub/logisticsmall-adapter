@@ -74,5 +74,4 @@ public class CreateOrReplaceShipment implements Module {
 			throw new IllegalStateException("Exception during API call: " + e.getMessage());
 		}
 	}
-
 }
