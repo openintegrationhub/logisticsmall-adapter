@@ -24,7 +24,7 @@ import io.logmall.bod.ShipmentJsonMapper;
  */
 public class CreateOrReplaceShipment implements Module {
 
-	private static final Logger logger = LoggerFactory.getLogger(CreateOrReplaceShipmentTest.class);
+	private static final Logger logger = LoggerFactory.getLogger(CreateOrReplaceShipment.class);
 
 	/**
 	 * Executes the actions's logic by sending a request to the logmall API and
