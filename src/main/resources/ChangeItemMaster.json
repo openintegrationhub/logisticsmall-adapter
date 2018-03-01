@@ -1,0 +1,269 @@
+{
+  "ChangeItemMaster": {
+    "releaseID": "9.5.1",
+    "versionID": "${project.version}",
+    "ApplicationArea": {
+      "CreationDateTime": "2018-01-29T11:36:47.640+01:00",
+      "BODID": "4e56c3b1-62ed-42f5-a454-f8e301ea9814"
+    },
+    "ChangeItemMasterDataArea": {
+      "Change": {
+        "ActionCriteria": {
+          "ActionExpression": { "actionCode": "CREATE" }
+        }
+      },
+      "ItemMaster": [
+        {
+          "ItemMasterHeader": {
+            "ItemID": [
+              {
+                "ID": {
+                  "chemeID": "BOID",
+                  "schemeAgencyID": "www.logisticsmall.com",
+                  "text": "ItemMaster-0001"
+                }
+              },
+              {
+                "ID": {
+                  "schemeID": "DISPLAY_IDENTIFIER",
+                  "schemeAgencyID": "www.logisticsmall.com",
+                  "text": "ItemMaster-0001"
+                }
+              }
+            ],
+            "ManufacturerItemID": {
+              "ID": {
+                "schemeID": "GENERIC",
+                "schemeAgencyID": "www.logisticsmall.com",
+                "text": "ManufacturerItemID-0001"
+              }
+            },
+            "Packaging": {
+              "Description": "Umverpackung",
+              "Note": "Umverpackung",
+              "Dimensions": {
+                "WidthMeasure": {
+                  "unit": "cm",
+                  "value": "10"
+                },
+                "LengthMeasure": {
+                  "unit": "cm",
+                  "value": "10"
+                },
+                "HeightMeasure": {
+                  "unit": "cm",
+                  "value": "10"
+                },
+                "WeightRange": {
+                  "MinimumWeightMeasure": {
+                    "unit": "kg",
+                    "value": "1"
+                  }
+                }
+              },
+              "UnitCode": "Umverpackung",
+              "BaseUnitCapacity": "9"
+            },
+            "Dimensions": {
+              "WidthMeasure": {
+                "unit": "m",
+                "value": "10"
+              },
+              "LengthMeasure": {
+                "unit": "m",
+                "value": "10"
+              },
+              "HeightMeasure": {
+                "unit": "m",
+                "value": "10"
+              },
+              "WeightMeasure": {
+                "unit": "kg",
+                "value": "1"
+              }
+            },
+            "LeadTimeDuration": "PT0S",
+            "SerialControlIndicator": "false",
+            "LotControlIndicator": "false",
+            "ExpirationControlCode": "false",
+            "AverageRunSizeQuantity": {
+              "unit": "Stk",
+              "value": "1"
+            },
+            "BaseUnitPackaging": {
+              "Description": "Umverpackung",
+              "Note": "Umverpackung",
+              "Dimensions": {
+                "WidthMeasure": {
+                  "unit": "cm",
+                  "value": "10"
+                },
+                "LengthMeasure": {
+                  "unit": "cm",
+                  "value": "10"
+                },
+                "HeightMeasure": {
+                  "unit": "cm",
+                  "value": "10"
+                },
+                "WeightRange": {
+                  "MinimumWeightMeasure": {
+                    "unit": "kg",
+                    "value": "1"
+                  }
+                }
+              },
+              "UnitCode": "Umverpackung",
+              "BaseUnitCapacity": "9"
+            },
+            "SorterSuitable": "false",
+            "ABCClass": "A"
+          },
+          "ItemLocation": {
+            "ServiceLevel": {
+              "unit": "1st",
+              "value": "10"
+            },
+            "TargetStockQuantity": {
+              "unit": "Stk",
+              "value": "10"
+            },
+            "OrderQuantity": {
+              "unit": "Stk",
+              "value": "1"
+            },
+            "ReorderPointQuantity": {
+              "unit": "Stk",
+              "value": "10"
+            }
+          }
+        },
+        {
+          "ItemMasterHeader": {
+            "ItemID": [
+              {
+                "ID": {
+                  "schemeID": "BOID",
+                  "schemeAgencyID": "www.logisticsmall.com",
+                  "text": "ItemMaster-0002"
+                }
+              },
+              {
+                "ID": {
+                  "schemeID": "DISPLAY_IDENTIFIER",
+                  "schemeAgencyID": "www.logisticsmall.com",
+                  "text": "ItemMaster-0002"
+                }
+              }
+            ],
+            "ManufacturerItemID": {
+              "ID": {
+                "schemeID": "GENERIC",
+                "schemeAgencyID": "www.logisticsmall.com",
+                "text": "ManufacturerItemID-0002"
+              }
+            },
+            "Packaging": {
+              "Description": "Umverpackung",
+              "Note": "Umverpackung",
+              "Dimensions": {
+                "WidthMeasure": {
+                  "unit": "cm",
+                  "value": "20"
+                },
+                "LengthMeasure": {
+                  "unit": "cm",
+                  "value": "20"
+                },
+                "HeightMeasure": {
+                  "unit": "cm",
+                  "value": "20"
+                },
+                "WeightRange": {
+                  "MinimumWeightMeasure": {
+                    "unit": "kg",
+                    "value": "2"
+                  }
+                }
+              },
+              "UnitCode": "Umverpackung",
+              "BaseUnitCapacity": "9"
+            },
+            "Dimensions": {
+              "WidthMeasure": {
+                "unit": "cm",
+                "value": "20"
+              },
+              "LengthMeasure": {
+                "unit": "cm",
+                "value": "20"
+              },
+              "HeightMeasure": {
+                "unit": "cm",
+                "value": "20"
+              },
+              "WeightMeasure": {
+                "unit": "kg",
+                "value": "2"
+              }
+            },
+            "LeadTimeDuration": "PT0S",
+            "SerialControlIndicator": "false",
+            "LotControlIndicator": "false",
+            "ExpirationControlCode": "false",
+            "AverageRunSizeQuantity": {
+              "unit": "Stk",
+              "value": "1"
+            },
+            "BaseUnitPackaging": {
+              "Description": "Umverpackung",
+              "Note": "Umverpackung",
+              "Dimensions": {
+                "WidthMeasure": {
+                  "unit": "cm",
+                  "value": "20"
+                },
+                "LengthMeasure": {
+                  "unit": "cm",
+                  "value": "20"
+                },
+                "HeightMeasure": {
+                  "unit": "cm",
+                  "value": "20"
+                },
+                "WeightRange": {
+                  "MinimumWeightMeasure": {
+                    "unit": "kg",
+                    "value": "2"
+                  }
+                }
+              },
+              "UnitCode": "Umverpackung",
+              "BaseUnitCapacity": "9"
+            },
+            "SorterSuitable": "false",
+            "ABCClass": "A"
+          },
+          "ItemLocation": {
+            "ServiceLevel": {
+              "unit": "1st",
+              "value": "10"
+            },
+            "TargetStockQuantity": {
+              "unit": "Stk",
+              "value": "10"
+            },
+            "OrderQuantity": {
+              "unit": "Stk",
+              "value": "1"
+            },
+            "ReorderPointQuantity": {
+              "unit": "Stk",
+              "value": "10"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,303 @@
+{
+  "ChangeShipment": {
+    "versionID": "${project.version}",
+    "ApplicationArea": {
+      "CreationDateTime": "2017-02-03T10:23:44.499+01:00",
+      "BODID": "9ceb9107-0b47-4319-b588-ca21589e9759"
+    },
+    "ChangeShipmentDataArea": {
+      "Change": {
+        "ActionCriteria": {
+          "ActionExpression": { "actionCode": "CREATE" }
+        }
+      },
+      "hipment": {
+        "ShipmentHeader": {
+          "Type": "ASN",
+          "AlternateDocumentID": [
+            {
+              "ID": {
+                "schemeID": "DISPLAY_IDENTIFIER",
+                "schemeAgencyID": "www.logisticsmall.com",
+                "text": "ASN-00001"
+              }
+            },
+            {
+              "ID": {
+                "schemeID": "my_item_id",
+                "schemeAgencyID": "my_compay_agency_id",
+                "text": "4711"
+              }
+            }
+          ],
+          "Description": "Description of Shipment",
+          "Note": "Note about Shipment-ASN-00001",
+          "Status": { "Code": "ANNOUNCED" },
+          "ActualShipDateTime": "2017-02-03T10:23:44.045+01:00",
+          "ScheduledDeliveryDateTime": "2017-02-03T10:23:44.083+01:00",
+          "NetWeightMeasure": {
+            "unit": "kg",
+            "Value": "900"
+          },
+          "GrossWeightMeasure": {
+            "unit": "t",
+            "value": "1"
+          },
+          "TotalVolumeMeasure": {
+            "unit": "t",
+            "value": "10.0"
+          },
+          "ShipToParty": {
+            "PartyIDs": {
+              "ID": {
+                "schemeID": "DISPLAY_IDENTIFIER",
+                "schemeAgencyID": "www.logisticsmall.com",
+                "text": "customer"
+              }
+            },
+            "Name": "The ShipTo name",
+            "Location": [
+              {
+                "Name": "Ship To Location A",
+                "PostalAddress": {
+                  "StreetName": "Eine andere Strasse",
+                  "CityName": "Bocholt",
+                  "PostalCode": "12345",
+                  "StreetNumber": "44a"
+                },
+                "Description": "Ship To Location A descritpion"
+              },
+              {
+                "Name": "Ship To Location B",
+                "PostalAddress": {
+                  "StreetName": "Eine andere Strasse",
+                  "CityName": "Dortmund",
+                  "PostalCode": "12345",
+                  "StreetNumber": "44b"
+                },
+                "Description": "Ship To Location B descritpion"
+              }
+            ],
+            "PartyMasterReference": {
+              "ID": {
+                "schemeID": "BOID",
+                "schemeAgencyID": "www.logisticsmall.com"
+              },
+              "DisplayID": {
+                "schemeID": "DISPLAY_IDENTIFIER",
+                "schemeAgencyID": "www.logisticsmall.com",
+                "text": "customer"
+              }
+            }
+          },
+          "CarrierParty": {
+            "PartyIDs": {
+              "ID": {
+                "schemeID": "DISPLAY_IDENTIFIER",
+                "schemeAgencyID": "www.logisticsmall.com",
+                "text": "customer"
+              }
+            },
+            "Name": "The Carrier name",
+            "Location": [
+              {
+                "Name": "Carrier Location B",
+                "PostalAddress": {
+                  "StreetName": "Carrier Strasse",
+                  "CityName": "Duesseldorf",
+                  "PostalCode": "12345",
+                  "StreetNumber": "55b"
+                },
+                "Description": "Carrier Location B descritpion"
+              },
+              {
+                "Name": "Carrier Location A",
+                "PostalAddress": {
+                  "StreetName": "Carrier Strasse",
+                  "CityName": "Duesseldorf",
+                  "PostalCode": "12345",
+                  "StreetNumber": "55a"
+                },
+                "Description": "Carrier Location A descritpion"
+              }
+            ],
+            "PartyMasterReference": {
+              "ID": {
+                "schemeID": "BOID",
+                "schemeAgencyID": "www.logisticsmall.com"
+              },
+              "DisplayID": {
+                "schemeID": "DISPLAY_IDENTIFIER",
+                "schemeAgencyID": "www.logisticsmall.com",
+                "text": "customer"
+              }
+            }
+          },
+          "ShipFromParty": {
+            "PartyIDs": {
+              "ID": {
+                "schemeID": "DISPLAY_IDENTIFIER",
+                "schemeAgencyID": "www.logisticsmall.com",
+                "text": "customer"
+              }
+            },
+            "Name": "The ShipFrom name",
+            "Location": [
+              {
+                "Name": "Ship From Location A",
+                "PostalAddress": {
+                  "StreetName": "Die Strasse",
+                  "CityName": "Dortmund",
+                  "PostalCode": "12345",
+                  "StreetNumber": "33a"
+                },
+                "Description": "Ship From Location A description"
+              },
+              {
+                "Name": "Ship From Location B",
+                "PostalAddress": {
+                  "StreetName": "Die Strasse",
+                  "CityName": "Dortmund",
+                  "PostalCode": "12345",
+                  "StreetNumber": "33b"
+                },
+                "Description": "Ship From Location B descritpion"
+              }
+            ],
+            "PartyMasterReference": {
+              "ID": {
+                "schemeID": "BOID",
+                "schemeAgencyID": "www.logisticsmall.com"
+              },
+              "DisplayID": {
+                "schemeID": "DISPLAY_IDENTIFIER",
+                "schemeAgencyID": "www.logisticsmall.com",
+                "text": "customer"
+              }
+            }
+          },
+          "TransportationTerm": {
+            "IncotermsCode": "INVOICE",
+            "Description": "A description of the Terms Of Delivery",
+            "Note": "A note about the Terms of Delivery",
+            "DeliveryTypeCode": "DOOR"
+          },
+          "TenantID": {
+            "schemeID": "TENANT_DISPLAY_IDENTIFIER",
+            "schemeAgencyID": "www.logisticsmall.com",
+            "text": "customer"
+          },
+          "LoadingMeter": {
+            "unit": "m",
+            "value": "13.6"
+          },
+          "RFID": "bca01a1121ed46e282635f80027d1d37",
+          "EPCID": "01.12345567.891011.001122DBC",
+          "UPCID": "5 0123456789 0"
+        },
+        "ShipmentItem": [
+          {
+            "OrderQuantity": {
+              "unit": "Stk",
+              "value": "99"
+            },
+            "ShippedQuantity": {
+              "unit": "Stk",
+              "value": "0"
+            },
+            "Item": {
+              "ItemID": {
+                "ID": {
+                  "schemeID": "DISPLAY_IDENTIFIER",
+                  "schemeAgencyID": "www.logisticsmall.com",
+                  "text": "TEST"
+                }
+              },
+              "CountryOfOriginCode": "DE",
+              "SerialNumber": "000000123",
+              "Lot": {
+                "LotIDs": { "ID": "2017000001" }
+              },
+              "ItemValue": {
+                "UnitValue": {
+                  "Amount": {
+                    "unit": "EUR",
+                    "value": "79.00"
+                  },
+                  "PerQuantity": {
+                    "unit": "Stk",
+                    "value": "1"
+                  }
+                },
+                "CostingMethodCode": "INV"
+              },
+              "ExpirationDateTime": "2017-02-03T10:23:44.486+01:00",
+              "ItemMasterReference": {
+                "ID": {
+                  "schemeID": "BOID",
+                  "schemeAgencyID": "www.logisticsmall.com"
+                },
+                "DisplayID": {
+                  "schemeID": "DISPLAY_IDENTIFIER",
+                  "schemeAgencyID": "www.logisticsmall.com",
+                  "text": "TEST"
+                }
+              }
+            },
+            "QualityAssuranceFlag": "false"
+          },
+          {
+            "oOrderQuantity": {
+              "unit": "Packaging",
+              "value": "1"
+            },
+            "ShippedQuantity": {
+              "unit": "Stk",
+              "value": "0"
+            },
+            "Item": {
+              "ItemID": {
+                "ID": {
+                  "schemeID": "DISPLAY_IDENTIFIER",
+                  "schemeAgencyID": "www.logisticsmall.com",
+                  "text": "TEST"
+                }
+              },
+              "CountryOfOriginCode": "DE",
+              "SerialNumber": "000000123",
+              "Lot": {
+                "LotIDs": { "ID": "2017000001" }
+              },
+              "ItemValue": {
+                "UnitValue": {
+                  "Amount": {
+                    "unit": "EUR",
+                    "value": "79.00"
+                  },
+                  "PerQuantity": {
+                    "unit": "Stk",
+                    "value": "1"
+                  }
+                },
+                "CostingMethodCode": "INV"
+              },
+              "ExpirationDateTime": "2017-02-03T10:23:44.486+01:00",
+              "ItemMasterReference": {
+                "ID": {
+                  "schemeID": "BOID",
+                  "schemeAgencyID": "www.logisticsmall.com"
+                },
+                "DisplayID": {
+                  "schemeID": "DISPLAY_IDENTIFIER",
+                  "schemeAgencyID": "www.logisticsmall.com",
+                  "text": "TEST"
+                }
+              }
+            },
+            "QualityAssuranceFlag": "false"
+          }
+        ]
+      }
+    }
+  }
+}
