@@ -68,7 +68,7 @@
  
  "actions": {
     "createShipment": {
-      "main": "io.logmall.actions.CreateShipment",
+      "main": "io.logmall.actions.CreateOrReplaceShipment",
       "title": "Create a Shipment",
       "description": "Creates a new Shipment",
       "metadata": {

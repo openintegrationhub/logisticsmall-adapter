@@ -1,27 +1,13 @@
 package io.logmall.actions;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.StringReader;
-import java.io.Writer;
-import java.util.Scanner;
 
-import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonString;
-import javax.json.JsonWriter;
-import javax.json.JsonWriterFactory;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.fraunhofer.ccl.bo.converter.xml.oagis.BusinessObjectContextResolver;
-import de.fraunhofer.ccl.bo.converter.xml.oagis.JsonFactory;
-import de.fraunhofer.ccl.bo.converter.xml.oagis.XmlFactory;
 import de.fraunhofer.ccl.bo.instancerepository.boundary.rest.api.ShipmentService;
 import de.fraunhofer.ccl.bo.integration.resteasy.ResteasyIntegration;
 import de.fraunhofer.ccl.bo.model.bod.BusinessObjectDocument;
@@ -32,14 +18,13 @@ import io.elastic.api.ExecutionParameters;
 import io.elastic.api.Message;
 import io.elastic.api.Module;
 import io.logmall.bod.ShipmentJsonMapper;
-import io.logmall.res.ResourceResolver;
 
 /**
  * Action to create a Shipment.
  */
-public class CreateShipment implements Module {
+public class CreateOrReplaceShipment implements Module {
 
-	private static final Logger logger = LoggerFactory.getLogger(CreateShipment.class);
+	private static final Logger logger = LoggerFactory.getLogger(CreateOrReplaceShipmentTest.class);
 
 	/**
 	 * Executes the actions's logic by sending a request to the logmall API and
@@ -66,11 +51,6 @@ public class CreateShipment implements Module {
 
 			JsonString serverURL = configuration.getJsonString("serverURLd");
 			logger.info("App Server URL: " + serverURL.getString());
-
-//			JsonFactory jsonFactory = new JsonFactory(new BusinessObjectContextResolver());
-//			Unmarshaller unmarshaller = jsonFactory.createUnmarshaller();	
-//			ChangeShipment changeShipment = (ChangeShipment) unmarshaller
-//					.unmarshal(new StringReader(changeShipmentXML));
 
 			ShipmentJsonMapper shipmentJsonMapper = new ShipmentJsonMapper();
 			ChangeShipment changeShipment = shipmentJsonMapper.fromJson(body);

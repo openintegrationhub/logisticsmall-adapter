@@ -21,7 +21,7 @@ import io.logmall.res.ResourceResolver;
 import io.elastic.api.ExecutionParameters;
 import io.elastic.api.Message;
 
-public class CreateShipmentTest {
+public class CreateOrReplaceShipmentTest {
 	Scanner scanner = null;
 
 	@Test
@@ -61,7 +61,7 @@ public class CreateShipmentTest {
 			ExecutionParameters.Builder executionParametersBuilder = new ExecutionParameters.Builder(message,
 					eventEmitter);
 			executionParametersBuilder.configuration(jsonParser.readObject());
-			new CreateShipment().execute(executionParametersBuilder.build());
+			new CreateOrReplaceShipment().execute(executionParametersBuilder.build());
 
 		}  
 		catch (FileNotFoundException e) {
