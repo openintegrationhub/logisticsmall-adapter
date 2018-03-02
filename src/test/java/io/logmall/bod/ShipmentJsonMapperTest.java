@@ -6,7 +6,6 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import org.junit.Test;
-import io.logmall.bod.ShipmentJsonMapper;
 
 
 public class ShipmentJsonMapperTest {
@@ -16,7 +15,7 @@ public class ShipmentJsonMapperTest {
 	
 	@Test
 	public void shipmentJsonMapperTest() throws JAXBException {
-		ShipmentJsonMapper shipmentJsonMapper = new ShipmentJsonMapper();
+		StandaloneBusinessObjectJsonMapper shipmentJsonMapper = new StandaloneBusinessObjectJsonMapper();
 		assertNotNull(shipmentJsonMapper);		
 	}
 }

@@ -14,9 +14,10 @@ import de.fraunhofer.ccl.bo.model.bod.ChangeItemMaster;
 import de.fraunhofer.ccl.bo.model.bod.verb.Respond;
 import de.fraunhofer.ccl.bo.model.entity.itemmaster.ItemMaster;
 import io.elastic.api.ExecutionParameters;
-import io.elastic.api.Message;
 import io.elastic.api.Module;
+import io.logmall.Constants;
 import io.logmall.bod.ItemMasterJsonMapper;
+
 
 
 public class CreateItemMaster implements Module{
@@ -37,11 +38,9 @@ public class CreateItemMaster implements Module{
 
 		try {
 
-			// incoming message
-			final Message message = parameters.getMessage();
 
 			// body contains the mapped data
-			final JsonObject body = message.getBody();
+			final JsonObject body = parameters.getMessage().getBody();
 
 			// contains action's configuration
 			final JsonObject configuration = parameters.getConfiguration();
@@ -55,7 +54,7 @@ public class CreateItemMaster implements Module{
 
 			// access the value of the status field defined in trigger's fields section of
 			// component.json
-			JsonString serverURL = configuration.getJsonString("serverURLd");
+			JsonString serverURL = configuration.getJsonString(Constants.URL_CONFIGURATION_KEY);
 			logger.info("App Server URL: " + serverURL.getString());
 			ItemMasterService itemMasterService = ResteasyIntegration.newInstance().createClientProxy(ItemMasterService.class,
 					serverURL.getString());

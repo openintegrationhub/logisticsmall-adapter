@@ -17,16 +17,18 @@ import org.junit.Test;
 
 import io.elastic.api.EventEmitter;
 import io.elastic.api.EventEmitter.Callback;
+import io.logmall.Constants;
 import io.logmall.res.ResourceResolver;
 import io.elastic.api.ExecutionParameters;
 import io.elastic.api.Message;
 
 public class CreateOrReplaceShipmentTest {
+	private static final String RESOURCE = "ChangeShipment.json";
 	Scanner scanner = null;
 
 	@Test
 	public void testExecute() {
-		File file = new File(ResourceResolver.class.getClassLoader().getResource("ChangeShipment.json").getFile());
+		File file = new File(ResourceResolver.class.getClassLoader().getResource(RESOURCE).getFile());
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			StringBuffer fileContents = new StringBuffer();
@@ -55,8 +57,7 @@ public class CreateOrReplaceShipmentTest {
 			eventEmitterBuilder.onUpdateKeys(callback);
 			final EventEmitter eventEmitter = eventEmitterBuilder.build();
 
-			String s = "{\"serverURLd\": \"https://otc.logistics-mall.com/instance-repository-resteasy/rest\"}";
-			JsonReader jsonParser = Json.createReader(new StringReader(s));
+			JsonReader jsonParser = Json.createReader(new StringReader(Constants.OTC_URL_CONFIGURATION));
 
 			ExecutionParameters.Builder executionParametersBuilder = new ExecutionParameters.Builder(message,
 					eventEmitter);

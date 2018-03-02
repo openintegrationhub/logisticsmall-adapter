@@ -16,7 +16,9 @@ import de.fraunhofer.ccl.bo.model.entity.shipment.Shipment;
 import io.elastic.api.ExecutionParameters;
 import io.elastic.api.Message;
 import io.elastic.api.Module;
+import io.logmall.Constants;
 import io.logmall.bod.ShipmentJsonMapper;
+
 
 /**
  * Action to create a Shipment.
@@ -59,20 +61,16 @@ public class CreateOrReplaceShipment implements Module {
 
 			
 			// access the value of the status field defined in trigger's fields section of component.json
-			JsonString serverURL = configuration.getJsonString("serverURLd");
+			JsonString serverURL = configuration.getJsonString(Constants.URL_CONFIGURATION_KEY);
 			logger.info("App Server URL: " + serverURL.getString());
+			
 			ShipmentService shipmentService = ResteasyIntegration.newInstance().createClientProxy(ShipmentService.class,
 					serverURL.getString());
 			logger.info("Got ServerURL " + serverURL.getString());
-			
-			
 
 			ShipmentJsonMapper shipmentJsonMapper = new ShipmentJsonMapper();
 			ChangeShipment changeShipment = shipmentJsonMapper.fromJson(body);
-			 
 
-			
-			
 			BusinessObjectDocument<Respond, Shipment> response = shipmentService.put(changeShipment);
 			logger.info("Shipment successfully created");
 			logger.info("Emitting data: " + response);
