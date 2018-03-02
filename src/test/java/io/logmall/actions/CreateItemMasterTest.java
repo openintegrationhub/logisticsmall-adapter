@@ -21,25 +21,26 @@ import io.logmall.res.ResourceResolver;
 import io.elastic.api.ExecutionParameters;
 import io.elastic.api.Message;
 
-public class CreateOrReplaceShipmentTest {
+public class CreateItemMasterTest {
+
 	Scanner scanner = null;
 
 	@Test
 	public void testExecute() {
-		File file = new File(ResourceResolver.class.getClassLoader().getResource("ChangeShipment.json").getFile());
+		File file = new File(ResourceResolver.class.getClassLoader().getResource("ChangeItemMaster.json").getFile());
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			StringBuffer fileContents = new StringBuffer();
 			String line = br.readLine();
 			while (line != null) {
 				fileContents.append(line);
-				line = br.readLine();				
+				line = br.readLine();
 			}
 			br.close();
-			String changeShipmentJSON = fileContents.toString();
+			String changeItemMasterJSON = fileContents.toString();
 
 			final Message message = new Message.Builder()
-					.body((JsonObject) Json.createReader(new StringReader(changeShipmentJSON)).read()).build();
+					.body((JsonObject) Json.createReader(new StringReader(changeItemMasterJSON)).read()).build();
 			Callback callback = new Callback() {
 				@Override
 				public void receive(Object data) {
@@ -61,19 +62,16 @@ public class CreateOrReplaceShipmentTest {
 			ExecutionParameters.Builder executionParametersBuilder = new ExecutionParameters.Builder(message,
 					eventEmitter);
 			executionParametersBuilder.configuration(jsonParser.readObject());
-			new CreateOrReplaceShipment().execute(executionParametersBuilder.build());
+			new CreateItemMaster().execute(executionParametersBuilder.build());
 
-		}  
-		catch (FileNotFoundException e) {
-			Assert.fail("FileNotFoundException: "+e.getMessage() + " \n Cause: \n");
-			 e.printStackTrace();
-		} 
-		catch (IOException e) {
-			Assert.fail("IOException: "+e.getMessage() + " \n Cause: \n" + e.getCause());
+		} catch (FileNotFoundException e) {
+			Assert.fail("FileNotFoundException: " + e.getMessage() + " \n Cause: \n");
 			e.printStackTrace();
-		}
-		catch (Throwable e) {
-			Assert.fail("Throwable: "+e.getMessage() + " \n Cause: \n" + e.getCause());
+		} catch (IOException e) {
+			Assert.fail("IOException: " + e.getMessage() + " \n Cause: \n" + e.getCause());
+			e.printStackTrace();
+		} catch (Throwable e) {
+			Assert.fail("Throwable: " + e.getMessage() + " \n Cause: \n" + e.getCause());
 			e.printStackTrace();
 		} finally {
 			if (scanner != null) {
@@ -82,5 +80,4 @@ public class CreateOrReplaceShipmentTest {
 		}
 
 	}
-
 }

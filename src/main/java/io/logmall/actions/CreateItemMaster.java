@@ -7,23 +7,20 @@ import javax.xml.bind.JAXBException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.fraunhofer.ccl.bo.instancerepository.boundary.rest.api.ShipmentService;
+import de.fraunhofer.ccl.bo.instancerepository.boundary.rest.api.ItemMasterService;
 import de.fraunhofer.ccl.bo.integration.resteasy.ResteasyIntegration;
 import de.fraunhofer.ccl.bo.model.bod.BusinessObjectDocument;
-import de.fraunhofer.ccl.bo.model.bod.ChangeShipment;
+import de.fraunhofer.ccl.bo.model.bod.ChangeItemMaster;
 import de.fraunhofer.ccl.bo.model.bod.verb.Respond;
-import de.fraunhofer.ccl.bo.model.entity.shipment.Shipment;
+import de.fraunhofer.ccl.bo.model.entity.itemmaster.ItemMaster;
 import io.elastic.api.ExecutionParameters;
 import io.elastic.api.Message;
 import io.elastic.api.Module;
-import io.logmall.bod.ShipmentJsonMapper;
+import io.logmall.bod.ItemMasterJsonMapper;
 
-/**
- * Action to create a Shipment.
- */
-public class CreateOrReplaceShipment implements Module {
 
-	private static final Logger logger = LoggerFactory.getLogger(CreateOrReplaceShipment.class);
+public class CreateItemMaster implements Module{
+	private static final Logger logger = LoggerFactory.getLogger(CreateItemMaster.class);
 
 	/**
 	 * Executes the actions's logic by sending a request to the logmall API and
@@ -32,13 +29,11 @@ public class CreateOrReplaceShipment implements Module {
 	 * @param parameters
 	 * execution parameters
 	 */
-	
-	
+
 	@Override
 	public void execute(final ExecutionParameters parameters) {
 
-		
-		logger.info("Going to create new shipment");
+		logger.info("Going to create new ItemMaster");
 
 		try {
 
@@ -51,30 +46,26 @@ public class CreateOrReplaceShipment implements Module {
 			// contains action's configuration
 			final JsonObject configuration = parameters.getConfiguration();
 
-			 // access the value of the apiKey field defined in credentials section of component.json
-//	        final JsonString apiKey = configuration.getJsonString("apiKey");
-//	        if (apiKey == null) {
-//	            throw new IllegalStateException("apiKey is required");
-//	        }
+			// access the value of the apiKey field defined in credentials section of
+			// component.json
+			// final JsonString apiKey = configuration.getJsonString("apiKey");
+			// if (apiKey == null) {
+			// throw new IllegalStateException("apiKey is required");
+			// }
 
-			
-			// access the value of the status field defined in trigger's fields section of component.json
+			// access the value of the status field defined in trigger's fields section of
+			// component.json
 			JsonString serverURL = configuration.getJsonString("serverURLd");
 			logger.info("App Server URL: " + serverURL.getString());
-			ShipmentService shipmentService = ResteasyIntegration.newInstance().createClientProxy(ShipmentService.class,
+			ItemMasterService itemMasterService = ResteasyIntegration.newInstance().createClientProxy(ItemMasterService.class,
 					serverURL.getString());
 			logger.info("Got ServerURL " + serverURL.getString());
-			
-			
 
-			ShipmentJsonMapper shipmentJsonMapper = new ShipmentJsonMapper();
-			ChangeShipment changeShipment = shipmentJsonMapper.fromJson(body);
-			 
+			ItemMasterJsonMapper itemMasterJsonMapper = new ItemMasterJsonMapper();
+			ChangeItemMaster changeItemMaster = itemMasterJsonMapper.fromJson(body);
 
-			
-			
-			BusinessObjectDocument<Respond, Shipment> response = shipmentService.put(changeShipment);
-			logger.info("Shipment successfully created");
+			BusinessObjectDocument<Respond, ItemMaster> response = itemMasterService.put(changeItemMaster);
+			logger.info("ItemMaster successfully created");
 			logger.info("Emitting data: " + response);
 
 		} catch (JAXBException e) {
@@ -85,5 +76,5 @@ public class CreateOrReplaceShipment implements Module {
 			throw new IllegalStateException("Exception during API call: " + e.getMessage());
 		}
 	}
+	
 }
-
