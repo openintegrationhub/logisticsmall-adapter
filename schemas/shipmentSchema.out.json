@@ -1,0 +1,651 @@
+{
+  "type": "object",
+  "required": [],
+  "properties": {
+    "ChangeShipment": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "versionID": {
+          "type": "string"
+        },
+        "ApplicationArea": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "CreationDateTime": {
+              "type": "string"
+            },
+            "BODID": {
+              "type": "string"
+            }
+          }
+        },
+        "ChangeShipmentDataArea": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "Change": {
+              "type": "object",
+              "required": [],
+              "properties": {
+                "ActionCriteria": {
+                  "type": "object",
+                  "required": [],
+                  "properties": {
+                    "ActionExpression": {
+                      "type": "object",
+                      "required": [],
+                      "properties": {
+                        "actionCode": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "hipment": {
+              "type": "object",
+              "required": [],
+              "properties": {
+                "ShipmentHeader": {
+                  "type": "object",
+                  "required": [],
+                  "properties": {
+                    "Type": {
+                      "type": "string"
+                    },
+                    "AlternateDocumentID": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [],
+                        "properties": {
+                          "ID": {
+                            "type": "object",
+                            "required": [],
+                            "properties": {
+                              "schemeID": {
+                                "type": "string"
+                              },
+                              "schemeAgencyID": {
+                                "type": "string"
+                              },
+                              "text": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Description": {
+                      "type": "string"
+                    },
+                    "Note": {
+                      "type": "string"
+                    },
+                    "Status": {
+                      "type": "object",
+                      "required": [],
+                      "properties": {
+                        "Code": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "ActualShipDateTime": {
+                      "type": "string"
+                    },
+                    "ScheduledDeliveryDateTime": {
+                      "type": "string"
+                    },
+                    "NetWeightMeasure": {
+                      "type": "object",
+                      "required": [],
+                      "properties": {
+                        "unit": {
+                          "type": "string"
+                        },
+                        "Value": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "GrossWeightMeasure": {
+                      "type": "object",
+                      "required": [],
+                      "properties": {
+                        "unit": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "TotalVolumeMeasure": {
+                      "type": "object",
+                      "required": [],
+                      "properties": {
+                        "unit": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "ShipToParty": {
+                      "type": "object",
+                      "required": [],
+                      "properties": {
+                        "PartyIDs": {
+                          "type": "object",
+                          "required": [],
+                          "properties": {
+                            "ID": {
+                              "type": "object",
+                              "required": [],
+                              "properties": {
+                                "schemeID": {
+                                  "type": "string"
+                                },
+                                "schemeAgencyID": {
+                                  "type": "string"
+                                },
+                                "text": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Name": {
+                          "type": "string"
+                        },
+                        "Location": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [],
+                            "properties": {
+                              "Name": {
+                                "type": "string"
+                              },
+                              "PostalAddress": {
+                                "type": "object",
+                                "required": [],
+                                "properties": {
+                                  "StreetName": {
+                                    "type": "string"
+                                  },
+                                  "CityName": {
+                                    "type": "string"
+                                  },
+                                  "PostalCode": {
+                                    "type": "string"
+                                  },
+                                  "StreetNumber": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "Description": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        },
+                        "PartyMasterReference": {
+                          "type": "object",
+                          "required": [],
+                          "properties": {
+                            "ID": {
+                              "type": "object",
+                              "required": [],
+                              "properties": {
+                                "schemeID": {
+                                  "type": "string"
+                                },
+                                "schemeAgencyID": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "DisplayID": {
+                              "type": "object",
+                              "required": [],
+                              "properties": {
+                                "schemeID": {
+                                  "type": "string"
+                                },
+                                "schemeAgencyID": {
+                                  "type": "string"
+                                },
+                                "text": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "CarrierParty": {
+                      "type": "object",
+                      "required": [],
+                      "properties": {
+                        "PartyIDs": {
+                          "type": "object",
+                          "required": [],
+                          "properties": {
+                            "ID": {
+                              "type": "object",
+                              "required": [],
+                              "properties": {
+                                "schemeID": {
+                                  "type": "string"
+                                },
+                                "schemeAgencyID": {
+                                  "type": "string"
+                                },
+                                "text": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Name": {
+                          "type": "string"
+                        },
+                        "Location": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [],
+                            "properties": {
+                              "Name": {
+                                "type": "string"
+                              },
+                              "PostalAddress": {
+                                "type": "object",
+                                "required": [],
+                                "properties": {
+                                  "StreetName": {
+                                    "type": "string"
+                                  },
+                                  "CityName": {
+                                    "type": "string"
+                                  },
+                                  "PostalCode": {
+                                    "type": "string"
+                                  },
+                                  "StreetNumber": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "Description": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        },
+                        "PartyMasterReference": {
+                          "type": "object",
+                          "required": [],
+                          "properties": {
+                            "ID": {
+                              "type": "object",
+                              "required": [],
+                              "properties": {
+                                "schemeID": {
+                                  "type": "string"
+                                },
+                                "schemeAgencyID": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "DisplayID": {
+                              "type": "object",
+                              "required": [],
+                              "properties": {
+                                "schemeID": {
+                                  "type": "string"
+                                },
+                                "schemeAgencyID": {
+                                  "type": "string"
+                                },
+                                "text": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "ShipFromParty": {
+                      "type": "object",
+                      "required": [],
+                      "properties": {
+                        "PartyIDs": {
+                          "type": "object",
+                          "required": [],
+                          "properties": {
+                            "ID": {
+                              "type": "object",
+                              "required": [],
+                              "properties": {
+                                "schemeID": {
+                                  "type": "string"
+                                },
+                                "schemeAgencyID": {
+                                  "type": "string"
+                                },
+                                "text": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Name": {
+                          "type": "string"
+                        },
+                        "Location": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [],
+                            "properties": {
+                              "Name": {
+                                "type": "string"
+                              },
+                              "PostalAddress": {
+                                "type": "object",
+                                "required": [],
+                                "properties": {
+                                  "StreetName": {
+                                    "type": "string"
+                                  },
+                                  "CityName": {
+                                    "type": "string"
+                                  },
+                                  "PostalCode": {
+                                    "type": "string"
+                                  },
+                                  "StreetNumber": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "Description": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        },
+                        "PartyMasterReference": {
+                          "type": "object",
+                          "required": [],
+                          "properties": {
+                            "ID": {
+                              "type": "object",
+                              "required": [],
+                              "properties": {
+                                "schemeID": {
+                                  "type": "string"
+                                },
+                                "schemeAgencyID": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "DisplayID": {
+                              "type": "object",
+                              "required": [],
+                              "properties": {
+                                "schemeID": {
+                                  "type": "string"
+                                },
+                                "schemeAgencyID": {
+                                  "type": "string"
+                                },
+                                "text": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "TransportationTerm": {
+                      "type": "object",
+                      "required": [],
+                      "properties": {
+                        "IncotermsCode": {
+                          "type": "string"
+                        },
+                        "Description": {
+                          "type": "string"
+                        },
+                        "Note": {
+                          "type": "string"
+                        },
+                        "DeliveryTypeCode": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "TenantID": {
+                      "type": "object",
+                      "required": [],
+                      "properties": {
+                        "schemeID": {
+                          "type": "string"
+                        },
+                        "schemeAgencyID": {
+                          "type": "string"
+                        },
+                        "text": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "LoadingMeter": {
+                      "type": "object",
+                      "required": [],
+                      "properties": {
+                        "unit": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "RFID": {
+                      "type": "string"
+                    },
+                    "EPCID": {
+                      "type": "string"
+                    },
+                    "UPCID": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "ShipmentItem": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [],
+                    "properties": {
+                      "OrderQuantity": {
+                        "type": "object",
+                        "required": [],
+                        "properties": {
+                          "unit": {
+                            "type": "string"
+                          },
+                          "value": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "ShippedQuantity": {
+                        "type": "object",
+                        "required": [],
+                        "properties": {
+                          "unit": {
+                            "type": "string"
+                          },
+                          "value": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "Item": {
+                        "type": "object",
+                        "required": [],
+                        "properties": {
+                          "ItemID": {
+                            "type": "object",
+                            "required": [],
+                            "properties": {
+                              "ID": {
+                                "type": "object",
+                                "required": [],
+                                "properties": {
+                                  "schemeID": {
+                                    "type": "string"
+                                  },
+                                  "schemeAgencyID": {
+                                    "type": "string"
+                                  },
+                                  "text": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "CountryOfOriginCode": {
+                            "type": "string"
+                          },
+                          "SerialNumber": {
+                            "type": "string"
+                          },
+                          "Lot": {
+                            "type": "object",
+                            "required": [],
+                            "properties": {
+                              "LotIDs": {
+                                "type": "object",
+                                "required": [],
+                                "properties": {
+                                  "ID": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "ItemValue": {
+                            "type": "object",
+                            "required": [],
+                            "properties": {
+                              "UnitValue": {
+                                "type": "object",
+                                "required": [],
+                                "properties": {
+                                  "Amount": {
+                                    "type": "object",
+                                    "required": [],
+                                    "properties": {
+                                      "unit": {
+                                        "type": "string"
+                                      },
+                                      "value": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "PerQuantity": {
+                                    "type": "object",
+                                    "required": [],
+                                    "properties": {
+                                      "unit": {
+                                        "type": "string"
+                                      },
+                                      "value": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "CostingMethodCode": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "ExpirationDateTime": {
+                            "type": "string"
+                          },
+                          "ItemMasterReference": {
+                            "type": "object",
+                            "required": [],
+                            "properties": {
+                              "ID": {
+                                "type": "object",
+                                "required": [],
+                                "properties": {
+                                  "schemeID": {
+                                    "type": "string"
+                                  },
+                                  "schemeAgencyID": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "DisplayID": {
+                                "type": "object",
+                                "required": [],
+                                "properties": {
+                                  "schemeID": {
+                                    "type": "string"
+                                  },
+                                  "schemeAgencyID": {
+                                    "type": "string"
+                                  },
+                                  "text": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "QualityAssuranceFlag": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,5 +1,7 @@
 package io.logmall.actions;
 
+import java.io.StringWriter;
+
 import javax.json.JsonObject;
 import javax.json.JsonString;
 import javax.xml.bind.JAXBException;
@@ -62,6 +64,16 @@ public class CreateItemMaster implements Module{
 
 			ItemMasterJsonMapper itemMasterJsonMapper = new ItemMasterJsonMapper();
 			ChangeItemMaster changeItemMaster = itemMasterJsonMapper.fromJson(body);
+			
+//			ItemMaster itemMaster = itemMasterJsonMapper.fromJson(body);
+//			CreateOrReplaceBODBuilder.Builder<ItemMaster> createBODBuilderItemMaster = CreateOrReplaceBODBuilder
+//					.newInstance(ItemMaster.class);
+//			createBODBuilderItemMaster.forCreation();
+//			createBODBuilderItemMaster.withNoun(ItemMaster);
+//			BusinessObjectDocument<Change, ItemMaster> requestBod = createBODBuilderItemMaster.build();
+
+
+			
 
 			BusinessObjectDocument<Respond, ItemMaster> response = itemMasterService.put(changeItemMaster);
 			logger.info("ItemMaster successfully created");

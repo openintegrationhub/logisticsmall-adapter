@@ -1,0 +1,411 @@
+{
+  "type": "object",
+  "required": [],
+  "properties": {
+    "ChangeItemMaster": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "releaseID": {
+          "type": "string"
+        },
+        "versionID": {
+          "type": "string"
+        },
+        "ApplicationArea": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "CreationDateTime": {
+              "type": "string"
+            },
+            "BODID": {
+              "type": "string"
+            }
+          }
+        },
+        "ChangeItemMasterDataArea": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "Change": {
+              "type": "object",
+              "required": [],
+              "properties": {
+                "ActionCriteria": {
+                  "type": "object",
+                  "required": [],
+                  "properties": {
+                    "ActionExpression": {
+                      "type": "object",
+                      "required": [],
+                      "properties": {
+                        "actionCode": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "ItemMaster": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [],
+                "properties": {
+                  "ItemMasterHeader": {
+                    "type": "object",
+                    "required": [],
+                    "properties": {
+                      "ItemID": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "required": [],
+                          "properties": {
+                            "ID": {
+                              "type": "object",
+                              "required": [],
+                              "properties": {
+                                "chemeID": {
+                                  "type": "string"
+                                },
+                                "schemeAgencyID": {
+                                  "type": "string"
+                                },
+                                "text": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "ManufacturerItemID": {
+                        "type": "object",
+                        "required": [],
+                        "properties": {
+                          "ID": {
+                            "type": "object",
+                            "required": [],
+                            "properties": {
+                              "schemeID": {
+                                "type": "string"
+                              },
+                              "schemeAgencyID": {
+                                "type": "string"
+                              },
+                              "text": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "Packaging": {
+                        "type": "object",
+                        "required": [],
+                        "properties": {
+                          "Description": {
+                            "type": "string"
+                          },
+                          "Note": {
+                            "type": "string"
+                          },
+                          "Dimensions": {
+                            "type": "object",
+                            "required": [],
+                            "properties": {
+                              "WidthMeasure": {
+                                "type": "object",
+                                "required": [],
+                                "properties": {
+                                  "unit": {
+                                    "type": "string"
+                                  },
+                                  "value": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "LengthMeasure": {
+                                "type": "object",
+                                "required": [],
+                                "properties": {
+                                  "unit": {
+                                    "type": "string"
+                                  },
+                                  "value": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "HeightMeasure": {
+                                "type": "object",
+                                "required": [],
+                                "properties": {
+                                  "unit": {
+                                    "type": "string"
+                                  },
+                                  "value": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "WeightRange": {
+                                "type": "object",
+                                "required": [],
+                                "properties": {
+                                  "MinimumWeightMeasure": {
+                                    "type": "object",
+                                    "required": [],
+                                    "properties": {
+                                      "unit": {
+                                        "type": "string"
+                                      },
+                                      "value": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "UnitCode": {
+                            "type": "string"
+                          },
+                          "BaseUnitCapacity": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "Dimensions": {
+                        "type": "object",
+                        "required": [],
+                        "properties": {
+                          "WidthMeasure": {
+                            "type": "object",
+                            "required": [],
+                            "properties": {
+                              "unit": {
+                                "type": "string"
+                              },
+                              "value": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "LengthMeasure": {
+                            "type": "object",
+                            "required": [],
+                            "properties": {
+                              "unit": {
+                                "type": "string"
+                              },
+                              "value": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "HeightMeasure": {
+                            "type": "object",
+                            "required": [],
+                            "properties": {
+                              "unit": {
+                                "type": "string"
+                              },
+                              "value": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "WeightMeasure": {
+                            "type": "object",
+                            "required": [],
+                            "properties": {
+                              "unit": {
+                                "type": "string"
+                              },
+                              "value": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "LeadTimeDuration": {
+                        "type": "string"
+                      },
+                      "SerialControlIndicator": {
+                        "type": "string"
+                      },
+                      "LotControlIndicator": {
+                        "type": "string"
+                      },
+                      "ExpirationControlCode": {
+                        "type": "string"
+                      },
+                      "AverageRunSizeQuantity": {
+                        "type": "object",
+                        "required": [],
+                        "properties": {
+                          "unit": {
+                            "type": "string"
+                          },
+                          "value": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "BaseUnitPackaging": {
+                        "type": "object",
+                        "required": [],
+                        "properties": {
+                          "Description": {
+                            "type": "string"
+                          },
+                          "Note": {
+                            "type": "string"
+                          },
+                          "Dimensions": {
+                            "type": "object",
+                            "required": [],
+                            "properties": {
+                              "WidthMeasure": {
+                                "type": "object",
+                                "required": [],
+                                "properties": {
+                                  "unit": {
+                                    "type": "string"
+                                  },
+                                  "value": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "LengthMeasure": {
+                                "type": "object",
+                                "required": [],
+                                "properties": {
+                                  "unit": {
+                                    "type": "string"
+                                  },
+                                  "value": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "HeightMeasure": {
+                                "type": "object",
+                                "required": [],
+                                "properties": {
+                                  "unit": {
+                                    "type": "string"
+                                  },
+                                  "value": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "WeightRange": {
+                                "type": "object",
+                                "required": [],
+                                "properties": {
+                                  "MinimumWeightMeasure": {
+                                    "type": "object",
+                                    "required": [],
+                                    "properties": {
+                                      "unit": {
+                                        "type": "string"
+                                      },
+                                      "value": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "UnitCode": {
+                            "type": "string"
+                          },
+                          "BaseUnitCapacity": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "SorterSuitable": {
+                        "type": "string"
+                      },
+                      "ABCClass": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "ItemLocation": {
+                    "type": "object",
+                    "required": [],
+                    "properties": {
+                      "ServiceLevel": {
+                        "type": "object",
+                        "required": [],
+                        "properties": {
+                          "unit": {
+                            "type": "string"
+                          },
+                          "value": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "TargetStockQuantity": {
+                        "type": "object",
+                        "required": [],
+                        "properties": {
+                          "unit": {
+                            "type": "string"
+                          },
+                          "value": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "OrderQuantity": {
+                        "type": "object",
+                        "required": [],
+                        "properties": {
+                          "unit": {
+                            "type": "string"
+                          },
+                          "value": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "ReorderPointQuantity": {
+                        "type": "object",
+                        "required": [],
+                        "properties": {
+                          "unit": {
+                            "type": "string"
+                          },
+                          "value": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
