@@ -1,651 +1,4122 @@
 {
-  "type": "object",
-  "required": [],
-  "properties": {
-    "ChangeShipment": {
-      "type": "object",
-      "required": [],
-      "properties": {
-        "versionID": {
-          "type": "string"
-        },
-        "ApplicationArea": {
-          "type": "object",
-          "required": [],
-          "properties": {
-            "CreationDateTime": {
-              "type": "string"
-            },
-            "BODID": {
-              "type": "string"
-            }
-          }
-        },
-        "ChangeShipmentDataArea": {
-          "type": "object",
-          "required": [],
-          "properties": {
-            "Change": {
-              "type": "object",
-              "required": [],
-              "properties": {
-                "ActionCriteria": {
-                  "type": "object",
-                  "required": [],
-                  "properties": {
-                    "ActionExpression": {
-                      "type": "object",
-                      "required": [],
-                      "properties": {
-                        "actionCode": {
-                          "type": "string"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "hipment": {
-              "type": "object",
-              "required": [],
-              "properties": {
-                "ShipmentHeader": {
-                  "type": "object",
-                  "required": [],
-                  "properties": {
-                    "Type": {
-                      "type": "string"
-                    },
-                    "AlternateDocumentID": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "required": [],
-                        "properties": {
-                          "ID": {
-                            "type": "object",
-                            "required": [],
-                            "properties": {
-                              "schemeID": {
-                                "type": "string"
-                              },
-                              "schemeAgencyID": {
-                                "type": "string"
-                              },
-                              "text": {
-                                "type": "string"
-                              }
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "Description": {
-                      "type": "string"
-                    },
-                    "Note": {
-                      "type": "string"
-                    },
-                    "Status": {
-                      "type": "object",
-                      "required": [],
-                      "properties": {
-                        "Code": {
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "ActualShipDateTime": {
-                      "type": "string"
-                    },
-                    "ScheduledDeliveryDateTime": {
-                      "type": "string"
-                    },
-                    "NetWeightMeasure": {
-                      "type": "object",
-                      "required": [],
-                      "properties": {
-                        "unit": {
-                          "type": "string"
-                        },
-                        "Value": {
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "GrossWeightMeasure": {
-                      "type": "object",
-                      "required": [],
-                      "properties": {
-                        "unit": {
-                          "type": "string"
-                        },
-                        "value": {
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "TotalVolumeMeasure": {
-                      "type": "object",
-                      "required": [],
-                      "properties": {
-                        "unit": {
-                          "type": "string"
-                        },
-                        "value": {
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "ShipToParty": {
-                      "type": "object",
-                      "required": [],
-                      "properties": {
-                        "PartyIDs": {
-                          "type": "object",
-                          "required": [],
-                          "properties": {
-                            "ID": {
-                              "type": "object",
-                              "required": [],
-                              "properties": {
-                                "schemeID": {
-                                  "type": "string"
-                                },
-                                "schemeAgencyID": {
-                                  "type": "string"
-                                },
-                                "text": {
-                                  "type": "string"
-                                }
-                              }
-                            }
-                          }
-                        },
-                        "Name": {
-                          "type": "string"
-                        },
-                        "Location": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "required": [],
-                            "properties": {
-                              "Name": {
-                                "type": "string"
-                              },
-                              "PostalAddress": {
-                                "type": "object",
-                                "required": [],
-                                "properties": {
-                                  "StreetName": {
-                                    "type": "string"
-                                  },
-                                  "CityName": {
-                                    "type": "string"
-                                  },
-                                  "PostalCode": {
-                                    "type": "string"
-                                  },
-                                  "StreetNumber": {
-                                    "type": "string"
-                                  }
-                                }
-                              },
-                              "Description": {
-                                "type": "string"
-                              }
-                            }
-                          }
-                        },
-                        "PartyMasterReference": {
-                          "type": "object",
-                          "required": [],
-                          "properties": {
-                            "ID": {
-                              "type": "object",
-                              "required": [],
-                              "properties": {
-                                "schemeID": {
-                                  "type": "string"
-                                },
-                                "schemeAgencyID": {
-                                  "type": "string"
-                                }
-                              }
-                            },
-                            "DisplayID": {
-                              "type": "object",
-                              "required": [],
-                              "properties": {
-                                "schemeID": {
-                                  "type": "string"
-                                },
-                                "schemeAgencyID": {
-                                  "type": "string"
-                                },
-                                "text": {
-                                  "type": "string"
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "CarrierParty": {
-                      "type": "object",
-                      "required": [],
-                      "properties": {
-                        "PartyIDs": {
-                          "type": "object",
-                          "required": [],
-                          "properties": {
-                            "ID": {
-                              "type": "object",
-                              "required": [],
-                              "properties": {
-                                "schemeID": {
-                                  "type": "string"
-                                },
-                                "schemeAgencyID": {
-                                  "type": "string"
-                                },
-                                "text": {
-                                  "type": "string"
-                                }
-                              }
-                            }
-                          }
-                        },
-                        "Name": {
-                          "type": "string"
-                        },
-                        "Location": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "required": [],
-                            "properties": {
-                              "Name": {
-                                "type": "string"
-                              },
-                              "PostalAddress": {
-                                "type": "object",
-                                "required": [],
-                                "properties": {
-                                  "StreetName": {
-                                    "type": "string"
-                                  },
-                                  "CityName": {
-                                    "type": "string"
-                                  },
-                                  "PostalCode": {
-                                    "type": "string"
-                                  },
-                                  "StreetNumber": {
-                                    "type": "string"
-                                  }
-                                }
-                              },
-                              "Description": {
-                                "type": "string"
-                              }
-                            }
-                          }
-                        },
-                        "PartyMasterReference": {
-                          "type": "object",
-                          "required": [],
-                          "properties": {
-                            "ID": {
-                              "type": "object",
-                              "required": [],
-                              "properties": {
-                                "schemeID": {
-                                  "type": "string"
-                                },
-                                "schemeAgencyID": {
-                                  "type": "string"
-                                }
-                              }
-                            },
-                            "DisplayID": {
-                              "type": "object",
-                              "required": [],
-                              "properties": {
-                                "schemeID": {
-                                  "type": "string"
-                                },
-                                "schemeAgencyID": {
-                                  "type": "string"
-                                },
-                                "text": {
-                                  "type": "string"
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "ShipFromParty": {
-                      "type": "object",
-                      "required": [],
-                      "properties": {
-                        "PartyIDs": {
-                          "type": "object",
-                          "required": [],
-                          "properties": {
-                            "ID": {
-                              "type": "object",
-                              "required": [],
-                              "properties": {
-                                "schemeID": {
-                                  "type": "string"
-                                },
-                                "schemeAgencyID": {
-                                  "type": "string"
-                                },
-                                "text": {
-                                  "type": "string"
-                                }
-                              }
-                            }
-                          }
-                        },
-                        "Name": {
-                          "type": "string"
-                        },
-                        "Location": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "required": [],
-                            "properties": {
-                              "Name": {
-                                "type": "string"
-                              },
-                              "PostalAddress": {
-                                "type": "object",
-                                "required": [],
-                                "properties": {
-                                  "StreetName": {
-                                    "type": "string"
-                                  },
-                                  "CityName": {
-                                    "type": "string"
-                                  },
-                                  "PostalCode": {
-                                    "type": "string"
-                                  },
-                                  "StreetNumber": {
-                                    "type": "string"
-                                  }
-                                }
-                              },
-                              "Description": {
-                                "type": "string"
-                              }
-                            }
-                          }
-                        },
-                        "PartyMasterReference": {
-                          "type": "object",
-                          "required": [],
-                          "properties": {
-                            "ID": {
-                              "type": "object",
-                              "required": [],
-                              "properties": {
-                                "schemeID": {
-                                  "type": "string"
-                                },
-                                "schemeAgencyID": {
-                                  "type": "string"
-                                }
-                              }
-                            },
-                            "DisplayID": {
-                              "type": "object",
-                              "required": [],
-                              "properties": {
-                                "schemeID": {
-                                  "type": "string"
-                                },
-                                "schemeAgencyID": {
-                                  "type": "string"
-                                },
-                                "text": {
-                                  "type": "string"
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "TransportationTerm": {
-                      "type": "object",
-                      "required": [],
-                      "properties": {
-                        "IncotermsCode": {
-                          "type": "string"
-                        },
-                        "Description": {
-                          "type": "string"
-                        },
-                        "Note": {
-                          "type": "string"
-                        },
-                        "DeliveryTypeCode": {
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "TenantID": {
-                      "type": "object",
-                      "required": [],
-                      "properties": {
-                        "schemeID": {
-                          "type": "string"
-                        },
-                        "schemeAgencyID": {
-                          "type": "string"
-                        },
-                        "text": {
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "LoadingMeter": {
-                      "type": "object",
-                      "required": [],
-                      "properties": {
-                        "unit": {
-                          "type": "string"
-                        },
-                        "value": {
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "RFID": {
-                      "type": "string"
-                    },
-                    "EPCID": {
-                      "type": "string"
-                    },
-                    "UPCID": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "ShipmentItem": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "required": [],
-                    "properties": {
-                      "OrderQuantity": {
-                        "type": "object",
-                        "required": [],
-                        "properties": {
-                          "unit": {
-                            "type": "string"
-                          },
-                          "value": {
-                            "type": "string"
-                          }
-                        }
-                      },
-                      "ShippedQuantity": {
-                        "type": "object",
-                        "required": [],
-                        "properties": {
-                          "unit": {
-                            "type": "string"
-                          },
-                          "value": {
-                            "type": "string"
-                          }
-                        }
-                      },
-                      "Item": {
-                        "type": "object",
-                        "required": [],
-                        "properties": {
-                          "ItemID": {
-                            "type": "object",
-                            "required": [],
-                            "properties": {
-                              "ID": {
-                                "type": "object",
-                                "required": [],
-                                "properties": {
-                                  "schemeID": {
-                                    "type": "string"
-                                  },
-                                  "schemeAgencyID": {
-                                    "type": "string"
-                                  },
-                                  "text": {
-                                    "type": "string"
-                                  }
-                                }
-                              }
-                            }
-                          },
-                          "CountryOfOriginCode": {
-                            "type": "string"
-                          },
-                          "SerialNumber": {
-                            "type": "string"
-                          },
-                          "Lot": {
-                            "type": "object",
-                            "required": [],
-                            "properties": {
-                              "LotIDs": {
-                                "type": "object",
-                                "required": [],
-                                "properties": {
-                                  "ID": {
-                                    "type": "string"
-                                  }
-                                }
-                              }
-                            }
-                          },
-                          "ItemValue": {
-                            "type": "object",
-                            "required": [],
-                            "properties": {
-                              "UnitValue": {
-                                "type": "object",
-                                "required": [],
-                                "properties": {
-                                  "Amount": {
-                                    "type": "object",
-                                    "required": [],
-                                    "properties": {
-                                      "unit": {
-                                        "type": "string"
-                                      },
-                                      "value": {
-                                        "type": "string"
-                                      }
-                                    }
-                                  },
-                                  "PerQuantity": {
-                                    "type": "object",
-                                    "required": [],
-                                    "properties": {
-                                      "unit": {
-                                        "type": "string"
-                                      },
-                                      "value": {
-                                        "type": "string"
-                                      }
-                                    }
-                                  }
-                                }
-                              },
-                              "CostingMethodCode": {
-                                "type": "string"
-                              }
-                            }
-                          },
-                          "ExpirationDateTime": {
-                            "type": "string"
-                          },
-                          "ItemMasterReference": {
-                            "type": "object",
-                            "required": [],
-                            "properties": {
-                              "ID": {
-                                "type": "object",
-                                "required": [],
-                                "properties": {
-                                  "schemeID": {
-                                    "type": "string"
-                                  },
-                                  "schemeAgencyID": {
-                                    "type": "string"
-                                  }
-                                }
-                              },
-                              "DisplayID": {
-                                "type": "object",
-                                "required": [],
-                                "properties": {
-                                  "schemeID": {
-                                    "type": "string"
-                                  },
-                                  "schemeAgencyID": {
-                                    "type": "string"
-                                  },
-                                  "text": {
-                                    "type": "string"
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      },
-                      "QualityAssuranceFlag": {
-                        "type": "string"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
+	"type": "object",
+	"properties": {
+		"ItemMaster": {
+			"title": "ItemMaster",
+			"required": false,
+			"type": "object",
+			"properties": {
+				"ItemMasterHeader": {
+					"title": "ItemMasterHeader",
+					"required": false,
+					"type": "object",
+					"properties": {
+						"ItemID": {
+							"title": "ItemID",
+							"required": false,
+							"type": "array",
+							"items": {
+								"required": false,
+								"type": "object",
+								"properties": {
+									"ID": {
+										"title": "ID",
+										"required": false,
+										"type": "object",
+										"properties": {
+											"Identifier": {
+												"title": "Identifier",
+												"required": false,
+												"type": "object",
+												"properties": {
+													"schemeID": {
+														"title": "schemeID",
+														"required": false,
+														"type": "string"
+													},
+													"schemeAgencyID": {
+														"title": "schemeAgencyID",
+														"required": false,
+														"type": "string"
+													},
+													"value": {
+														"title": "value",
+														"required": false,
+														"type": "string"
+													}
+												}
+											}
+										}
+									},
+									"RevisionID": {
+										"title": "RevisionID",
+										"required": false,
+										"type": "object",
+										"properties": {
+											"Identifier": {
+												"title": "Identifier",
+												"required": false,
+												"type": "object",
+												"properties": {
+													"schemeID": {
+														"title": "schemeID",
+														"required": false,
+														"type": "string"
+													},
+													"schemeAgencyID": {
+														"title": "schemeAgencyID",
+														"required": false,
+														"type": "string"
+													},
+													"value": {
+														"title": "value",
+														"required": false,
+														"type": "string"
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						},
+						"CustomerItemID": {
+							"title": "CustomerItemID",
+							"required": false,
+							"type": "object",
+							"properties": {
+								"ID": {
+									"title": "ID",
+									"required": false,
+									"type": "object",
+									"properties": {
+										"Identifier": {
+											"title": "Identifier",
+											"required": false,
+											"type": "object",
+											"properties": {
+												"schemeID": {
+													"title": "schemeID",
+													"required": false,
+													"type": "string"
+												},
+												"schemeAgencyID": {
+													"title": "schemeAgencyID",
+													"required": false,
+													"type": "string"
+												},
+												"value": {
+													"title": "value",
+													"required": false,
+													"type": "string"
+												}
+											}
+										}
+									}
+								}
+							}
+						},
+						"ManufacturerItemID": {
+							"title": "ManufacturerItemID",
+							"required": false,
+							"type": "object",
+							"properties": {
+								"ID": {
+									"title": "ID",
+									"required": false,
+									"type": "object",
+									"properties": {
+										"Identifier": {
+											"title": "Identifier",
+											"required": false,
+											"type": "object",
+											"properties": {
+												"schemeID": {
+													"title": "schemeID",
+													"required": false,
+													"type": "string"
+												},
+												"schemeAgencyID": {
+													"title": "schemeAgencyID",
+													"required": false,
+													"type": "string"
+												},
+												"value": {
+													"title": "value",
+													"required": false,
+													"type": "string"
+												}
+											}
+										}
+									}
+								}
+							}
+						},
+						"SupplierItemID": {
+							"title": "SupplierItemID",
+							"required": false,
+							"type": "object",
+							"properties": {
+								"ID": {
+									"title": "ID",
+									"required": false,
+									"type": "object",
+									"properties": {
+										"Identifier": {
+											"title": "Identifier",
+											"required": false,
+											"type": "object",
+											"properties": {
+												"schemeID": {
+													"title": "schemeID",
+													"required": false,
+													"type": "string"
+												},
+												"schemeAgencyID": {
+													"title": "schemeAgencyID",
+													"required": false,
+													"type": "string"
+												},
+												"value": {
+													"title": "value",
+													"required": false,
+													"type": "string"
+												}
+											}
+										}
+									}
+								}
+							}
+						},
+						"UPCID": {
+							"title": "UPCID",
+							"required": false,
+							"type": "string"
+						},
+						"EPCID": {
+							"title": "EPCID",
+							"required": false,
+							"type": "string"
+						},
+						"Description": {
+							"title": "Description",
+							"required": false,
+							"type": "string"
+						},
+						"Note": {
+							"title": "Note",
+							"required": false,
+							"type": "string"
+						},
+						"Classification": {
+							"title": "Classification",
+							"required": false,
+							"type": "array",
+							"items": {
+								"required": false,
+								"type": "object",
+								"properties": {
+									"Classification": {
+										"title": "Classification",
+										"required": false,
+										"type": "object",
+										"properties": {
+											"type": {
+												"title": "type",
+												"required": false,
+												"type": "string"
+											},
+											"Codes": {
+												"title": "Codes",
+												"required": false,
+												"type": "object",
+												"properties": {
+													"Code": {
+														"title": "Code",
+														"required": false,
+														"type": "string"
+													}
+												}
+											},
+											"Description": {
+												"title": "Description",
+												"required": false,
+												"type": "string"
+											}
+										}
+									}
+								}
+							}
+						},
+						"Packaging": {
+							"title": "Packaging",
+							"required": false,
+							"type": "array",
+							"items": {
+								"required": false,
+								"type": "object",
+								"properties": {
+									"Packaging": {
+										"title": "Packaging",
+										"required": false,
+										"type": "object",
+										"properties": {
+											"ID": {
+												"title": "ID",
+												"required": false,
+												"type": "object",
+												"properties": {
+													"Identifier": {
+														"title": "Identifier",
+														"required": false,
+														"type": "object",
+														"properties": {
+															"schemeID": {
+																"title": "schemeID",
+																"required": false,
+																"type": "string"
+															},
+															"schemeAgencyID": {
+																"title": "schemeAgencyID",
+																"required": false,
+																"type": "string"
+															},
+															"value": {
+																"title": "value",
+																"required": false,
+																"type": "string"
+															}
+														}
+													}
+												}
+											},
+											"Description": {
+												"title": "Description",
+												"required": false,
+												"type": "string"
+											},
+											"Note": {
+												"title": "Note",
+												"required": false,
+												"type": "string"
+											},
+											"Dimensions": {
+												"title": "Dimensions",
+												"required": false,
+												"type": "object",
+												"properties": {
+													"WidthMeasure": {
+														"title": "WidthMeasure",
+														"required": false,
+														"type": "object",
+														"properties": {
+															"unit": {
+																"title": "unit",
+																"required": false,
+																"type": "string"
+															},
+															"value": {
+																"title": "value",
+																"required": false,
+																"type": "string"
+															}
+														}
+													},
+													"LengthMeasure": {
+														"title": "LengthMeasure",
+														"required": false,
+														"type": "object",
+														"properties": {
+															"unit": {
+																"title": "unit",
+																"required": false,
+																"type": "string"
+															},
+															"value": {
+																"title": "value",
+																"required": false,
+																"type": "string"
+															}
+														}
+													},
+													"HeightMeasure": {
+														"title": "HeightMeasure",
+														"required": false,
+														"type": "object",
+														"properties": {
+															"unit": {
+																"title": "unit",
+																"required": false,
+																"type": "string"
+															},
+															"value": {
+																"title": "value",
+																"required": false,
+																"type": "string"
+															}
+														}
+													},
+													"WeightRange": {
+														"title": "WeightRange",
+														"required": false,
+														"type": "object",
+														"properties": {
+															"MinimumWeightMeasure": {
+																"title": "MinimumWeightMeasure",
+																"required": false,
+																"type": "object",
+																"properties": {
+																	"unit": {
+																		"title": "unit",
+																		"required": false,
+																		"type": "string"
+																	},
+																	"value": {
+																		"title": "value",
+																		"required": false,
+																		"type": "string"
+																	}
+																}
+															}
+														}
+													}
+												}
+											},
+											"UnitCode": {
+												"title": "UnitCode",
+												"required": false,
+												"type": "string"
+											},
+											"BaseUnitCapacity": {
+												"title": "BaseUnitCapacity",
+												"required": false,
+												"type": "number"
+											},
+											"perPackageCapacities": {
+												"title": "perPackageCapacities",
+												"required": false,
+												"type": "array",
+												"items": {
+													"required": false,
+													"type": "object",
+													"properties": {
+														"capacity": {
+															"title": "capacity",
+															"required": false,
+															"type": "number"
+														},
+														"subPackaging": {
+															"title": "subPackaging",
+															"required": false,
+															"type": "object",
+															"properties": {
+																"Packaging": {
+																	"title": "Packaging",
+																	"required": false,
+																	"type": "object",
+																	"properties": {
+																		"ID": {
+																			"title": "ID",
+																			"required": false,
+																			"type": "object",
+																			"properties": {
+																				"Identifier": {
+																					"title": "Identifier",
+																					"required": false,
+																					"type": "object",
+																					"properties": {
+																						"schemeID": {
+																							"title": "schemeID",
+																							"required": false,
+																							"type": "string"
+																						},
+																						"schemeAgencyID": {
+																							"title": "schemeAgencyID",
+																							"required": false,
+																							"type": "string"
+																						},
+																						"value": {
+																							"title": "value",
+																							"required": false,
+																							"type": "string"
+																						}
+																					}
+																				}
+																			}
+																		},
+																		"Description": {
+																			"title": "Description",
+																			"required": false,
+																			"type": "string"
+																		},
+																		"Note": {
+																			"title": "Note",
+																			"required": false,
+																			"type": "string"
+																		},
+																		"Dimensions": {
+																			"title": "Dimensions",
+																			"required": false,
+																			"type": "object",
+																			"properties": {
+																				"WidthMeasure": {
+																					"title": "WidthMeasure",
+																					"required": false,
+																					"type": "object",
+																					"properties": {
+																						"unit": {
+																							"title": "unit",
+																							"required": false,
+																							"type": "string"
+																						},
+																						"value": {
+																							"title": "value",
+																							"required": false,
+																							"type": "string"
+																						}
+																					}
+																				},
+																				"LengthMeasure": {
+																					"title": "LengthMeasure",
+																					"required": false,
+																					"type": "object",
+																					"properties": {
+																						"unit": {
+																							"title": "unit",
+																							"required": false,
+																							"type": "string"
+																						},
+																						"value": {
+																							"title": "value",
+																							"required": false,
+																							"type": "string"
+																						}
+																					}
+																				},
+																				"HeightMeasure": {
+																					"title": "HeightMeasure",
+																					"required": false,
+																					"type": "object",
+																					"properties": {
+																						"unit": {
+																							"title": "unit",
+																							"required": false,
+																							"type": "string"
+																						},
+																						"value": {
+																							"title": "value",
+																							"required": false,
+																							"type": "string"
+																						}
+																					}
+																				},
+																				"WeightRange": {
+																					"title": "WeightRange",
+																					"required": false,
+																					"type": "object",
+																					"properties": {
+																						"MinimumWeightMeasure": {
+																							"title": "MinimumWeightMeasure",
+																							"required": false,
+																							"type": "object",
+																							"properties": {
+																								"unit": {
+																									"title": "unit",
+																									"required": false,
+																									"type": "string"
+																								},
+																								"value": {
+																									"title": "value",
+																									"required": false,
+																									"type": "string"
+																								}
+																							}
+																						}
+																					}
+																				}
+																			}
+																		},
+																		"UnitCode": {
+																			"title": "UnitCode",
+																			"required": false,
+																			"type": "string"
+																		},
+																		"BaseUnitCapacity": {
+																			"title": "BaseUnitCapacity",
+																			"required": false,
+																			"type": "number"
+																		},
+																		"perPackageCapacities": {
+																			"title": "perPackageCapacities",
+																			"required": false,
+																			"type": "array",
+																			"items": {
+																				"required": false,
+																				"type": "object",
+																				"properties": {
+																					"capacity": {
+																						"title": "capacity",
+																						"required": false,
+																						"type": "number"
+																					},
+																					"subPackaging": {
+																						"title": "subPackaging",
+																						"required": false,
+																						"type": "object",
+																						"properties": {
+																							"Packaging": {
+																								"title": "Packaging",
+																								"required": false,
+																								"type": "object",
+																								"properties": {
+																									"ID": {
+																										"title": "ID",
+																										"required": false,
+																										"type": "object",
+																										"properties": {
+																											"Identifier": {
+																												"title": "Identifier",
+																												"required": false,
+																												"type": "object",
+																												"properties": {
+																													"schemeID": {
+																														"title": "schemeID",
+																														"required": false,
+																														"type": "string"
+																													},
+																													"schemeAgencyID": {
+																														"title": "schemeAgencyID",
+																														"required": false,
+																														"type": "string"
+																													},
+																													"value": {
+																														"title": "value",
+																														"required": false,
+																														"type": "string"
+																													}
+																												}
+																											}
+																										}
+																									},
+																									"Description": {
+																										"title": "Description",
+																										"required": false,
+																										"type": "string"
+																									},
+																									"Note": {
+																										"title": "Note",
+																										"required": false,
+																										"type": "string"
+																									},
+																									"Dimensions": {
+																										"title": "Dimensions",
+																										"required": false,
+																										"type": "object",
+																										"properties": {
+																											"WidthMeasure": {
+																												"title": "WidthMeasure",
+																												"required": false,
+																												"type": "object",
+																												"properties": {
+																													"unit": {
+																														"title": "unit",
+																														"required": false,
+																														"type": "string"
+																													},
+																													"value": {
+																														"title": "value",
+																														"required": false,
+																														"type": "string"
+																													}
+																												}
+																											},
+																											"LengthMeasure": {
+																												"title": "LengthMeasure",
+																												"required": false,
+																												"type": "object",
+																												"properties": {
+																													"unit": {
+																														"title": "unit",
+																														"required": false,
+																														"type": "string"
+																													},
+																													"value": {
+																														"title": "value",
+																														"required": false,
+																														"type": "string"
+																													}
+																												}
+																											},
+																											"HeightMeasure": {
+																												"title": "HeightMeasure",
+																												"required": false,
+																												"type": "object",
+																												"properties": {
+																													"unit": {
+																														"title": "unit",
+																														"required": false,
+																														"type": "string"
+																													},
+																													"value": {
+																														"title": "value",
+																														"required": false,
+																														"type": "string"
+																													}
+																												}
+																											},
+																											"WeightRange": {
+																												"title": "WeightRange",
+																												"required": false,
+																												"type": "object",
+																												"properties": {
+																													"MinimumWeightMeasure": {
+																														"title": "MinimumWeightMeasure",
+																														"required": false,
+																														"type": "object",
+																														"properties": {
+																															"unit": {
+																																"title": "unit",
+																																"required": false,
+																																"type": "string"
+																															},
+																															"value": {
+																																"title": "value",
+																																"required": false,
+																																"type": "string"
+																															}
+																														}
+																													}
+																												}
+																											}
+																										}
+																									},
+																									"UnitCode": {
+																										"title": "UnitCode",
+																										"required": false,
+																										"type": "string"
+																									},
+																									"BaseUnitCapacity": {
+																										"title": "BaseUnitCapacity",
+																										"required": false,
+																										"type": "number"
+																									},
+																									"perPackageCapacities": {
+																										"title": "perPackageCapacities",
+																										"required": false,
+																										"type": "array",
+																										"items": {
+																											"required": false,
+																											"type": "object",
+																											"properties": {
+																												"capacity": {
+																													"title": "capacity",
+																													"required": false,
+																													"type": "number"
+																												},
+																												"subPackaging": {
+																													"title": "subPackaging",
+																													"required": false,
+																													"type": "object",
+																													"properties": {
+																														"Packaging": {
+																															"title": "Packaging",
+																															"required": false,
+																															"type": "object",
+																															"properties": {
+																																"ID": {
+																																	"title": "ID",
+																																	"required": false,
+																																	"type": "object",
+																																	"properties": {
+																																		"Identifier": {
+																																			"title": "Identifier",
+																																			"required": false,
+																																			"type": "object",
+																																			"properties": {
+																																				"schemeID": {
+																																					"title": "schemeID",
+																																					"required": false,
+																																					"type": "string"
+																																				},
+																																				"schemeAgencyID": {
+																																					"title": "schemeAgencyID",
+																																					"required": false,
+																																					"type": "string"
+																																				},
+																																				"value": {
+																																					"title": "value",
+																																					"required": false,
+																																					"type": "string"
+																																				}
+																																			}
+																																		}
+																																	}
+																																},
+																																"Description": {
+																																	"title": "Description",
+																																	"required": false,
+																																	"type": "string"
+																																},
+																																"Note": {
+																																	"title": "Note",
+																																	"required": false,
+																																	"type": "string"
+																																},
+																																"Dimensions": {
+																																	"title": "Dimensions",
+																																	"required": false,
+																																	"type": "object",
+																																	"properties": {
+																																		"WidthMeasure": {
+																																			"title": "WidthMeasure",
+																																			"required": false,
+																																			"type": "object",
+																																			"properties": {
+																																				"unit": {
+																																					"title": "unit",
+																																					"required": false,
+																																					"type": "string"
+																																				},
+																																				"value": {
+																																					"title": "value",
+																																					"required": false,
+																																					"type": "string"
+																																				}
+																																			}
+																																		},
+																																		"LengthMeasure": {
+																																			"title": "LengthMeasure",
+																																			"required": false,
+																																			"type": "object",
+																																			"properties": {
+																																				"unit": {
+																																					"title": "unit",
+																																					"required": false,
+																																					"type": "string"
+																																				},
+																																				"value": {
+																																					"title": "value",
+																																					"required": false,
+																																					"type": "string"
+																																				}
+																																			}
+																																		},
+																																		"HeightMeasure": {
+																																			"title": "HeightMeasure",
+																																			"required": false,
+																																			"type": "object",
+																																			"properties": {
+																																				"unit": {
+																																					"title": "unit",
+																																					"required": false,
+																																					"type": "string"
+																																				},
+																																				"value": {
+																																					"title": "value",
+																																					"required": false,
+																																					"type": "string"
+																																				}
+																																			}
+																																		},
+																																		"WeightRange": {
+																																			"title": "WeightRange",
+																																			"required": false,
+																																			"type": "object",
+																																			"properties": {
+																																				"MinimumWeightMeasure": {
+																																					"title": "MinimumWeightMeasure",
+																																					"required": false,
+																																					"type": "object",
+																																					"properties": {
+																																						"unit": {
+																																							"title": "unit",
+																																							"required": false,
+																																							"type": "string"
+																																						},
+																																						"value": {
+																																							"title": "value",
+																																							"required": false,
+																																							"type": "string"
+																																						}
+																																					}
+																																				}
+																																			}
+																																		}
+																																	}
+																																},
+																																"UnitCode": {
+																																	"title": "UnitCode",
+																																	"required": false,
+																																	"type": "string"
+																																},
+																																"BaseUnitCapacity": {
+																																	"title": "BaseUnitCapacity",
+																																	"required": false,
+																																	"type": "number"
+																																},
+																																"perPackageCapacities": {
+																																	"title": "perPackageCapacities",
+																																	"required": false,
+																																	"type": "array",
+																																	"items": {
+																																		"required": false,
+																																		"type": "object",
+																																		"properties": {
+																																			"capacity": {
+																																				"title": "capacity",
+																																				"required": false,
+																																				"type": "number"
+																																			},
+																																			"subPackaging": {
+																																				"title": "subPackaging",
+																																				"required": false,
+																																				"type": "object",
+																																				"properties": {
+																																					"Packaging": {
+																																						"title": "Packaging",
+																																						"required": false,
+																																						"type": "object",
+																																						"properties": {
+																																							"ID": {
+																																								"title": "ID",
+																																								"required": false,
+																																								"type": "object",
+																																								"properties": {
+																																									"Identifier": {
+																																										"title": "Identifier",
+																																										"required": false,
+																																										"type": "object",
+																																										"properties": {
+																																											"schemeID": {
+																																												"title": "schemeID",
+																																												"required": false,
+																																												"type": "string"
+																																											},
+																																											"schemeAgencyID": {
+																																												"title": "schemeAgencyID",
+																																												"required": false,
+																																												"type": "string"
+																																											},
+																																											"value": {
+																																												"title": "value",
+																																												"required": false,
+																																												"type": "string"
+																																											}
+																																										}
+																																									}
+																																								}
+																																							},
+																																							"Description": {
+																																								"title": "Description",
+																																								"required": false,
+																																								"type": "string"
+																																							},
+																																							"Note": {
+																																								"title": "Note",
+																																								"required": false,
+																																								"type": "string"
+																																							},
+																																							"Dimensions": {
+																																								"title": "Dimensions",
+																																								"required": false,
+																																								"type": "object",
+																																								"properties": {
+																																									"WidthMeasure": {
+																																										"title": "WidthMeasure",
+																																										"required": false,
+																																										"type": "object",
+																																										"properties": {
+																																											"unit": {
+																																												"title": "unit",
+																																												"required": false,
+																																												"type": "string"
+																																											},
+																																											"value": {
+																																												"title": "value",
+																																												"required": false,
+																																												"type": "string"
+																																											}
+																																										}
+																																									},
+																																									"LengthMeasure": {
+																																										"title": "LengthMeasure",
+																																										"required": false,
+																																										"type": "object",
+																																										"properties": {
+																																											"unit": {
+																																												"title": "unit",
+																																												"required": false,
+																																												"type": "string"
+																																											},
+																																											"value": {
+																																												"title": "value",
+																																												"required": false,
+																																												"type": "string"
+																																											}
+																																										}
+																																									},
+																																									"HeightMeasure": {
+																																										"title": "HeightMeasure",
+																																										"required": false,
+																																										"type": "object",
+																																										"properties": {
+																																											"unit": {
+																																												"title": "unit",
+																																												"required": false,
+																																												"type": "string"
+																																											},
+																																											"value": {
+																																												"title": "value",
+																																												"required": false,
+																																												"type": "string"
+																																											}
+																																										}
+																																									},
+																																									"WeightRange": {
+																																										"title": "WeightRange",
+																																										"required": false,
+																																										"type": "object",
+																																										"properties": {
+																																											"MinimumWeightMeasure": {
+																																												"title": "MinimumWeightMeasure",
+																																												"required": false,
+																																												"type": "object",
+																																												"properties": {
+																																													"unit": {
+																																														"title": "unit",
+																																														"required": false,
+																																														"type": "string"
+																																													},
+																																													"value": {
+																																														"title": "value",
+																																														"required": false,
+																																														"type": "string"
+																																													}
+																																												}
+																																											}
+																																										}
+																																									}
+																																								}
+																																							},
+																																							"UnitCode": {
+																																								"title": "UnitCode",
+																																								"required": false,
+																																								"type": "string"
+																																							},
+																																							"BaseUnitCapacity": {
+																																								"title": "BaseUnitCapacity",
+																																								"required": false,
+																																								"type": "number"
+																																							},
+																																							"perPackageCapacities": {
+																																								"title": "perPackageCapacities",
+																																								"required": false,
+																																								"type": "array",
+																																								"items": {
+																																									"required": false,
+																																									"type": "object",
+																																									"properties": {
+																																										"capacity": {
+																																											"title": "capacity",
+																																											"required": false,
+																																											"type": "number"
+																																										},
+																																										"subPackaging": {
+																																											"title": "subPackaging",
+																																											"required": false,
+																																											"type": "object",
+																																											"properties": {
+																																												"Packaging": {
+																																													"title": "Packaging",
+																																													"required": false,
+																																													"type": "object",
+																																													"properties": {
+																																														"ID": {
+																																															"title": "ID",
+																																															"required": false,
+																																															"type": "object",
+																																															"properties": {
+																																																"Identifier": {
+																																																	"title": "Identifier",
+																																																	"required": false,
+																																																	"type": "object",
+																																																	"properties": {
+																																																		"schemeID": {
+																																																			"title": "schemeID",
+																																																			"required": false,
+																																																			"type": "string"
+																																																		},
+																																																		"schemeAgencyID": {
+																																																			"title": "schemeAgencyID",
+																																																			"required": false,
+																																																			"type": "string"
+																																																		},
+																																																		"value": {
+																																																			"title": "value",
+																																																			"required": false,
+																																																			"type": "string"
+																																																		}
+																																																	}
+																																																}
+																																															}
+																																														},
+																																														"Description": {
+																																															"title": "Description",
+																																															"required": false,
+																																															"type": "string"
+																																														},
+																																														"Note": {
+																																															"title": "Note",
+																																															"required": false,
+																																															"type": "string"
+																																														},
+																																														"Dimensions": {
+																																															"title": "Dimensions",
+																																															"required": false,
+																																															"type": "object",
+																																															"properties": {
+																																																"WidthMeasure": {
+																																																	"title": "WidthMeasure",
+																																																	"required": false,
+																																																	"type": "object",
+																																																	"properties": {
+																																																		"unit": {
+																																																			"title": "unit",
+																																																			"required": false,
+																																																			"type": "string"
+																																																		},
+																																																		"value": {
+																																																			"title": "value",
+																																																			"required": false,
+																																																			"type": "string"
+																																																		}
+																																																	}
+																																																},
+																																																"LengthMeasure": {
+																																																	"title": "LengthMeasure",
+																																																	"required": false,
+																																																	"type": "object",
+																																																	"properties": {
+																																																		"unit": {
+																																																			"title": "unit",
+																																																			"required": false,
+																																																			"type": "string"
+																																																		},
+																																																		"value": {
+																																																			"title": "value",
+																																																			"required": false,
+																																																			"type": "string"
+																																																		}
+																																																	}
+																																																},
+																																																"HeightMeasure": {
+																																																	"title": "HeightMeasure",
+																																																	"required": false,
+																																																	"type": "object",
+																																																	"properties": {
+																																																		"unit": {
+																																																			"title": "unit",
+																																																			"required": false,
+																																																			"type": "string"
+																																																		},
+																																																		"value": {
+																																																			"title": "value",
+																																																			"required": false,
+																																																			"type": "string"
+																																																		}
+																																																	}
+																																																},
+																																																"WeightRange": {
+																																																	"title": "WeightRange",
+																																																	"required": false,
+																																																	"type": "object",
+																																																	"properties": {
+																																																		"MinimumWeightMeasure": {
+																																																			"title": "MinimumWeightMeasure",
+																																																			"required": false,
+																																																			"type": "object",
+																																																			"properties": {
+																																																				"unit": {
+																																																					"title": "unit",
+																																																					"required": false,
+																																																					"type": "string"
+																																																				},
+																																																				"value": {
+																																																					"title": "value",
+																																																					"required": false,
+																																																					"type": "string"
+																																																				}
+																																																			}
+																																																		}
+																																																	}
+																																																}
+																																															}
+																																														},
+																																														"UnitCode": {
+																																															"title": "UnitCode",
+																																															"required": false,
+																																															"type": "string"
+																																														},
+																																														"BaseUnitCapacity": {
+																																															"title": "BaseUnitCapacity",
+																																															"required": false,
+																																															"type": "number"
+																																														},
+																																														"perPackageCapacities": {
+																																															"title": "perPackageCapacities",
+																																															"required": false,
+																																															"type": "array",
+																																															"items": {
+																																																"required": false,
+																																																"type": "object",
+																																																"properties": {
+																																																	"capacity": {
+																																																		"title": "capacity",
+																																																		"required": false,
+																																																		"type": "number"
+																																																	}
+																																																}
+																																															}
+																																														},
+																																														"RevisionID": {
+																																															"title": "RevisionID",
+																																															"required": false,
+																																															"type": "object",
+																																															"properties": {
+																																																"Identifier": {
+																																																	"title": "Identifier",
+																																																	"required": false,
+																																																	"type": "object",
+																																																	"properties": {
+																																																		"schemeID": {
+																																																			"title": "schemeID",
+																																																			"required": false,
+																																																			"type": "string"
+																																																		},
+																																																		"schemeAgencyID": {
+																																																			"title": "schemeAgencyID",
+																																																			"required": false,
+																																																			"type": "string"
+																																																		},
+																																																		"value": {
+																																																			"title": "value",
+																																																			"required": false,
+																																																			"type": "string"
+																																																		}
+																																																	}
+																																																}
+																																															}
+																																														}
+																																													}
+																																												}
+																																											}
+																																										}
+																																									}
+																																								}
+																																							},
+																																							"RevisionID": {
+																																								"title": "RevisionID",
+																																								"required": false,
+																																								"type": "object",
+																																								"properties": {
+																																									"Identifier": {
+																																										"title": "Identifier",
+																																										"required": false,
+																																										"type": "object",
+																																										"properties": {
+																																											"schemeID": {
+																																												"title": "schemeID",
+																																												"required": false,
+																																												"type": "string"
+																																											},
+																																											"schemeAgencyID": {
+																																												"title": "schemeAgencyID",
+																																												"required": false,
+																																												"type": "string"
+																																											},
+																																											"value": {
+																																												"title": "value",
+																																												"required": false,
+																																												"type": "string"
+																																											}
+																																										}
+																																									}
+																																								}
+																																							}
+																																						}
+																																					}
+																																				}
+																																			}
+																																		}
+																																	}
+																																},
+																																"RevisionID": {
+																																	"title": "RevisionID",
+																																	"required": false,
+																																	"type": "object",
+																																	"properties": {
+																																		"Identifier": {
+																																			"title": "Identifier",
+																																			"required": false,
+																																			"type": "object",
+																																			"properties": {
+																																				"schemeID": {
+																																					"title": "schemeID",
+																																					"required": false,
+																																					"type": "string"
+																																				},
+																																				"schemeAgencyID": {
+																																					"title": "schemeAgencyID",
+																																					"required": false,
+																																					"type": "string"
+																																				},
+																																				"value": {
+																																					"title": "value",
+																																					"required": false,
+																																					"type": "string"
+																																				}
+																																			}
+																																		}
+																																	}
+																																}
+																															}
+																														}
+																													}
+																												}
+																											}
+																										}
+																									},
+																									"RevisionID": {
+																										"title": "RevisionID",
+																										"required": false,
+																										"type": "object",
+																										"properties": {
+																											"Identifier": {
+																												"title": "Identifier",
+																												"required": false,
+																												"type": "object",
+																												"properties": {
+																													"schemeID": {
+																														"title": "schemeID",
+																														"required": false,
+																														"type": "string"
+																													},
+																													"schemeAgencyID": {
+																														"title": "schemeAgencyID",
+																														"required": false,
+																														"type": "string"
+																													},
+																													"value": {
+																														"title": "value",
+																														"required": false,
+																														"type": "string"
+																													}
+																												}
+																											}
+																										}
+																									}
+																								}
+																							}
+																						}
+																					}
+																				}
+																			}
+																		},
+																		"RevisionID": {
+																			"title": "RevisionID",
+																			"required": false,
+																			"type": "object",
+																			"properties": {
+																				"Identifier": {
+																					"title": "Identifier",
+																					"required": false,
+																					"type": "object",
+																					"properties": {
+																						"schemeID": {
+																							"title": "schemeID",
+																							"required": false,
+																							"type": "string"
+																						},
+																						"schemeAgencyID": {
+																							"title": "schemeAgencyID",
+																							"required": false,
+																							"type": "string"
+																						},
+																						"value": {
+																							"title": "value",
+																							"required": false,
+																							"type": "string"
+																						}
+																					}
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											},
+											"RevisionID": {
+												"title": "RevisionID",
+												"required": false,
+												"type": "object",
+												"properties": {
+													"Identifier": {
+														"title": "Identifier",
+														"required": false,
+														"type": "object",
+														"properties": {
+															"schemeID": {
+																"title": "schemeID",
+																"required": false,
+																"type": "string"
+															},
+															"schemeAgencyID": {
+																"title": "schemeAgencyID",
+																"required": false,
+																"type": "string"
+															},
+															"value": {
+																"title": "value",
+																"required": false,
+																"type": "string"
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						},
+						"Dimensions": {
+							"title": "Dimensions",
+							"required": false,
+							"type": "object",
+							"properties": {
+								"WidthMeasure": {
+									"title": "WidthMeasure",
+									"required": false,
+									"type": "object",
+									"properties": {
+										"unit": {
+											"title": "unit",
+											"required": false,
+											"type": "string"
+										},
+										"value": {
+											"title": "value",
+											"required": false,
+											"type": "string"
+										}
+									}
+								},
+								"LengthMeasure": {
+									"title": "LengthMeasure",
+									"required": false,
+									"type": "object",
+									"properties": {
+										"unit": {
+											"title": "unit",
+											"required": false,
+											"type": "string"
+										},
+										"value": {
+											"title": "value",
+											"required": false,
+											"type": "string"
+										}
+									}
+								},
+								"HeightMeasure": {
+									"title": "HeightMeasure",
+									"required": false,
+									"type": "object",
+									"properties": {
+										"unit": {
+											"title": "unit",
+											"required": false,
+											"type": "string"
+										},
+										"value": {
+											"title": "value",
+											"required": false,
+											"type": "string"
+										}
+									}
+								},
+								"WeightMeasure": {
+									"title": "WeightMeasure",
+									"required": false,
+									"type": "object",
+									"properties": {
+										"unit": {
+											"title": "unit",
+											"required": false,
+											"type": "string"
+										},
+										"value": {
+											"title": "value",
+											"required": false,
+											"type": "string"
+										}
+									}
+								}
+							}
+						},
+						"Effectivity": {
+							"title": "Effectivity",
+							"required": false,
+							"type": "object",
+							"properties": {
+								"EffectiveTimePeriod": {
+									"title": "EffectiveTimePeriod",
+									"required": false,
+									"type": "object",
+									"properties": {
+										"Duration": {
+											"title": "Duration",
+											"required": false,
+											"type": "object"
+										}
+									}
+								}
+							}
+						},
+						"LeadTimeDuration": {
+							"title": "LeadTimeDuration",
+							"required": false,
+							"type": "object"
+						},
+						"SerialNumberSpecification": {
+							"title": "SerialNumberSpecification",
+							"required": false,
+							"type": "string"
+						},
+						"LotNumberSpecification": {
+							"title": "LotNumberSpecification",
+							"required": false,
+							"type": "string"
+						},
+						"LastModificationDateTime": {
+							"title": "LastModificationDateTime",
+							"required": false,
+							"type": "object"
+						},
+						"SerialControlIndicator": {
+							"title": "SerialControlIndicator",
+							"required": false,
+							"type": "boolean"
+						},
+						"LotControlIndicator": {
+							"title": "LotControlIndicator",
+							"required": false,
+							"type": "boolean"
+						},
+						"ExpirationControlCode": {
+							"title": "ExpirationControlCode",
+							"required": false,
+							"type": "boolean"
+						},
+						"AverageRunSizeQuantity": {
+							"title": "AverageRunSizeQuantity",
+							"required": false,
+							"type": "object",
+							"properties": {
+								"unit": {
+									"title": "unit",
+									"required": false,
+									"type": "string"
+								},
+								"value": {
+									"title": "value",
+									"required": false,
+									"type": "string"
+								}
+							}
+						},
+						"TenantID": {
+							"title": "TenantID",
+							"required": false,
+							"type": "object",
+							"properties": {
+								"Identifier": {
+									"title": "Identifier",
+									"required": false,
+									"type": "object",
+									"properties": {
+										"schemeID": {
+											"title": "schemeID",
+											"required": false,
+											"type": "string"
+										},
+										"schemeAgencyID": {
+											"title": "schemeAgencyID",
+											"required": false,
+											"type": "string"
+										},
+										"value": {
+											"title": "value",
+											"required": false,
+											"type": "string"
+										}
+									}
+								}
+							}
+						},
+						"BaseUnitPackaging": {
+							"title": "BaseUnitPackaging",
+							"required": false,
+							"type": "object",
+							"properties": {
+								"Packaging": {
+									"title": "Packaging",
+									"required": false,
+									"type": "object",
+									"properties": {
+										"ID": {
+											"title": "ID",
+											"required": false,
+											"type": "object",
+											"properties": {
+												"Identifier": {
+													"title": "Identifier",
+													"required": false,
+													"type": "object",
+													"properties": {
+														"schemeID": {
+															"title": "schemeID",
+															"required": false,
+															"type": "string"
+														},
+														"schemeAgencyID": {
+															"title": "schemeAgencyID",
+															"required": false,
+															"type": "string"
+														},
+														"value": {
+															"title": "value",
+															"required": false,
+															"type": "string"
+														}
+													}
+												}
+											}
+										},
+										"Description": {
+											"title": "Description",
+											"required": false,
+											"type": "string"
+										},
+										"Note": {
+											"title": "Note",
+											"required": false,
+											"type": "string"
+										},
+										"Dimensions": {
+											"title": "Dimensions",
+											"required": false,
+											"type": "object",
+											"properties": {
+												"WidthMeasure": {
+													"title": "WidthMeasure",
+													"required": false,
+													"type": "object",
+													"properties": {
+														"unit": {
+															"title": "unit",
+															"required": false,
+															"type": "string"
+														},
+														"value": {
+															"title": "value",
+															"required": false,
+															"type": "string"
+														}
+													}
+												},
+												"LengthMeasure": {
+													"title": "LengthMeasure",
+													"required": false,
+													"type": "object",
+													"properties": {
+														"unit": {
+															"title": "unit",
+															"required": false,
+															"type": "string"
+														},
+														"value": {
+															"title": "value",
+															"required": false,
+															"type": "string"
+														}
+													}
+												},
+												"HeightMeasure": {
+													"title": "HeightMeasure",
+													"required": false,
+													"type": "object",
+													"properties": {
+														"unit": {
+															"title": "unit",
+															"required": false,
+															"type": "string"
+														},
+														"value": {
+															"title": "value",
+															"required": false,
+															"type": "string"
+														}
+													}
+												},
+												"WeightRange": {
+													"title": "WeightRange",
+													"required": false,
+													"type": "object",
+													"properties": {
+														"MinimumWeightMeasure": {
+															"title": "MinimumWeightMeasure",
+															"required": false,
+															"type": "object",
+															"properties": {
+																"unit": {
+																	"title": "unit",
+																	"required": false,
+																	"type": "string"
+																},
+																"value": {
+																	"title": "value",
+																	"required": false,
+																	"type": "string"
+																}
+															}
+														}
+													}
+												}
+											}
+										},
+										"UnitCode": {
+											"title": "UnitCode",
+											"required": false,
+											"type": "string"
+										},
+										"BaseUnitCapacity": {
+											"title": "BaseUnitCapacity",
+											"required": false,
+											"type": "number"
+										},
+										"perPackageCapacities": {
+											"title": "perPackageCapacities",
+											"required": false,
+											"type": "array",
+											"items": {
+												"required": false,
+												"type": "object",
+												"properties": {
+													"capacity": {
+														"title": "capacity",
+														"required": false,
+														"type": "number"
+													},
+													"subPackaging": {
+														"title": "subPackaging",
+														"required": false,
+														"type": "object",
+														"properties": {
+															"Packaging": {
+																"title": "Packaging",
+																"required": false,
+																"type": "object",
+																"properties": {
+																	"ID": {
+																		"title": "ID",
+																		"required": false,
+																		"type": "object",
+																		"properties": {
+																			"Identifier": {
+																				"title": "Identifier",
+																				"required": false,
+																				"type": "object",
+																				"properties": {
+																					"schemeID": {
+																						"title": "schemeID",
+																						"required": false,
+																						"type": "string"
+																					},
+																					"schemeAgencyID": {
+																						"title": "schemeAgencyID",
+																						"required": false,
+																						"type": "string"
+																					},
+																					"value": {
+																						"title": "value",
+																						"required": false,
+																						"type": "string"
+																					}
+																				}
+																			}
+																		}
+																	},
+																	"Description": {
+																		"title": "Description",
+																		"required": false,
+																		"type": "string"
+																	},
+																	"Note": {
+																		"title": "Note",
+																		"required": false,
+																		"type": "string"
+																	},
+																	"Dimensions": {
+																		"title": "Dimensions",
+																		"required": false,
+																		"type": "object",
+																		"properties": {
+																			"WidthMeasure": {
+																				"title": "WidthMeasure",
+																				"required": false,
+																				"type": "object",
+																				"properties": {
+																					"unit": {
+																						"title": "unit",
+																						"required": false,
+																						"type": "string"
+																					},
+																					"value": {
+																						"title": "value",
+																						"required": false,
+																						"type": "string"
+																					}
+																				}
+																			},
+																			"LengthMeasure": {
+																				"title": "LengthMeasure",
+																				"required": false,
+																				"type": "object",
+																				"properties": {
+																					"unit": {
+																						"title": "unit",
+																						"required": false,
+																						"type": "string"
+																					},
+																					"value": {
+																						"title": "value",
+																						"required": false,
+																						"type": "string"
+																					}
+																				}
+																			},
+																			"HeightMeasure": {
+																				"title": "HeightMeasure",
+																				"required": false,
+																				"type": "object",
+																				"properties": {
+																					"unit": {
+																						"title": "unit",
+																						"required": false,
+																						"type": "string"
+																					},
+																					"value": {
+																						"title": "value",
+																						"required": false,
+																						"type": "string"
+																					}
+																				}
+																			},
+																			"WeightRange": {
+																				"title": "WeightRange",
+																				"required": false,
+																				"type": "object",
+																				"properties": {
+																					"MinimumWeightMeasure": {
+																						"title": "MinimumWeightMeasure",
+																						"required": false,
+																						"type": "object",
+																						"properties": {
+																							"unit": {
+																								"title": "unit",
+																								"required": false,
+																								"type": "string"
+																							},
+																							"value": {
+																								"title": "value",
+																								"required": false,
+																								"type": "string"
+																							}
+																						}
+																					}
+																				}
+																			}
+																		}
+																	},
+																	"UnitCode": {
+																		"title": "UnitCode",
+																		"required": false,
+																		"type": "string"
+																	},
+																	"BaseUnitCapacity": {
+																		"title": "BaseUnitCapacity",
+																		"required": false,
+																		"type": "number"
+																	},
+																	"perPackageCapacities": {
+																		"title": "perPackageCapacities",
+																		"required": false,
+																		"type": "array",
+																		"items": {
+																			"required": false,
+																			"type": "object",
+																			"properties": {
+																				"capacity": {
+																					"title": "capacity",
+																					"required": false,
+																					"type": "number"
+																				},
+																				"subPackaging": {
+																					"title": "subPackaging",
+																					"required": false,
+																					"type": "object",
+																					"properties": {
+																						"Packaging": {
+																							"title": "Packaging",
+																							"required": false,
+																							"type": "object",
+																							"properties": {
+																								"ID": {
+																									"title": "ID",
+																									"required": false,
+																									"type": "object",
+																									"properties": {
+																										"Identifier": {
+																											"title": "Identifier",
+																											"required": false,
+																											"type": "object",
+																											"properties": {
+																												"schemeID": {
+																													"title": "schemeID",
+																													"required": false,
+																													"type": "string"
+																												},
+																												"schemeAgencyID": {
+																													"title": "schemeAgencyID",
+																													"required": false,
+																													"type": "string"
+																												},
+																												"value": {
+																													"title": "value",
+																													"required": false,
+																													"type": "string"
+																												}
+																											}
+																										}
+																									}
+																								},
+																								"Description": {
+																									"title": "Description",
+																									"required": false,
+																									"type": "string"
+																								},
+																								"Note": {
+																									"title": "Note",
+																									"required": false,
+																									"type": "string"
+																								},
+																								"Dimensions": {
+																									"title": "Dimensions",
+																									"required": false,
+																									"type": "object",
+																									"properties": {
+																										"WidthMeasure": {
+																											"title": "WidthMeasure",
+																											"required": false,
+																											"type": "object",
+																											"properties": {
+																												"unit": {
+																													"title": "unit",
+																													"required": false,
+																													"type": "string"
+																												},
+																												"value": {
+																													"title": "value",
+																													"required": false,
+																													"type": "string"
+																												}
+																											}
+																										},
+																										"LengthMeasure": {
+																											"title": "LengthMeasure",
+																											"required": false,
+																											"type": "object",
+																											"properties": {
+																												"unit": {
+																													"title": "unit",
+																													"required": false,
+																													"type": "string"
+																												},
+																												"value": {
+																													"title": "value",
+																													"required": false,
+																													"type": "string"
+																												}
+																											}
+																										},
+																										"HeightMeasure": {
+																											"title": "HeightMeasure",
+																											"required": false,
+																											"type": "object",
+																											"properties": {
+																												"unit": {
+																													"title": "unit",
+																													"required": false,
+																													"type": "string"
+																												},
+																												"value": {
+																													"title": "value",
+																													"required": false,
+																													"type": "string"
+																												}
+																											}
+																										},
+																										"WeightRange": {
+																											"title": "WeightRange",
+																											"required": false,
+																											"type": "object",
+																											"properties": {
+																												"MinimumWeightMeasure": {
+																													"title": "MinimumWeightMeasure",
+																													"required": false,
+																													"type": "object",
+																													"properties": {
+																														"unit": {
+																															"title": "unit",
+																															"required": false,
+																															"type": "string"
+																														},
+																														"value": {
+																															"title": "value",
+																															"required": false,
+																															"type": "string"
+																														}
+																													}
+																												}
+																											}
+																										}
+																									}
+																								},
+																								"UnitCode": {
+																									"title": "UnitCode",
+																									"required": false,
+																									"type": "string"
+																								},
+																								"BaseUnitCapacity": {
+																									"title": "BaseUnitCapacity",
+																									"required": false,
+																									"type": "number"
+																								},
+																								"perPackageCapacities": {
+																									"title": "perPackageCapacities",
+																									"required": false,
+																									"type": "array",
+																									"items": {
+																										"required": false,
+																										"type": "object",
+																										"properties": {
+																											"capacity": {
+																												"title": "capacity",
+																												"required": false,
+																												"type": "number"
+																											},
+																											"subPackaging": {
+																												"title": "subPackaging",
+																												"required": false,
+																												"type": "object",
+																												"properties": {
+																													"Packaging": {
+																														"title": "Packaging",
+																														"required": false,
+																														"type": "object",
+																														"properties": {
+																															"ID": {
+																																"title": "ID",
+																																"required": false,
+																																"type": "object",
+																																"properties": {
+																																	"Identifier": {
+																																		"title": "Identifier",
+																																		"required": false,
+																																		"type": "object",
+																																		"properties": {
+																																			"schemeID": {
+																																				"title": "schemeID",
+																																				"required": false,
+																																				"type": "string"
+																																			},
+																																			"schemeAgencyID": {
+																																				"title": "schemeAgencyID",
+																																				"required": false,
+																																				"type": "string"
+																																			},
+																																			"value": {
+																																				"title": "value",
+																																				"required": false,
+																																				"type": "string"
+																																			}
+																																		}
+																																	}
+																																}
+																															},
+																															"Description": {
+																																"title": "Description",
+																																"required": false,
+																																"type": "string"
+																															},
+																															"Note": {
+																																"title": "Note",
+																																"required": false,
+																																"type": "string"
+																															},
+																															"Dimensions": {
+																																"title": "Dimensions",
+																																"required": false,
+																																"type": "object",
+																																"properties": {
+																																	"WidthMeasure": {
+																																		"title": "WidthMeasure",
+																																		"required": false,
+																																		"type": "object",
+																																		"properties": {
+																																			"unit": {
+																																				"title": "unit",
+																																				"required": false,
+																																				"type": "string"
+																																			},
+																																			"value": {
+																																				"title": "value",
+																																				"required": false,
+																																				"type": "string"
+																																			}
+																																		}
+																																	},
+																																	"LengthMeasure": {
+																																		"title": "LengthMeasure",
+																																		"required": false,
+																																		"type": "object",
+																																		"properties": {
+																																			"unit": {
+																																				"title": "unit",
+																																				"required": false,
+																																				"type": "string"
+																																			},
+																																			"value": {
+																																				"title": "value",
+																																				"required": false,
+																																				"type": "string"
+																																			}
+																																		}
+																																	},
+																																	"HeightMeasure": {
+																																		"title": "HeightMeasure",
+																																		"required": false,
+																																		"type": "object",
+																																		"properties": {
+																																			"unit": {
+																																				"title": "unit",
+																																				"required": false,
+																																				"type": "string"
+																																			},
+																																			"value": {
+																																				"title": "value",
+																																				"required": false,
+																																				"type": "string"
+																																			}
+																																		}
+																																	},
+																																	"WeightRange": {
+																																		"title": "WeightRange",
+																																		"required": false,
+																																		"type": "object",
+																																		"properties": {
+																																			"MinimumWeightMeasure": {
+																																				"title": "MinimumWeightMeasure",
+																																				"required": false,
+																																				"type": "object",
+																																				"properties": {
+																																					"unit": {
+																																						"title": "unit",
+																																						"required": false,
+																																						"type": "string"
+																																					},
+																																					"value": {
+																																						"title": "value",
+																																						"required": false,
+																																						"type": "string"
+																																					}
+																																				}
+																																			}
+																																		}
+																																	}
+																																}
+																															},
+																															"UnitCode": {
+																																"title": "UnitCode",
+																																"required": false,
+																																"type": "string"
+																															},
+																															"BaseUnitCapacity": {
+																																"title": "BaseUnitCapacity",
+																																"required": false,
+																																"type": "number"
+																															},
+																															"perPackageCapacities": {
+																																"title": "perPackageCapacities",
+																																"required": false,
+																																"type": "array",
+																																"items": {
+																																	"required": false,
+																																	"type": "object",
+																																	"properties": {
+																																		"capacity": {
+																																			"title": "capacity",
+																																			"required": false,
+																																			"type": "number"
+																																		}
+																																	}
+																																}
+																															},
+																															"RevisionID": {
+																																"title": "RevisionID",
+																																"required": false,
+																																"type": "object",
+																																"properties": {
+																																	"Identifier": {
+																																		"title": "Identifier",
+																																		"required": false,
+																																		"type": "object",
+																																		"properties": {
+																																			"schemeID": {
+																																				"title": "schemeID",
+																																				"required": false,
+																																				"type": "string"
+																																			},
+																																			"schemeAgencyID": {
+																																				"title": "schemeAgencyID",
+																																				"required": false,
+																																				"type": "string"
+																																			},
+																																			"value": {
+																																				"title": "value",
+																																				"required": false,
+																																				"type": "string"
+																																			}
+																																		}
+																																	}
+																																}
+																															}
+																														}
+																													}
+																												}
+																											}
+																										}
+																									}
+																								},
+																								"RevisionID": {
+																									"title": "RevisionID",
+																									"required": false,
+																									"type": "object",
+																									"properties": {
+																										"Identifier": {
+																											"title": "Identifier",
+																											"required": false,
+																											"type": "object",
+																											"properties": {
+																												"schemeID": {
+																													"title": "schemeID",
+																													"required": false,
+																													"type": "string"
+																												},
+																												"schemeAgencyID": {
+																													"title": "schemeAgencyID",
+																													"required": false,
+																													"type": "string"
+																												},
+																												"value": {
+																													"title": "value",
+																													"required": false,
+																													"type": "string"
+																												}
+																											}
+																										}
+																									}
+																								}
+																							}
+																						}
+																					}
+																				}
+																			}
+																		}
+																	},
+																	"RevisionID": {
+																		"title": "RevisionID",
+																		"required": false,
+																		"type": "object",
+																		"properties": {
+																			"Identifier": {
+																				"title": "Identifier",
+																				"required": false,
+																				"type": "object",
+																				"properties": {
+																					"schemeID": {
+																						"title": "schemeID",
+																						"required": false,
+																						"type": "string"
+																					},
+																					"schemeAgencyID": {
+																						"title": "schemeAgencyID",
+																						"required": false,
+																						"type": "string"
+																					},
+																					"value": {
+																						"title": "value",
+																						"required": false,
+																						"type": "string"
+																					}
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										},
+										"RevisionID": {
+											"title": "RevisionID",
+											"required": false,
+											"type": "object",
+											"properties": {
+												"Identifier": {
+													"title": "Identifier",
+													"required": false,
+													"type": "object",
+													"properties": {
+														"schemeID": {
+															"title": "schemeID",
+															"required": false,
+															"type": "string"
+														},
+														"schemeAgencyID": {
+															"title": "schemeAgencyID",
+															"required": false,
+															"type": "string"
+														},
+														"value": {
+															"title": "value",
+															"required": false,
+															"type": "string"
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						},
+						"SalesUnitPackaging": {
+							"title": "SalesUnitPackaging",
+							"required": false,
+							"type": "object",
+							"properties": {
+								"Packaging": {
+									"title": "Packaging",
+									"required": false,
+									"type": "object",
+									"properties": {
+										"ID": {
+											"title": "ID",
+											"required": false,
+											"type": "object",
+											"properties": {
+												"Identifier": {
+													"title": "Identifier",
+													"required": false,
+													"type": "object",
+													"properties": {
+														"schemeID": {
+															"title": "schemeID",
+															"required": false,
+															"type": "string"
+														},
+														"schemeAgencyID": {
+															"title": "schemeAgencyID",
+															"required": false,
+															"type": "string"
+														},
+														"value": {
+															"title": "value",
+															"required": false,
+															"type": "string"
+														}
+													}
+												}
+											}
+										},
+										"Description": {
+											"title": "Description",
+											"required": false,
+											"type": "string"
+										},
+										"Note": {
+											"title": "Note",
+											"required": false,
+											"type": "string"
+										},
+										"Dimensions": {
+											"title": "Dimensions",
+											"required": false,
+											"type": "object",
+											"properties": {
+												"WidthMeasure": {
+													"title": "WidthMeasure",
+													"required": false,
+													"type": "object",
+													"properties": {
+														"unit": {
+															"title": "unit",
+															"required": false,
+															"type": "string"
+														},
+														"value": {
+															"title": "value",
+															"required": false,
+															"type": "string"
+														}
+													}
+												},
+												"LengthMeasure": {
+													"title": "LengthMeasure",
+													"required": false,
+													"type": "object",
+													"properties": {
+														"unit": {
+															"title": "unit",
+															"required": false,
+															"type": "string"
+														},
+														"value": {
+															"title": "value",
+															"required": false,
+															"type": "string"
+														}
+													}
+												},
+												"HeightMeasure": {
+													"title": "HeightMeasure",
+													"required": false,
+													"type": "object",
+													"properties": {
+														"unit": {
+															"title": "unit",
+															"required": false,
+															"type": "string"
+														},
+														"value": {
+															"title": "value",
+															"required": false,
+															"type": "string"
+														}
+													}
+												},
+												"WeightRange": {
+													"title": "WeightRange",
+													"required": false,
+													"type": "object",
+													"properties": {
+														"MinimumWeightMeasure": {
+															"title": "MinimumWeightMeasure",
+															"required": false,
+															"type": "object",
+															"properties": {
+																"unit": {
+																	"title": "unit",
+																	"required": false,
+																	"type": "string"
+																},
+																"value": {
+																	"title": "value",
+																	"required": false,
+																	"type": "string"
+																}
+															}
+														}
+													}
+												}
+											}
+										},
+										"UnitCode": {
+											"title": "UnitCode",
+											"required": false,
+											"type": "string"
+										},
+										"BaseUnitCapacity": {
+											"title": "BaseUnitCapacity",
+											"required": false,
+											"type": "number"
+										},
+										"perPackageCapacities": {
+											"title": "perPackageCapacities",
+											"required": false,
+											"type": "array",
+											"items": {
+												"required": false,
+												"type": "object",
+												"properties": {
+													"capacity": {
+														"title": "capacity",
+														"required": false,
+														"type": "number"
+													},
+													"subPackaging": {
+														"title": "subPackaging",
+														"required": false,
+														"type": "object",
+														"properties": {
+															"Packaging": {
+																"title": "Packaging",
+																"required": false,
+																"type": "object",
+																"properties": {
+																	"ID": {
+																		"title": "ID",
+																		"required": false,
+																		"type": "object",
+																		"properties": {
+																			"Identifier": {
+																				"title": "Identifier",
+																				"required": false,
+																				"type": "object",
+																				"properties": {
+																					"schemeID": {
+																						"title": "schemeID",
+																						"required": false,
+																						"type": "string"
+																					},
+																					"schemeAgencyID": {
+																						"title": "schemeAgencyID",
+																						"required": false,
+																						"type": "string"
+																					},
+																					"value": {
+																						"title": "value",
+																						"required": false,
+																						"type": "string"
+																					}
+																				}
+																			}
+																		}
+																	},
+																	"Description": {
+																		"title": "Description",
+																		"required": false,
+																		"type": "string"
+																	},
+																	"Note": {
+																		"title": "Note",
+																		"required": false,
+																		"type": "string"
+																	},
+																	"Dimensions": {
+																		"title": "Dimensions",
+																		"required": false,
+																		"type": "object",
+																		"properties": {
+																			"WidthMeasure": {
+																				"title": "WidthMeasure",
+																				"required": false,
+																				"type": "object",
+																				"properties": {
+																					"unit": {
+																						"title": "unit",
+																						"required": false,
+																						"type": "string"
+																					},
+																					"value": {
+																						"title": "value",
+																						"required": false,
+																						"type": "string"
+																					}
+																				}
+																			},
+																			"LengthMeasure": {
+																				"title": "LengthMeasure",
+																				"required": false,
+																				"type": "object",
+																				"properties": {
+																					"unit": {
+																						"title": "unit",
+																						"required": false,
+																						"type": "string"
+																					},
+																					"value": {
+																						"title": "value",
+																						"required": false,
+																						"type": "string"
+																					}
+																				}
+																			},
+																			"HeightMeasure": {
+																				"title": "HeightMeasure",
+																				"required": false,
+																				"type": "object",
+																				"properties": {
+																					"unit": {
+																						"title": "unit",
+																						"required": false,
+																						"type": "string"
+																					},
+																					"value": {
+																						"title": "value",
+																						"required": false,
+																						"type": "string"
+																					}
+																				}
+																			},
+																			"WeightRange": {
+																				"title": "WeightRange",
+																				"required": false,
+																				"type": "object",
+																				"properties": {
+																					"MinimumWeightMeasure": {
+																						"title": "MinimumWeightMeasure",
+																						"required": false,
+																						"type": "object",
+																						"properties": {
+																							"unit": {
+																								"title": "unit",
+																								"required": false,
+																								"type": "string"
+																							},
+																							"value": {
+																								"title": "value",
+																								"required": false,
+																								"type": "string"
+																							}
+																						}
+																					}
+																				}
+																			}
+																		}
+																	},
+																	"UnitCode": {
+																		"title": "UnitCode",
+																		"required": false,
+																		"type": "string"
+																	},
+																	"BaseUnitCapacity": {
+																		"title": "BaseUnitCapacity",
+																		"required": false,
+																		"type": "number"
+																	},
+																	"perPackageCapacities": {
+																		"title": "perPackageCapacities",
+																		"required": false,
+																		"type": "array",
+																		"items": {
+																			"required": false,
+																			"type": "object",
+																			"properties": {
+																				"capacity": {
+																					"title": "capacity",
+																					"required": false,
+																					"type": "number"
+																				}
+																			}
+																		}
+																	},
+																	"RevisionID": {
+																		"title": "RevisionID",
+																		"required": false,
+																		"type": "object",
+																		"properties": {
+																			"Identifier": {
+																				"title": "Identifier",
+																				"required": false,
+																				"type": "object",
+																				"properties": {
+																					"schemeID": {
+																						"title": "schemeID",
+																						"required": false,
+																						"type": "string"
+																					},
+																					"schemeAgencyID": {
+																						"title": "schemeAgencyID",
+																						"required": false,
+																						"type": "string"
+																					},
+																					"value": {
+																						"title": "value",
+																						"required": false,
+																						"type": "string"
+																					}
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										},
+										"RevisionID": {
+											"title": "RevisionID",
+											"required": false,
+											"type": "object",
+											"properties": {
+												"Identifier": {
+													"title": "Identifier",
+													"required": false,
+													"type": "object",
+													"properties": {
+														"schemeID": {
+															"title": "schemeID",
+															"required": false,
+															"type": "string"
+														},
+														"schemeAgencyID": {
+															"title": "schemeAgencyID",
+															"required": false,
+															"type": "string"
+														},
+														"value": {
+															"title": "value",
+															"required": false,
+															"type": "string"
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						},
+						"StorageUnitPackaging": {
+							"title": "StorageUnitPackaging",
+							"required": false,
+							"type": "object",
+							"properties": {
+								"Packaging": {
+									"title": "Packaging",
+									"required": false,
+									"type": "object",
+									"properties": {
+										"ID": {
+											"title": "ID",
+											"required": false,
+											"type": "object",
+											"properties": {
+												"Identifier": {
+													"title": "Identifier",
+													"required": false,
+													"type": "object",
+													"properties": {
+														"schemeID": {
+															"title": "schemeID",
+															"required": false,
+															"type": "string"
+														},
+														"schemeAgencyID": {
+															"title": "schemeAgencyID",
+															"required": false,
+															"type": "string"
+														},
+														"value": {
+															"title": "value",
+															"required": false,
+															"type": "string"
+														}
+													}
+												}
+											}
+										},
+										"Description": {
+											"title": "Description",
+											"required": false,
+											"type": "string"
+										},
+										"Note": {
+											"title": "Note",
+											"required": false,
+											"type": "string"
+										},
+										"Dimensions": {
+											"title": "Dimensions",
+											"required": false,
+											"type": "object",
+											"properties": {
+												"WidthMeasure": {
+													"title": "WidthMeasure",
+													"required": false,
+													"type": "object",
+													"properties": {
+														"unit": {
+															"title": "unit",
+															"required": false,
+															"type": "string"
+														},
+														"value": {
+															"title": "value",
+															"required": false,
+															"type": "string"
+														}
+													}
+												},
+												"LengthMeasure": {
+													"title": "LengthMeasure",
+													"required": false,
+													"type": "object",
+													"properties": {
+														"unit": {
+															"title": "unit",
+															"required": false,
+															"type": "string"
+														},
+														"value": {
+															"title": "value",
+															"required": false,
+															"type": "string"
+														}
+													}
+												},
+												"HeightMeasure": {
+													"title": "HeightMeasure",
+													"required": false,
+													"type": "object",
+													"properties": {
+														"unit": {
+															"title": "unit",
+															"required": false,
+															"type": "string"
+														},
+														"value": {
+															"title": "value",
+															"required": false,
+															"type": "string"
+														}
+													}
+												},
+												"WeightRange": {
+													"title": "WeightRange",
+													"required": false,
+													"type": "object",
+													"properties": {
+														"MinimumWeightMeasure": {
+															"title": "MinimumWeightMeasure",
+															"required": false,
+															"type": "object",
+															"properties": {
+																"unit": {
+																	"title": "unit",
+																	"required": false,
+																	"type": "string"
+																},
+																"value": {
+																	"title": "value",
+																	"required": false,
+																	"type": "string"
+																}
+															}
+														}
+													}
+												}
+											}
+										},
+										"UnitCode": {
+											"title": "UnitCode",
+											"required": false,
+											"type": "string"
+										},
+										"BaseUnitCapacity": {
+											"title": "BaseUnitCapacity",
+											"required": false,
+											"type": "number"
+										},
+										"perPackageCapacities": {
+											"title": "perPackageCapacities",
+											"required": false,
+											"type": "array",
+											"items": {
+												"required": false,
+												"type": "object",
+												"properties": {
+													"capacity": {
+														"title": "capacity",
+														"required": false,
+														"type": "number"
+													},
+													"subPackaging": {
+														"title": "subPackaging",
+														"required": false,
+														"type": "object",
+														"properties": {
+															"Packaging": {
+																"title": "Packaging",
+																"required": false,
+																"type": "object",
+																"properties": {
+																	"ID": {
+																		"title": "ID",
+																		"required": false,
+																		"type": "object",
+																		"properties": {
+																			"Identifier": {
+																				"title": "Identifier",
+																				"required": false,
+																				"type": "object",
+																				"properties": {
+																					"schemeID": {
+																						"title": "schemeID",
+																						"required": false,
+																						"type": "string"
+																					},
+																					"schemeAgencyID": {
+																						"title": "schemeAgencyID",
+																						"required": false,
+																						"type": "string"
+																					},
+																					"value": {
+																						"title": "value",
+																						"required": false,
+																						"type": "string"
+																					}
+																				}
+																			}
+																		}
+																	},
+																	"Description": {
+																		"title": "Description",
+																		"required": false,
+																		"type": "string"
+																	},
+																	"Note": {
+																		"title": "Note",
+																		"required": false,
+																		"type": "string"
+																	},
+																	"Dimensions": {
+																		"title": "Dimensions",
+																		"required": false,
+																		"type": "object",
+																		"properties": {
+																			"WidthMeasure": {
+																				"title": "WidthMeasure",
+																				"required": false,
+																				"type": "object",
+																				"properties": {
+																					"unit": {
+																						"title": "unit",
+																						"required": false,
+																						"type": "string"
+																					},
+																					"value": {
+																						"title": "value",
+																						"required": false,
+																						"type": "string"
+																					}
+																				}
+																			},
+																			"LengthMeasure": {
+																				"title": "LengthMeasure",
+																				"required": false,
+																				"type": "object",
+																				"properties": {
+																					"unit": {
+																						"title": "unit",
+																						"required": false,
+																						"type": "string"
+																					},
+																					"value": {
+																						"title": "value",
+																						"required": false,
+																						"type": "string"
+																					}
+																				}
+																			},
+																			"HeightMeasure": {
+																				"title": "HeightMeasure",
+																				"required": false,
+																				"type": "object",
+																				"properties": {
+																					"unit": {
+																						"title": "unit",
+																						"required": false,
+																						"type": "string"
+																					},
+																					"value": {
+																						"title": "value",
+																						"required": false,
+																						"type": "string"
+																					}
+																				}
+																			},
+																			"WeightRange": {
+																				"title": "WeightRange",
+																				"required": false,
+																				"type": "object",
+																				"properties": {
+																					"MinimumWeightMeasure": {
+																						"title": "MinimumWeightMeasure",
+																						"required": false,
+																						"type": "object",
+																						"properties": {
+																							"unit": {
+																								"title": "unit",
+																								"required": false,
+																								"type": "string"
+																							},
+																							"value": {
+																								"title": "value",
+																								"required": false,
+																								"type": "string"
+																							}
+																						}
+																					}
+																				}
+																			}
+																		}
+																	},
+																	"UnitCode": {
+																		"title": "UnitCode",
+																		"required": false,
+																		"type": "string"
+																	},
+																	"BaseUnitCapacity": {
+																		"title": "BaseUnitCapacity",
+																		"required": false,
+																		"type": "number"
+																	},
+																	"perPackageCapacities": {
+																		"title": "perPackageCapacities",
+																		"required": false,
+																		"type": "array",
+																		"items": {
+																			"required": false,
+																			"type": "object",
+																			"properties": {
+																				"capacity": {
+																					"title": "capacity",
+																					"required": false,
+																					"type": "number"
+																				},
+																				"subPackaging": {
+																					"title": "subPackaging",
+																					"required": false,
+																					"type": "object",
+																					"properties": {
+																						"Packaging": {
+																							"title": "Packaging",
+																							"required": false,
+																							"type": "object",
+																							"properties": {
+																								"ID": {
+																									"title": "ID",
+																									"required": false,
+																									"type": "object",
+																									"properties": {
+																										"Identifier": {
+																											"title": "Identifier",
+																											"required": false,
+																											"type": "object",
+																											"properties": {
+																												"schemeID": {
+																													"title": "schemeID",
+																													"required": false,
+																													"type": "string"
+																												},
+																												"schemeAgencyID": {
+																													"title": "schemeAgencyID",
+																													"required": false,
+																													"type": "string"
+																												},
+																												"value": {
+																													"title": "value",
+																													"required": false,
+																													"type": "string"
+																												}
+																											}
+																										}
+																									}
+																								},
+																								"Description": {
+																									"title": "Description",
+																									"required": false,
+																									"type": "string"
+																								},
+																								"Note": {
+																									"title": "Note",
+																									"required": false,
+																									"type": "string"
+																								},
+																								"Dimensions": {
+																									"title": "Dimensions",
+																									"required": false,
+																									"type": "object",
+																									"properties": {
+																										"WidthMeasure": {
+																											"title": "WidthMeasure",
+																											"required": false,
+																											"type": "object",
+																											"properties": {
+																												"unit": {
+																													"title": "unit",
+																													"required": false,
+																													"type": "string"
+																												},
+																												"value": {
+																													"title": "value",
+																													"required": false,
+																													"type": "string"
+																												}
+																											}
+																										},
+																										"LengthMeasure": {
+																											"title": "LengthMeasure",
+																											"required": false,
+																											"type": "object",
+																											"properties": {
+																												"unit": {
+																													"title": "unit",
+																													"required": false,
+																													"type": "string"
+																												},
+																												"value": {
+																													"title": "value",
+																													"required": false,
+																													"type": "string"
+																												}
+																											}
+																										},
+																										"HeightMeasure": {
+																											"title": "HeightMeasure",
+																											"required": false,
+																											"type": "object",
+																											"properties": {
+																												"unit": {
+																													"title": "unit",
+																													"required": false,
+																													"type": "string"
+																												},
+																												"value": {
+																													"title": "value",
+																													"required": false,
+																													"type": "string"
+																												}
+																											}
+																										},
+																										"WeightRange": {
+																											"title": "WeightRange",
+																											"required": false,
+																											"type": "object",
+																											"properties": {
+																												"MinimumWeightMeasure": {
+																													"title": "MinimumWeightMeasure",
+																													"required": false,
+																													"type": "object",
+																													"properties": {
+																														"unit": {
+																															"title": "unit",
+																															"required": false,
+																															"type": "string"
+																														},
+																														"value": {
+																															"title": "value",
+																															"required": false,
+																															"type": "string"
+																														}
+																													}
+																												}
+																											}
+																										}
+																									}
+																								},
+																								"UnitCode": {
+																									"title": "UnitCode",
+																									"required": false,
+																									"type": "string"
+																								},
+																								"BaseUnitCapacity": {
+																									"title": "BaseUnitCapacity",
+																									"required": false,
+																									"type": "number"
+																								},
+																								"perPackageCapacities": {
+																									"title": "perPackageCapacities",
+																									"required": false,
+																									"type": "array",
+																									"items": {
+																										"required": false,
+																										"type": "object",
+																										"properties": {
+																											"capacity": {
+																												"title": "capacity",
+																												"required": false,
+																												"type": "number"
+																											},
+																											"subPackaging": {
+																												"title": "subPackaging",
+																												"required": false,
+																												"type": "object",
+																												"properties": {
+																													"Packaging": {
+																														"title": "Packaging",
+																														"required": false,
+																														"type": "object",
+																														"properties": {
+																															"ID": {
+																																"title": "ID",
+																																"required": false,
+																																"type": "object",
+																																"properties": {
+																																	"Identifier": {
+																																		"title": "Identifier",
+																																		"required": false,
+																																		"type": "object",
+																																		"properties": {
+																																			"schemeID": {
+																																				"title": "schemeID",
+																																				"required": false,
+																																				"type": "string"
+																																			},
+																																			"schemeAgencyID": {
+																																				"title": "schemeAgencyID",
+																																				"required": false,
+																																				"type": "string"
+																																			},
+																																			"value": {
+																																				"title": "value",
+																																				"required": false,
+																																				"type": "string"
+																																			}
+																																		}
+																																	}
+																																}
+																															},
+																															"Description": {
+																																"title": "Description",
+																																"required": false,
+																																"type": "string"
+																															},
+																															"Note": {
+																																"title": "Note",
+																																"required": false,
+																																"type": "string"
+																															},
+																															"Dimensions": {
+																																"title": "Dimensions",
+																																"required": false,
+																																"type": "object",
+																																"properties": {
+																																	"WidthMeasure": {
+																																		"title": "WidthMeasure",
+																																		"required": false,
+																																		"type": "object",
+																																		"properties": {
+																																			"unit": {
+																																				"title": "unit",
+																																				"required": false,
+																																				"type": "string"
+																																			},
+																																			"value": {
+																																				"title": "value",
+																																				"required": false,
+																																				"type": "string"
+																																			}
+																																		}
+																																	},
+																																	"LengthMeasure": {
+																																		"title": "LengthMeasure",
+																																		"required": false,
+																																		"type": "object",
+																																		"properties": {
+																																			"unit": {
+																																				"title": "unit",
+																																				"required": false,
+																																				"type": "string"
+																																			},
+																																			"value": {
+																																				"title": "value",
+																																				"required": false,
+																																				"type": "string"
+																																			}
+																																		}
+																																	},
+																																	"HeightMeasure": {
+																																		"title": "HeightMeasure",
+																																		"required": false,
+																																		"type": "object",
+																																		"properties": {
+																																			"unit": {
+																																				"title": "unit",
+																																				"required": false,
+																																				"type": "string"
+																																			},
+																																			"value": {
+																																				"title": "value",
+																																				"required": false,
+																																				"type": "string"
+																																			}
+																																		}
+																																	},
+																																	"WeightRange": {
+																																		"title": "WeightRange",
+																																		"required": false,
+																																		"type": "object",
+																																		"properties": {
+																																			"MinimumWeightMeasure": {
+																																				"title": "MinimumWeightMeasure",
+																																				"required": false,
+																																				"type": "object",
+																																				"properties": {
+																																					"unit": {
+																																						"title": "unit",
+																																						"required": false,
+																																						"type": "string"
+																																					},
+																																					"value": {
+																																						"title": "value",
+																																						"required": false,
+																																						"type": "string"
+																																					}
+																																				}
+																																			}
+																																		}
+																																	}
+																																}
+																															},
+																															"UnitCode": {
+																																"title": "UnitCode",
+																																"required": false,
+																																"type": "string"
+																															},
+																															"BaseUnitCapacity": {
+																																"title": "BaseUnitCapacity",
+																																"required": false,
+																																"type": "number"
+																															},
+																															"perPackageCapacities": {
+																																"title": "perPackageCapacities",
+																																"required": false,
+																																"type": "array",
+																																"items": {
+																																	"required": false,
+																																	"type": "object",
+																																	"properties": {
+																																		"capacity": {
+																																			"title": "capacity",
+																																			"required": false,
+																																			"type": "number"
+																																		}
+																																	}
+																																}
+																															},
+																															"RevisionID": {
+																																"title": "RevisionID",
+																																"required": false,
+																																"type": "object",
+																																"properties": {
+																																	"Identifier": {
+																																		"title": "Identifier",
+																																		"required": false,
+																																		"type": "object",
+																																		"properties": {
+																																			"schemeID": {
+																																				"title": "schemeID",
+																																				"required": false,
+																																				"type": "string"
+																																			},
+																																			"schemeAgencyID": {
+																																				"title": "schemeAgencyID",
+																																				"required": false,
+																																				"type": "string"
+																																			},
+																																			"value": {
+																																				"title": "value",
+																																				"required": false,
+																																				"type": "string"
+																																			}
+																																		}
+																																	}
+																																}
+																															}
+																														}
+																													}
+																												}
+																											}
+																										}
+																									}
+																								},
+																								"RevisionID": {
+																									"title": "RevisionID",
+																									"required": false,
+																									"type": "object",
+																									"properties": {
+																										"Identifier": {
+																											"title": "Identifier",
+																											"required": false,
+																											"type": "object",
+																											"properties": {
+																												"schemeID": {
+																													"title": "schemeID",
+																													"required": false,
+																													"type": "string"
+																												},
+																												"schemeAgencyID": {
+																													"title": "schemeAgencyID",
+																													"required": false,
+																													"type": "string"
+																												},
+																												"value": {
+																													"title": "value",
+																													"required": false,
+																													"type": "string"
+																												}
+																											}
+																										}
+																									}
+																								}
+																							}
+																						}
+																					}
+																				}
+																			}
+																		}
+																	},
+																	"RevisionID": {
+																		"title": "RevisionID",
+																		"required": false,
+																		"type": "object",
+																		"properties": {
+																			"Identifier": {
+																				"title": "Identifier",
+																				"required": false,
+																				"type": "object",
+																				"properties": {
+																					"schemeID": {
+																						"title": "schemeID",
+																						"required": false,
+																						"type": "string"
+																					},
+																					"schemeAgencyID": {
+																						"title": "schemeAgencyID",
+																						"required": false,
+																						"type": "string"
+																					},
+																					"value": {
+																						"title": "value",
+																						"required": false,
+																						"type": "string"
+																					}
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										},
+										"RevisionID": {
+											"title": "RevisionID",
+											"required": false,
+											"type": "object",
+											"properties": {
+												"Identifier": {
+													"title": "Identifier",
+													"required": false,
+													"type": "object",
+													"properties": {
+														"schemeID": {
+															"title": "schemeID",
+															"required": false,
+															"type": "string"
+														},
+														"schemeAgencyID": {
+															"title": "schemeAgencyID",
+															"required": false,
+															"type": "string"
+														},
+														"value": {
+															"title": "value",
+															"required": false,
+															"type": "string"
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						},
+						"SorterSuitable": {
+							"title": "SorterSuitable",
+							"required": false,
+							"type": "boolean"
+						},
+						"RFID": {
+							"title": "RFID",
+							"required": false,
+							"type": "string"
+						},
+						"CountryOfOriginCode": {
+							"title": "CountryOfOriginCode",
+							"required": false,
+							"type": "object"
+						},
+						"CreationDateTime": {
+							"title": "CreationDateTime",
+							"required": false,
+							"type": "object"
+						},
+						"ABCClass": {
+							"title": "ABCClass",
+							"required": false,
+							"type": "object"
+						},
+						"LastCountingDateTime": {
+							"title": "LastCountingDateTime",
+							"required": false,
+							"type": "object"
+						},
+						"ObligatoryWarehouseTypeClassifications": {
+							"title": "ObligatoryWarehouseTypeClassifications",
+							"required": false,
+							"type": "array",
+							"items": {
+								"required": false,
+								"type": "object",
+								"properties": {
+									"Classification": {
+										"title": "Classification",
+										"required": false,
+										"type": "object",
+										"properties": {
+											"type": {
+												"title": "type",
+												"required": false,
+												"type": "string"
+											},
+											"Codes": {
+												"title": "Codes",
+												"required": false,
+												"type": "object",
+												"properties": {
+													"Code": {
+														"title": "Code",
+														"required": false,
+														"type": "string"
+													}
+												}
+											},
+											"Description": {
+												"title": "Description",
+												"required": false,
+												"type": "string"
+											}
+										}
+									}
+								}
+							}
+						},
+						"PreferredWarehouseTypeClassifications": {
+							"title": "PreferredWarehouseTypeClassifications",
+							"required": false,
+							"type": "array",
+							"items": {
+								"required": false,
+								"type": "object",
+								"properties": {
+									"Classification": {
+										"title": "Classification",
+										"required": false,
+										"type": "object",
+										"properties": {
+											"type": {
+												"title": "type",
+												"required": false,
+												"type": "string"
+											},
+											"Codes": {
+												"title": "Codes",
+												"required": false,
+												"type": "object",
+												"properties": {
+													"Code": {
+														"title": "Code",
+														"required": false,
+														"type": "string"
+													}
+												}
+											},
+											"Description": {
+												"title": "Description",
+												"required": false,
+												"type": "string"
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"ItemLocation": {
+					"title": "ItemLocation",
+					"required": false,
+					"type": "object",
+					"properties": {
+						"Location": {
+							"title": "Location",
+							"required": false,
+							"type": "array",
+							"items": {
+								"required": false,
+								"type": "object",
+								"properties": {
+									"Location": {
+										"title": "Location",
+										"required": false,
+										"type": "object",
+										"properties": {
+											"ID": {
+												"title": "ID",
+												"required": false,
+												"type": "object",
+												"properties": {
+													"Identifier": {
+														"title": "Identifier",
+														"required": false,
+														"type": "object",
+														"properties": {
+															"schemeID": {
+																"title": "schemeID",
+																"required": false,
+																"type": "string"
+															},
+															"schemeAgencyID": {
+																"title": "schemeAgencyID",
+																"required": false,
+																"type": "string"
+															},
+															"value": {
+																"title": "value",
+																"required": false,
+																"type": "string"
+															}
+														}
+													}
+												}
+											},
+											"Name": {
+												"title": "Name",
+												"required": false,
+												"type": "string"
+											},
+											"BillingAddress": {
+												"title": "BillingAddress",
+												"required": false,
+												"type": "object",
+												"properties": {
+													"Address": {
+														"title": "Address",
+														"required": false,
+														"type": "object",
+														"properties": {
+															"ID": {
+																"title": "ID",
+																"required": false,
+																"type": "object",
+																"properties": {
+																	"Identifier": {
+																		"title": "Identifier",
+																		"required": false,
+																		"type": "object",
+																		"properties": {
+																			"schemeID": {
+																				"title": "schemeID",
+																				"required": false,
+																				"type": "string"
+																			},
+																			"schemeAgencyID": {
+																				"title": "schemeAgencyID",
+																				"required": false,
+																				"type": "string"
+																			},
+																			"value": {
+																				"title": "value",
+																				"required": false,
+																				"type": "string"
+																			}
+																		}
+																	}
+																}
+															},
+															"CareOfName": {
+																"title": "CareOfName",
+																"required": false,
+																"type": "string"
+															},
+															"BuildingNumber": {
+																"title": "BuildingNumber",
+																"required": false,
+																"type": "string"
+															},
+															"BuildingName": {
+																"title": "BuildingName",
+																"required": false,
+																"type": "string"
+															},
+															"StreetName": {
+																"title": "StreetName",
+																"required": false,
+																"type": "string"
+															},
+															"PostOfficeBox": {
+																"title": "PostOfficeBox",
+																"required": false,
+																"type": "string"
+															},
+															"DeliveryPointCode": {
+																"title": "DeliveryPointCode",
+																"required": false,
+																"type": "string"
+															},
+															"CityName": {
+																"title": "CityName",
+																"required": false,
+																"type": "string"
+															},
+															"CountryCode": {
+																"title": "CountryCode",
+																"required": false,
+																"type": "object"
+															},
+															"PostalCode": {
+																"title": "PostalCode",
+																"required": false,
+																"type": "string"
+															},
+															"StreetNumber": {
+																"title": "StreetNumber",
+																"required": false,
+																"type": "string"
+															},
+															"RevisionID": {
+																"title": "RevisionID",
+																"required": false,
+																"type": "object",
+																"properties": {
+																	"Identifier": {
+																		"title": "Identifier",
+																		"required": false,
+																		"type": "object",
+																		"properties": {
+																			"schemeID": {
+																				"title": "schemeID",
+																				"required": false,
+																				"type": "string"
+																			},
+																			"schemeAgencyID": {
+																				"title": "schemeAgencyID",
+																				"required": false,
+																				"type": "string"
+																			},
+																			"value": {
+																				"title": "value",
+																				"required": false,
+																				"type": "string"
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											},
+											"DeliveryAddress": {
+												"title": "DeliveryAddress",
+												"required": false,
+												"type": "object",
+												"properties": {
+													"Address": {
+														"title": "Address",
+														"required": false,
+														"type": "object",
+														"properties": {
+															"ID": {
+																"title": "ID",
+																"required": false,
+																"type": "object",
+																"properties": {
+																	"Identifier": {
+																		"title": "Identifier",
+																		"required": false,
+																		"type": "object",
+																		"properties": {
+																			"schemeID": {
+																				"title": "schemeID",
+																				"required": false,
+																				"type": "string"
+																			},
+																			"schemeAgencyID": {
+																				"title": "schemeAgencyID",
+																				"required": false,
+																				"type": "string"
+																			},
+																			"value": {
+																				"title": "value",
+																				"required": false,
+																				"type": "string"
+																			}
+																		}
+																	}
+																}
+															},
+															"CareOfName": {
+																"title": "CareOfName",
+																"required": false,
+																"type": "string"
+															},
+															"BuildingNumber": {
+																"title": "BuildingNumber",
+																"required": false,
+																"type": "string"
+															},
+															"BuildingName": {
+																"title": "BuildingName",
+																"required": false,
+																"type": "string"
+															},
+															"StreetName": {
+																"title": "StreetName",
+																"required": false,
+																"type": "string"
+															},
+															"PostOfficeBox": {
+																"title": "PostOfficeBox",
+																"required": false,
+																"type": "string"
+															},
+															"DeliveryPointCode": {
+																"title": "DeliveryPointCode",
+																"required": false,
+																"type": "string"
+															},
+															"CityName": {
+																"title": "CityName",
+																"required": false,
+																"type": "string"
+															},
+															"CountryCode": {
+																"title": "CountryCode",
+																"required": false,
+																"type": "object"
+															},
+															"PostalCode": {
+																"title": "PostalCode",
+																"required": false,
+																"type": "string"
+															},
+															"StreetNumber": {
+																"title": "StreetNumber",
+																"required": false,
+																"type": "string"
+															},
+															"RevisionID": {
+																"title": "RevisionID",
+																"required": false,
+																"type": "object",
+																"properties": {
+																	"Identifier": {
+																		"title": "Identifier",
+																		"required": false,
+																		"type": "object",
+																		"properties": {
+																			"schemeID": {
+																				"title": "schemeID",
+																				"required": false,
+																				"type": "string"
+																			},
+																			"schemeAgencyID": {
+																				"title": "schemeAgencyID",
+																				"required": false,
+																				"type": "string"
+																			},
+																			"value": {
+																				"title": "value",
+																				"required": false,
+																				"type": "string"
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											},
+											"PostalAddress": {
+												"title": "PostalAddress",
+												"required": false,
+												"type": "object",
+												"properties": {
+													"Address": {
+														"title": "Address",
+														"required": false,
+														"type": "object",
+														"properties": {
+															"ID": {
+																"title": "ID",
+																"required": false,
+																"type": "object",
+																"properties": {
+																	"Identifier": {
+																		"title": "Identifier",
+																		"required": false,
+																		"type": "object",
+																		"properties": {
+																			"schemeID": {
+																				"title": "schemeID",
+																				"required": false,
+																				"type": "string"
+																			},
+																			"schemeAgencyID": {
+																				"title": "schemeAgencyID",
+																				"required": false,
+																				"type": "string"
+																			},
+																			"value": {
+																				"title": "value",
+																				"required": false,
+																				"type": "string"
+																			}
+																		}
+																	}
+																}
+															},
+															"CareOfName": {
+																"title": "CareOfName",
+																"required": false,
+																"type": "string"
+															},
+															"BuildingNumber": {
+																"title": "BuildingNumber",
+																"required": false,
+																"type": "string"
+															},
+															"BuildingName": {
+																"title": "BuildingName",
+																"required": false,
+																"type": "string"
+															},
+															"StreetName": {
+																"title": "StreetName",
+																"required": false,
+																"type": "string"
+															},
+															"PostOfficeBox": {
+																"title": "PostOfficeBox",
+																"required": false,
+																"type": "string"
+															},
+															"DeliveryPointCode": {
+																"title": "DeliveryPointCode",
+																"required": false,
+																"type": "string"
+															},
+															"CityName": {
+																"title": "CityName",
+																"required": false,
+																"type": "string"
+															},
+															"CountryCode": {
+																"title": "CountryCode",
+																"required": false,
+																"type": "object"
+															},
+															"PostalCode": {
+																"title": "PostalCode",
+																"required": false,
+																"type": "string"
+															},
+															"StreetNumber": {
+																"title": "StreetNumber",
+																"required": false,
+																"type": "string"
+															},
+															"RevisionID": {
+																"title": "RevisionID",
+																"required": false,
+																"type": "object",
+																"properties": {
+																	"Identifier": {
+																		"title": "Identifier",
+																		"required": false,
+																		"type": "object",
+																		"properties": {
+																			"schemeID": {
+																				"title": "schemeID",
+																				"required": false,
+																				"type": "string"
+																			},
+																			"schemeAgencyID": {
+																				"title": "schemeAgencyID",
+																				"required": false,
+																				"type": "string"
+																			},
+																			"value": {
+																				"title": "value",
+																				"required": false,
+																				"type": "string"
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											},
+											"Description": {
+												"title": "Description",
+												"required": false,
+												"type": "string"
+											},
+											"Note": {
+												"title": "Note",
+												"required": false,
+												"type": "string"
+											},
+											"RevisionID": {
+												"title": "RevisionID",
+												"required": false,
+												"type": "object",
+												"properties": {
+													"Identifier": {
+														"title": "Identifier",
+														"required": false,
+														"type": "object",
+														"properties": {
+															"schemeID": {
+																"title": "schemeID",
+																"required": false,
+																"type": "string"
+															},
+															"schemeAgencyID": {
+																"title": "schemeAgencyID",
+																"required": false,
+																"type": "string"
+															},
+															"value": {
+																"title": "value",
+																"required": false,
+																"type": "string"
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						},
+						"ServiceLevel": {
+							"title": "ServiceLevel",
+							"required": false,
+							"type": "object",
+							"properties": {
+								"unit": {
+									"title": "unit",
+									"required": false,
+									"type": "string"
+								},
+								"value": {
+									"title": "value",
+									"required": false,
+									"type": "string"
+								}
+							}
+						},
+						"TargetStockQuantity": {
+							"title": "TargetStockQuantity",
+							"required": false,
+							"type": "object",
+							"properties": {
+								"unit": {
+									"title": "unit",
+									"required": false,
+									"type": "string"
+								},
+								"value": {
+									"title": "value",
+									"required": false,
+									"type": "string"
+								}
+							}
+						},
+						"OrderQuantity": {
+							"title": "OrderQuantity",
+							"required": false,
+							"type": "object",
+							"properties": {
+								"unit": {
+									"title": "unit",
+									"required": false,
+									"type": "string"
+								},
+								"value": {
+									"title": "value",
+									"required": false,
+									"type": "string"
+								}
+							}
+						},
+						"StockRange": {
+							"title": "StockRange",
+							"required": false,
+							"type": "object"
+						},
+						"ReorderPointQuantity": {
+							"title": "ReorderPointQuantity",
+							"required": false,
+							"type": "object",
+							"properties": {
+								"unit": {
+									"title": "unit",
+									"required": false,
+									"type": "string"
+								},
+								"value": {
+									"title": "value",
+									"required": false,
+									"type": "string"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }

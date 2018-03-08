@@ -1,37 +1,56 @@
 {
-  "title": "logistics mall API",
-  "description": "elastic.io component for connecting to logistics mall",
-  "docsUrl": "https://confluence.logistics-mall.com/",
-  "credentials": {
-    "fields": {
-     "serverURLd": {
-        "label": "Managed App Server URL",
-        "required": true,
-        "viewClass": "TextFieldWithNoteView",
-        "note": "Example URL <b>https://tenant.logistics-mall.com</b>"
-      }	 
-    },
-    "verifier": "io.elastic.petstore.ApiKeyVerifier"
-  },
-  
-  "triggers": {
-     "createShipment": {
-      "main": "io.logmall.actions.CreateOrReplaceShipment",
-      "type": "polling",
-      "title": "Create a Shipment (JAX-RS)",
-      "description": "Retrieves shipments from the logistics mall API by given shipment status using Java API for RESTful Web Services (JAX-RS)",
-      "metadata": {
-        "out": "./schemas/shipmentSchema.out.json"
-      }
-    },
-    "createItemMaster": {
-      "main": "io.logmall.actions.CreateItemMaster",
-      "type": "polling",
-      "title": "Create a Item  (JAX-RS)",
-      "description": "Retrieves items from the logistics mall API by given item status using Java API for RESTful Web Services (JAX-RS)",
-      "metadata": {
-        "out": "./schemas/itemMasterSchema.out.json"
-      }
-    }
-  }
+	"title": "logistics mall API",
+	"description": "elastic.io component for connecting to logistics mall",
+	"docsUrl": "https://confluence.logistics-mall.com/",
+	"credentials": {
+		"fields": {
+			"serverURLd": {
+				"label": "Managed App Server URL",
+				"required": true,
+				"viewClass": "TextFieldWithNoteView",
+				"note": "Example URL <b>https://tenant.logistics-mall.com</b>"
+			}
+		},
+		"verifier": "io.elastic.petstore.ApiKeyVerifier"
+	},
+	"triggers": {
+		"createShipment": {
+			"main": "io.logmall.actions.createShipment",
+			"type": "polling",
+			"title": "Create a Shipment (JAX-RS)",
+			"description": "Retrieves shipments from the logistics mall API by given shipment status using Java API for RESTful Web Services (JAX-RS)",
+			"metadata": {
+				"out": "./schemas/shipmentSchema.out.json"
+			}
+		},
+		"createItemMaster": {
+			"main": "io.logmall.actions.createItemMaster",
+			"type": "polling",
+			"title": "Create a Item  (JAX-RS)",
+			"description": "Retrieves items from the logistics mall API by given item status using Java API for RESTful Web Services (JAX-RS)",
+			"metadata": {
+				"out": "./schemas/itemMasterSchema.out.json"
+			}
+		}
+	},
+	"actions": {
+		"createShipment": {
+			"main": "io.logmall.actions.CreateOrReplaceShipment.java",
+			"title": "Create a Shipment",
+			"description": "Creates a new Shipment",
+			"metadata": {
+				"in": "./schemas/shipmentSchema.in.json",
+				"out": "./schemas/shipmentSchema.out.json"
+			}
+		},
+		"createItemMaster": {
+			"main": "io.logmall.actions.CreateItemMaster",
+			"title": "Create a Shipment",
+			"description": "Creates a new Shipment",
+			"metadata": {
+				"in": "./schemas/itemMasterSchema.in.json",
+				"out": "./schemas/itemMasterSchema.out.json"
+			}
+	}
+}
 }
