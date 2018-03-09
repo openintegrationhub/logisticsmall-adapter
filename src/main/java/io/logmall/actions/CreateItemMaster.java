@@ -13,6 +13,8 @@ import de.fraunhofer.ccl.bo.instancerepository.boundary.rest.api.ItemMasterServi
 import de.fraunhofer.ccl.bo.integration.resteasy.ResteasyIntegration;
 import de.fraunhofer.ccl.bo.model.bod.BusinessObjectDocument;
 import de.fraunhofer.ccl.bo.model.bod.ChangeItemMaster;
+import de.fraunhofer.ccl.bo.model.bod.builder.change.CreateOrReplaceBODBuilder;
+import de.fraunhofer.ccl.bo.model.bod.verb.Change;
 import de.fraunhofer.ccl.bo.model.bod.verb.Respond;
 import de.fraunhofer.ccl.bo.model.entity.itemmaster.ItemMaster;
 import io.elastic.api.ExecutionParameters;
@@ -61,19 +63,15 @@ public class CreateItemMaster implements Module{
 			ItemMasterService itemMasterService = ResteasyIntegration.newInstance().createClientProxy(ItemMasterService.class,
 					serverURL.getString());
 			logger.info("Got ServerURL " + serverURL.getString());
-
 			ItemMasterJsonMapper itemMasterJsonMapper = new ItemMasterJsonMapper();
 			ChangeItemMaster changeItemMaster = itemMasterJsonMapper.fromJson(body);
-			
-//			ItemMaster itemMaster = itemMasterJsonMapper.fromJson(body);
-//			CreateOrReplaceBODBuilder.Builder<ItemMaster> createBODBuilderItemMaster = CreateOrReplaceBODBuilder
-//					.newInstance(ItemMaster.class);
-//			createBODBuilderItemMaster.forCreation();
-//			createBODBuilderItemMaster.withNoun(ItemMaster);
-//			BusinessObjectDocument<Change, ItemMaster> requestBod = createBODBuilderItemMaster.build();
 
-
+			CreateOrReplaceBODBuilder.Builder<ItemMaster> createBODBuilderItemMaster = CreateOrReplaceBODBuilder
+					.newInstance(ItemMaster.class);
 			
+			createBODBuilderItemMaster.forCreation();
+			createBODBuilderItemMaster.withNoun(changeItemMaster);
+			BusinessObjectDocument<Change, ItemMaster> requestBod = createBODBuilderItemMaster.build();
 
 			BusinessObjectDocument<Respond, ItemMaster> response = itemMasterService.put(changeItemMaster);
 			logger.info("ItemMaster successfully created");
