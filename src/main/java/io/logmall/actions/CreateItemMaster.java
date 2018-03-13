@@ -65,14 +65,6 @@ public class CreateItemMaster implements Module{
 			logger.info("Got ServerURL " + serverURL.getString());
 			ItemMasterJsonMapper itemMasterJsonMapper = new ItemMasterJsonMapper();
 			ChangeItemMaster changeItemMaster = itemMasterJsonMapper.fromJson(body);
-
-			CreateOrReplaceBODBuilder.Builder<ItemMaster> createBODBuilderItemMaster = CreateOrReplaceBODBuilder
-					.newInstance(ItemMaster.class);
-			
-			createBODBuilderItemMaster.forCreation();
-			createBODBuilderItemMaster.withNoun(changeItemMaster);
-			BusinessObjectDocument<Change, ItemMaster> requestBod = createBODBuilderItemMaster.build();
-
 			BusinessObjectDocument<Respond, ItemMaster> response = itemMasterService.put(changeItemMaster);
 			logger.info("ItemMaster successfully created");
 			logger.info("Emitting data: " + response);

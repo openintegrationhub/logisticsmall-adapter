@@ -10,8 +10,7 @@
 				"viewClass": "TextFieldWithNoteView",
 				"note": "Example URL <b>https://tenant.logistics-mall.com</b>"
 			}
-		},
-		"verifier": "io.elastic.petstore.ApiKeyVerifier"
+		}
 	},
 	"triggers": {
 		"createShipment": {
@@ -45,8 +44,8 @@
 		},
 		"createItemMaster": {
 			"main": "io.logmall.actions.CreateItemMaster",
-			"title": "Create a Shipment",
-			"description": "Creates a new Shipment",
+			"title": "Create a Item Master",
+			"description": "Creates a new Item Master",
 			"metadata": {
 				"in": "./schemas/itemMasterSchema.in.json",
 				"out": "./schemas/itemMasterSchema.out.json"

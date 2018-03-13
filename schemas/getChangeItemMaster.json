@@ -3,37 +3,39 @@
 	"properties": {
 		"ChangeItemMaster": {
 			"title": "ChangeItemMaster",
-			"required": ["releaseID", "versionID"],
 			"type": "object",
 			"properties": {
 				"releaseID": {
 					"title": "releaseID",
+					"required": true,
 					"type": "string"
 				},
 				"versionID": {
 					"title": "versionID",
+					"required": true,
 					"type": "string"
 				},
 				"systemEnvironmentCode": {
 					"title": "systemEnvironmentCode",
+					"required": false,
 					"type": "string"
 				},
 				"languageCode": {
 					"title": "languageCode",
+					"required": false,
 					"type": "string"
 				},
 				"ChangeItemMasterDataArea": {
 					"title": "ChangeItemMasterDataArea",
-					"required": ["ItemMaster"],
 					"type": "object",
 					"properties": {
 						"Change": {
 							"title": "Change",
-							"required": ["ActionArea"],
 							"type": "object",
 							"properties": {
 								"ActionArea": {
 									"title": "ActionArea",
+									"required": true,
 									"ActionExpression": {
 										"actionCode": "CREATE"
 									}
@@ -42,7 +44,7 @@
 						},
 						"ItemMaster": {
 							"title": "ItemMaster",
-							"required": ["ItemMasterHeader"],
+							"required": true,
 							"type": "array",
 							"properties": {
 								"ItemMasterHeader": {
@@ -51,30 +53,33 @@
 									"properties": {
 										"ItemID": {
 											"title": "ItemID",
+											"required": false,
 											"type": "array",
 											"items": {
 												"type": "object",
-												"required": ["ID"],
 												"properties": {
 													"ID": {
 														"title": "ID",
-														"required": ["Identifier"],
+														"required": true,
 														"properties": {
 															"Identifier": {
 																"title": "Identifier",
-																"required": ["schemeID","schemeAgencyID", "value"],
+																"required": true,
 																"type": "object",
 																"properties": {
 																	"schemeID": {
 																		"title": "schemeID",
+																		"required": true,
 																		"type": "string"
 																	},
 																	"schemeAgencyID": {
 																		"title": "schemeAgencyID",
+																		"required": true,
 																		"type": "string"
 																	},
 																	"value": {
 																		"title": "value",
+																		"required": true,
 																		"type": "string"
 																	}
 																}
@@ -83,23 +88,25 @@
 													},
 													"RevisionID": {
 														"title": "RevisionID",
-														"required": ["Identifier"],
 														"properties": {
 															"Identifier": {
 																"title": "Identifier",
-																"required": ["schemeID","schemeAgencyID", "value"],
+																"required": true,
 																"type": "object",
 																"properties": {
 																	"schemeID": {
 																		"title": "schemeID",
+																		"required": true,
 																		"type": "string"
 																	},
 																	"schemeAgencyID": {
 																		"title": "schemeAgencyID",
+																		"required": true,
 																		"type": "string"
 																	},
 																	"value": {
 																		"title": "value",
+																		"required": true,
 																		"type": "string"
 																	}
 																}
@@ -122,70 +129,77 @@
 														"properties": {
 															"Dimensions": {
 																"title": "Dimensions",
-																"required": ["WidthMeasure","LengthMeasure", "HeightMeasure","WeightRange","UnitCode","BaseUnitCapacity"],
 																"type": "object",
 																"properties": {
 																	"WidthMeasure": {
 																		"title": "WidthMeasure",
-																		"required": ["unit", "value"],
+																		"required": true,
 																		"type": "object",
 																		"properties": {
 																			"unit": {
 																				"title": "unit",
+																				"required": true,
 																				"type": "string"
 																			},
 																			"value": {
 																				"title": "value",
+																				"required": true,
 																				"type": "string"
 																			}
 																		}
 																	},
 																	"LengthMeasure": {
 																		"title": "LengthMeasure",
-																		"required": ["unit", "value"],
+																		"required": true,
 																		"type": "object",
 																		"properties": {
 																			"unit": {
 																				"title": "unit",
+																				"required": true,
 																				"type": "string"
 																			},
 																			"value": {
 																				"title": "value",
+																				"required": true,
 																				"type": "string"
 																			}
 																		}
 																	},
 																	"HeightMeasure": {
 																		"title": "HeightMeasure",
-																		"required": ["unit", "value"],
+																		"required": true,
 																		"type": "object",
 																		"properties": {
 																			"unit": {
 																				"title": "unit",
+																				"required": true,
 																				"type": "string"
 																			},
 																			"value": {
 																				"title": "value",
+																				"required": true,
 																				"type": "string"
 																			}
 																		}
 																	},
 																	"WeightRange": {
 																		"title": "WeightRange",
-																		"required": ["MinimumWeightMeasure"],
+																		"required": true,
 																		"type": "object",
 																		"properties": {
 																			"MinimumWeightMeasure": {
+																			"required": true,
 																				"title": "MinimumWeightMeasure",
-																				"required": ["unit", "value"],
 																				"type": "object",
 																				"properties": {
 																					"unit": {
 																						"title": "unit",
+																						"required": true,
 																						"type": "string"
 																					},
 																					"value": {
 																						"title": "value",
+																						"required": true,
 																						"type": "string"
 																					}
 																				}
@@ -196,10 +210,12 @@
 															},
 															"UnitCode": {
 																"title": "UnitCode",
+																"required": true,
 																"type": "string"
 															},
 															"BaseUnitCapacity": {
 																"title": "BaseUnitCapacity",
+																"required": true,
 																"type": "number"
 															}
 														}
@@ -213,60 +229,65 @@
 											"properties": {
 												"WidthMeasure": {
 													"title": "WidthMeasure",
-													"required": ["unit", "value"],
+													"required": false,
 													"type": "object",
 													"properties": {
 														"unit": {
 															"title": "unit",
+															"required": true,
 															"type": "string"
 														},
 														"value": {
 															"title": "value",
+															"required": true,
 															"type": "string"
 														}
 													}
 												},
 												"LengthMeasure": {
 													"title": "LengthMeasure",
-													"required": ["unit", "value"],
 													"type": "object",
 													"properties": {
 														"unit": {
 															"title": "unit",
+															"required": true,
 															"type": "string"
 														},
 														"value": {
 															"title": "value",
+															"required": true,
 															"type": "string"
 														}
 													}
 												},
 												"HeightMeasure": {
 													"title": "HeightMeasure",
-													"required": ["unit", "value"],
 													"type": "object",
 													"properties": {
 														"unit": {
 															"title": "unit",
+															"required": true,
 															"type": "string"
 														},
 														"value": {
 															"title": "value",
+															"required": true,
 															"type": "string"
 														}
 													}
 												},
 												"WeightMeasure": {
 													"title": "WeightMeasure",
-													"required": ["unit", "value"],
 													"type": "object",
 													"properties": {
 														"unit": {
 															"title": "unit",
+															"required": true,
 															"type": "string"
 														},
 														"value": {
 															"title": "value",
+															"required": true,
 															"type": "string"
 														}
 													}
@@ -275,15 +296,16 @@
 										},
 										"AverageRunSizeQuantity": {
 											"title": "AverageRunSizeQuantity",
-											"required": ["unit", "value"],
 											"type": "object",
 											"properties": {
 												"unit": {
 													"title": "unit",
+													"required": true,
 													"type": "string"
 												},
 												"value": {
 													"title": "value",
+													"required": true,
 													"type": "string"
 												}
 											}
@@ -294,11 +316,12 @@
 											"properties": {
 												"Packaging": {
 													"title": "Packaging",
-													"required": ["RecordID"],
+													"required": false,
 													"type": "object",
 													"properties": {
 														"RecordID": {
 															"title": "RecordID",
+															"required": true,
 															"type": "string"
 														}
 													}
@@ -311,11 +334,11 @@
 											"properties": {
 												"Packaging": {
 													"title": "Packaging",
-													"required": ["RecordID"],
 													"type": "object",
 													"properties": {
 														"RecordID": {
 															"title": "RecordID",
+															"required": true,
 															"type": "string"
 														}
 													}
@@ -328,11 +351,12 @@
 											"properties": {
 												"Packaging": {
 													"title": "Packaging",
-													"required": ["RecordID"],
+													"required": false,
 													"type": "object",
 													"properties": {
 														"RecordID": {
 															"title": "RecordID",
+															"required": true,
 															"type": "string"
 														}
 													}
