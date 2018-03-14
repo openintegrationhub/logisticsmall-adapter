@@ -33,7 +33,7 @@
 							"title": "Change",
 							"type": "object",
 							"properties": {
-								"ActionArea": {
+								"ActionCriteria": {
 									"title": "ActionArea",
 									"required": true,
 									"ActionExpression": {

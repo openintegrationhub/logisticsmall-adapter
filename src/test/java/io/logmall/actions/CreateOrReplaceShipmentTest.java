@@ -57,7 +57,7 @@ public class CreateOrReplaceShipmentTest {
 			eventEmitterBuilder.onUpdateKeys(callback);
 			final EventEmitter eventEmitter = eventEmitterBuilder.build();
 
-			JsonReader jsonParser = Json.createReader(new StringReader(Constants.OTC_URL_CONFIGURATION));
+			JsonReader jsonParser = Json.createReader(new StringReader(Constants.LOGATA_DEV_CONFIGURATION));
 
 			ExecutionParameters.Builder executionParametersBuilder = new ExecutionParameters.Builder(message,
 					eventEmitter);

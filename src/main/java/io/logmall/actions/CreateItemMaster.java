@@ -1,6 +1,5 @@
 package io.logmall.actions;
 
-import java.io.StringWriter;
 
 import javax.json.JsonObject;
 import javax.json.JsonString;
@@ -13,8 +12,6 @@ import de.fraunhofer.ccl.bo.instancerepository.boundary.rest.api.ItemMasterServi
 import de.fraunhofer.ccl.bo.integration.resteasy.ResteasyIntegration;
 import de.fraunhofer.ccl.bo.model.bod.BusinessObjectDocument;
 import de.fraunhofer.ccl.bo.model.bod.ChangeItemMaster;
-import de.fraunhofer.ccl.bo.model.bod.builder.change.CreateOrReplaceBODBuilder;
-import de.fraunhofer.ccl.bo.model.bod.verb.Change;
 import de.fraunhofer.ccl.bo.model.bod.verb.Respond;
 import de.fraunhofer.ccl.bo.model.entity.itemmaster.ItemMaster;
 import io.elastic.api.ExecutionParameters;
@@ -25,7 +22,7 @@ import io.logmall.bod.ItemMasterJsonMapper;
 
 
 public class CreateItemMaster implements Module{
-	private static final Logger logger = LoggerFactory.getLogger(CreateItemMaster.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(CreateItemMaster.class);
 
 	/**
 	 * Executes the actions's logic by sending a request to the logmall API and
@@ -38,7 +35,7 @@ public class CreateItemMaster implements Module{
 	@Override
 	public void execute(final ExecutionParameters parameters) {
 
-		logger.info("Going to create new ItemMaster");
+		LOGGER.info("Going to create new ItemMaster");
 
 		try {
 
@@ -59,21 +56,23 @@ public class CreateItemMaster implements Module{
 			// access the value of the status field defined in trigger's fields section of
 			// component.json
 			JsonString serverURL = configuration.getJsonString(Constants.URL_CONFIGURATION_KEY);
-			logger.info("App Server URL: " + serverURL.getString());
+			LOGGER.info("App Server URL: " + serverURL.getString());
 			ItemMasterService itemMasterService = ResteasyIntegration.newInstance().createClientProxy(ItemMasterService.class,
 					serverURL.getString());
-			logger.info("Got ServerURL " + serverURL.getString());
+			LOGGER.info("Got ServerURL " + serverURL.getString());
 			ItemMasterJsonMapper itemMasterJsonMapper = new ItemMasterJsonMapper();
 			ChangeItemMaster changeItemMaster = itemMasterJsonMapper.fromJson(body);
+			LOGGER.info("Change action code: " + changeItemMaster.getVerb().getActionCode());
 			BusinessObjectDocument<Respond, ItemMaster> response = itemMasterService.put(changeItemMaster);
-			logger.info("ItemMaster successfully created");
-			logger.info("Emitting data: " + response);
+			LOGGER.info("ItemMaster successfully created");
+			LOGGER.info("Emitting data: " + response);
 
 		} catch (JAXBException e) {
-			logger.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 			throw new IllegalStateException("Exception during API call: " + e.getMessage());
+			
 		} catch (Throwable e) {
-			logger.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 			throw new IllegalStateException("Exception during API call: " + e.getMessage());
 		}
 	}

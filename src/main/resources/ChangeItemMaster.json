@@ -8,7 +8,7 @@
     },
     "ChangeItemMasterDataArea": {
       "Change": {
-        "ActionArea": {
+        "ActionCriteria": {
           "ActionExpression": { "actionCode": "CREATE" }
         }
       },
