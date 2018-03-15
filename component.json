@@ -12,26 +12,6 @@
 			}
 		}
 	},
-	"triggers": {
-		"getItemMaster": {
-			"main": "io.logmall.triggers.GetItemMasterJaxRs",
-			"type": "polling",
-			"title": "Create a Item  (JAX-RS)",
-			"description": "Retrieves items from the logistics mall API by given item status using Java API for RESTful Web Services (JAX-RS)",
-			"metadata": {
-				"out": "./schemas/getItemMasterSchema.out.json"
-			}
-		}
-	},
-	"getShipment": {
-		"main": "io.logmall.triggers.GetItemMasterJaxRs",
-		"type": "polling",
-		"title": "Create a Shipment (JAX-RS)",
-		"description": "Retrieves shipments from the logistics mall API by given shipment status using Java API for RESTful Web Services (JAX-RS)",
-		"metadata": {
-			"out": "./schemas/getItemMasterSchema.out.json"
-		}
-	},
 	"actions": {
 		"createItemMaster": {
 			"main": "io.logmall.actions.CreateItemMaster",
@@ -40,15 +20,6 @@
 			"metadata": {
 				"in": "./schemas/itemMasterSchema.in.json",
 				"out": "./schemas/itemMasterSchema.out.json"
-			}
-		},
-		"createShipment": {
-			"main": "io.logmall.actions.CreateOrReplaceShipment",
-			"title": "Create a Shipment",
-			"description": "Creates a new Shipment",
-			"metadata": {
-				"in": "./schemas/shipmentSchema.in.json",
-				"out": "./schemas/shipmentSchema.out.json"
 			}
 		}
 	}
