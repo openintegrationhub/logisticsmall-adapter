@@ -4,7 +4,7 @@
     "versionID": "${project.version}",
     "ApplicationArea": {
       "CreationDateTime": "2018-01-29T11:36:47.640+01:00",
-      "BODID": "4e56c3b1-62ed-42f5-a454-f8e301ea9814"
+      "BODID": "4e56c3b1-62ed-42f5-a454-f8e301ea9813"
     },
     "ChangeItemMasterDataArea": {
       "Change": {
@@ -18,7 +18,7 @@
             "ItemID": [
               {
                 "ID": {
-                  "chemeID": "BOID",
+                  "schemeID": "BOID",
                   "schemeAgencyID": "www.logisticsmall.com",
                   "text": "ItemMaster-0001"
                 }

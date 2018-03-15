@@ -59,7 +59,6 @@ public class CreateItemMaster implements Module{
 			LOGGER.info("App Server URL: " + serverURL.getString());
 			ItemMasterService itemMasterService = ResteasyIntegration.newInstance().createClientProxy(ItemMasterService.class,
 					serverURL.getString());
-			LOGGER.info("Got ServerURL " + serverURL.getString());
 			ItemMasterJsonMapper itemMasterJsonMapper = new ItemMasterJsonMapper();
 			ChangeItemMaster changeItemMaster = itemMasterJsonMapper.fromJson(body);
 			LOGGER.info("Change action code: " + changeItemMaster.getVerb().getActionCode());

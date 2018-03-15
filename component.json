@@ -12,30 +12,30 @@
 			}
 		}
 	},
-/* "triggers": {
+"triggers": {
 		"createShipment": {
-			"main": "io.logmall.actions.CreateOrReplaceShipment",
+			"main": "io.logmall.triggers.c",
 			"type": "polling",
 			"title": "Create a Shipment (JAX-RS)",
 			"description": "Retrieves shipments from the logistics mall API by given shipment status using Java API for RESTful Web Services (JAX-RS)",
 			"metadata": {
-				"out": "./schemas/shipmentSchema.out.json"
+				"out": "./schemas/getItemMasterSchema.out.json"
 			}
 		},
 		"createItemMaster": {
-			"main": "io.logmall.actions.CreateItemMaster",
+			"main": "io.logmall.triggers.GetItemMasterJaxRs",
 			"type": "polling",
 			"title": "Create a Item  (JAX-RS)",
 			"description": "Retrieves items from the logistics mall API by given item status using Java API for RESTful Web Services (JAX-RS)",
 			"metadata": {
-				"out": "./schemas/getChangeItemMaster.out.json"
+				"out": "./schemas/getItemMasterSchema.out.json"
 			}
 		}
-	},*/
+	},
 	"actions": {
 		"createItemMaster": {
 			"main": "io.logmall.actions.CreateItemMaster",
-			"title": "Create a Item Master",
+			"title": "Create an Item Master",
 			"description": "Creates a new Item Master",
 			"metadata": {
 				"in": "./schemas/itemMasterSchema.in.json",

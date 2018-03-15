@@ -1,0 +1,375 @@
+{
+	"type": "object",
+	"properties": {
+		"ChangeItemMaster": {
+			"title": "ChangeItemMaster",
+			"type": "object",
+			"properties": {
+				"releaseID": {
+					"title": "releaseID",
+					"required": true,
+					"type": "string"
+				},
+				"versionID": {
+					"title": "versionID",
+					"required": true,
+					"type": "string"
+				},
+				"systemEnvironmentCode": {
+					"title": "systemEnvironmentCode",
+					"required": false,
+					"type": "string"
+				},
+				"languageCode": {
+					"title": "languageCode",
+					"required": false,
+					"type": "string"
+				},
+				"ChangeItemMasterDataArea": {
+					"title": "ChangeItemMasterDataArea",
+					"type": "object",
+					"properties": {
+						"Change": {
+							"title": "Change",
+							"type": "object",
+							"properties": {
+								"ActionCriteria": {
+									"title": "ActionCriteria",
+									"required": true,
+									"ActionExpression": {
+										"actionCode": "CREATE"
+									}
+								}
+							}
+						},
+						"ItemMaster": {
+							"title": "ItemMaster",
+							"required": true,
+							"type": "array",
+							"properties": {
+								"ItemMasterHeader": {
+									"title": "ItemMasterHeader",
+									"type": "object",
+									"properties": {
+										"ItemID": {
+											"title": "ItemID",
+											"required": false,
+											"type": "array",
+											"items": {
+												"type": "object",
+												"properties": {
+													"ID": {
+														"title": "ID",
+														"required": true,
+														"properties": {
+															"Identifier": {
+																"title": "Identifier",
+																"required": true,
+																"type": "object",
+																"properties": {
+																	"schemeID": {
+																		"title": "schemeID",
+																		"required": true,
+																		"type": "string"
+																	},
+																	"schemeAgencyID": {
+																		"title": "schemeAgencyID",
+																		"required": true,
+																		"type": "string"
+																	},
+																	"value": {
+																		"title": "value",
+																		"required": true,
+																		"type": "string"
+																	}
+																}
+															}
+														}
+													},
+													"RevisionID": {
+														"title": "RevisionID",
+														"properties": {
+															"Identifier": {
+																"title": "Identifier",
+																"required": true,
+																"type": "object",
+																"properties": {
+																	"schemeID": {
+																		"title": "schemeID",
+																		"required": true,
+																		"type": "string"
+																	},
+																	"schemeAgencyID": {
+																		"title": "schemeAgencyID",
+																		"required": true,
+																		"type": "string"
+																	},
+																	"value": {
+																		"title": "value",
+																		"required": true,
+																		"type": "string"
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										},
+										"Packaging": {
+											"title": "Packaging",
+											"type": "array",
+											"items": {
+												"type": "object",
+												"properties": {
+													"Packaging": {
+														"title": "Packaging",
+														"type": "object",
+														
+														"properties": {
+															"Dimensions": {
+																"title": "Dimensions",
+																"type": "object",
+																"properties": {
+																	"WidthMeasure": {
+																		"title": "WidthMeasure",
+																		"required": true,
+																		"type": "object",
+																		"properties": {
+																			"unit": {
+																				"title": "unit",
+																				"required": true,
+																				"type": "string"
+																			},
+																			"value": {
+																				"title": "value",
+																				"required": true,
+																				"type": "string"
+																			}
+																		}
+																	},
+																	"LengthMeasure": {
+																		"title": "LengthMeasure",
+																		"required": true,
+																		"type": "object",
+																		"properties": {
+																			"unit": {
+																				"title": "unit",
+																				"required": true,
+																				"type": "string"
+																			},
+																			"value": {
+																				"title": "value",
+																				"required": true,
+																				"type": "string"
+																			}
+																		}
+																	},
+																	"HeightMeasure": {
+																		"title": "HeightMeasure",
+																		"required": true,
+																		"type": "object",
+																		"properties": {
+																			"unit": {
+																				"title": "unit",
+																				"required": true,
+																				"type": "string"
+																			},
+																			"value": {
+																				"title": "value",
+																				"required": true,
+																				"type": "string"
+																			}
+																		}
+																	},
+																	"WeightRange": {
+																		"title": "WeightRange",
+																		"required": true,
+																		"type": "object",
+																		"properties": {
+																			"MinimumWeightMeasure": {
+																			"required": true,
+																				"title": "MinimumWeightMeasure",
+																				"type": "object",
+																				"properties": {
+																					"unit": {
+																						"title": "unit",
+																						"required": true,
+																						"type": "string"
+																					},
+																					"value": {
+																						"title": "value",
+																						"required": true,
+																						"type": "string"
+																					}
+																				}
+																			}
+																		}
+																	}
+																}
+															},
+															"UnitCode": {
+																"title": "UnitCode",
+																"required": true,
+																"type": "string"
+															},
+															"BaseUnitCapacity": {
+																"title": "BaseUnitCapacity",
+																"required": true,
+																"type": "number"
+															}
+														}
+													}
+												}
+											}
+										},
+										"Dimensions": {
+											"title": "Dimensions",
+											"type": "object",
+											"properties": {
+												"WidthMeasure": {
+													"title": "WidthMeasure",
+													"required": false,
+													"type": "object",
+													"properties": {
+														"unit": {
+															"title": "unit",
+															"required": true,
+															"type": "string"
+														},
+														"value": {
+															"title": "value",
+															"required": true,
+															"type": "string"
+														}
+													}
+												},
+												"LengthMeasure": {
+													"title": "LengthMeasure",
+													"type": "object",
+													"properties": {
+														"unit": {
+															"title": "unit",
+															"required": true,
+															"type": "string"
+														},
+														"value": {
+															"title": "value",
+															"required": true,
+															"type": "string"
+														}
+													}
+												},
+												"HeightMeasure": {
+													"title": "HeightMeasure",
+													"type": "object",
+													"properties": {
+														"unit": {
+															"title": "unit",
+															"required": true,
+															"type": "string"
+														},
+														"value": {
+															"title": "value",
+															"required": true,
+															"type": "string"
+														}
+													}
+												},
+												"WeightMeasure": {
+													"title": "WeightMeasure",
+													"type": "object",
+													"properties": {
+														"unit": {
+															"title": "unit",
+															"required": true,
+															"type": "string"
+														},
+														"value": {
+															"title": "value",
+															"required": true,
+															"type": "string"
+														}
+													}
+												}
+											}
+										},
+										"AverageRunSizeQuantity": {
+											"title": "AverageRunSizeQuantity",
+											"type": "object",
+											"properties": {
+												"unit": {
+													"title": "unit",
+													"required": true,
+													"type": "string"
+												},
+												"value": {
+													"title": "value",
+													"required": true,
+													"type": "string"
+												}
+											}
+										},
+										"BaseUnitPackaging": {
+											"title": "BaseUnitPackaging",
+											"type": "object",
+											"properties": {
+												"Packaging": {
+													"title": "Packaging",
+													"required": false,
+													"type": "object",
+													"properties": {
+														"RecordID": {
+															"title": "RecordID",
+															"required": true,
+															"type": "string"
+														}
+													}
+												}
+											}
+										},
+										"SalesUnitPackaging": {
+											"title": "SalesUnitPackaging",
+											"type": "object",
+											"properties": {
+												"Packaging": {
+													"title": "Packaging",
+													"type": "object",
+													"properties": {
+														"RecordID": {
+															"title": "RecordID",
+															"required": true,
+															"type": "string"
+														}
+													}
+												}
+											}
+										},
+										"StorageUnitPackaging": {
+											"title": "StorageUnitPackaging",
+											"type": "object",
+											"properties": {
+												"Packaging": {
+													"title": "Packaging",
+													"required": false,
+													"type": "object",
+													"properties": {
+														"RecordID": {
+															"title": "RecordID",
+															"required": true,
+															"type": "string"
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
