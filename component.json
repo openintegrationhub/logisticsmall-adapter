@@ -12,7 +12,7 @@
 			}
 		}
 	},
-	"triggers": {
+/* "triggers": {
 		"createShipment": {
 			"main": "io.logmall.actions.CreateOrReplaceShipment",
 			"type": "polling",
@@ -31,17 +31,8 @@
 				"out": "./schemas/getChangeItemMaster.out.json"
 			}
 		}
-	},
+	},*/
 	"actions": {
-		"createShipment": {
-			"main": "io.logmall.actions.CreateOrReplaceShipment",
-			"title": "Create a Shipment",
-			"description": "Creates a new Shipment",
-			"metadata": {
-				"in": "./schemas/shipmentSchema.in.json",
-				"out": "./schemas/shipmentSchema.out.json"
-			}
-		},
 		"createItemMaster": {
 			"main": "io.logmall.actions.CreateItemMaster",
 			"title": "Create a Item Master",
@@ -50,6 +41,15 @@
 				"in": "./schemas/itemMasterSchema.in.json",
 				"out": "./schemas/itemMasterSchema.out.json"
 			}
+		 },
+		"createShipment": {
+			"main": "io.logmall.actions.CreateOrReplaceShipment",
+			"title": "Create a Shipment",
+			"description": "Creates a new Shipment",
+			"metadata": {
+				"in": "./schemas/shipmentSchema.in.json",
+				"out": "./schemas/shipmentSchema.out.json"
+			}
+		}
 	}
-}
 }
