@@ -34,64 +34,57 @@ public class GetItemMasterJaxRs implements Module {
 	 public void execute(final ExecutionParameters parameters) {
 		
 
-		// contains action's configuration
-		final JsonObject configuration = parameters.getConfiguration();
-
-//		 access the value of the apiKey field defined in credentials section of
-//		 component.json
-		// final JsonString apiKey = configuration.getJsonString("apiKey");
-		// if (apiKey == null) {
-		// throw new IllegalStateException("apiKey is required");
-		// }
+//		// contains action's configuration
+//		final JsonObject configuration = parameters.getConfiguration();
 //
-//		// access the value of the status field defined in trigger's fields section of
-//		// component.json
-		JsonString serverURL = configuration.getJsonString(Constants.URL_CONFIGURATION_KEY);
-		logger.info("App Server URL: " + serverURL.getString());
-		try {
-			ItemMasterService itemMasterService = ResteasyIntegration.newInstance().createClientProxy(ItemMasterService.class,
-					serverURL.getString());
-		} catch (JAXBException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-//		
+////		 access the value of the apiKey field defined in credentials section of
+////		 component.json
+//		// final JsonString apiKey = configuration.getJsonString("apiKey");
+//		// if (apiKey == null) {
+//		// throw new IllegalStateException("apiKey is required");
+//		// }
+////
+////		// access the value of the status field defined in trigger's fields section of
+////		// component.json
+//		JsonString serverURL = configuration.getJsonString(Constants.URL_CONFIGURATION_KEY);
+//		logger.info("App Server URL: " + serverURL.getString());
+//		try {
+//			ItemMasterService itemMasterService = ResteasyIntegration.newInstance().createClientProxy(ItemMasterService.class,
+//					serverURL.getString());
+//		} catch (JAXBException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+////		
+////
+////        // access the value of the status field defined in trigger's fields section of component.json
+////        final JsonString status = configuration.getJsonString("status");
+////        if (status == null) {
+////            throw new IllegalStateException("status field is required");
+////        }
+////        // access the value of the apiKey field defined in credentials section of component.json
+////        final JsonString apiKey = configuration.getJsonString("apiKey");
+////        if (apiKey == null) {
+////            throw new IllegalStateException("apiKey is required");
+////        }
+////
+////        logger.info("About to find pets by status {}", status.getString());
 //
-//        // access the value of the status field defined in trigger's fields section of component.json
-//        final JsonString status = configuration.getJsonString("status");
-//        if (status == null) {
-//            throw new IllegalStateException("status field is required");
-//        }
-//        // access the value of the apiKey field defined in credentials section of component.json
-//        final JsonString apiKey = configuration.getJsonString("apiKey");
-//        if (apiKey == null) {
-//            throw new IllegalStateException("apiKey is required");
-//        }
-//
-//        logger.info("About to find pets by status {}", status.getString());
-
-		//
-		// final JsonArray pets = ClientBuilder.newClient()
-		// .target(Constants.PETSTORE_API_BASE_URL)
-		// .path(Constants.FIND_PETS_BY_STATUS_PATH)
-		// .queryParam("status", status.getString())
-		// .request(MediaType.APPLICATION_JSON_TYPE)
-		// .header(Constants.API_KEY_HEADER, apiKey.getString())
-//		 .get(JsonArray.class);
-		//
-		// logger.info("Got {} pets", pets.size());
-		//
-		// // emitting naked arrays is forbidden by the platform
-		// final JsonObject body = Json.createObjectBuilder()
-		// .add("pets", pets)
-		// .build();
-		//
-		// final Message data
-		// = new Message.Builder().body(body).build();
-		//
-		// logger.info("Emitting data");
-		//
-		// // emitting the message to the platform
-		// parameters.getEventEmitter().emitData(data);
+//		//
+//		 final JsonArray items = ;
+//		//
+//		// logger.info("Got {} pets", pets.size());
+//		//
+//		// // emitting naked arrays is forbidden by the platform
+//		 final JsonObject body = Json.createObjectBuilder()
+//		 .add("pets", items)
+//		 .build();
+//		 final Message data
+//		 = new Message.Builder().body(body).build();
+//		//
+//		// logger.info("Emitting data");
+//		//
+//		// // emitting the message to the platform
+//		parameters.getEventEmitter().emitData(data);
 	}
 }
