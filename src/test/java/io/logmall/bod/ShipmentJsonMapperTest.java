@@ -7,6 +7,8 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import org.junit.Test;
 
+import io.logmall.mapper.StandaloneBusinessObjectJsonMapper;
+
 
 public class ShipmentJsonMapperTest {
 	Unmarshaller unmarshaller;

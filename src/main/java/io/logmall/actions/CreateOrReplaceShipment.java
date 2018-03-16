@@ -17,7 +17,7 @@ import io.elastic.api.ExecutionParameters;
 import io.elastic.api.Message;
 import io.elastic.api.Module;
 import io.logmall.Constants;
-import io.logmall.bod.ShipmentJsonMapper;
+import io.logmall.mapper.ShipmentJsonMapper;
 
 
 /**

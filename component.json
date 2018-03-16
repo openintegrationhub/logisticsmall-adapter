@@ -33,13 +33,20 @@
 		}
 	},
 	"actions": {
+		"sendItemMasterBOD": {
+			"main": "io.logmall.actions.SendItemMasterBOD",
+			"metadata": {
+				"in": "./schemas/itemMasterSchema.in.json",
+				"out": "./schemas/itemMasterSchema.out.json"
+			}
+		},
 		"createItemMaster": {
 			"main": "io.logmall.actions.CreateItemMaster",
 			"title": "Create an Item Master",
 			"description": "Creates a new Item Master",
 			"metadata": {
-				"in": "./schemas/itemMasterSchema.in.json",
-				"out": "./schemas/itemMasterSchema.out.json"
+				"in": "./schemas/createItemMaster.in.json",
+				"out": "./schemas/createItemMaster.out.json"
 			}
 		}
 	}

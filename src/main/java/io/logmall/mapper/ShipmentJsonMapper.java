@@ -1,4 +1,4 @@
-package io.logmall.bod;
+package io.logmall.mapper;
 
 import java.io.StringReader;
 import javax.json.JsonObject;

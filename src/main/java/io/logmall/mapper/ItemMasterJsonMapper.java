@@ -1,4 +1,4 @@
-package io.logmall.bod;
+package io.logmall.mapper;
 
 import java.io.StringReader;
 
@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.fraunhofer.ccl.bo.model.bod.ChangeItemMaster;
+import io.logmall.mapper.StandaloneBusinessObjectJsonMapper;
 
 public class ItemMasterJsonMapper extends StandaloneBusinessObjectJsonMapper{
 	private static final Logger LOGGER = LoggerFactory.getLogger(ItemMasterJsonMapper.class);

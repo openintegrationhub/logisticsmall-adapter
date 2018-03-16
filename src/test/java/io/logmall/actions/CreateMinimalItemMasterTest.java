@@ -24,18 +24,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import io.elastic.api.EventEmitter;
+import io.elastic.api.ExecutionParameters;
+import io.elastic.api.Message;
 import io.elastic.api.EventEmitter.Callback;
 import io.logmall.Constants;
 import io.logmall.bod.ItemMasterMinimal;
 import io.logmall.res.ResourceResolver;
-import io.elastic.api.ExecutionParameters;
-import io.elastic.api.Message;
 
-public class CreateItemMasterTest {
-
-	private static final String RESOURCE = "ChangeItemMaster.json";
+public class CreateMinimalItemMasterTest {
+	private static final String RESOURCE = "ChangeMinimalItemMaster.json";
 	Scanner scanner = null;
-	
+	private static final Logger LOGGER = LoggerFactory.getLogger(CreateMinimalItemMasterTest.class);
 
 	@Test
 	public void testExecute() {
@@ -49,10 +48,10 @@ public class CreateItemMasterTest {
 				line = br.readLine();
 			}
 			br.close();
-			String changeItemMasterJSON = fileContents.toString();
+			String changeMinimalItemMasterJSON = fileContents.toString();
 
 			final Message message = new Message.Builder()
-					.body((JsonObject) Json.createReader(new StringReader(changeItemMasterJSON)).read()).build();
+					.body((JsonObject) Json.createReader(new StringReader(changeMinimalItemMasterJSON)).read()).build();
 			Callback callback = new Callback() {
 				@Override
 				public void receive(Object data) {
@@ -73,7 +72,7 @@ public class CreateItemMasterTest {
 			ExecutionParameters.Builder executionParametersBuilder = new ExecutionParameters.Builder(message,
 					eventEmitter);
 			executionParametersBuilder.configuration(jsonParser.readObject());
-			new SendItemMasterBOD().execute(executionParametersBuilder.build());
+			new CreateItemMaster().execute(executionParametersBuilder.build());
 
 		} catch (FileNotFoundException e) {
 			Assert.fail("FileNotFoundException: " + e.getMessage() + " \n Cause: \n");
@@ -92,5 +91,21 @@ public class CreateItemMasterTest {
 
 	}
 	
-	
+	@Test
+	public void testMarshal() throws JAXBException {
+		ItemMasterMinimal itemMasterMinimal = new ItemMasterMinimal();
+		itemMasterMinimal.setBaseQuantityClassificationUnit("4");
+		itemMasterMinimal.setDescription("bla");
+		itemMasterMinimal.setIdentifier("name");
+		itemMasterMinimal.setStatusCode("1");
+		
+		Marshaller marshaller = JAXBContext.newInstance(ItemMasterMinimal.class).createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        marshaller.setProperty(MarshallerProperties.MEDIA_TYPE, MediaType.APPLICATION_JSON);
+        marshaller.setProperty(MarshallerProperties.JSON_INCLUDE_ROOT, false);
+        
+        StringWriter stringWriter = new StringWriter();
+        marshaller.marshal(itemMasterMinimal, stringWriter);
+        LOGGER.info(stringWriter.toString());
+	}
 }
