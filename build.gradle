@@ -49,6 +49,7 @@ dependencies {
     compile 'de.fraunhofer.ccl.bo:instance-repository-jaxb:2.0.30'
     compile 'de.fraunhofer.ccl.bo:instance-repository-resteasy:2.0.30:client'
     compile 'de.fraunhofer.ccl.bo:instance-repository-businessobjects:2.0.30'
+        
    	//compile 'com.google.code.gson:gson:2.8.2'
     compile 'io.elastic:sailor-jvm:2.0.1'
 
@@ -73,10 +74,14 @@ dependencies {
    
     runtime 'de.fraunhofer.ccl.bo:instance-repository-resteasy:2.0.30:client'
     runtime 'de.fraunhofer.ccl.bo:instance-repository-businessobjects:2.0.30'
+    //compile group: 'org.slf4j', name: 'slf4j-api', version: '1.8.0-alpha2'
+    
    	//runtime 'com.google.code.gson:gson:2.8.2'
     //runtime 'io.elastic:sailor-jvm:2.0.1'
    	testCompile 'junit:junit:4.11'
    	testRuntime 'org.eclipse.persistence:org.eclipse.persistence.moxy:2.5.0' 
+   	
+   	testCompile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.2'
 }
 
 
@@ -96,4 +101,8 @@ uploadArchives {
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.0'
+}
+
+configurations.all {
+    exclude module: 'slf4j-log4j12'
 }
