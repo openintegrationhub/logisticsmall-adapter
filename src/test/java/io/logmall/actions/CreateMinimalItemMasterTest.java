@@ -21,6 +21,7 @@ import javax.xml.bind.Marshaller;
 
 import org.eclipse.persistence.jaxb.MarshallerProperties;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,6 +40,7 @@ public class CreateMinimalItemMasterTest {
 	Scanner scanner = null;
 	private static final Logger LOGGER = LoggerFactory.getLogger(CreateMinimalItemMasterTest.class);
 
+	@Ignore
 	@Test
 	public void testExecute() {
 		File file = new File(ResourceResolver.class.getClassLoader().getResource(RESOURCE).getFile());
@@ -76,7 +78,7 @@ public class CreateMinimalItemMasterTest {
 			eventEmitterBuilder.onUpdateKeys(callback);
 			final EventEmitter eventEmitter = eventEmitterBuilder.build();
 
-			JsonReader jsonParser = Json.createReader(new StringReader(Constants.LOGATA_DEV_CONFIGURATION));
+			JsonReader jsonParser = Json.createReader(new StringReader(Constants.OTC_URL_CONFIGURATION));
 			jsonObject = jsonParser.readObject();
 			
 			ExecutionParameters.Builder executionParametersBuilder = new ExecutionParameters.Builder(message,
@@ -95,11 +97,7 @@ public class CreateMinimalItemMasterTest {
 		} catch (IOException e) {
 			Assert.fail("IOException: " + e.getMessage() + " \n Cause: \n" + e.getCause());
 			e.printStackTrace();
-//		} catch (Throwable e) {
-//			Assert.fail("Throwable: " + e.getMessage() + " \n Cause: \n" + e.getCause());
-		//	e.printStackTrace();
 		} catch (JAXBException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			if (scanner != null) {
@@ -108,7 +106,7 @@ public class CreateMinimalItemMasterTest {
 		}
 
 	}
-
+	@Ignore
 	@Test
 	public void testMarshal() throws JAXBException {
 		ItemMasterMinimal itemMasterMinimal = new ItemMasterMinimal();
