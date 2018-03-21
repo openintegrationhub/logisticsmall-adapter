@@ -16,8 +16,10 @@ import org.slf4j.LoggerFactory;
 import de.fraunhofer.ccl.bo.converter.xml.oagis.BusinessObjectContextResolver;
 import de.fraunhofer.ccl.bo.converter.xml.oagis.JsonFactory;
 import de.fraunhofer.ccl.bo.model.bod.BusinessObjectDocument;
+import de.fraunhofer.ccl.bo.model.bod.verb.Change;
 import de.fraunhofer.ccl.bo.model.bod.verb.Respond;
 import de.fraunhofer.ccl.bo.model.entity.businessobject.StandaloneBusinessObject;
+import de.fraunhofer.ccl.bo.model.entity.itemmaster.ItemMaster;
 
 public class StandaloneBusinessObjectJsonMapper {
 	
@@ -43,6 +45,11 @@ public class StandaloneBusinessObjectJsonMapper {
 			jsonReader.close();
 		}
 	}
-	
+	public void logBOD(BusinessObjectDocument<Change, ItemMaster> bod) throws JAXBException {
+		StringWriter stringWriter = new StringWriter();
+		marshaller.marshal(bod, stringWriter);
+		LOGGER.info("logBOD: " + stringWriter.toString());
+		
+	}
 	
 }

@@ -1,5 +1,7 @@
 package io.logmall.actions;
 
+import static org.junit.Assert.assertEquals;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -29,6 +31,7 @@ import io.elastic.api.Message;
 import io.elastic.api.EventEmitter.Callback;
 import io.logmall.Constants;
 import io.logmall.bod.ItemMasterMinimal;
+import io.logmall.mapper.ItemMasterMinimalJsonMapper;
 import io.logmall.res.ResourceResolver;
 
 public class CreateMinimalItemMasterTest {
@@ -50,8 +53,14 @@ public class CreateMinimalItemMasterTest {
 			br.close();
 			String changeMinimalItemMasterJSON = fileContents.toString();
 
-			final Message message = new Message.Builder()
-					.body((JsonObject) Json.createReader(new StringReader(changeMinimalItemMasterJSON)).read()).build();
+			JsonObject jsonObject;
+			jsonObject = (JsonObject) Json.createReader(new StringReader(changeMinimalItemMasterJSON)).read();
+
+			ItemMasterMinimalJsonMapper itemMasterMinimalJsonMapper = new ItemMasterMinimalJsonMapper();
+			ItemMasterMinimal itemMasterMinimal = itemMasterMinimalJsonMapper.fromJson(jsonObject);
+			assertEquals("5", itemMasterMinimal.getBaseQuantityClassificationUnit());
+
+			final Message message = new Message.Builder().body(jsonObject).build();
 			Callback callback = new Callback() {
 				@Override
 				public void receive(Object data) {
@@ -68,10 +77,16 @@ public class CreateMinimalItemMasterTest {
 			final EventEmitter eventEmitter = eventEmitterBuilder.build();
 
 			JsonReader jsonParser = Json.createReader(new StringReader(Constants.LOGATA_DEV_CONFIGURATION));
-
+			jsonObject = jsonParser.readObject();
+			
 			ExecutionParameters.Builder executionParametersBuilder = new ExecutionParameters.Builder(message,
 					eventEmitter);
-			executionParametersBuilder.configuration(jsonParser.readObject());
+			
+			executionParametersBuilder.configuration(jsonObject);
+
+			itemMasterMinimal = itemMasterMinimalJsonMapper.fromJson(message.getBody());
+			assertEquals("","5", itemMasterMinimal.getBaseQuantityClassificationUnit());
+
 			new CreateItemMaster().execute(executionParametersBuilder.build());
 
 		} catch (FileNotFoundException e) {
@@ -80,8 +95,11 @@ public class CreateMinimalItemMasterTest {
 		} catch (IOException e) {
 			Assert.fail("IOException: " + e.getMessage() + " \n Cause: \n" + e.getCause());
 			e.printStackTrace();
-		} catch (Throwable e) {
-			Assert.fail("Throwable: " + e.getMessage() + " \n Cause: \n" + e.getCause());
+//		} catch (Throwable e) {
+//			Assert.fail("Throwable: " + e.getMessage() + " \n Cause: \n" + e.getCause());
+		//	e.printStackTrace();
+		} catch (JAXBException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			if (scanner != null) {
@@ -90,7 +108,7 @@ public class CreateMinimalItemMasterTest {
 		}
 
 	}
-	
+
 	@Test
 	public void testMarshal() throws JAXBException {
 		ItemMasterMinimal itemMasterMinimal = new ItemMasterMinimal();
@@ -98,14 +116,14 @@ public class CreateMinimalItemMasterTest {
 		itemMasterMinimal.setDescription("bla");
 		itemMasterMinimal.setIdentifier("name");
 		itemMasterMinimal.setStatusCode("1");
-		
+
 		Marshaller marshaller = JAXBContext.newInstance(ItemMasterMinimal.class).createMarshaller();
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-        marshaller.setProperty(MarshallerProperties.MEDIA_TYPE, MediaType.APPLICATION_JSON);
-        marshaller.setProperty(MarshallerProperties.JSON_INCLUDE_ROOT, false);
-        
-        StringWriter stringWriter = new StringWriter();
-        marshaller.marshal(itemMasterMinimal, stringWriter);
-        LOGGER.info(stringWriter.toString());
+		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+		marshaller.setProperty(MarshallerProperties.MEDIA_TYPE, MediaType.APPLICATION_JSON);
+		marshaller.setProperty(MarshallerProperties.JSON_INCLUDE_ROOT, false);
+
+		StringWriter stringWriter = new StringWriter();
+		marshaller.marshal(itemMasterMinimal, stringWriter);
+		LOGGER.info(stringWriter.toString());
 	}
 }

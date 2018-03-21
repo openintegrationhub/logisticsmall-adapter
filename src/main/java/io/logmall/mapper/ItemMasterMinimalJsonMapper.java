@@ -34,7 +34,7 @@ public class ItemMasterMinimalJsonMapper {
 		try {
 			Unmarshaller unmarshaller = JAXBContext.newInstance(ItemMasterMinimal.class).createUnmarshaller();
 			unmarshaller.setProperty(UnmarshallerProperties.MEDIA_TYPE, MediaType.APPLICATION_JSON);
-			unmarshaller.setProperty(UnmarshallerProperties.JSON_INCLUDE_ROOT, true);
+			unmarshaller.setProperty(UnmarshallerProperties.JSON_INCLUDE_ROOT, false);
 			return unmarshaller.unmarshal (jsonStream, ItemMasterMinimal.class).getValue();
 			//return JAXB.unmarshal(stringReader, ItemMasterMinimal.class);
 		} finally {
