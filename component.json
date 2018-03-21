@@ -21,25 +21,9 @@
 			"metadata": {
 				"out": "./schemas/getItemMasterSchema.out.json"
 			}
-		},
-		"getShipment": {
-			"main": "io.logmall.triggers.GetItemMasterJaxRs",
-			"type": "polling",
-			"title": "Create a Shipment (JAX-RS)",
-			"description": "Retrieves shipments from the logistics mall API by given shipment status using Java API for RESTful Web Services (JAX-RS)",
-			"metadata": {
-				"out": "./schemas/getItemMasterSchema.out.json"
-			}
 		}
 	},
 	"actions": {
-		"sendItemMasterBOD": {
-			"main": "io.logmall.actions.SendItemMasterBOD",
-			"metadata": {
-				"in": "./schemas/itemMasterSchema.in.json",
-				"out": "./schemas/itemMasterSchema.out.json"
-			}
-		},
 		"createItemMaster": {
 			"main": "io.logmall.actions.CreateItemMaster",
 			"title": "Create an Item Master",
