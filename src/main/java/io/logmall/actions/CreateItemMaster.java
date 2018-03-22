@@ -1,7 +1,5 @@
 package io.logmall.actions;
 
-import java.math.BigDecimal;
-
 import javax.json.JsonObject;
 import javax.json.JsonString;
 import javax.xml.bind.JAXBException;
@@ -15,7 +13,6 @@ import de.fraunhofer.ccl.bo.model.bod.BusinessObjectDocument;
 import de.fraunhofer.ccl.bo.model.bod.builder.change.CreateOrReplaceBODBuilder;
 import de.fraunhofer.ccl.bo.model.bod.verb.Change;
 import de.fraunhofer.ccl.bo.model.bod.verb.Respond;
-import de.fraunhofer.ccl.bo.model.entity.common.Measure;
 import de.fraunhofer.ccl.bo.model.entity.common.PredefinedMeasureUnitType;
 import de.fraunhofer.ccl.bo.model.entity.common.Quantity;
 import de.fraunhofer.ccl.bo.model.entity.common.QuantityClassification;
@@ -30,8 +27,6 @@ import io.logmall.mapper.StandaloneBusinessObjectJsonMapper;
 
 public class CreateItemMaster implements Module {
 	public MeasureUtil measureUtil = new MeasureUtil();
-//	public QuantityUtil quantityUtil = new QuantityUtil();
-
 	private static final Logger LOGGER = LoggerFactory.getLogger(CreateItemMaster.class);
 
 	/**
@@ -65,11 +60,6 @@ public class CreateItemMaster implements Module {
 			itemMaster.setBaseQuantityClassification(quantityClassification);
 			itemMaster.setDescription(itemMasterMinimal.getDescription());
 			itemMaster.setStatus(new Status(status));
-
-//			itemMaster.setAbcClass(" ");
-//			itemMaster.setLeadTimeDuration(new Period());
-//			itemMaster.setManufacturerIdentifier(new Identifier(" "));
-
 			itemMaster.setAverageRunSizeQuantity(generateNewQuantity());
 			itemMaster.setOrderQuantity(generateNewQuantity());
 			
@@ -107,19 +97,6 @@ public class CreateItemMaster implements Module {
 			throw new IllegalStateException("Exception during API call: " + e.getMessage());
 		}
 	}
-
-//	private Measure getMeasure(String type) {
-//		String unit = this.measureUtil.getBaseUnit(type);
-//		BigDecimal value = null;
-//		return this.measureUtil.newMeasure(value, unit, type);
-//	}
-//	
-//	
-//	private Measure generateNewMeasure(String type) {
-//		Measure measure = new Measure();
-//		measure.setType(type);
-//				return measure;
-//	}
 	
 	private Quantity generateNewQuantity() {
 		Quantity quantity = new Quantity();
