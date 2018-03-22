@@ -1,6 +1,7 @@
 package io.logmall.actions;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -39,7 +40,6 @@ public class CreateMinimalItemMasterTest {
 	private static final String RESOURCE = "ChangeMinimalItemMaster.json";
 	Scanner scanner = null;
 	private static final Logger LOGGER = LoggerFactory.getLogger(CreateMinimalItemMasterTest.class);
-
 	@Ignore
 	@Test
 	public void testExecute() {
@@ -78,7 +78,7 @@ public class CreateMinimalItemMasterTest {
 			eventEmitterBuilder.onUpdateKeys(callback);
 			final EventEmitter eventEmitter = eventEmitterBuilder.build();
 
-			JsonReader jsonParser = Json.createReader(new StringReader(Constants.OTC_URL_CONFIGURATION));
+			JsonReader jsonParser = Json.createReader(new StringReader(Constants.LOGATA_DEV_CONFIGURATION));
 			jsonObject = jsonParser.readObject();
 			
 			ExecutionParameters.Builder executionParametersBuilder = new ExecutionParameters.Builder(message,
@@ -88,8 +88,8 @@ public class CreateMinimalItemMasterTest {
 
 			itemMasterMinimal = itemMasterMinimalJsonMapper.fromJson(message.getBody());
 			assertEquals("","5", itemMasterMinimal.getBaseQuantityClassificationUnit());
-
-			new CreateItemMaster().execute(executionParametersBuilder.build());
+			ExecutionParameters parameters = executionParametersBuilder.build();
+			new CreateItemMaster().execute(parameters);
 
 		} catch (FileNotFoundException e) {
 			Assert.fail("FileNotFoundException: " + e.getMessage() + " \n Cause: \n");

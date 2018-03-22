@@ -1,22 +1,25 @@
 {
-	"BaseQuantityClassificationUnit" : {
-		"title": "BaseQuantityClassificationUnit",
-		"required": true,
-		"type": "string"
-	},
-	"StatusCode" : {
-		"title": "StatusCode",
-		"required": true,
-		"type": "string"
-	},
-	"Identifier": {
-		"title": "Identifier",
-		"required": true,
-		"type": "string"
-	},
-	"Description": {
-		"title": "Description",
-		"required": false,
-		"type": "string"
+	"type": "object",
+	"properties": {
+		"BaseQuantityClassificationUnit" : {
+			"title": "BaseQuantityClassificationUnit",
+			"required": true,
+			"type": "string"
+		},
+		"StatusCode" : {
+			"title": "StatusCode",
+			"required": true,
+			"type": "string"
+		},
+		"Identifier": {
+			"title": "Identifier",
+			"required": true,
+			"type": "string"
+		},
+		"Description": {
+			"title": "Description",
+			"required": false,
+			"type": "string"
+		}
 	}
 }
