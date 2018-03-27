@@ -43,11 +43,10 @@ public class ItemMasterMinimalTest {
 			ItemMasterMinimal itemMasterMinimal = itemMasterMinimalJsonMapper
 					.fromJson((JsonObject) Json.createReader(new StringReader(changeMinimalItemMaster)).read());
 
-			assertEquals(" ", "5", itemMasterMinimal.getBaseQuantityClassificationUnit());
-
-			assertEquals(" ", "1", itemMasterMinimal.getStatusCode());
-			assertEquals(" ", "Zahnpasta 324F", itemMasterMinimal.getIdentifier());
-			assertEquals(" ", "Samt und super!", itemMasterMinimal.getDescription());
+			assertEquals("5", itemMasterMinimal.getBaseQuantityClassificationUnit());
+			assertEquals("1", itemMasterMinimal.getStatusCode());
+			assertEquals("Zahnpasta 324F", itemMasterMinimal.getIdentifier());
+			assertEquals("Samt und super!", itemMasterMinimal.getDescription());
 
 		} catch (FileNotFoundException e) {
 			Assert.fail("FileNotFoundException: " + e.getMessage() + " \n Cause: \n");
