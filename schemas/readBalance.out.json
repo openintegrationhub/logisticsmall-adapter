@@ -1,7 +1,7 @@
 {
 	"type": "object",
 	"properties": {
-		"Data": {
+		"Items": {
 			"title": "Items",
 			"required": true,
 			"type": "array",
