@@ -32,6 +32,15 @@
 				"in": "./schemas/createItemMaster.in.json",
 				"out": "./schemas/createItemMaster.out.json"
 			}
+		},
+		"readBalance": {
+			"main": "io.logmall.actions.ReadBalance",
+			"title": "Read Inventory Balance",
+			"description": "Reads available inventory data for all item masters",
+			"metadata": {
+				"in": "./schemas/readBalance.in.json",
+				"out": "./schemas/readBalance.out.json"
+			}
 		}
 	}
 }

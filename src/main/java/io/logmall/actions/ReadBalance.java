@@ -94,7 +94,7 @@ public class ReadBalance implements Module {
 			LOGGER.info("Read InventoryBalance data. size=" + externalBalanceItems.size());
 
 			BalanceMinimal externalBalance = new BalanceMinimal();
-			externalBalance.setData(externalBalanceItems);
+			externalBalance.setItems(externalBalanceItems);
 
 			Marshaller marshaller = JAXBContext.newInstance(BalanceMinimal.class).createMarshaller();
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);

@@ -35,10 +35,10 @@ dependencies {
 	compile 'org.joda:joda-money:0.6'
 	compile 'joda-time:joda-time:2.6'
 
- 	compile 'org.eclipse.persistence:org.eclipse.persistence.moxy:2.5.0'
-	compile 'org.eclipse.persistence:org.eclipse.persistence.antlr:2.5.0'
-  	compile 'org.eclipse.persistence:org.eclipse.persistence.asm:2.5.0'
-	compile 'org.eclipse.persistence:org.eclipse.persistence.core:2.5.0'
+ 	compile 'org.eclipse.persistence:org.eclipse.persistence.moxy:2.5.1'
+	compile 'org.eclipse.persistence:org.eclipse.persistence.antlr:2.5.1'
+  	compile 'org.eclipse.persistence:org.eclipse.persistence.asm:2.5.1'
+	compile 'org.eclipse.persistence:org.eclipse.persistence.core:2.5.1'
    
     compile 'org.jboss.resteasy:resteasy-client:3.0.14.Final'
 
@@ -60,17 +60,17 @@ dependencies {
 	runtime 'org.joda:joda-money:0.6'
 	runtime 'joda-time:joda-time:2.6'
 
-	runtime 'org.eclipse.persistence:org.eclipse.persistence.antlr:2.5.0'
-  	runtime 'org.eclipse.persistence:org.eclipse.persistence.asm:2.5.0'
-	runtime 'org.eclipse.persistence:org.eclipse.persistence.core:2.5.0'
-    runtime 'org.eclipse.persistence:org.eclipse.persistence.moxy:2.5.0'
+	runtime 'org.eclipse.persistence:org.eclipse.persistence.antlr:2.5.1'
+  	runtime 'org.eclipse.persistence:org.eclipse.persistence.asm:2.5.1'
+	runtime 'org.eclipse.persistence:org.eclipse.persistence.core:2.5.1'
+    runtime 'org.eclipse.persistence:org.eclipse.persistence.moxy:2.5.1'
     runtime 'org.jboss.resteasy:resteasy-client:3.0.14.Final'
 
 	runtime 'org.jadira.usertype:usertype.core:3.0.0.CR1'
 	runtime 'org.jadira.usertype:usertype.spi:3.0.0.CR1'
    
     runtime 'de.fraunhofer.ccl.bo:instance-repository-jaxb:2.0.30'
-    runtime 'org.eclipse.persistence:org.eclipse.persistence.moxy:2.5.0'
+    runtime 'org.eclipse.persistence:org.eclipse.persistence.moxy:2.5.1'
    
     runtime 'de.fraunhofer.ccl.bo:instance-repository-resteasy:2.0.30:client'
     runtime 'de.fraunhofer.ccl.bo:instance-repository-businessobjects:2.0.30'
@@ -79,7 +79,7 @@ dependencies {
    	//runtime 'com.google.code.gson:gson:2.8.2'
     //runtime 'io.elastic:sailor-jvm:2.0.1'
    	testCompile 'junit:junit:4.11'
-   	testRuntime 'org.eclipse.persistence:org.eclipse.persistence.moxy:2.5.0' 
+   	testRuntime 'org.eclipse.persistence:org.eclipse.persistence.moxy:2.5.1' 
    	
    	testCompile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.2'
 }
