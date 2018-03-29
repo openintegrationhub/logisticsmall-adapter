@@ -30,7 +30,7 @@ public class ReadBalanceTest {
 	/**
 	 * Test reading inventory balance from mall application
 	 */
-//	@Ignore
+	@Ignore
 	@Test
 	public void testExecute() {
 
