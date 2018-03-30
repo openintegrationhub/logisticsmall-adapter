@@ -73,4 +73,10 @@ public class ReadBalanceTest {
 		marshaller.setProperty(MarshallerProperties.MEDIA_TYPE, MediaType.APPLICATION_JSON);
 		marshaller.setProperty(MarshallerProperties.JSON_INCLUDE_ROOT, false);
 	}
+	
+	@Ignore
+	@Test
+	public void validateSchema() throws JAXBException {
+		org.eclipse.persistence.jaxb.JAXBContext jaxbContext = (org.eclipse.persistence.jaxb.JAXBContext) JAXBContext.newInstance(BalanceMinimal.class);
+	}
 }
