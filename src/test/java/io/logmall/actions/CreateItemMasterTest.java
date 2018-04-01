@@ -10,23 +10,19 @@ import java.util.Scanner;
 
 import javax.json.Json;
 import javax.json.JsonObject;
-import javax.json.JsonReader;
 
 import org.junit.Ignore;
 import org.junit.Test;
 
-import io.elastic.api.EventEmitter;
-import io.elastic.api.EventEmitter.Callback;
-import io.logmall.Constants;
-import io.logmall.res.ResourceResolver;
 import io.elastic.api.ExecutionParameters;
-import io.elastic.api.Message;
+import io.logmall.res.ResourceResolver;
+import io.logmall.util.ExecutionParametersUtil;
 
 public class CreateItemMasterTest {
 
 	private static final String RESOURCE = "ChangeItemMaster.json";
 	Scanner scanner = null;
-	
+
 	@Ignore
 	@Test
 	public void testExecute() {
@@ -41,30 +37,9 @@ public class CreateItemMasterTest {
 			}
 			br.close();
 			String changeItemMasterJSON = fileContents.toString();
-
-			final Message message = new Message.Builder()
-					.body((JsonObject) Json.createReader(new StringReader(changeItemMasterJSON)).read()).build();
-			Callback callback = new Callback() {
-				@Override
-				public void receive(Object data) {
-
-				}
-			};
-			EventEmitter.Builder eventEmitterBuilder = new EventEmitter.Builder();
-			eventEmitterBuilder.onData(callback);
-			eventEmitterBuilder.onError(callback);
-			eventEmitterBuilder.onHttpReplyCallback(callback);
-			eventEmitterBuilder.onRebound(callback);
-			eventEmitterBuilder.onSnapshot(callback);
-			eventEmitterBuilder.onUpdateKeys(callback);
-			final EventEmitter eventEmitter = eventEmitterBuilder.build();
-
-			JsonReader jsonParser = Json.createReader(new StringReader(Constants.OTC_URL_CONFIGURATION));
-
-			ExecutionParameters.Builder executionParametersBuilder = new ExecutionParameters.Builder(message,
-					eventEmitter);
-			executionParametersBuilder.configuration(jsonParser.readObject());
-			new SendItemMasterBOD().execute(executionParametersBuilder.build());
+			JsonObject jsonObject = (JsonObject) Json.createReader(new StringReader(changeItemMasterJSON)).read();
+			ExecutionParameters executionParameters = ExecutionParametersUtil.getExecutionParameters(jsonObject);
+			new SendItemMasterBOD().execute(executionParameters);
 
 		} catch (FileNotFoundException e) {
 			//Assert.fail("FileNotFoundException: " + e.getMessage() + " \n Cause: \n");
@@ -82,6 +57,5 @@ public class CreateItemMasterTest {
 		}
 
 	}
-	
-	
+
 }

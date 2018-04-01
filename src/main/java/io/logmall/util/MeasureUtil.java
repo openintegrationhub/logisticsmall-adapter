@@ -1,4 +1,4 @@
-package io.logmall.actions;
+package io.logmall.util;
 
 
 import de.fraunhofer.ccl.bo.model.entity.common.Measure;

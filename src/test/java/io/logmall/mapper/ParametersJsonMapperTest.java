@@ -1,4 +1,4 @@
-package io.logmall.actions;
+package io.logmall.mapper;
 
 import static org.junit.Assert.assertEquals;
 
@@ -18,16 +18,15 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import io.logmall.bod.ItemMasterMinimal;
-import io.logmall.mapper.ItemMasterMinimalJsonMapper;
 import io.logmall.res.ResourceResolver;
 
-public class ItemMasterMinimalTest {
+public class ParametersJsonMapperTest {
 
 	private static final String RESOURCE = "ChangeMinimalItemMaster.json";
 	Scanner scanner = null;
-	@Ignore
+//	@Ignore
 	@Test
-	public void testExecute() {
+	public void testItemMasterFromJson() {
 		File file = new File(ResourceResolver.class.getClassLoader().getResource(RESOURCE).getFile());
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
@@ -39,8 +38,8 @@ public class ItemMasterMinimalTest {
 			}
 			br.close();
 			String changeMinimalItemMaster = fileContents.toString();
-			ItemMasterMinimalJsonMapper itemMasterMinimalJsonMapper = new ItemMasterMinimalJsonMapper();
-			ItemMasterMinimal itemMasterMinimal = itemMasterMinimalJsonMapper
+			ParametersJsonMapper<ItemMasterMinimal> classUnderTest = new ParametersJsonMapper<>(ItemMasterMinimal.class);
+			ItemMasterMinimal itemMasterMinimal = classUnderTest
 					.fromJson((JsonObject) Json.createReader(new StringReader(changeMinimalItemMaster)).read());
 
 			assertEquals("5", itemMasterMinimal.getBaseQuantityClassificationUnit());

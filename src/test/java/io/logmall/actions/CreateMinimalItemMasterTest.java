@@ -1,7 +1,6 @@
 package io.logmall.actions;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -14,7 +13,6 @@ import java.util.Scanner;
 
 import javax.json.Json;
 import javax.json.JsonObject;
-import javax.json.JsonReader;
 import javax.ws.rs.core.MediaType;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -27,14 +25,11 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.elastic.api.EventEmitter;
 import io.elastic.api.ExecutionParameters;
-import io.elastic.api.Message;
-import io.elastic.api.EventEmitter.Callback;
-import io.logmall.Constants;
 import io.logmall.bod.ItemMasterMinimal;
-import io.logmall.mapper.ItemMasterMinimalJsonMapper;
+import io.logmall.mapper.ParametersJsonMapper;
 import io.logmall.res.ResourceResolver;
+import io.logmall.util.ExecutionParametersUtil;
 
 public class CreateMinimalItemMasterTest {
 	private static final String RESOURCE = "ChangeMinimalItemMaster.json";
@@ -58,37 +53,12 @@ public class CreateMinimalItemMasterTest {
 			JsonObject jsonObject;
 			jsonObject = (JsonObject) Json.createReader(new StringReader(changeMinimalItemMasterJSON)).read();
 
-			ItemMasterMinimalJsonMapper itemMasterMinimalJsonMapper = new ItemMasterMinimalJsonMapper();
+			ParametersJsonMapper<ItemMasterMinimal> itemMasterMinimalJsonMapper = new ParametersJsonMapper<>(ItemMasterMinimal.class);
 			ItemMasterMinimal itemMasterMinimal = itemMasterMinimalJsonMapper.fromJson(jsonObject);
 			assertEquals("5", itemMasterMinimal.getBaseQuantityClassificationUnit());
-
-			final Message message = new Message.Builder().body(jsonObject).build();
-			Callback callback = new Callback() {
-				@Override
-				public void receive(Object data) {
-
-				}
-			};
-			EventEmitter.Builder eventEmitterBuilder = new EventEmitter.Builder();
-			eventEmitterBuilder.onData(callback);
-			eventEmitterBuilder.onError(callback);
-			eventEmitterBuilder.onHttpReplyCallback(callback);
-			eventEmitterBuilder.onRebound(callback);
-			eventEmitterBuilder.onSnapshot(callback);
-			eventEmitterBuilder.onUpdateKeys(callback);
-			final EventEmitter eventEmitter = eventEmitterBuilder.build();
-
-			JsonReader jsonParser = Json.createReader(new StringReader(Constants.LOGATA_DEV_CONFIGURATION));
-			jsonObject = jsonParser.readObject();
-			
-			ExecutionParameters.Builder executionParametersBuilder = new ExecutionParameters.Builder(message,
-					eventEmitter);
-			
-			executionParametersBuilder.configuration(jsonObject);
-
-			itemMasterMinimal = itemMasterMinimalJsonMapper.fromJson(message.getBody());
+			ExecutionParameters parameters = ExecutionParametersUtil.getExecutionParameters(jsonObject);
+			itemMasterMinimal = itemMasterMinimalJsonMapper.fromJson(parameters.getMessage().getBody());
 			assertEquals("","5", itemMasterMinimal.getBaseQuantityClassificationUnit());
-			ExecutionParameters parameters = executionParametersBuilder.build();
 			new CreateItemMaster().execute(parameters);
 
 		} catch (FileNotFoundException e) {
@@ -106,7 +76,6 @@ public class CreateMinimalItemMasterTest {
 		}
 
 	}
-	@Ignore
 	@Test
 	public void testMarshal() throws JAXBException {
 		ItemMasterMinimal itemMasterMinimal = new ItemMasterMinimal();

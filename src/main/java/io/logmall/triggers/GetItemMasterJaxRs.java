@@ -1,17 +1,5 @@
 package io.logmall.triggers;
 
-import io.elastic.api.Module;
-import io.elastic.api.EventEmitter.Callback;
-import io.logmall.Constants;
-import io.logmall.actions.CreateItemMaster;
-import io.logmall.res.ResourceResolver;
-import io.elastic.api.EventEmitter;
-import io.elastic.api.ExecutionParameters;
-import io.elastic.api.Message;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -23,6 +11,18 @@ import java.util.Scanner;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import io.elastic.api.EventEmitter;
+import io.elastic.api.EventEmitter.Callback;
+import io.elastic.api.ExecutionParameters;
+import io.elastic.api.Message;
+import io.elastic.api.Module;
+import io.logmall.Constants;
+import io.logmall.actions.CreateItemMaster;
+import io.logmall.res.ResourceResolver;
 
 public class GetItemMasterJaxRs implements Module {
 

@@ -17,7 +17,7 @@ import de.fraunhofer.ccl.bo.model.entity.itemmaster.ItemMaster;
 import io.elastic.api.ExecutionParameters;
 import io.elastic.api.Module;
 import io.logmall.Constants;
-import io.logmall.mapper.ItemMasterJsonMapper;
+import io.logmall.mapper.StandaloneBusinessObjectDocumentJsonMapper;
 
 
 
@@ -59,8 +59,8 @@ public class SendItemMasterBOD implements Module{
 			LOGGER.info("App Server URL: " + serverURL.getString());
 			ItemMasterService itemMasterService = ResteasyIntegration.newInstance().createClientProxy(ItemMasterService.class,
 					serverURL.getString());
-			ItemMasterJsonMapper itemMasterJsonMapper = new ItemMasterJsonMapper();
-			ChangeItemMaster changeItemMaster = itemMasterJsonMapper.fromJson(body);
+			StandaloneBusinessObjectDocumentJsonMapper<ChangeItemMaster> changeItemMasterJsonMapper = new StandaloneBusinessObjectDocumentJsonMapper<>(ChangeItemMaster.class);
+			ChangeItemMaster changeItemMaster = changeItemMasterJsonMapper.fromJson(body);
 			LOGGER.info("Change action code: " + changeItemMaster.getVerb().getActionCode());
 			BusinessObjectDocument<Respond, ItemMaster> response = itemMasterService.put(changeItemMaster);
 			LOGGER.info("ItemMaster successfully created");
