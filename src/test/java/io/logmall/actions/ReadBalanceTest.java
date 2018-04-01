@@ -12,8 +12,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.logmall.bod.BalanceMinimal;
-import io.logmall.bod.BalanceParameters;
+import io.logmall.bod.InventoryBalanceMinimal;
+import io.logmall.bod.InventoryBalanceParameters;
 import io.logmall.mapper.ParametersJsonMapper;
 import io.logmall.util.ExecutionParametersUtil;
 
@@ -27,27 +27,27 @@ public class ReadBalanceTest {
 //	@Ignore
 	@Test
 	public void testExecute() {
-		CallbackListener<BalanceMinimal> callbackListener = new CallbackListener<>();
+		CallbackListener<InventoryBalanceMinimal> callbackListener = new CallbackListener<>();
 		new GetInventoryBalance().execute(ExecutionParametersUtil.getExecutionParameters(null, callbackListener.getCallBack()));
-		BalanceMinimal balance = callbackListener.wait(BalanceMinimal.class);
+		InventoryBalanceMinimal balance = callbackListener.wait(InventoryBalanceMinimal.class);
 		Assert.assertNotNull(balance);
 	}
 	
 	@Test
 	public void testExecuteWithBody() throws JAXBException {
-		BalanceParameters parameters = new BalanceParameters();
+		InventoryBalanceParameters parameters = new InventoryBalanceParameters();
 		parameters.setItemMaster("1");
-		JsonObject body = new ParametersJsonMapper<BalanceParameters>(BalanceParameters.class).toJson(parameters);
-		CallbackListener<BalanceMinimal> callbackListener = new CallbackListener<>();
+		JsonObject body = new ParametersJsonMapper<InventoryBalanceParameters>(InventoryBalanceParameters.class).toJson(parameters);
+		CallbackListener<InventoryBalanceMinimal> callbackListener = new CallbackListener<>();
 		new GetInventoryBalance().execute(ExecutionParametersUtil.getExecutionParameters(body,callbackListener.getCallBack()));
-		BalanceMinimal balance = callbackListener.wait(BalanceMinimal.class);
+		InventoryBalanceMinimal balance = callbackListener.wait(InventoryBalanceMinimal.class);
 		Assert.assertNotNull(balance);
 	}
 	
 //	@Ignore
 	@Test
 	public void testUnmarshal() throws JAXBException {
-		Marshaller marshaller = JAXBContext.newInstance(BalanceMinimal.class).createMarshaller();
+		Marshaller marshaller = JAXBContext.newInstance(InventoryBalanceMinimal.class).createMarshaller();
 		marshaller.setProperty(MarshallerProperties.MEDIA_TYPE, MediaType.APPLICATION_JSON);
 		marshaller.setProperty(MarshallerProperties.JSON_INCLUDE_ROOT, false);
 	}
@@ -55,7 +55,7 @@ public class ReadBalanceTest {
 //	@Ignore
 	@Test
 	public void validateSchema() throws JAXBException {
-		org.eclipse.persistence.jaxb.JAXBContext jaxbContext = (org.eclipse.persistence.jaxb.JAXBContext) JAXBContext.newInstance(BalanceMinimal.class);
+		org.eclipse.persistence.jaxb.JAXBContext jaxbContext = (org.eclipse.persistence.jaxb.JAXBContext) JAXBContext.newInstance(InventoryBalanceMinimal.class);
 	}
 	
 

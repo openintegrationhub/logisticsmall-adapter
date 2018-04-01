@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class BalanceParameters implements Serializable{
+public class InventoryBalanceParameters implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 

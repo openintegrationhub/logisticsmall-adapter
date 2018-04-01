@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class BalanceMinimalItem implements Serializable {
+public class InventoryBalanceLineMinimal implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@XmlElement(name = "ItemMaster")

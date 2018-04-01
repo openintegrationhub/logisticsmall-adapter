@@ -1,0 +1,20 @@
+{
+	"type": "object",
+	"properties": {
+		"ItemMaster": {
+			"title": "ItemMaster",
+			"required": true,
+			"type": "string"
+		},
+		"Quantity": {
+			"title": "Quantity",
+			"required": true,
+			"type": "number"
+		},
+		"Unit": {
+			"title": "Unit",
+			"required": true,
+			"type": "string"
+		}
+	}
+}

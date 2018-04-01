@@ -3,18 +3,16 @@ package io.logmall.actions;
 
 import javax.json.JsonObject;
 import javax.json.JsonString;
-import javax.xml.bind.JAXBException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.fraunhofer.ccl.bo.instancerepository.boundary.rest.api.ItemMasterService;
 import de.fraunhofer.ccl.bo.integration.resteasy.ResteasyIntegration;
-import de.fraunhofer.ccl.bo.model.bod.BusinessObjectDocument;
 import de.fraunhofer.ccl.bo.model.bod.ChangeItemMaster;
-import de.fraunhofer.ccl.bo.model.bod.verb.Respond;
-import de.fraunhofer.ccl.bo.model.entity.itemmaster.ItemMaster;
+import de.fraunhofer.ccl.bo.model.bod.RespondItemMaster;
 import io.elastic.api.ExecutionParameters;
+import io.elastic.api.Message;
 import io.elastic.api.Module;
 import io.logmall.Constants;
 import io.logmall.mapper.StandaloneBusinessObjectDocumentJsonMapper;
@@ -39,7 +37,6 @@ public class SendItemMasterBOD implements Module{
 
 		try {
 
-
 			// body contains the mapped data
 			final JsonObject body = parameters.getMessage().getBody();
 
@@ -53,27 +50,24 @@ public class SendItemMasterBOD implements Module{
 			// throw new IllegalStateException("apiKey is required");
 			// }
 
-			// access the value of the status field defined in trigger's fields section of
-			// component.json
 			JsonString serverURL = configuration.getJsonString(Constants.URL_CONFIGURATION_KEY);
 			LOGGER.info("App Server URL: " + serverURL.getString());
-			ItemMasterService itemMasterService = ResteasyIntegration.newInstance().createClientProxy(ItemMasterService.class,
-					serverURL.getString());
 			StandaloneBusinessObjectDocumentJsonMapper<ChangeItemMaster> changeItemMasterJsonMapper = new StandaloneBusinessObjectDocumentJsonMapper<>(ChangeItemMaster.class);
 			ChangeItemMaster changeItemMaster = changeItemMasterJsonMapper.fromJson(body);
 			LOGGER.info("Change action code: " + changeItemMaster.getVerb().getActionCode());
-			BusinessObjectDocument<Respond, ItemMaster> response = itemMasterService.put(changeItemMaster);
+			ItemMasterService itemMasterService = ResteasyIntegration.newInstance().createClientProxy(ItemMasterService.class,
+					serverURL.getString());
+			RespondItemMaster response = (RespondItemMaster) itemMasterService.put(changeItemMaster);
 			LOGGER.info("ItemMaster successfully created");
 			LOGGER.info("Emitting data: " + response);
+			StandaloneBusinessObjectDocumentJsonMapper<RespondItemMaster> respondItemMasterJsonMapper = new StandaloneBusinessObjectDocumentJsonMapper<>(RespondItemMaster.class);
+			Message responseMessage = new Message.Builder().body(respondItemMasterJsonMapper.toJson(response)).build();
+			parameters.getEventEmitter().emitData(responseMessage);
 
-		} catch (JAXBException e) {
+		} catch (Exception e) {
 			LOGGER.error(e.getMessage(), e);
-			throw new IllegalStateException("Exception during API call: " + e.getMessage());
-			
-		} catch (Throwable e) {
-			LOGGER.error(e.getMessage(), e);
-			throw new IllegalStateException("Exception during API call: " + e.getMessage());
-		}
+			parameters.getEventEmitter().emitException(e);
+		} 
 	}
 	
 }

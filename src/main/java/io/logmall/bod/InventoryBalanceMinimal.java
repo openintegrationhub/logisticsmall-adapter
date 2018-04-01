@@ -10,17 +10,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class BalanceMinimal implements Serializable {
+public class InventoryBalanceMinimal implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@XmlElement(name = "Items")
-	private List<BalanceMinimalItem> items;
+	private List<InventoryBalanceLineMinimal> items;
 
-	public List<BalanceMinimalItem> getItems() {
+	public List<InventoryBalanceLineMinimal> getItems() {
 		return items;
 	}
 
-	public void setItems(List<BalanceMinimalItem> data) {
+	public void setItems(List<InventoryBalanceLineMinimal> data) {
 		this.items = data;
 	}
 

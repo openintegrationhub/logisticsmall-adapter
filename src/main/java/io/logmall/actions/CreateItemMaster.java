@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.json.JsonObject;
 import javax.json.JsonString;
+import javax.ws.rs.NotFoundException;
 import javax.xml.bind.JAXBException;
 
 import org.slf4j.Logger;
@@ -69,24 +70,16 @@ public class CreateItemMaster implements Module {
 			LOGGER.info("MinimalItemMaster successfully created:\t" + response.toString());
 			JsonObject responseBody = getEventBody(response);
 			Message data;
-			if (responseBody != null)
-				data = new Message.Builder().body(responseBody).build();
-			else
-				data = new Message.Builder().build();
+			data = new Message.Builder().body(responseBody).build();
 			// emitting the message to the platform
 			parameters.getEventEmitter().emitData(data);
-
-		} catch (JAXBException e) {
+		} catch (Exception e) {
 			LOGGER.error(e.getMessage(), e);
-			throw new IllegalStateException("Exception during API call: " + e.getMessage());
-
-		} catch (Throwable e) {
-			LOGGER.error(e.getMessage(), e);
-			throw new IllegalStateException("Exception during API call: " + e.getMessage());
+			parameters.getEventEmitter().emitException(e);
 		}
 	}
 
-	private JsonObject getEventBody(RespondItemMaster response) throws JAXBException {
+	private JsonObject getEventBody(RespondItemMaster response) throws JAXBException, NotFoundException {
 		List<ItemMaster> nouns = response.getNounsForIteration();
 		if (!nouns.isEmpty()) {
 			ItemMaster itemMasterNoun = nouns.get(0);
@@ -100,7 +93,7 @@ public class CreateItemMaster implements Module {
 			JsonObject jsonObject = mapper.toJson(itemMasterMinimalNoun);
 			return jsonObject;
 		} else
-			return null;
+			throw new NotFoundException("No Item Master found");
 	}
 
 	private ChangeItemMaster createItemMaster(ItemMasterMinimal itemMasterMinimal) {

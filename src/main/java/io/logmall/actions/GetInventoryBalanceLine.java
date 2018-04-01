@@ -1,8 +1,6 @@
 package io.logmall.actions;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.json.JsonObject;
 import javax.json.JsonString;
@@ -26,13 +24,12 @@ import io.elastic.api.ExecutionParameters;
 import io.elastic.api.Message;
 import io.elastic.api.Module;
 import io.logmall.Constants;
-import io.logmall.bod.InventoryBalanceMinimal;
 import io.logmall.bod.InventoryBalanceLineMinimal;
 import io.logmall.bod.InventoryBalanceParameters;
 import io.logmall.mapper.ParametersJsonMapper;
 
-public class GetInventoryBalance implements Module {
-	private static final Logger LOGGER = LoggerFactory.getLogger(GetInventoryBalance.class);
+public class GetInventoryBalanceLine implements Module {
+	private static final Logger LOGGER = LoggerFactory.getLogger(GetInventoryBalanceLine.class);
 
 	/**
 	 * Executes the actions's logic by sending a request to the logmall API and
@@ -52,10 +49,8 @@ public class GetInventoryBalance implements Module {
 
 			ParametersJsonMapper<InventoryBalanceParameters> parametersJsonMapper = new ParametersJsonMapper<>(
 					InventoryBalanceParameters.class);
-			if (parameters.getMessage().getBody() != null) {
-				InventoryBalanceParameters balanceParameters = parametersJsonMapper.fromJson(parameters.getMessage().getBody());
-				// do somethin
-			}
+			InventoryBalanceParameters balanceParameters;
+			balanceParameters = parametersJsonMapper.fromJson(parameters.getMessage().getBody());
 
 			String jpql = "SELECT entity FROM InventoryBalance entity ORDER BY entity.creationDateTime DESC";
 
@@ -70,55 +65,54 @@ public class GetInventoryBalance implements Module {
 					.createClientProxy(InventoryBalanceService.class, serverURL.getString());
 			ShowInventoryBalance resultBod = (ShowInventoryBalance) restService.get(requestBod);
 
-			JsonObject responseBody = getEventBody(resultBod);
-
+			JsonObject responseBody = getEventBody(resultBod, balanceParameters.getItemMaster());
 			Message data;
-			if (responseBody != null)
-				data = new Message.Builder().body(responseBody).build();
-			else
-				data = new Message.Builder().build();
-			// emitting the message to the platform
+			data = new Message.Builder().body(responseBody).build();
 			parameters.getEventEmitter().emitData(data);
 
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage(), e);
 			parameters.getEventEmitter().emitException(e);
-		}
+		} 
 	}
 
-	private JsonObject getEventBody(ShowInventoryBalance resultBod) throws JAXBException, NotFoundException {
+	private JsonObject getEventBody(ShowInventoryBalance resultBod, String itemMasterStr) throws JAXBException, NotFoundException {
+
+		InventoryBalanceLineMinimal balanceItem = null;
 
 		if (resultBod.hasNouns() == false)
 			throw new NotFoundException("No Inventory Balance found");
 
 		InventoryBalance mallBalance = resultBod.getNounsForIteration().get(0);
 
-		List<InventoryBalanceLineMinimal> externalBalanceItems = new ArrayList<>();
-
-		if (mallBalance.getItemLines() != null) {
-			for (InventoryBalanceLine mallBalanceItem : mallBalance.getItemLines()) {
-				if (mallBalanceItem == null) {
-					continue;
-				}
-				Quantity availableQuantity = mallBalanceItem.getAvailableQuantity();
-				ItemMaster itemMaster = mallBalanceItem.getItem().getMasterData();
-				String itemNumber = itemMaster.getDisplayIdentifierId();
-				BigDecimal quantityValue = availableQuantity.getValue();
-				String quantityUnit = availableQuantity.getUnitName();
-
-				InventoryBalanceLineMinimal externalBalanceItem = new InventoryBalanceLineMinimal();
-				externalBalanceItem.setItemMaster(itemNumber);
-				externalBalanceItem.setQuantity(quantityValue);
-				externalBalanceItem.setUnit(quantityUnit);
-				externalBalanceItems.add(externalBalanceItem);
+		if (mallBalance.getItemLines() == null || mallBalance.getItemLines().isEmpty()) {
+			throw new NotFoundException("No Inventory Balance Item found");
+		}
+		
+		for (InventoryBalanceLine mallBalanceItem : mallBalance.getItemLines()) {
+			if (mallBalanceItem == null) {
+				continue;
+			} else if (mallBalanceItem.getItem().getDisplayIdentifierId().equals(itemMasterStr) == false ) {
+				continue;
 			}
+			Quantity availableQuantity = mallBalanceItem.getAvailableQuantity();
+			ItemMaster itemMaster = mallBalanceItem.getItem().getMasterData();
+			String itemNumber = itemMaster.getDisplayIdentifierId();
+			BigDecimal quantityValue = availableQuantity.getValue();
+			String quantityUnit = availableQuantity.getUnitName();
+
+			balanceItem = new InventoryBalanceLineMinimal();
+			balanceItem.setItemMaster(itemNumber);
+			balanceItem.setQuantity(quantityValue);
+			balanceItem.setUnit(quantityUnit);
+			break;
 		}
 
-		InventoryBalanceMinimal externalBalance = new InventoryBalanceMinimal();
-		externalBalance.setItems(externalBalanceItems);
+		if (balanceItem == null)
+			throw new NotFoundException("No Inventory Balance Item found for Item Master " + itemMasterStr);
 
-		ParametersJsonMapper<InventoryBalanceMinimal> mapper = new ParametersJsonMapper<>(InventoryBalanceMinimal.class);
-		return mapper.toJson(externalBalance);
+		ParametersJsonMapper<InventoryBalanceLineMinimal> mapper = new ParametersJsonMapper<>(InventoryBalanceLineMinimal.class);
+		return mapper.toJson(balanceItem);
 	}
 
 }
