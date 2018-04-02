@@ -43,7 +43,7 @@ public class GetInventoryBalanceLine implements Module {
 		try {
 			// contains action's configuration
 			ConfigurationParameters configuration = new ParametersJsonMapper<>(ConfigurationParameters.class).fromJson(parameters.getConfiguration());
-			LOGGER.info("App Server URL: " + configuration.getServerUrl());
+			LOGGER.info("App Server URL: " + configuration.getServerURLd());
 			
 			ParametersJsonMapper<InventoryBalanceParameters> parametersJsonMapper = new ParametersJsonMapper<>(
 					InventoryBalanceParameters.class);
@@ -59,7 +59,7 @@ public class GetInventoryBalanceLine implements Module {
 			BusinessObjectDocument<Get, InventoryBalance> requestBod = bodBuilder.build();
 
 			InventoryBalanceService restService = ResteasyIntegration.newInstance()
-					.createClientProxy(InventoryBalanceService.class, configuration.getServerUrl());
+					.createClientProxy(InventoryBalanceService.class, configuration.getServerURLd());
 			ShowInventoryBalance resultBod = (ShowInventoryBalance) restService.get(requestBod);
 
 			JsonObject responseBody = getEventBody(resultBod, balanceParameters.getItemMaster());

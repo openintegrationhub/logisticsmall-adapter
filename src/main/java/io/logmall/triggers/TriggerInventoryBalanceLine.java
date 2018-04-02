@@ -30,7 +30,7 @@ public class TriggerInventoryBalanceLine implements Module {
 		try {
 			// contains trigger's configuration
 			ConfigurationParameters configuration = new ParametersJsonMapper<>(ConfigurationParameters.class).fromJson(parameters.getConfiguration());
-			LOGGER.info("App Server URL: " + configuration.getServerUrl());
+			LOGGER.info("App Server URL: " + configuration.getServerURLd());
 			
 			String itemMaster = configuration.getItemMaster();
 			JsonObject responseBody = getEventBody(itemMaster);

@@ -21,7 +21,7 @@ public class ConfigurationParameters implements Serializable{
 	
 	private String itemMaster;
 	
-	private String serverUrl;
+	private String serverURLd;
 
 	public String getItemMaster() {
 		return itemMaster;
@@ -31,14 +31,15 @@ public class ConfigurationParameters implements Serializable{
 		this.itemMaster = itemMaster;
 	}
 
-	public String getServerUrl() {
-		return serverUrl;
+	public String getServerURLd() {
+		return serverURLd;
 	}
 
-	public void setServerUrl(String serverUrl) {
-		this.serverUrl = serverUrl;
+	public void setServerURLd(String serverURLd) {
+		this.serverURLd = serverURLd;
 	}
 
+	
 	
 
 }

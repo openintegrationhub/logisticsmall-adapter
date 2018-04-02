@@ -61,9 +61,9 @@ public class CreateItemMaster implements Module {
 			// ----- setup communication -----
 			// contains action's configuration
 			ConfigurationParameters configuration = new ParametersJsonMapper<>(ConfigurationParameters.class).fromJson(parameters.getConfiguration());
-			LOGGER.info("App Server URL: " + configuration.getServerUrl());
+			LOGGER.info("App Server URL: " + configuration.getServerURLd());
 			ItemMasterService itemMasterService = ResteasyIntegration.newInstance()
-					.createClientProxy(ItemMasterService.class, configuration.getServerUrl());
+					.createClientProxy(ItemMasterService.class, configuration.getServerURLd());
 			RespondItemMaster response = (RespondItemMaster) itemMasterService.put(requestBod);
 			LOGGER.info("MinimalItemMaster successfully created:\t" + response.toString());
 			JsonObject responseBody = getEventBody(response);

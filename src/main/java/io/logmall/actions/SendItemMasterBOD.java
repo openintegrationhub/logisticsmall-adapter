@@ -50,12 +50,12 @@ public class SendItemMasterBOD implements Module{
 			// }
 
 			ConfigurationParameters configuration = new ParametersJsonMapper<>(ConfigurationParameters.class).fromJson(parameters.getConfiguration());
-			LOGGER.info("App Server URL: " + configuration.getServerUrl());
+			LOGGER.info("App Server URL: " + configuration.getServerURLd());
 			StandaloneBusinessObjectDocumentJsonMapper<ChangeItemMaster> changeItemMasterJsonMapper = new StandaloneBusinessObjectDocumentJsonMapper<>(ChangeItemMaster.class);
 			ChangeItemMaster changeItemMaster = changeItemMasterJsonMapper.fromJson(body);
 			LOGGER.info("Change action code: " + changeItemMaster.getVerb().getActionCode());
 			ItemMasterService itemMasterService = ResteasyIntegration.newInstance().createClientProxy(ItemMasterService.class,
-					configuration.getServerUrl());
+					configuration.getServerURLd());
 			RespondItemMaster response = (RespondItemMaster) itemMasterService.put(changeItemMaster);
 			LOGGER.info("ItemMaster successfully created");
 			LOGGER.info("Emitting data: " + response);
