@@ -32,26 +32,27 @@
 					"out": "./schemas/triggerInventoryBalanceParameters.out.out.json"
 				}
 			}
-		}},
-		"actions": {
-			"createItemMaster": {
-				"main": "io.logmall.actions.CreateItemMaster",
-				"title": "Create an Item Master",
-				"description": "Creates a new Item Master",
-				"metadata": {
-					"in": "./schemas/createItemMaster.in.json",
-					"out": "./schemas/createItemMaster.out.json"
-				}
-			},
-			"getInventoryBalanceLine": {
-				"main": "io.logmall.actions.GetInventoryBalanceLine",
-				"title": "Get Inventory Balance",
-				"description": "Gets available inventory line for given item master",
-				"metadata": {
-					"in": "./schemas/getInventoryBalanceLine.in.json",
-					"out": "./schemas/getInventoryBalanceLine.out.json"
-				}
+		}
+	},
+	"actions": {
+		"createItemMaster": {
+			"main": "io.logmall.actions.CreateItemMaster",
+			"title": "Create an Item Master",
+			"description": "Creates a new Item Master",
+			"metadata": {
+				"in": "./schemas/createItemMaster.in.json",
+				"out": "./schemas/createItemMaster.out.json"
+			}
+		},
+		"getInventoryBalanceLine": {
+			"main": "io.logmall.actions.GetInventoryBalanceLine",
+			"title": "Get Inventory Balance",
+			"description": "Gets available inventory line for given item master",
+			"metadata": {
+				"in": "./schemas/getInventoryBalanceLine.in.json",
+				"out": "./schemas/getInventoryBalanceLine.out.json"
 			}
 		}
 	}
 }
+
