@@ -25,6 +25,8 @@ public class CallbackListener<T extends Serializable> {
 	
 	private JsonObject received;
 	
+	private boolean interrupt = false;
+	
 	public CallbackListener() {
 		semaphore = new Object();
 	}
@@ -39,6 +41,11 @@ public class CallbackListener<T extends Serializable> {
 						received = message.getBody();
 						LOGGER.info("received " + received);
 					}
+				} else {
+					synchronized (semaphore) {
+						interrupt = true;
+						LOGGER.info("interrupted");
+					}
 				}
 			}
 		};
@@ -47,7 +54,7 @@ public class CallbackListener<T extends Serializable> {
 	
 	public T wait(Class<T> receiveType) {
 		
-		while(true) {
+		do {
 			synchronized (semaphore) {
 				if (received != null)
 					try {
@@ -64,7 +71,9 @@ public class CallbackListener<T extends Serializable> {
 				LOGGER.warn(e.getMessage());
 				return null;
 			}
-		}
+		} while( ! interrupt);
+		
+		return null;
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })

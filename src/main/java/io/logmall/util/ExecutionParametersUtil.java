@@ -56,7 +56,6 @@ public final class ExecutionParametersUtil {
 
 		JsonReader jsonParser = Json.createReader(new StringReader(Constants.OTC_URL_CONFIGURATION));
 		JsonObject jsonUrl = jsonParser.readObject();
-
 		executionParametersBuilder.configuration(jsonUrl);
 
 		return executionParametersBuilder.build();

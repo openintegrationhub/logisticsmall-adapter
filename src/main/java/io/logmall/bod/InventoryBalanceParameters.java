@@ -14,7 +14,7 @@ public class InventoryBalanceParameters implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@XmlElement(name = "ItemMaster")
-	String itemMaster;
+	private String itemMaster;
 
 	public String getItemMaster() {
 		return itemMaster;
@@ -23,5 +23,6 @@ public class InventoryBalanceParameters implements Serializable{
 	public void setItemMaster(String itemMaster) {
 		this.itemMaster = itemMaster;
 	}
+
 	
 }

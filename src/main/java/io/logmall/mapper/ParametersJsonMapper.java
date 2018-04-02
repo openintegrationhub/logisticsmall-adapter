@@ -40,7 +40,7 @@ public class ParametersJsonMapper<T extends Serializable> {
 		
 		marshaller = jaxbContext.createMarshaller();
 		marshaller.setProperty(MarshallerProperties.MEDIA_TYPE, MediaType.APPLICATION_JSON);
-		unmarshaller.setProperty(MarshallerProperties.JSON_INCLUDE_ROOT, false);
+		marshaller.setProperty(MarshallerProperties.JSON_INCLUDE_ROOT, false);
 	}
 
 	protected JAXBContext getJAXBContext(Class<T> forClass) throws JAXBException {

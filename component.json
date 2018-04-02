@@ -14,32 +14,43 @@
 	},
 	"triggers": {
 		"getItemMaster": {
-			"main": "io.logmall.triggers.GetItemMasterJaxRs",
+			"main": "io.logmall.triggers.GetItemMaster",
 			"type": "polling",
-			"title": "Create a Item  (JAX-RS)",
-			"description": "Retrieves items from the logistics mall API by given item status using Java API for RESTful Web Services (JAX-RS)",
+			"title": "Create an Item",
+			"description": "Retrieves items from the logistics mall API",
 			"metadata": {
 				"out": "./schemas/getItemMasterSchema.out.json"
 			}
-		}
-	},
-	"actions": {
-		"createItemMaster": {
-			"main": "io.logmall.actions.CreateItemMaster",
-			"title": "Create an Item Master",
-			"description": "Creates a new Item Master",
-			"metadata": {
-				"in": "./schemas/createItemMaster.in.json",
-				"out": "./schemas/createItemMaster.out.json"
-			}
 		},
 		"getInventoryBalanceLine": {
-			"main": "io.logmall.actions.GetInventoryBalanceLine",
-			"title": "Get Inventory Balance",
-			"description": "Gets available inventory line for given item master",
-			"metadata": {
-				"in": "./schemas/getInventoryBalanceLine.in.json",
-				"out": "./schemas/getInventoryBalanceLine.out.json"
+			"main": "io.logmall.triggers.GetInventoryBalanceLine",
+			"type": "polling",
+			"title": "Get an Inventory Balance Line",
+			"description": "Retrieves Inventory Balance Line from the logistics mall API by given item master",
+			"fields": {
+				"parameters": {
+					"out": "./schemas/getInventoryBalanceParameters.out.json"
+				}
+			}
+		},
+		"actions": {
+			"createItemMaster": {
+				"main": "io.logmall.actions.CreateItemMaster",
+				"title": "Create an Item Master",
+				"description": "Creates a new Item Master",
+				"metadata": {
+					"in": "./schemas/createItemMaster.in.json",
+					"out": "./schemas/createItemMaster.out.json"
+				}
+			},
+			"getInventoryBalanceLine": {
+				"main": "io.logmall.actions.GetInventoryBalanceLine",
+				"title": "Get Inventory Balance",
+				"description": "Gets available inventory line for given item master",
+				"metadata": {
+					"in": "./schemas/getInventoryBalanceLine.in.json",
+					"out": "./schemas/getInventoryBalanceLine.out.json"
+				}
 			}
 		}
 	}

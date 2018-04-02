@@ -1,4 +1,4 @@
-package io.logmall.actions;
+package io.logmall.triggers;
 
 import java.math.BigDecimal;
 
@@ -42,14 +42,15 @@ public class GetInventoryBalanceLine implements Module {
 	public void execute(final ExecutionParameters parameters) {
 		LOGGER.info("Read InventoryBalance data");
 		try {
-			// contains action's configuration
+			// contains trigger's configuration
 			final JsonObject configuration = parameters.getConfiguration();
 			JsonString serverURL = configuration.getJsonString(Constants.URL_CONFIGURATION_KEY);
 			LOGGER.info("App Server URL: " + serverURL.getString());
-			
+
 			ParametersJsonMapper<InventoryBalanceParameters> parametersJsonMapper = new ParametersJsonMapper<>(
 					InventoryBalanceParameters.class);
-			InventoryBalanceParameters balanceParameters = parametersJsonMapper.fromJson(parameters.getMessage().getBody());
+			InventoryBalanceParameters balanceParameters;
+			balanceParameters = parametersJsonMapper.fromJson(parameters.getMessage().getBody());
 
 			String jpql = "SELECT entity FROM InventoryBalance entity ORDER BY entity.creationDateTime DESC";
 
@@ -91,13 +92,7 @@ public class GetInventoryBalanceLine implements Module {
 		for (InventoryBalanceLine mallBalanceItem : mallBalance.getItemLines()) {
 			if (mallBalanceItem == null) {
 				continue;
-			} else if (mallBalanceItem.getItem() == null ) {
-				continue;
-			}  else if (mallBalanceItem.getItem().getMasterData() == null ) {
-				continue;
-			} else if (mallBalanceItem.getItem().getMasterData().getDisplayIdentifierId() == null ) {
-				continue;
-			} else if (mallBalanceItem.getItem().getMasterData().getDisplayIdentifierId().equals(itemMasterStr) == false ) {
+			} else if (mallBalanceItem.getItem().getDisplayIdentifierId().equals(itemMasterStr) == false ) {
 				continue;
 			}
 			Quantity availableQuantity = mallBalanceItem.getAvailableQuantity();

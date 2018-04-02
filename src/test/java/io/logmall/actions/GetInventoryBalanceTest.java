@@ -17,9 +17,9 @@ import io.logmall.bod.InventoryBalanceParameters;
 import io.logmall.mapper.ParametersJsonMapper;
 import io.logmall.util.ExecutionParametersUtil;
 
-public class ReadBalanceTest {
+public class GetInventoryBalanceTest {
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger(ReadBalanceTest.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(GetInventoryBalanceTest.class);
 	
 	/**
 	 * Test reading inventory balance from mall application

@@ -24,9 +24,9 @@ import io.logmall.Constants;
 import io.logmall.actions.CreateItemMaster;
 import io.logmall.res.ResourceResolver;
 
-public class GetItemMasterJaxRs implements Module {
+public class GetItemMaster implements Module {
 
-	private static final Logger logger = LoggerFactory.getLogger(GetItemMasterJaxRs.class);
+	private static final Logger logger = LoggerFactory.getLogger(GetItemMaster.class);
 
 	private static final String RESOURCE = "ChangeItemMaster.json";
 	Scanner scanner = null;
