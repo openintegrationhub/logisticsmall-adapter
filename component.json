@@ -13,8 +13,8 @@
 		}
 	},
 	"triggers": {
-		"getItemMaster": {
-			"main": "io.logmall.triggers.GetItemMaster",
+		"triggerItemMaster": {
+			"main": "io.logmall.triggers.TriggerItemMaster",
 			"type": "polling",
 			"title": "Create an Item",
 			"description": "Retrieves items from the logistics mall API",
@@ -22,14 +22,14 @@
 				"out": "./schemas/getItemMasterSchema.out.json"
 			}
 		},
-		"getInventoryBalanceLine": {
-			"main": "io.logmall.triggers.GetInventoryBalanceLine",
+		"triggerInventoryBalanceLine": {
+			"main": "io.logmall.triggers.TriggerInventoryBalanceLine",
 			"type": "polling",
 			"title": "Get an Inventory Balance Line",
 			"description": "Retrieves Inventory Balance Line from the logistics mall API by given item master",
 			"fields": {
 				"parameters": {
-					"out": "./schemas/getInventoryBalanceParameters.out.json"
+					"out": "./schemas/triggerInventoryBalanceParameters.out.out.json"
 				}
 			}
 		},

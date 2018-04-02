@@ -28,8 +28,8 @@ import io.logmall.bod.InventoryBalanceLineMinimal;
 import io.logmall.bod.InventoryBalanceParameters;
 import io.logmall.mapper.ParametersJsonMapper;
 
-public class GetInventoryBalanceLine implements Module {
-	private static final Logger LOGGER = LoggerFactory.getLogger(GetInventoryBalanceLine.class);
+public class TriggerInventoryBalanceLine implements Module {
+	private static final Logger LOGGER = LoggerFactory.getLogger(TriggerInventoryBalanceLine.class);
 
 	/**
 	 * Executes the actions's logic by sending a request to the logmall API and
