@@ -16,7 +16,7 @@
 		"triggerItemMaster": {
 			"main": "io.logmall.triggers.TriggerItemMaster",
 			"type": "polling",
-			"title": "Create an Item",
+			"title": "Triggers creation of an Item",
 			"description": "Retrieves items from the logistics mall API",
 			"metadata": {
 				"out": "./schemas/getItemMasterSchema.out.json"
@@ -25,8 +25,16 @@
 		"triggerInventoryBalanceLine": {
 			"main": "io.logmall.triggers.TriggerInventoryBalanceLine",
 			"type": "polling",
-			"title": "Get an Inventory Balance Line",
+			"title": "Triggers retrieving of an Inventory Balance Line",
 			"description": "Retrieves Inventory Balance Line from the logistics mall API by given item master",
+			"fields": {
+				"itemMaster": {
+					"label": "Item Master",
+					"required": true,
+					"viewClass": "TextFieldWithNoteView",
+					"note": "Enter Item Master Id"
+				}
+			},
 			"metadata": {
 				"out": "./schemas/triggerInventoryBalanceParameters.out.json"
 			}
