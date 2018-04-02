@@ -32,7 +32,7 @@
 					"out": "./schemas/triggerInventoryBalanceParameters.out.out.json"
 				}
 			}
-		},
+		}},
 		"actions": {
 			"createItemMaster": {
 				"main": "io.logmall.actions.CreateItemMaster",
