@@ -27,10 +27,8 @@
 			"type": "polling",
 			"title": "Get an Inventory Balance Line",
 			"description": "Retrieves Inventory Balance Line from the logistics mall API by given item master",
-			"fields": {
-				"parameters": {
-					"out": "./schemas/triggerInventoryBalanceParameters.out.json"
-				}
+			"metadata": {
+				"out": "./schemas/triggerInventoryBalanceParameters.out.json"
 			}
 		}
 	},
