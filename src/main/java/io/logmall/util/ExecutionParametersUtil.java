@@ -1,10 +1,7 @@
 package io.logmall.util;
 
-import java.io.StringReader;
-
-import javax.json.Json;
 import javax.json.JsonObject;
-import javax.json.JsonReader;
+import javax.xml.bind.JAXBException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +10,8 @@ import io.elastic.api.EventEmitter;
 import io.elastic.api.EventEmitter.Callback;
 import io.elastic.api.ExecutionParameters;
 import io.elastic.api.Message;
-import io.logmall.Constants;
+import io.logmall.bod.ConfigurationParameters;
+import io.logmall.mapper.ParametersJsonMapper;
 
 public final class ExecutionParametersUtil {
 
@@ -24,6 +22,11 @@ public final class ExecutionParametersUtil {
 	}
 	
 	public static ExecutionParameters getExecutionParameters(JsonObject body, Callback callback) {
+		return getExecutionParameters(body, callback, null);
+	}
+
+	
+	public static ExecutionParameters getExecutionParameters(JsonObject body, Callback callback, ConfigurationParameters configurationParameters) {
 		if (callback == null) {
 			callback = new Callback() {
 				@Override
@@ -54,9 +57,21 @@ public final class ExecutionParametersUtil {
 		ExecutionParameters.Builder executionParametersBuilder = new ExecutionParameters.Builder(inputMessage,
 				eventEmitter);
 
-		JsonReader jsonParser = Json.createReader(new StringReader(Constants.OTC_URL_CONFIGURATION));
-		JsonObject jsonUrl = jsonParser.readObject();
-		executionParametersBuilder.configuration(jsonUrl);
+		ConfigurationParameters configuration;
+		if (configurationParameters == null) {
+			configuration = new ConfigurationParameters();
+			configuration.setServerUrl(ConfigurationParameters.OTC_URL_CONFIGURATION_VALUE);
+		} else {
+			configuration = configurationParameters;
+		}
+		
+		JsonObject jsonObject;
+		try {
+			jsonObject = new ParametersJsonMapper<ConfigurationParameters>(ConfigurationParameters.class).toJson(configuration);
+			executionParametersBuilder.configuration(jsonObject);
+		} catch (JAXBException e) {
+			LOGGER.error(e.getMessage(), e);
+		}
 
 		return executionParametersBuilder.build();
 	}

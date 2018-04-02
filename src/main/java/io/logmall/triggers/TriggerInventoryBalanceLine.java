@@ -1,7 +1,6 @@
 package io.logmall.triggers;
 
 import javax.json.JsonObject;
-import javax.json.JsonString;
 import javax.ws.rs.NotFoundException;
 import javax.xml.bind.JAXBException;
 
@@ -11,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import io.elastic.api.ExecutionParameters;
 import io.elastic.api.Message;
 import io.elastic.api.Module;
-import io.logmall.Constants;
+import io.logmall.bod.ConfigurationParameters;
 import io.logmall.bod.InventoryBalanceParameters;
 import io.logmall.mapper.ParametersJsonMapper;
 
@@ -30,12 +29,11 @@ public class TriggerInventoryBalanceLine implements Module {
 		LOGGER.info("Read InventoryBalance data");
 		try {
 			// contains trigger's configuration
-			final JsonObject configuration = parameters.getConfiguration();
-			JsonString serverURL = configuration.getJsonString(Constants.URL_CONFIGURATION_KEY);
-			LOGGER.info("App Server URL: " + serverURL.getString());
-
-			JsonString itemMaster = configuration.getJsonString("itemMaster");
-			JsonObject responseBody = getEventBody(itemMaster.getString());
+			ConfigurationParameters configuration = new ParametersJsonMapper<>(ConfigurationParameters.class).fromJson(parameters.getConfiguration());
+			LOGGER.info("App Server URL: " + configuration.getServerUrl());
+			
+			String itemMaster = configuration.getItemMaster();
+			JsonObject responseBody = getEventBody(itemMaster);
 			Message data;
 			data = new Message.Builder().body(responseBody).build();
 			parameters.getEventEmitter().emitData(data);

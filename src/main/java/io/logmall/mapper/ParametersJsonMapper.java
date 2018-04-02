@@ -3,6 +3,7 @@ package io.logmall.mapper;
 import java.io.Serializable;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.util.Collection;
 
 import javax.json.Json;
 import javax.json.JsonObject;
@@ -62,6 +63,18 @@ public class ParametersJsonMapper<T extends Serializable> {
 		LOGGER.info("toJson: " + parameter);
 		StringWriter stringWriter = new StringWriter();
 		getMarshaller().marshal(parameter, stringWriter);
+		JsonReader jsonReader = Json.createReader(new StringReader(stringWriter.toString()));
+		try {
+			return jsonReader.readObject();
+		} finally {
+			jsonReader.close();
+		}
+	}
+	
+	public JsonObject toJson(Collection<T> parameters) throws JAXBException {
+		LOGGER.info("toJson: " + parameters);
+		StringWriter stringWriter = new StringWriter();
+		getMarshaller().marshal(parameters, stringWriter);
 		JsonReader jsonReader = Json.createReader(new StringReader(stringWriter.toString()));
 		try {
 			return jsonReader.readObject();

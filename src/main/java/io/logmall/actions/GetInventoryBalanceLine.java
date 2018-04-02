@@ -3,7 +3,6 @@ package io.logmall.actions;
 import java.math.BigDecimal;
 
 import javax.json.JsonObject;
-import javax.json.JsonString;
 import javax.ws.rs.NotFoundException;
 import javax.xml.bind.JAXBException;
 
@@ -23,7 +22,7 @@ import de.fraunhofer.ccl.bo.model.entity.itemmaster.ItemMaster;
 import io.elastic.api.ExecutionParameters;
 import io.elastic.api.Message;
 import io.elastic.api.Module;
-import io.logmall.Constants;
+import io.logmall.bod.ConfigurationParameters;
 import io.logmall.bod.InventoryBalanceLineMinimal;
 import io.logmall.bod.InventoryBalanceParameters;
 import io.logmall.mapper.ParametersJsonMapper;
@@ -43,9 +42,8 @@ public class GetInventoryBalanceLine implements Module {
 		LOGGER.info("Read InventoryBalance data");
 		try {
 			// contains action's configuration
-			final JsonObject configuration = parameters.getConfiguration();
-			JsonString serverURL = configuration.getJsonString(Constants.URL_CONFIGURATION_KEY);
-			LOGGER.info("App Server URL: " + serverURL.getString());
+			ConfigurationParameters configuration = new ParametersJsonMapper<>(ConfigurationParameters.class).fromJson(parameters.getConfiguration());
+			LOGGER.info("App Server URL: " + configuration.getServerUrl());
 			
 			ParametersJsonMapper<InventoryBalanceParameters> parametersJsonMapper = new ParametersJsonMapper<>(
 					InventoryBalanceParameters.class);
@@ -61,7 +59,7 @@ public class GetInventoryBalanceLine implements Module {
 			BusinessObjectDocument<Get, InventoryBalance> requestBod = bodBuilder.build();
 
 			InventoryBalanceService restService = ResteasyIntegration.newInstance()
-					.createClientProxy(InventoryBalanceService.class, serverURL.getString());
+					.createClientProxy(InventoryBalanceService.class, configuration.getServerUrl());
 			ShowInventoryBalance resultBod = (ShowInventoryBalance) restService.get(requestBod);
 
 			JsonObject responseBody = getEventBody(resultBod, balanceParameters.getItemMaster());

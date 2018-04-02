@@ -3,7 +3,6 @@ package io.logmall.actions;
 import java.util.List;
 
 import javax.json.JsonObject;
-import javax.json.JsonString;
 import javax.ws.rs.NotFoundException;
 import javax.xml.bind.JAXBException;
 
@@ -25,7 +24,7 @@ import de.fraunhofer.ccl.bo.model.entity.itemmaster.ItemMaster;
 import io.elastic.api.ExecutionParameters;
 import io.elastic.api.Message;
 import io.elastic.api.Module;
-import io.logmall.Constants;
+import io.logmall.bod.ConfigurationParameters;
 import io.logmall.bod.ItemMasterMinimal;
 import io.logmall.mapper.ParametersJsonMapper;
 import io.logmall.mapper.StandaloneBusinessObjectDocumentJsonMapper;
@@ -61,11 +60,10 @@ public class CreateItemMaster implements Module {
 			standaloneBusinessObjectDocumentJsonMapper.logAsJson(requestBod);
 			// ----- setup communication -----
 			// contains action's configuration
-			final JsonObject configuration = parameters.getConfiguration();
-			JsonString serverURL = configuration.getJsonString(Constants.URL_CONFIGURATION_KEY);
-			LOGGER.info("App Server URL: " + serverURL.getString());
+			ConfigurationParameters configuration = new ParametersJsonMapper<>(ConfigurationParameters.class).fromJson(parameters.getConfiguration());
+			LOGGER.info("App Server URL: " + configuration.getServerUrl());
 			ItemMasterService itemMasterService = ResteasyIntegration.newInstance()
-					.createClientProxy(ItemMasterService.class, serverURL.getString());
+					.createClientProxy(ItemMasterService.class, configuration.getServerUrl());
 			RespondItemMaster response = (RespondItemMaster) itemMasterService.put(requestBod);
 			LOGGER.info("MinimalItemMaster successfully created:\t" + response.toString());
 			JsonObject responseBody = getEventBody(response);

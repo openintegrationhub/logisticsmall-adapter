@@ -2,27 +2,21 @@ package io.logmall.triggers;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.io.StringReader;
 import java.util.Scanner;
 
 import javax.json.Json;
 import javax.json.JsonObject;
-import javax.json.JsonReader;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.elastic.api.EventEmitter;
-import io.elastic.api.EventEmitter.Callback;
 import io.elastic.api.ExecutionParameters;
-import io.elastic.api.Message;
 import io.elastic.api.Module;
-import io.logmall.Constants;
 import io.logmall.actions.CreateItemMaster;
 import io.logmall.res.ResourceResolver;
+import io.logmall.util.ExecutionParametersUtil;
 
 public class TriggerItemMaster implements Module {
 
@@ -52,39 +46,13 @@ public class TriggerItemMaster implements Module {
 			br.close();
 			String changeItemMasterJSON = fileContents.toString();
 
-			final Message message = new Message.Builder()
-					.body((JsonObject) Json.createReader(new StringReader(changeItemMasterJSON)).read()).build();
-			Callback callback = new Callback() {
-				@Override
-				public void receive(Object data) {
+			ExecutionParameters executionParameters = ExecutionParametersUtil.getExecutionParameters(
+					(JsonObject) Json.createReader(new StringReader(changeItemMasterJSON)).read());
+			new CreateItemMaster().execute(executionParameters);
 
-				}
-			};
-			EventEmitter.Builder eventEmitterBuilder = new EventEmitter.Builder();
-			eventEmitterBuilder.onData(callback);
-			eventEmitterBuilder.onError(callback);
-			eventEmitterBuilder.onHttpReplyCallback(callback);
-			eventEmitterBuilder.onRebound(callback);
-			eventEmitterBuilder.onSnapshot(callback);
-			eventEmitterBuilder.onUpdateKeys(callback);
-			final EventEmitter eventEmitter = eventEmitterBuilder.build();
-
-			JsonReader jsonParser = Json.createReader(new StringReader(Constants.LOGATA_DEV_CONFIGURATION));
-
-			ExecutionParameters.Builder executionParametersBuilder = new ExecutionParameters.Builder(message,
-					eventEmitter);
-			executionParametersBuilder.configuration(jsonParser.readObject());
-			new CreateItemMaster().execute(executionParametersBuilder.build());
-
-		} catch (FileNotFoundException e) {
-			//Assert.fail("FileNotFoundException: " + e.getMessage() + " \n Cause: \n");
-			e.printStackTrace();
-		} catch (IOException e) {
-			//Assert.fail("IOException: " + e.getMessage() + " \n Cause: \n" + e.getCause());
-			e.printStackTrace();
-		} catch (Throwable e) {
-			//Assert.fail("Throwable: " + e.getMessage() + " \n Cause: \n" + e.getCause());
-			e.printStackTrace();
+		} catch (Exception e) {
+			logger.error(e.getMessage(),e);
+			
 		} finally {
 			if (scanner != null) {
 				scanner.close();
