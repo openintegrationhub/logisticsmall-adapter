@@ -32,6 +32,7 @@ public class TriggerInventoryBalanceLineTest {
 		new TriggerInventoryBalanceLine().execute(executionParameters);
 		InventoryBalanceParameters balanceParameters = callbackListener.wait(InventoryBalanceParameters.class);
 		Assert.assertNotNull(balanceParameters);
+		Assert.assertEquals("1", balanceParameters.getItemMaster());
 	}
 
 	@Test
@@ -39,9 +40,24 @@ public class TriggerInventoryBalanceLineTest {
 		ConfigurationParameters configurationParameters = new ConfigurationParameters();
 		configurationParameters.setItemMaster("1");
 		configurationParameters.setServerUrl(ConfigurationParameters.OTC_URL_CONFIGURATION_VALUE);
-		JsonObject jsonObject = new ParametersJsonMapper<ConfigurationParameters>(ConfigurationParameters.class)
-				.toJson(configurationParameters);
-		LOGGER.info(jsonObject.toString());
+		ParametersJsonMapper<ConfigurationParameters> mapper = new ParametersJsonMapper<>(ConfigurationParameters.class);
+		JsonObject jsonObject = mapper.toJson(configurationParameters);
+		ConfigurationParameters marshalledConfigurationParamters = mapper.fromJson(jsonObject);
+		Assert.assertEquals(configurationParameters.getItemMaster(), marshalledConfigurationParamters.getItemMaster());
+		
+		
+	}
+	
+	@Test
+	public void testMarshallerInventoryBalanceParamters() throws JAXBException {
+		InventoryBalanceParameters inventoryBalanceParameters = new InventoryBalanceParameters();
+		inventoryBalanceParameters.setItemMaster("1");
+		ParametersJsonMapper<InventoryBalanceParameters> mapper2 = new ParametersJsonMapper<>(InventoryBalanceParameters.class);
+		JsonObject jsonObject2 = mapper2.toJson(inventoryBalanceParameters);
+		LOGGER.info(jsonObject2.toString());
+		InventoryBalanceParameters balanceParameters = mapper2.fromJson(jsonObject2);
+		Assert.assertNotNull(balanceParameters);
+		Assert.assertEquals("1", balanceParameters.getItemMaster());
 	}
 
 }

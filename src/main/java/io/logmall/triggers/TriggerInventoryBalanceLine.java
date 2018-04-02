@@ -50,7 +50,8 @@ public class TriggerInventoryBalanceLine implements Module {
 			throw new NotFoundException("No item master");
 		
 		InventoryBalanceParameters parameters = new InventoryBalanceParameters();
-
+		parameters.setItemMaster(itemMasterStr);
+		
 		ParametersJsonMapper<InventoryBalanceParameters> mapper = new ParametersJsonMapper<>(InventoryBalanceParameters.class);
 		return mapper.toJson(parameters);
 	}
