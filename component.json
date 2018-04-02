@@ -29,7 +29,7 @@
 			"description": "Retrieves Inventory Balance Line from the logistics mall API by given item master",
 			"fields": {
 				"parameters": {
-					"out": "./schemas/triggerInventoryBalanceParameters.out.out.json"
+					"out": "./schemas/triggerInventoryBalanceParameters.out.json"
 				}
 			}
 		}
