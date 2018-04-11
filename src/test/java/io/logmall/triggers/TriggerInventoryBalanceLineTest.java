@@ -4,6 +4,7 @@ import javax.json.JsonObject;
 import javax.xml.bind.JAXBException;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +15,7 @@ import io.logmall.bod.ConfigurationParameters;
 import io.logmall.bod.InventoryBalanceParameters;
 import io.logmall.mapper.ParametersJsonMapper;
 import io.logmall.util.ExecutionParametersUtil;
-
+@Ignore
 public class TriggerInventoryBalanceLineTest {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(TriggerInventoryBalanceLineTest.class);
