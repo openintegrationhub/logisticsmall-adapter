@@ -27,14 +27,6 @@
 			"type": "polling",
 			"title": "Triggers retrieving of an Inventory Balance Line",
 			"description": "Retrieves Inventory Balance Line from the logistics mall API by given item master",
-			"fields": {
-				"itemMaster": {
-					"label": "Item Master",
-					"required": true,
-					"viewClass": "TextFieldWithNoteView",
-					"note": "Enter Item Master Id"
-				}
-			},
 			"metadata": {
 				"out": "./schemas/triggerInventoryBalanceParameters.out.json"
 			}

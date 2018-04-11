@@ -4,6 +4,7 @@ import javax.json.JsonObject;
 import javax.xml.bind.JAXBException;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +13,7 @@ import io.logmall.bod.InventoryBalanceLineMinimal;
 import io.logmall.bod.InventoryBalanceParameters;
 import io.logmall.mapper.ParametersJsonMapper;
 import io.logmall.util.ExecutionParametersUtil;
-
+@Ignore
 public class GetInventoryBalanceLineTest {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(GetInventoryBalanceLineTest.class);
@@ -20,6 +21,7 @@ public class GetInventoryBalanceLineTest {
 	/**
 	 * Test reading inventory balance from mall application
 	 */
+	
 	@Test
 	public void testExecuteWithBody() throws JAXBException {
 		InventoryBalanceParameters parameters = new InventoryBalanceParameters();
