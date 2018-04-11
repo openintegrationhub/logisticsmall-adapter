@@ -30,7 +30,7 @@ import io.logmall.bod.ItemMasterMinimal;
 import io.logmall.mapper.ParametersJsonMapper;
 import io.logmall.res.ResourceResolver;
 import io.logmall.util.ExecutionParametersUtil;
-
+@Ignore
 public class CreateMinimalItemMasterTest {
 	private static final String RESOURCE = "ChangeMinimalItemMaster.json";
 	Scanner scanner = null;

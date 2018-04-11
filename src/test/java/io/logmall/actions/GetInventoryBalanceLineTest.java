@@ -21,7 +21,7 @@ public class GetInventoryBalanceLineTest {
 	/**
 	 * Test reading inventory balance from mall application
 	 */
-	
+	@Ignore
 	@Test
 	public void testExecuteWithBody() throws JAXBException {
 		InventoryBalanceParameters parameters = new InventoryBalanceParameters();
@@ -32,7 +32,7 @@ public class GetInventoryBalanceLineTest {
 		InventoryBalanceLineMinimal balance = callbackListener.wait(InventoryBalanceLineMinimal.class);
 		Assert.assertNotNull(balance);
 	}
-
+	@Ignore
 	@Test
 	public void testMarshal() throws JAXBException {
 		InventoryBalanceParameters parameters = new InventoryBalanceParameters();

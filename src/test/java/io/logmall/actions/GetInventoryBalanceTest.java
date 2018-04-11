@@ -8,6 +8,7 @@ import javax.xml.bind.Marshaller;
 
 import org.eclipse.persistence.jaxb.MarshallerProperties;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +25,7 @@ public class GetInventoryBalanceTest {
 	/**
 	 * Test reading inventory balance from mall application
 	 */
-//	@Ignore
+	@Ignore
 	@Test
 	public void testExecute() {
 		CallbackListener<InventoryBalanceMinimal> callbackListener = new CallbackListener<>();
@@ -32,7 +33,7 @@ public class GetInventoryBalanceTest {
 		InventoryBalanceMinimal balance = callbackListener.wait(InventoryBalanceMinimal.class);
 		Assert.assertNotNull(balance);
 	}
-	
+	@Ignore
 	@Test
 	public void testExecuteWithBody() throws JAXBException {
 		InventoryBalanceParameters parameters = new InventoryBalanceParameters();
@@ -44,7 +45,7 @@ public class GetInventoryBalanceTest {
 		Assert.assertNotNull(balance);
 	}
 	
-//	@Ignore
+	@Ignore
 	@Test
 	public void testUnmarshal() throws JAXBException {
 		Marshaller marshaller = JAXBContext.newInstance(InventoryBalanceMinimal.class).createMarshaller();
@@ -52,7 +53,7 @@ public class GetInventoryBalanceTest {
 		marshaller.setProperty(MarshallerProperties.JSON_INCLUDE_ROOT, false);
 	}
 	
-//	@Ignore
+	@Ignore
 	@Test
 	public void validateSchema() throws JAXBException {
 		org.eclipse.persistence.jaxb.JAXBContext jaxbContext = (org.eclipse.persistence.jaxb.JAXBContext) JAXBContext.newInstance(InventoryBalanceMinimal.class);
