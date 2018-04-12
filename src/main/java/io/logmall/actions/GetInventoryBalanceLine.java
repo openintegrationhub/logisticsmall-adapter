@@ -107,6 +107,9 @@ public class GetInventoryBalanceLine implements Module {
 				}
 			} else {
 				InventoryBalanceLineMinimal balanceItem = new InventoryBalanceLineMinimal();
+				balanceItem.setItemMaster("noItem");
+				balanceItem.setQuantity(new BigDecimal("0.0"));
+				balanceItem.setUnit("noUnit");
 				JsonObject responseBody = null;
 				try {
 					responseBody = mapper.toJson(balanceItem);
