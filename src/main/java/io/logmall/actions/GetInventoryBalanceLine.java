@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import javax.json.JsonObject;
 import javax.ws.rs.NotFoundException;
+import javax.xml.bind.JAXBException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,9 +38,15 @@ public class GetInventoryBalanceLine implements Module {
 	@Override
 	public void execute(final ExecutionParameters parameters) {
 		LOGGER.info("Read InventoryBalance data");
-		try {
+		
 			// contains action's configuration
-			ConfigurationParameters configuration = new ParametersJsonMapper<>(ConfigurationParameters.class).fromJson(parameters.getConfiguration());
+			ConfigurationParameters configuration = null;
+			try {
+				configuration = new ParametersJsonMapper<>(ConfigurationParameters.class).fromJson(parameters.getConfiguration());
+			} catch (JAXBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			LOGGER.info("App Server URL: " + configuration.getServerURLd());
 
 			String jpql = "SELECT entity FROM InventoryBalance entity ORDER BY entity.creationDateTime DESC";
@@ -51,45 +58,54 @@ public class GetInventoryBalanceLine implements Module {
 			bodBuilder.withQuery(jpql);
 			BusinessObjectDocument<Get, InventoryBalance> requestBod = bodBuilder.build();
 
-			InventoryBalanceService restService = ResteasyIntegration.newInstance()
-					.createClientProxy(InventoryBalanceService.class, configuration.getServerURLd());
+			InventoryBalanceService restService = null;
+			try {
+				restService = ResteasyIntegration.newInstance()
+						.createClientProxy(InventoryBalanceService.class, configuration.getServerURLd());
+			} catch (JAXBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			ShowInventoryBalance resultBod = (ShowInventoryBalance) restService.get(requestBod);
 
-			ParametersJsonMapper<InventoryBalanceLineMinimal> mapper = new ParametersJsonMapper<>(InventoryBalanceLineMinimal.class);
-
-			if (resultBod.hasNouns() == false)
-				throw new NotFoundException("No Inventory Balance found");
-
+			ParametersJsonMapper<InventoryBalanceLineMinimal> mapper = null;
+			try {
+				mapper = new ParametersJsonMapper<>(InventoryBalanceLineMinimal.class);
+			} catch (JAXBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			InventoryBalance mallBalance = resultBod.getNounsForIteration().get(0);
+			if (!(resultBod.hasNouns() == false || mallBalance.getItemLines() == null || mallBalance.getItemLines().isEmpty())) {
+				
 
-			if (mallBalance.getItemLines() == null || mallBalance.getItemLines().isEmpty()) {
-				throw new NotFoundException("No Inventory Balance Item found");
-			}
 			
-			for (InventoryBalanceLine mallBalanceItem : mallBalance.getItemLines()) {				
-				if (hasInvalidItemOrQuantity(mallBalanceItem)) {
-					continue;
-				} 
+				for (InventoryBalanceLine mallBalanceItem : mallBalance.getItemLines()) {				
+					if (hasInvalidItemOrQuantity(mallBalanceItem)) {
+						continue;
+					} 
 
-				Quantity availableQuantity = mallBalanceItem.getAvailableQuantity();
-				BigDecimal quantityValue = availableQuantity.getValue();
-				String quantityUnit = availableQuantity.getUnitName();
+					Quantity availableQuantity = mallBalanceItem.getAvailableQuantity();
+					BigDecimal quantityValue = availableQuantity.getValue();
+					String quantityUnit = availableQuantity.getUnitName();
 				
-				InventoryBalanceLineMinimal balanceItem = null;
-				balanceItem = new InventoryBalanceLineMinimal();
-				balanceItem.setItemMaster(mallBalanceItem.getItem().getMasterData().getDisplayIdentifierId());
-				balanceItem.setQuantity(quantityValue);
-				balanceItem.setUnit(quantityUnit);
+					InventoryBalanceLineMinimal balanceItem = null;
+					balanceItem = new InventoryBalanceLineMinimal();
+					balanceItem.setItemMaster(mallBalanceItem.getItem().getMasterData().getDisplayIdentifierId());
+					balanceItem.setQuantity(quantityValue);
+					balanceItem.setUnit(quantityUnit);
 				
-				JsonObject responseBody = mapper.toJson(balanceItem);
-				Message data = new Message.Builder().body(responseBody).build();
-				parameters.getEventEmitter().emitData(data);
+					JsonObject responseBody = null;
+					try {
+						responseBody = mapper.toJson(balanceItem);
+					} catch (JAXBException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					Message data = new Message.Builder().body(responseBody).build();
+					parameters.getEventEmitter().emitData(data);
+				}
 			}
-
-		} catch (Exception e) {
-			LOGGER.error(e.getMessage(), e);
-			parameters.getEventEmitter().emitException(e);
-		} 
 	}
 
 	private static boolean hasInvalidItemOrQuantity(InventoryBalanceLine mallBalanceItem) {
