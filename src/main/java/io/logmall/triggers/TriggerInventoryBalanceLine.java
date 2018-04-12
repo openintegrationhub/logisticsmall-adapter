@@ -1,5 +1,6 @@
 package io.logmall.triggers;
 
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -9,7 +10,7 @@ import io.logmall.actions.GetInventoryBalanceLine;
 
 public class TriggerInventoryBalanceLine implements Module {
 	private static final Logger LOGGER = LoggerFactory.getLogger(TriggerInventoryBalanceLine.class);
-
+	public static DateTime lastModifiedDateTime;
 	/**
 	 * Executes the actions's logic by sending a request to the logmall API and
 	 * emitting response to the platform.
