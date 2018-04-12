@@ -105,6 +105,17 @@ public class GetInventoryBalanceLine implements Module {
 					Message data = new Message.Builder().body(responseBody).build();
 					parameters.getEventEmitter().emitData(data);
 				}
+			} else {
+				InventoryBalanceLineMinimal balanceItem = new InventoryBalanceLineMinimal();
+				JsonObject responseBody = null;
+				try {
+					responseBody = mapper.toJson(balanceItem);
+				} catch (JAXBException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				Message data = new Message.Builder().body(responseBody).build();
+				parameters.getEventEmitter().emitData(data);
 			}
 	}
 
