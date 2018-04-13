@@ -83,7 +83,7 @@ public class TriggerInventoryBalanceLine implements Module {
 
 			JsonObject actualLastModifiedDate = Json.createObjectBuilder()
 					.add("lastModifiedDate", mallBalance.getModificationDateTime().toString()).build();
-
+			LOGGER.info("SNAPSHOT VALUE: " + parameters.getSnapshot().toString());
 			if (this.hasInventoryBalanceBeenUpdated(mallBalance, actualLastModifiedDate, parameters.getSnapshot())) {
 				for (InventoryBalanceLine mallBalanceItem : mallBalance.getItemLines()) {
 					if (hasInvalidItemOrQuantity(mallBalanceItem)) {
