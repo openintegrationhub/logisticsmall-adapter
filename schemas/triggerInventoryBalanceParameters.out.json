@@ -3,7 +3,17 @@
 	"properties": {
 		"ItemMaster": {
 			"title": "ItemMaster",
-			"required": false,
+			"required": true,
+			"type": "string"
+		},
+		"Quantity": {
+			"title": "Quantity",
+			"required": true,
+			"type": "number"
+		},
+		"Unit": {
+			"title": "Unit",
+			"required": true,
 			"type": "string"
 		}
 	}
