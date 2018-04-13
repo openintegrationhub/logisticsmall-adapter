@@ -27,7 +27,10 @@ import io.logmall.mapper.ParametersJsonMapper;
 
 public class TriggerInventoryBalanceLine implements Module {
 	private static final Logger LOGGER = LoggerFactory.getLogger(TriggerInventoryBalanceLine.class);
-	private DateTime lastModifiedDateTime;
+	private static DateTime lastModifiedDateTime;
+//	{
+//		System.getenv().put("LastModifiedDate", "");
+//	}
 	/**
 	 * Executes the actions's logic by sending a request to the logmall API and
 	 * emitting response to the platform.
@@ -38,7 +41,7 @@ public class TriggerInventoryBalanceLine implements Module {
 	
 	public void execute(final ExecutionParameters parameters) {
 		LOGGER.info("Read InventoryBalance data");
-
+		
 		// contains action's configuration
 		ConfigurationParameters configuration = null;
 		try {
@@ -103,7 +106,7 @@ public class TriggerInventoryBalanceLine implements Module {
 				Message data = new Message.Builder().body(responseBody).build();
 				parameters.getEventEmitter().emitData(data);
 			}
-			this.lastModifiedDateTime = mallBalance.getModificationDateTime();
+			lastModifiedDateTime = mallBalance.getModificationDateTime();
 		} else {
 			InventoryBalanceLineMinimal balanceItem = new InventoryBalanceLineMinimal();
 			balanceItem.setItemMaster("noItem");
@@ -123,7 +126,7 @@ public class TriggerInventoryBalanceLine implements Module {
 
 	private boolean hasInventoryBalanceBeenUpdated(ShowInventoryBalance resultBod, InventoryBalance mallBalance) {
 		return resultBod.hasNouns() == true && mallBalance.getItemLines() != null
-				&& !mallBalance.getItemLines().isEmpty() && !mallBalance.getModificationDateTime().equals(this.lastModifiedDateTime);
+				&& !mallBalance.getItemLines().isEmpty() && !mallBalance.getModificationDateTime().equals(lastModifiedDateTime);
 	}
 
 	private static boolean hasInvalidItemOrQuantity(InventoryBalanceLine mallBalanceItem) {
