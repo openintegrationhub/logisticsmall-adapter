@@ -1,11 +1,13 @@
 package io.logmall.triggers;
 
+import java.io.StringReader;
 import java.math.BigDecimal;
 
+import javax.json.Json;
 import javax.json.JsonObject;
+import javax.json.JsonReader;
 import javax.xml.bind.JAXBException;
 
-import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,10 +29,7 @@ import io.logmall.mapper.ParametersJsonMapper;
 
 public class TriggerInventoryBalanceLine implements Module {
 	private static final Logger LOGGER = LoggerFactory.getLogger(TriggerInventoryBalanceLine.class);
-	private static DateTime lastModifiedDateTime;
-//	{
-//		System.getenv().put("LastModifiedDate", "");
-//	}
+
 	/**
 	 * Executes the actions's logic by sending a request to the logmall API and
 	 * emitting response to the platform.
@@ -38,10 +37,10 @@ public class TriggerInventoryBalanceLine implements Module {
 	 * @param parameters
 	 *            execution parameters
 	 */
-	
+
 	public void execute(final ExecutionParameters parameters) {
 		LOGGER.info("Read InventoryBalance data");
-		
+
 		// contains action's configuration
 		ConfigurationParameters configuration = null;
 		try {
@@ -78,55 +77,72 @@ public class TriggerInventoryBalanceLine implements Module {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//TODO Muss noch abgesichert werden, da es auch KEINE InventoryBalances geben kann
-		InventoryBalance mallBalance = resultBod.getNounsForIteration().get(0);				
-		if (hasInventoryBalanceBeenUpdated(resultBod, mallBalance)) {			
-			for (InventoryBalanceLine mallBalanceItem : mallBalance.getItemLines()) {
-				if (hasInvalidItemOrQuantity(mallBalanceItem)) {
-					continue;
+
+		if (resultBod.hasNouns()) {
+			InventoryBalance mallBalance = resultBod.getNounsForIteration().get(0);
+
+			JsonReader jsonReader = Json
+					.createReader(new StringReader(mallBalance.getModificationDateTime().toString()));
+			JsonObject actualLastModifiedDate = jsonReader.readObject();
+			jsonReader.close();
+
+			if (this.hasInventoryBalanceBeenUpdated(mallBalance, actualLastModifiedDate, parameters.getSnapshot())) {
+				for (InventoryBalanceLine mallBalanceItem : mallBalance.getItemLines()) {
+					if (hasInvalidItemOrQuantity(mallBalanceItem)) {
+						continue;
+					}
+
+					Quantity availableQuantity = mallBalanceItem.getAvailableQuantity();
+					BigDecimal quantityValue = availableQuantity.getValue();
+					String quantityUnit = availableQuantity.getUnitName();
+
+					InventoryBalanceLineMinimal balanceItem = null;
+					balanceItem = new InventoryBalanceLineMinimal();
+					balanceItem.setItemMaster(mallBalanceItem.getItem().getMasterData().getDisplayIdentifierId());
+					balanceItem.setQuantity(quantityValue);
+					balanceItem.setUnit(quantityUnit);
+
+					JsonObject responseBody = null;
+					try {
+						responseBody = mapper.toJson(balanceItem);
+					} catch (JAXBException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					Message data = new Message.Builder().body(responseBody).build();
+					parameters.getEventEmitter().emitData(data);
 				}
-
-				Quantity availableQuantity = mallBalanceItem.getAvailableQuantity();
-				BigDecimal quantityValue = availableQuantity.getValue();
-				String quantityUnit = availableQuantity.getUnitName();
-
-				InventoryBalanceLineMinimal balanceItem = null;
-				balanceItem = new InventoryBalanceLineMinimal();
-				balanceItem.setItemMaster(mallBalanceItem.getItem().getMasterData().getDisplayIdentifierId());
-				balanceItem.setQuantity(quantityValue);
-				balanceItem.setUnit(quantityUnit);
-
-				JsonObject responseBody = null;
-				try {
-					responseBody = mapper.toJson(balanceItem);
-				} catch (JAXBException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				Message data = new Message.Builder().body(responseBody).build();
-				parameters.getEventEmitter().emitData(data);
+				parameters.getEventEmitter().emitSnapshot(actualLastModifiedDate);
+			} else {
+				emitDefaultItem(parameters, mapper);
 			}
-			lastModifiedDateTime = mallBalance.getModificationDateTime();
 		} else {
-			InventoryBalanceLineMinimal balanceItem = new InventoryBalanceLineMinimal();
-			balanceItem.setItemMaster("noItem");
-			balanceItem.setQuantity(new BigDecimal("0.0"));
-			balanceItem.setUnit("noUnit");
-			JsonObject responseBody = null;
-			try {
-				responseBody = mapper.toJson(balanceItem);
-			} catch (JAXBException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			Message data = new Message.Builder().body(responseBody).build();
-			parameters.getEventEmitter().emitData(data);
+			emitDefaultItem(parameters, mapper);
 		}
+
 	}
 
-	private boolean hasInventoryBalanceBeenUpdated(ShowInventoryBalance resultBod, InventoryBalance mallBalance) {
-		return resultBod.hasNouns() == true && mallBalance.getItemLines() != null
-				&& !mallBalance.getItemLines().isEmpty() && !mallBalance.getModificationDateTime().equals(lastModifiedDateTime);
+	private static void emitDefaultItem(final ExecutionParameters parameters,
+			ParametersJsonMapper<InventoryBalanceLineMinimal> mapper) {
+		InventoryBalanceLineMinimal balanceItem = new InventoryBalanceLineMinimal();
+		balanceItem.setItemMaster("noItem");
+		balanceItem.setQuantity(new BigDecimal("0.0"));
+		balanceItem.setUnit("noUnit");
+		JsonObject responseBody = null;
+		try {
+			responseBody = mapper.toJson(balanceItem);
+		} catch (JAXBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Message data = new Message.Builder().body(responseBody).build();
+		parameters.getEventEmitter().emitData(data);
+	}
+
+	private boolean hasInventoryBalanceBeenUpdated(InventoryBalance mallBalance, JsonObject actualLastModifiedDate,
+			JsonObject snapshotLastModifiedDate) {
+		return mallBalance.getItemLines() != null && !mallBalance.getItemLines().isEmpty()
+				&& !actualLastModifiedDate.equals(snapshotLastModifiedDate);
 	}
 
 	private static boolean hasInvalidItemOrQuantity(InventoryBalanceLine mallBalanceItem) {
@@ -134,7 +150,5 @@ public class TriggerInventoryBalanceLine implements Module {
 				|| mallBalanceItem.getItem() == null || mallBalanceItem.getItem().getMasterData() == null
 				|| mallBalanceItem.getItem().getMasterData().getDisplayIdentifierId() == null;
 	}
-	
-
 
 }
