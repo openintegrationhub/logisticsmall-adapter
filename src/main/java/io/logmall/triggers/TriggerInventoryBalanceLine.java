@@ -81,10 +81,8 @@ public class TriggerInventoryBalanceLine implements Module {
 		if (resultBod.hasNouns()) {
 			InventoryBalance mallBalance = resultBod.getNounsForIteration().get(0);
 
-			JsonReader jsonReader = Json
-					.createReader(new StringReader(mallBalance.getModificationDateTime().toString()));
-			JsonObject actualLastModifiedDate = jsonReader.readObject();
-			jsonReader.close();
+			JsonObject actualLastModifiedDate = Json.createObjectBuilder()
+					.add("lastModifiedDate", mallBalance.getModificationDateTime().toString()).build();
 
 			if (this.hasInventoryBalanceBeenUpdated(mallBalance, actualLastModifiedDate, parameters.getSnapshot())) {
 				for (InventoryBalanceLine mallBalanceItem : mallBalance.getItemLines()) {
