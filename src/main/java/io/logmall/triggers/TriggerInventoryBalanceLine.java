@@ -1,16 +1,11 @@
 package io.logmall.triggers;
 
-import java.io.StringReader;
 import java.math.BigDecimal;
-
 import javax.json.Json;
 import javax.json.JsonObject;
-import javax.json.JsonReader;
 import javax.xml.bind.JAXBException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import de.fraunhofer.ccl.bo.instancerepository.boundary.rest.api.InventoryBalanceService;
 import de.fraunhofer.ccl.bo.integration.resteasy.ResteasyIntegration;
 import de.fraunhofer.ccl.bo.model.bod.BusinessObjectDocument;
@@ -81,10 +76,10 @@ public class TriggerInventoryBalanceLine implements Module {
 		if (resultBod.hasNouns()) {
 			InventoryBalance mallBalance = resultBod.getNounsForIteration().get(0);
 
-			JsonObject actualLastModifiedDate = Json.createObjectBuilder()
-					.add("lastModifiedDate", mallBalance.getModificationDateTime().toString()).build();
+			JsonObject actualCreationDate = Json.createObjectBuilder()
+					.add("creationDate", mallBalance.getCreationDateTime().toString()).build();
 			LOGGER.info("SNAPSHOT VALUE: " + parameters.getSnapshot().toString());
-			if (this.hasInventoryBalanceBeenUpdated(mallBalance, actualLastModifiedDate, parameters.getSnapshot())) {
+			if (this.hasInventoryBalanceBeenUpdated(mallBalance, actualCreationDate, parameters.getSnapshot())) {
 				for (InventoryBalanceLine mallBalanceItem : mallBalance.getItemLines()) {
 					if (hasInvalidItemOrQuantity(mallBalanceItem)) {
 						continue;
@@ -110,7 +105,7 @@ public class TriggerInventoryBalanceLine implements Module {
 					Message data = new Message.Builder().body(responseBody).build();
 					parameters.getEventEmitter().emitData(data);
 				}
-				parameters.getEventEmitter().emitSnapshot(actualLastModifiedDate);
+				parameters.getEventEmitter().emitSnapshot(actualCreationDate);
 			} else {
 				emitDefaultItem(parameters, mapper);
 			}
@@ -137,10 +132,10 @@ public class TriggerInventoryBalanceLine implements Module {
 		parameters.getEventEmitter().emitData(data);
 	}
 
-	private boolean hasInventoryBalanceBeenUpdated(InventoryBalance mallBalance, JsonObject actualLastModifiedDate,
-			JsonObject snapshotLastModifiedDate) {
+	private boolean hasInventoryBalanceBeenUpdated(InventoryBalance mallBalance, JsonObject actualCreationDate,
+			JsonObject snapshotCreationDate) {
 		return mallBalance.getItemLines() != null && !mallBalance.getItemLines().isEmpty()
-				&& !actualLastModifiedDate.equals(snapshotLastModifiedDate);
+				&& !actualCreationDate.equals(snapshotCreationDate);
 	}
 
 	private static boolean hasInvalidItemOrQuantity(InventoryBalanceLine mallBalanceItem) {
