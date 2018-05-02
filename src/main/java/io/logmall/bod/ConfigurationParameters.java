@@ -39,7 +39,4 @@ public class ConfigurationParameters implements Serializable{
 		this.serverURLd = serverURLd;
 	}
 
-	
-	
-
 }

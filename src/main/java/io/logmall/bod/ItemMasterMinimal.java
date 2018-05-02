@@ -45,7 +45,4 @@ public class ItemMasterMinimal implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	
-
 }

@@ -87,8 +87,7 @@ public class CallbackListener<T extends Serializable> {
 			mapper = new StandaloneBusinessObjectDocumentJsonMapper(receivedType);
 		else
 			mapper = new ParametersJsonMapper<>(receivedType);
-		return mapper.fromJson(received);
-		
+		return mapper.fromJson(received);	
 	}
 	
 }

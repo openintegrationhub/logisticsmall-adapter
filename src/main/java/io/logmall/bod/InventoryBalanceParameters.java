@@ -23,6 +23,4 @@ public class InventoryBalanceParameters implements Serializable{
 	public void setItemMaster(String itemMaster) {
 		this.itemMaster = itemMaster;
 	}
-
-	
 }

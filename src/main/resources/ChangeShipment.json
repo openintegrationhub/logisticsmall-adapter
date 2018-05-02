@@ -11,7 +11,7 @@
           "ActionExpression": { "actionCode": "CREATE" }
         }
       },
-      "hipment": {
+      "shipment": {
         "ShipmentHeader": {
           "Type": "ASN",
           "AlternateDocumentID": [

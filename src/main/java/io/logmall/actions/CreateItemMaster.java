@@ -65,10 +65,11 @@ public class CreateItemMaster implements Module {
 			ItemMasterService itemMasterService = ResteasyIntegration.newInstance()
 					.createClientProxy(ItemMasterService.class, configuration.getServerURLd());
 			RespondItemMaster response = (RespondItemMaster) itemMasterService.put(requestBod);
+			
+			
 			LOGGER.info("MinimalItemMaster successfully created:\t" + response.toString());
 			JsonObject responseBody = getEventBody(response);
-			Message data;
-			data = new Message.Builder().body(responseBody).build();
+			Message data = new Message.Builder().body(responseBody).build();
 			// emitting the message to the platform
 			parameters.getEventEmitter().emitData(data);
 		} catch (Exception e) {

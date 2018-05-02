@@ -30,6 +30,14 @@
 			"metadata": {
 				"out": "./schemas/triggerInventoryBalanceParameters.out.json"
 			}
+		},"triggerCreatePurchaseOrder": {
+			"main": "io.logmall.triggers.TriggerPurchaseOrder",
+			"type": "polling",
+			"title": "Triggers creation of a Purchase Order",
+			"description": "Retrieves Purchase Order from the logistics mall API by given Purchase",
+			"metadata": {
+				"out": "./schemas/getPurchaseOrderSchema.out.json"
+			}
 		}
 	},
 	"actions": {
@@ -50,7 +58,15 @@
 				"in": "./schemas/getInventoryBalanceLine.in.json",
 				"out": "./schemas/getInventoryBalanceLine.out.json"
 			}
+		},	
+		"createPurchaseOrder": {
+			"main": "io.logmall.actions.CreatePurchaseOrder",
+			"title": "Create a Purchase Order",
+			"description": "Creates a new Purchase Order",
+			"metadata": {
+				"in": "./schemas/CreatePurchaseOrder.in.json",
+				"out": "./schemas/CreatePurchaseOrder.out.json"
+			}
 		}
 	}
 }
-

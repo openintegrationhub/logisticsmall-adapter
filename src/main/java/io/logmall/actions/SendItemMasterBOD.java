@@ -18,7 +18,6 @@ import io.logmall.mapper.ParametersJsonMapper;
 import io.logmall.mapper.StandaloneBusinessObjectDocumentJsonMapper;
 
 
-
 public class SendItemMasterBOD implements Module{
 	private static final Logger LOGGER = LoggerFactory.getLogger(SendItemMasterBOD.class);
 
@@ -54,11 +53,15 @@ public class SendItemMasterBOD implements Module{
 			StandaloneBusinessObjectDocumentJsonMapper<ChangeItemMaster> changeItemMasterJsonMapper = new StandaloneBusinessObjectDocumentJsonMapper<>(ChangeItemMaster.class);
 			ChangeItemMaster changeItemMaster = changeItemMasterJsonMapper.fromJson(body);
 			LOGGER.info("Change action code: " + changeItemMaster.getVerb().getActionCode());
+			
+			
 			ItemMasterService itemMasterService = ResteasyIntegration.newInstance().createClientProxy(ItemMasterService.class,
 					configuration.getServerURLd());
+			
 			RespondItemMaster response = (RespondItemMaster) itemMasterService.put(changeItemMaster);
 			LOGGER.info("ItemMaster successfully created");
 			LOGGER.info("Emitting data: " + response);
+			
 			StandaloneBusinessObjectDocumentJsonMapper<RespondItemMaster> respondItemMasterJsonMapper = new StandaloneBusinessObjectDocumentJsonMapper<>(RespondItemMaster.class);
 			Message responseMessage = new Message.Builder().body(respondItemMasterJsonMapper.toJson(response)).build();
 			parameters.getEventEmitter().emitData(responseMessage);

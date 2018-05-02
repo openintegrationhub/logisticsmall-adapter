@@ -70,18 +70,6 @@ public class ParametersJsonMapper<T extends Serializable> {
 			jsonReader.close();
 		}
 	}
-	
-	public JsonObject toJson(Collection<T> parameters) throws JAXBException {
-		LOGGER.info("toJson: " + parameters);
-		StringWriter stringWriter = new StringWriter();
-		getMarshaller().marshal(parameters, stringWriter);
-		JsonReader jsonReader = Json.createReader(new StringReader(stringWriter.toString()));
-		try {
-			return jsonReader.readObject();
-		} finally {
-			jsonReader.close();
-		}
-	}
 
 	protected Unmarshaller getUnmarshaller() {
 		return unmarshaller;
@@ -95,8 +83,7 @@ public class ParametersJsonMapper<T extends Serializable> {
 		return marshaller;
 	}
 	
-	
-	
+
 	public void logAsJson(T object) throws JAXBException {
 		StringWriter stringWriter = new StringWriter();
 		getMarshaller().marshal(object, stringWriter);

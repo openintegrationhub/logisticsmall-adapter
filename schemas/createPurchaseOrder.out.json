@@ -1,0 +1,10 @@
+{
+    "type": "object",
+    "properties": {
+        "result":{
+            "type": "object",
+            "required": false,
+            "title": "Json"    		        	
+        }
+    }
+}

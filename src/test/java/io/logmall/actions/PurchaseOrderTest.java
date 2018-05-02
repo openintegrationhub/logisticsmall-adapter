@@ -11,18 +11,16 @@ import java.util.Scanner;
 import javax.json.Json;
 import javax.json.JsonObject;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import io.elastic.api.ExecutionParameters;
 import io.logmall.res.ResourceResolver;
 import io.logmall.util.ExecutionParametersUtil;
 
-public class CreateItemMasterTest {
-
-	private static final String RESOURCE = "ChangeItemMaster.json";
+public class PurchaseOrderTest {
+	private static final String RESOURCE = "ChangePurchaseOrder.json";
 	Scanner scanner = null;
-
+	
 	@Test
 	public void testExecute() {
 		File file = new File(ResourceResolver.class.getClassLoader().getResource(RESOURCE).getFile());
@@ -35,11 +33,12 @@ public class CreateItemMasterTest {
 				line = br.readLine();
 			}
 			br.close();
-			String changeItemMasterJSON = fileContents.toString();
-			JsonObject jsonObject = (JsonObject) Json.createReader(new StringReader(changeItemMasterJSON)).read();
+			String purchaseOrderJSON = fileContents.toString();
+			JsonObject jsonObject = (JsonObject) Json.createReader(new StringReader(purchaseOrderJSON)).read();
 			ExecutionParameters executionParameters = ExecutionParametersUtil.getExecutionParameters(jsonObject);
-			new SendItemMasterBOD().execute(executionParameters);
-
+			new SendPurchaseOrderBOD().execute(executionParameters);
+			
+			
 		} catch (FileNotFoundException e) {
 			//Assert.fail("FileNotFoundException: " + e.getMessage() + " \n Cause: \n");
 			e.printStackTrace();
@@ -49,12 +48,11 @@ public class CreateItemMasterTest {
 		} catch (Throwable e) {
 			//Assert.fail("Throwable: " + e.getMessage() + " \n Cause: \n" + e.getCause());
 			e.printStackTrace();
-		} finally {
+		}
+		finally {
 			if (scanner != null) {
 				scanner.close();
 			}
 		}
-
 	}
-
 }

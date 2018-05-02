@@ -15,6 +15,7 @@ import io.logmall.bod.ConfigurationParameters;
 import io.logmall.bod.InventoryBalanceParameters;
 import io.logmall.mapper.ParametersJsonMapper;
 import io.logmall.util.ExecutionParametersUtil;
+
 @Ignore
 public class TriggerInventoryBalanceLineTest {
 
@@ -41,19 +42,20 @@ public class TriggerInventoryBalanceLineTest {
 		ConfigurationParameters configurationParameters = new ConfigurationParameters();
 		configurationParameters.setItemMaster("1");
 		configurationParameters.setServerURLd(ConfigurationParameters.OTC_URL_CONFIGURATION_VALUE);
-		ParametersJsonMapper<ConfigurationParameters> mapper = new ParametersJsonMapper<>(ConfigurationParameters.class);
+		ParametersJsonMapper<ConfigurationParameters> mapper = new ParametersJsonMapper<>(
+				ConfigurationParameters.class);
 		JsonObject jsonObject = mapper.toJson(configurationParameters);
 		ConfigurationParameters marshalledConfigurationParamters = mapper.fromJson(jsonObject);
 		Assert.assertEquals(configurationParameters.getItemMaster(), marshalledConfigurationParamters.getItemMaster());
-		
-		
+
 	}
-	
+
 	@Test
-	public void testMarshallerInventoryBalanceParamters() throws JAXBException {
+	public void testMarshallerInventoryBalanceParameters() throws JAXBException {
 		InventoryBalanceParameters inventoryBalanceParameters = new InventoryBalanceParameters();
 		inventoryBalanceParameters.setItemMaster("1");
-		ParametersJsonMapper<InventoryBalanceParameters> mapper2 = new ParametersJsonMapper<>(InventoryBalanceParameters.class);
+		ParametersJsonMapper<InventoryBalanceParameters> mapper2 = new ParametersJsonMapper<>(
+				InventoryBalanceParameters.class);
 		JsonObject jsonObject2 = mapper2.toJson(inventoryBalanceParameters);
 		LOGGER.info(jsonObject2.toString());
 		InventoryBalanceParameters balanceParameters = mapper2.fromJson(jsonObject2);
