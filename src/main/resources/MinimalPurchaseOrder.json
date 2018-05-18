@@ -1,0 +1,22 @@
+{
+	"PurchaseOrderIdentifier": "196615",
+	"OrderDateTime": "2018-02-15T11:01:12.369+01:00",
+	"DeliveryTypeCode": "DOOR",
+	"Name": "Mustermann",
+	"FirstName": "Max",
+	"Address": {
+		"Street": "Westring",
+		"Number": "23",
+		"PostalCode": "41256",
+		"City": "Dortmund",
+		"CountryCode": "DE"
+	},
+	"Lines": [
+		{
+			"LineNumber": "1",
+			"QuantityUnit": "Stk",
+			"OrderedQuantity": "10",
+			"ItemMasterIdentifier": "Zahnpasta 325F"
+		}
+	]
+}
