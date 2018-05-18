@@ -95,9 +95,9 @@ public class CallbackListener<T extends Serializable> {
 		ParametersJsonMapper<T> mapper;
 		if (received == null)
 			throw new NullPointerException();
-		if (receivedType.isInstance(StandaloneBusinessObject.class))
+		if (StandaloneBusinessObject.class.isAssignableFrom(receivedType))
 			mapper = new StandaloneBusinessObjectJsonMapper(receivedType);
-		else if (receivedType.isInstance(BusinessObjectDocument.class))
+		else if (BusinessObjectDocument.class.isAssignableFrom(receivedType))
 			mapper = new StandaloneBusinessObjectDocumentJsonMapper(receivedType);
 		else
 			mapper = new ParametersJsonMapper<>(receivedType);

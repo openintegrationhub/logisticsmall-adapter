@@ -71,7 +71,12 @@ public class CreateMinimalPurchaseOrderTest {
 					callbackListener.getCallBack());
 
 			new CreatePurchaseOrder().execute(parameters);
-			callbackListener.wait(RespondPurchaseOrder.class);
+			try {	
+				callbackListener.wait(RespondPurchaseOrder.class);
+			}
+			catch(Throwable e) {
+				LOGGER.error(e.getMessage(), e);
+			}
 
 		} catch (Throwable e) {
 			LOGGER.error(e.getMessage(), e);
