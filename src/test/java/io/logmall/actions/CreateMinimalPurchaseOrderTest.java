@@ -80,6 +80,7 @@ public class CreateMinimalPurchaseOrderTest {
 
 		} catch (Throwable e) {
 			LOGGER.error(e.getMessage(), e);
+			e.printStackTrace();
 			Assert.fail(e.getMessage());
 		} finally {
 			if (scanner != null) {
