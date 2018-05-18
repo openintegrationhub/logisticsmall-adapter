@@ -64,8 +64,8 @@
 			"title": "Create a Purchase Order",
 			"description": "Creates a new Purchase Order",
 			"metadata": {
-				"in": "./schemas/CreatePurchaseOrder.in.json",
-				"out": "./schemas/CreatePurchaseOrder.out.json"
+				"in": "./schemas/createPurchaseOrder.in.json",
+				"out": "./schemas/createPurchaseOrder.out.json"
 			}
 		}
 	}
