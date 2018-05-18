@@ -1,10 +1,91 @@
 {
-    "type": "object",
-    "properties": {
-        "result":{
-            "type": "object",
-            "required": false,
-            "title": "Json"    		        	
-        }
-    }
+	"type": "object",
+	"properties": {
+		"PurchaseOrderIdentifier": {
+			"title": "PurchaseOrderIdentifier",
+			"required": true,
+			"type": "string"
+		},
+		"OrderDateTime": {
+			"title": "OrderDateTime",
+			"required": true,
+			"type": "string"
+		},
+		"DeliveryTypeCode": {
+			"title": "DeliveryTypeCode",
+			"required": true,
+			"type": "string"
+		},
+		"Name": {
+			"title": "Name",
+			"required": true,
+			"type": "string"
+		},
+		"FirstName": {
+			"title": "FirstName",
+			"required": true,
+			"type": "string"
+		},
+		"Address": {
+			"title": "Address",
+			"required": true,
+			"type": "object",
+			"properties": {
+				"Street": {
+					"title": "Street",
+					"required": true,
+					"type": "string"
+				},
+				"Number": {
+					"title": "Number",
+					"required": true,
+					"type": "string"
+				},
+				"PostalCode": {
+					"title": "PostalCode",
+					"required": true,
+					"type": "string"
+				},
+				"City": {
+					"title": "City",
+					"required": true,
+					"type": "string"
+				},
+				"CountryCode": {
+					"title": "CountryCode",
+					"required": true,
+					"type": "string"
+				}
+			}
+		},
+		"Lines": 
+			{
+				"title": "lines",
+				"required": true,
+				"type": "array",
+				"properties": {
+					"ItemMasterIdentifier": {
+						"title": "ItemMasterIdentifier",
+						"required": true,
+						"type": "string"
+					},
+					"LineNumber": {
+						"title": "LineNumber",
+						"required": true,
+						"type": "string"
+					},
+					"QuantityUnit": {
+						"title": "QuantityUnit",
+						"required": true,
+						"type": "string"
+					},
+					"OrderedQuantity": {
+						"title": "OrderedQuantity",
+						"required": true,
+						"type": "string"
+					}
+				}
+			}
+		
+	}
 }

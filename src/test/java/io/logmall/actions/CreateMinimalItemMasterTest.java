@@ -4,9 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.Scanner;
@@ -20,22 +18,22 @@ import javax.xml.bind.Marshaller;
 
 import org.eclipse.persistence.jaxb.MarshallerProperties;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import de.fraunhofer.ccl.bo.model.bod.RespondItemMaster;
 import io.elastic.api.ExecutionParameters;
 import io.logmall.bod.ItemMasterMinimal;
 import io.logmall.mapper.ParametersJsonMapper;
 import io.logmall.res.ResourceResolver;
 import io.logmall.util.ExecutionParametersUtil;
-@Ignore
+
 public class CreateMinimalItemMasterTest {
-	private static final String RESOURCE = "ChangeMinimalItemMaster.json";
+	private static final String RESOURCE = "MinimalItemMaster.json";
 	Scanner scanner = null;
 	private static final Logger LOGGER = LoggerFactory.getLogger(CreateMinimalItemMasterTest.class);
-	@Ignore
+
 	@Test
 	public void testExecute() {
 		File file = new File(ResourceResolver.class.getClassLoader().getResource(RESOURCE).getFile());
@@ -56,19 +54,19 @@ public class CreateMinimalItemMasterTest {
 			ParametersJsonMapper<ItemMasterMinimal> itemMasterMinimalJsonMapper = new ParametersJsonMapper<>(ItemMasterMinimal.class);
 			ItemMasterMinimal itemMasterMinimal = itemMasterMinimalJsonMapper.fromJson(jsonObject);
 			assertEquals("5", itemMasterMinimal.getBaseQuantityClassificationUnit());
-			ExecutionParameters parameters = ExecutionParametersUtil.getExecutionParameters(jsonObject);
+			
+			
+			CallbackListener<RespondItemMaster> callbackListener = new CallbackListener<>();
+			ExecutionParameters parameters = ExecutionParametersUtil.getExecutionParameters(jsonObject,callbackListener.getCallBack());
 			itemMasterMinimal = itemMasterMinimalJsonMapper.fromJson(parameters.getMessage().getBody());
 			assertEquals("","5", itemMasterMinimal.getBaseQuantityClassificationUnit());
+			
 			new CreateItemMaster().execute(parameters);
+			callbackListener.wait(RespondItemMaster.class);
 
-		} catch (FileNotFoundException e) {
-			Assert.fail("FileNotFoundException: " + e.getMessage() + " \n Cause: \n");
-			e.printStackTrace();
-		} catch (IOException e) {
-			Assert.fail("IOException: " + e.getMessage() + " \n Cause: \n" + e.getCause());
-			e.printStackTrace();
-		} catch (JAXBException e) {
-			e.printStackTrace();
+		} catch (Throwable e) {
+			LOGGER.error(e.getMessage(), e);
+			Assert.fail(e.getMessage());
 		} finally {
 			if (scanner != null) {
 				scanner.close();

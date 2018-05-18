@@ -73,7 +73,7 @@ public class CreateItemMaster implements Module {
 			// emitting the message to the platform
 			parameters.getEventEmitter().emitData(data);
 		} catch (Exception e) {
-			LOGGER.error(e.getMessage(), e);
+			LOGGER.error("going to emit exception: "+e.getMessage(), e);
 			parameters.getEventEmitter().emitException(e);
 		}
 	}
@@ -96,7 +96,6 @@ public class CreateItemMaster implements Module {
 	}
 
 	private ChangeItemMaster createItemMaster(ItemMasterMinimal itemMasterMinimal) {
-
 		// Only Stk available, therefore, no retrieval is done out of the configuration
 		QuantityClassification quantityClassification = new QuantityClassification();
 		quantityClassification.setUnit("Stk");

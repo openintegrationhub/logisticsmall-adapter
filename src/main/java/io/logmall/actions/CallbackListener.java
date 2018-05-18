@@ -17,21 +17,21 @@ import io.logmall.mapper.StandaloneBusinessObjectDocumentJsonMapper;
 import io.logmall.mapper.StandaloneBusinessObjectJsonMapper;
 
 public class CallbackListener<T extends Serializable> {
-	
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(CallbackListener.class);
 
-	
 	private final Object semaphore;
-	
+
+	private RuntimeException receivedException;
 	private JsonObject received;
-	
+
 	private boolean interrupt = false;
-	
+
 	public CallbackListener() {
 		semaphore = new Object();
 	}
-	
-	public Callback getCallBack(){
+
+	public Callback getCallBack() {
 		return new Callback() {
 			@Override
 			public void receive(Object data) {
@@ -41,6 +41,9 @@ public class CallbackListener<T extends Serializable> {
 						received = message.getBody();
 						LOGGER.info("received " + received);
 					}
+				} else if (data instanceof RuntimeException) {
+					receivedException = (RuntimeException) data;
+					LOGGER.error("received client response failure: " + data);
 				} else {
 					synchronized (semaphore) {
 						interrupt = true;
@@ -49,21 +52,32 @@ public class CallbackListener<T extends Serializable> {
 				}
 			}
 		};
-		
+
 	}
-	
-	public T wait(Class<T> receiveType) {
-		
+
+	/**
+	 * 
+	 * @param receiveType
+	 * @return
+	 * @throws RuntimeException if the callback receives an RuntimeException
+	 */
+	public T wait(Class<T> receiveType) throws RuntimeException {
+
 		do {
 			synchronized (semaphore) {
-				if (received != null)
+				if (received != null) {
 					try {
 						return marshallReceived(received, receiveType);
 					} catch (JAXBException e) {
 						LOGGER.error(e.getMessage(), e);
 						return null;
 					}
+				} else if (receivedException != null) {
+					throw receivedException;
+				}
+
 			}
+
 			try {
 				LOGGER.debug("Going to sleep...");
 				Thread.sleep(1000);
@@ -71,8 +85,8 @@ public class CallbackListener<T extends Serializable> {
 				LOGGER.warn(e.getMessage());
 				return null;
 			}
-		} while( ! interrupt);
-		
+		} while (!interrupt);
+
 		return null;
 	}
 
@@ -87,7 +101,11 @@ public class CallbackListener<T extends Serializable> {
 			mapper = new StandaloneBusinessObjectDocumentJsonMapper(receivedType);
 		else
 			mapper = new ParametersJsonMapper<>(receivedType);
-		return mapper.fromJson(received);	
+		return mapper.fromJson(received);
 	}
-	
+
+	public RuntimeException getReceivedException() {
+		return receivedException;
+	}
+
 }

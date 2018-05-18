@@ -22,7 +22,7 @@ import io.logmall.res.ResourceResolver;
 
 public class ParametersJsonMapperTest {
 
-	private static final String RESOURCE = "ChangeMinimalItemMaster.json";
+	private static final String RESOURCE = "MinimalItemMaster.json";
 	Scanner scanner = null;
 //	@Ignore
 	@Test

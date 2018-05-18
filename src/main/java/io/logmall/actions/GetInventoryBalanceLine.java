@@ -6,6 +6,7 @@ import javax.json.Json;
 import javax.json.JsonObject;
 import javax.xml.bind.JAXBException;
 
+import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -63,8 +64,8 @@ public class GetInventoryBalanceLine {
 			restService = ResteasyIntegration.newInstance().createClientProxy(InventoryBalanceService.class,
 					configuration.getServerURLd());
 		} catch (JAXBException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error(e.getMessage(), e);
+			Assert.fail(e.getMessage());
 		}
 		ShowInventoryBalance resultBod = (ShowInventoryBalance) restService.get(requestBod);
 
@@ -72,8 +73,8 @@ public class GetInventoryBalanceLine {
 		try {
 			mapper = new ParametersJsonMapper<>(InventoryBalanceLineMinimal.class);
 		} catch (JAXBException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error(e.getMessage(), e);
+			Assert.fail(e.getMessage());
 		}
 
 		if (resultBod.hasNouns()) {
@@ -128,8 +129,7 @@ public class GetInventoryBalanceLine {
 		try {
 			responseBody = mapper.toJson(balanceItem);
 		} catch (JAXBException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error(e.getMessage(),e);
 		}
 		Message data = new Message.Builder().body(responseBody).build();
 		parameters.getEventEmitter().emitData(data);
