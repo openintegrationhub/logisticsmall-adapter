@@ -45,78 +45,67 @@ public class GetInventoryBalanceLine {
 		try {
 			configuration = new ParametersJsonMapper<>(ConfigurationParameters.class)
 					.fromJson(parameters.getConfiguration());
-		} catch (JAXBException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		LOGGER.info("App Server URL: " + configuration.getServerURLd());
-		String jpql = "SELECT entity FROM InventoryBalance entity ORDER BY entity.creationDateTime DESC";
+			LOGGER.info("App Server URL: " + configuration.getServerURLd());
+			String jpql = "SELECT entity FROM InventoryBalance entity ORDER BY entity.creationDateTime DESC";
 
-		GetByJpqlBODBuilder.Builder<InventoryBalance> bodBuilder = GetByJpqlBODBuilder
-				.newInstance(InventoryBalance.class);
-		bodBuilder.withFirstResult(0);
-		bodBuilder.withMaxResults(1);
-		bodBuilder.withQuery(jpql);
-		BusinessObjectDocument<Get, InventoryBalance> requestBod = bodBuilder.build();
+			GetByJpqlBODBuilder.Builder<InventoryBalance> bodBuilder = GetByJpqlBODBuilder
+					.newInstance(InventoryBalance.class);
+			bodBuilder.withFirstResult(0);
+			bodBuilder.withMaxResults(1);
+			bodBuilder.withQuery(jpql);
+			BusinessObjectDocument<Get, InventoryBalance> requestBod = bodBuilder.build();
 
-		InventoryBalanceService restService = null;
-		try {
+			InventoryBalanceService restService = null;
 			restService = ResteasyIntegration.newInstance().createClientProxy(InventoryBalanceService.class,
 					configuration.getServerURLd());
-		} catch (JAXBException e) {
-			LOGGER.error(e.getMessage(), e);
-			Assert.fail(e.getMessage());
-		}
-		ShowInventoryBalance resultBod = (ShowInventoryBalance) restService.get(requestBod);
+			ShowInventoryBalance resultBod = (ShowInventoryBalance) restService.get(requestBod);
 
-		ParametersJsonMapper<InventoryBalanceLineMinimal> mapper = null;
-		try {
+			ParametersJsonMapper<InventoryBalanceLineMinimal> mapper = null;
 			mapper = new ParametersJsonMapper<>(InventoryBalanceLineMinimal.class);
-		} catch (JAXBException e) {
-			LOGGER.error(e.getMessage(), e);
-			Assert.fail(e.getMessage());
-		}
 
-		if (resultBod.hasNouns()) {
-			InventoryBalance mallBalance = resultBod.getNounsForIteration().get(0);
+			if (resultBod.hasNouns()) {
+				InventoryBalance mallBalance = resultBod.getNounsForIteration().get(0);
 
-			JsonObject actualCreationDate = Json.createObjectBuilder()
-					.add("creationDate", mallBalance.getCreationDateTime().toString()).build();
-			LOGGER.info("SNAPSHOT VALUE: " + parameters.getSnapshot().toString());
-			if (this.hasInventoryBalanceBeenUpdated(mallBalance, actualCreationDate, parameters.getSnapshot())) {
-				for (InventoryBalanceLine mallBalanceItem : mallBalance.getItemLines()) {
-					if (hasInvalidItemOrQuantity(mallBalanceItem)) {
-						continue;
+				JsonObject actualCreationDate = Json.createObjectBuilder()
+						.add("creationDate", mallBalance.getCreationDateTime().toString()).build();
+				LOGGER.info("SNAPSHOT VALUE: " + parameters.getSnapshot().toString());
+				if (this.hasInventoryBalanceBeenUpdated(mallBalance, actualCreationDate, parameters.getSnapshot())) {
+					for (InventoryBalanceLine mallBalanceItem : mallBalance.getItemLines()) {
+						if (hasInvalidItemOrQuantity(mallBalanceItem)) {
+							continue;
+						}
+
+						Quantity availableQuantity = mallBalanceItem.getAvailableQuantity();
+						BigDecimal quantityValue = availableQuantity.getValue();
+						String quantityUnit = availableQuantity.getUnitName();
+
+						InventoryBalanceLineMinimal balanceItem = null;
+						balanceItem = new InventoryBalanceLineMinimal();
+						balanceItem.setItemMaster(mallBalanceItem.getItem().getMasterData().getDisplayIdentifierId());
+						balanceItem.setQuantity(quantityValue);
+						balanceItem.setUnit(quantityUnit);
+
+						JsonObject responseBody = null;
+						try {
+							responseBody = mapper.toJson(balanceItem);
+						} catch (JAXBException e) {
+							LOGGER.error(e.getMessage(), e);
+						}
+						Message data = new Message.Builder().body(responseBody).build();
+						parameters.getEventEmitter().emitData(data);
 					}
-
-					Quantity availableQuantity = mallBalanceItem.getAvailableQuantity();
-					BigDecimal quantityValue = availableQuantity.getValue();
-					String quantityUnit = availableQuantity.getUnitName();
-
-					InventoryBalanceLineMinimal balanceItem = null;
-					balanceItem = new InventoryBalanceLineMinimal();
-					balanceItem.setItemMaster(mallBalanceItem.getItem().getMasterData().getDisplayIdentifierId());
-					balanceItem.setQuantity(quantityValue);
-					balanceItem.setUnit(quantityUnit);
-
-					JsonObject responseBody = null;
-					try {
-						responseBody = mapper.toJson(balanceItem);
-					} catch (JAXBException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					Message data = new Message.Builder().body(responseBody).build();
-					parameters.getEventEmitter().emitData(data);
+					parameters.getEventEmitter().emitSnapshot(actualCreationDate);
+				} else {
+					emitDefaultItem(parameters, mapper);
 				}
-				parameters.getEventEmitter().emitSnapshot(actualCreationDate);
 			} else {
 				emitDefaultItem(parameters, mapper);
 			}
-		} else {
-			emitDefaultItem(parameters, mapper);
-		}
 
+		} catch (JAXBException e) {
+			LOGGER.error(e.getMessage(), e);
+			parameters.getEventEmitter().emitException(e);
+		}
 	}
 
 	private static void emitDefaultItem(final ExecutionParameters parameters,
@@ -129,7 +118,7 @@ public class GetInventoryBalanceLine {
 		try {
 			responseBody = mapper.toJson(balanceItem);
 		} catch (JAXBException e) {
-			LOGGER.error(e.getMessage(),e);
+			LOGGER.error(e.getMessage(), e);
 		}
 		Message data = new Message.Builder().body(responseBody).build();
 		parameters.getEventEmitter().emitData(data);
