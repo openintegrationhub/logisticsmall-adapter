@@ -36,11 +36,6 @@
 					"required": true,
 					"type": "string"
 				},
-				"Number": {
-					"title": "Number",
-					"required": true,
-					"type": "string"
-				},
 				"PostalCode": {
 					"title": "PostalCode",
 					"required": true,
@@ -58,34 +53,27 @@
 				}
 			}
 		},
-		"Lines": 
-			{
-				"title": "lines",
-				"required": true,
-				"type": "array",
-				"properties": {
-					"ItemMasterIdentifier": {
-						"title": "ItemMasterIdentifier",
-						"required": true,
-						"type": "string"
-					},
-					"LineNumber": {
-						"title": "LineNumber",
-						"required": true,
-						"type": "string"
-					},
-					"QuantityUnit": {
-						"title": "QuantityUnit",
-						"required": true,
-						"type": "string"
-					},
-					"OrderedQuantity": {
-						"title": "OrderedQuantity",
-						"required": true,
-						"type": "string"
-					}
+		"Lines": {
+			"title": "lines",
+			"required": true,
+			"type": "array",
+			"properties": {
+				"LineNumber": {
+					"title": "LineNumber",
+					"required": true,
+					"type": "string"
+				},
+				"OrderedQuantity": {
+					"title": "ItemMasterIdentifier",
+					"required": true,
+					"type": "string"
+				},
+				"QuantityUnit": {
+					"title": "QuantityUnit",
+					"required": true,
+					"type": "string"
 				}
 			}
-		
+		}
 	}
 }

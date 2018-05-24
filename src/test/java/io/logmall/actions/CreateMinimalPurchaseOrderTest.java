@@ -50,16 +50,16 @@ public class CreateMinimalPurchaseOrderTest {
 					PurchaseOrderMinimal.class);
 			PurchaseOrderMinimal purchaseOrderMinimal = purchaseOrderMinimalJsonMapper.fromJson(jsonObject);
 
-//			assertEquals("196615", purchaseOrderMinimal.getPurchaseOrderIdentifier());
-//			assertEquals("2018-02-15T11:01:12.369+01:00", purchaseOrderMinimal.getOrderDateTime().toString());
-//			assertEquals("DOOR", purchaseOrderMinimal.getDeliveryTypeCode());
-//			assertEquals("Mustermann", purchaseOrderMinimal.getName());
-//			// assertEquals("Max", purchaseOrderMinimal.getFirstName());
-//			assertEquals("Westring", purchaseOrderMinimal.getAddress().getStreet());
-//			assertEquals("23", purchaseOrderMinimal.getAddress().getNumber());
-//			assertEquals("41256", purchaseOrderMinimal.getAddress().getPostalCode());
-//			assertEquals("Dortmund", purchaseOrderMinimal.getAddress().getCity());
-//			assertEquals("DE", purchaseOrderMinimal.getAddress().getCountryCode());
+			assertEquals("196615", purchaseOrderMinimal.getPurchaseOrderIdentifier());
+			assertEquals("2018-02-15T11:01:12.369+01:00", purchaseOrderMinimal.getOrderDateTime().toString());
+			assertEquals("DOOR", purchaseOrderMinimal.getDeliveryTypeCode());
+			assertEquals("Mustermann", purchaseOrderMinimal.getName());
+			//assertEquals("Max", purchaseOrderMinimal.getFirstName());
+//			 assertEquals("Westring", purchaseOrderMinimal.getAddress().getStreet());
+//			 assertEquals("23", purchaseOrderMinimal.getAddress().getNumber());
+//			 assertEquals("41256", purchaseOrderMinimal.getAddress().getPostalCode());
+//			 assertEquals("Dortmund", purchaseOrderMinimal.getAddress().getCity());
+//			 assertEquals("DE", purchaseOrderMinimal.getAddress().getCountryCode());
 
 			for (PurchaseOrderLineMinimal purchaseOrderLine : purchaseOrderMinimal.getLines()) {
 				assertEquals("Stk", purchaseOrderLine.getQuantityUnit());

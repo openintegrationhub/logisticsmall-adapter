@@ -4,7 +4,7 @@
 	"DeliveryTypeCode": "DOOR",
 	"Name": "Mustermann",
 	"FirstName": "Max",
-	"Address": {
+	"Address":{
 		"Street": "Westring",
 		"Number": "23",
 		"PostalCode": "41256",
@@ -16,7 +16,7 @@
 			"LineNumber": "1",
 			"QuantityUnit": "Stk",
 			"OrderedQuantity": "10",
-			"ItemMasterIdentifier": "Zahnpasta 325F"
+			"ItemMasterIdentifier": "Zahnpasta 324F"
 		}
 	]
 }

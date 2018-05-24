@@ -1,6 +1,8 @@
 package io.logmall.util;
 
 
+import java.math.BigDecimal;
+
 import de.fraunhofer.ccl.bo.model.entity.common.Measure;
 import de.fraunhofer.ccl.bo.model.entity.common.PredefinedMeasureUnitType;
 
@@ -11,7 +13,7 @@ public class MeasureUtil {
 		
 		Measure measure = new Measure();
 		measure.setValue(null);
-		measure.setBaseUnitValue(null);
+		measure.setBaseUnitValue(new BigDecimal("1.0"));
 		measure.setUnitName(unit);
 		measure.setType(type);
         return measure;

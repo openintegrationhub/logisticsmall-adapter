@@ -112,14 +112,16 @@ public class CreateItemMaster implements Module {
 		itemMaster.setAverageRunSizeQuantity(generateNewQuantity());
 		itemMaster.setOrderQuantity(generateNewQuantity());
 
+		
 		itemMaster.setTargetStock(MeasureUtil.getMeasure(PredefinedMeasureUnitType.COUNTABLE));
 		itemMaster.setReorderPoint(MeasureUtil.getMeasure(PredefinedMeasureUnitType.COUNTABLE));
 		itemMaster.setWeight(MeasureUtil.getMeasure(PredefinedMeasureUnitType.WEIGHT));
 		itemMaster.setLength(MeasureUtil.getMeasure(PredefinedMeasureUnitType.LENGTH));
 		itemMaster.setWidth(MeasureUtil.getMeasure(PredefinedMeasureUnitType.LENGTH));
 		itemMaster.setHeight(MeasureUtil.getMeasure(PredefinedMeasureUnitType.LENGTH));
-		itemMaster.setServiceLevel(MeasureUtil.getMeasure(PredefinedMeasureUnitType.COUNTABLE));
+		itemMaster.setServiceLevel(MeasureUtil.getMeasure(PredefinedMeasureUnitType.SERVICE_LEVEL));
 
+		
 		CreateOrReplaceBODBuilder.Builder<ItemMaster> createBODBuilderItemMaster = CreateOrReplaceBODBuilder
 				.newInstance(ItemMaster.class);
 		createBODBuilderItemMaster.forCreationOrReplacement();
