@@ -56,24 +56,7 @@
 		"Lines": {
 			"title": "lines",
 			"required": true,
-			"type": "array",
-			"properties": {
-				"LineNumber": {
-					"title": "LineNumber",
-					"required": true,
-					"type": "string"
-				},
-				"ItemMasterIdentifier": {
-					"title": "ItemMasterIdentifier",
-					"required": true,
-					"type": "string"
-				},
-				"QuantityUnit": {
-					"title": "QuantityUnit",
-					"required": true,
-					"type": "string"
-				}
-			}
+			"type": "object"
 		}
 	}
 }
