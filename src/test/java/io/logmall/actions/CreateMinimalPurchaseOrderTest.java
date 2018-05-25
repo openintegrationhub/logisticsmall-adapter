@@ -12,6 +12,7 @@ import javax.json.Json;
 import javax.json.JsonObject;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +29,8 @@ public class CreateMinimalPurchaseOrderTest {
 	private static final String RESOURCE = "MinimalPurchaseOrder.json";
 	Scanner scanner = null;
 	private static final Logger LOGGER = LoggerFactory.getLogger(CreateMinimalPurchaseOrderTest.class);
-
+	
+	@Ignore
 	@Test
 	public void testExecute() {
 		File file = new File(ResourceResolver.class.getClassLoader().getResource(RESOURCE).getFile());
@@ -66,6 +68,7 @@ public class CreateMinimalPurchaseOrderTest {
 				assertEquals("10", purchaseOrderLine.getOrderedQuantity().toString());
 			}
 
+			
 			CallbackListener<RespondPurchaseOrder> callbackListener = new CallbackListener<>();
 
 			try {

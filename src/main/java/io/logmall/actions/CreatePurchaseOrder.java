@@ -1,6 +1,6 @@
 package io.logmall.actions;
 
-import java.io.StringWriter;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -12,9 +12,6 @@ import javax.xml.bind.JAXBException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.fraunhofer.ccl.bo.converter.xml.oagis.BusinessObjectContextResolver;
-import de.fraunhofer.ccl.bo.converter.xml.oagis.JsonFactory;
-import de.fraunhofer.ccl.bo.converter.xml.oagis.XmlFactory;
 import de.fraunhofer.ccl.bo.instancerepository.boundary.rest.api.PartyMasterService;
 import de.fraunhofer.ccl.bo.instancerepository.boundary.rest.api.PurchaseOrderService;
 import de.fraunhofer.ccl.bo.integration.resteasy.ResteasyIntegration;
@@ -198,11 +195,11 @@ public class CreatePurchaseOrder implements Module {
 		ChangePurchaseOrder requestBod = (ChangePurchaseOrder) createBODBuilderPurchaseOrder.build();
 		
 		
-		StringWriter stringWriter = new StringWriter();
-        JsonFactory jsonFactory = new JsonFactory();
-        jsonFactory.createMarshaller(true).marshal(requestBod, stringWriter);
-        String jsonPayload = stringWriter.toString();
-        LOGGER.info("--------------------------- XML Payload -------------------- \n" + jsonPayload + "\n------------------------------------------------------------");
+//		StringWriter stringWriter = new StringWriter();
+//        JsonFactory jsonFactory = new JsonFactory();
+//        jsonFactory.createMarshaller(true).marshal(requestBod, stringWriter);
+//        String jsonPayload = stringWriter.toString();
+//        LOGGER.info("--------------------------- XML Payload -------------------- \n" + jsonPayload + "\n------------------------------------------------------------");
 
 		return requestBod;
 	}
