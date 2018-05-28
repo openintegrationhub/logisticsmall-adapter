@@ -21,7 +21,7 @@ public class PurchaseOrderMinimal implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@XmlElement(name = "PurchaseOrderIdentifier")
 	private String PurchaseOrderIdentifier;
-	@XmlElement(name = "OrderDateTime")
+	@XmlElement(name = "MagentoOrderDateTime")
 	@XmlJavaTypeAdapter(DateTimeAdapter.class)
 	private DateTime OrderDateTime;
 	@XmlElement(name = "DeliveryTypeCode")

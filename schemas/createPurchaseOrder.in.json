@@ -54,7 +54,7 @@
 			}
 		},
 		"Lines": {
-			"title": "lines",
+			"title": "Lines",
 			"required": true,
 			"type": "object"
 		}

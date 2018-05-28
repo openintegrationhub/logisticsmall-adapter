@@ -16,15 +16,22 @@ import de.fraunhofer.ccl.bo.instancerepository.boundary.rest.api.PartyMasterServ
 import de.fraunhofer.ccl.bo.instancerepository.boundary.rest.api.PurchaseOrderService;
 import de.fraunhofer.ccl.bo.integration.resteasy.ResteasyIntegration;
 import de.fraunhofer.ccl.bo.model.bod.BusinessObjectDocument;
+import de.fraunhofer.ccl.bo.model.bod.ChangeItemMaster;
 import de.fraunhofer.ccl.bo.model.bod.ChangePartyMaster;
 import de.fraunhofer.ccl.bo.model.bod.ChangePurchaseOrder;
+import de.fraunhofer.ccl.bo.model.bod.GetItemMaster;
 import de.fraunhofer.ccl.bo.model.bod.RespondPartyMaster;
 import de.fraunhofer.ccl.bo.model.bod.RespondPurchaseOrder;
 import de.fraunhofer.ccl.bo.model.bod.builder.change.CreateOrReplaceBODBuilder;
+import de.fraunhofer.ccl.bo.model.bod.builder.get.GetBODBuilder;
+import de.fraunhofer.ccl.bo.model.bod.builder.get.GetByExampleBODBuilder;
 import de.fraunhofer.ccl.bo.model.bod.verb.Change;
 import de.fraunhofer.ccl.bo.model.entity.common.PredefinedMeasureUnitType;
 import de.fraunhofer.ccl.bo.model.entity.common.Quantity;
+import de.fraunhofer.ccl.bo.model.entity.common.QuantityClassification;
+import de.fraunhofer.ccl.bo.model.entity.common.Status;
 import de.fraunhofer.ccl.bo.model.entity.item.Item;
+import de.fraunhofer.ccl.bo.model.entity.itemmaster.ItemMaster;
 import de.fraunhofer.ccl.bo.model.entity.party.Address;
 import de.fraunhofer.ccl.bo.model.entity.party.Contact;
 import de.fraunhofer.ccl.bo.model.entity.party.Location;
@@ -38,6 +45,7 @@ import io.elastic.api.Message;
 import io.elastic.api.Module;
 import io.logmall.bod.ConfigurationParameters;
 import io.logmall.bod.CustomerAddress;
+import io.logmall.bod.ItemMasterMinimal;
 import io.logmall.bod.PurchaseOrderLineMinimal;
 import io.logmall.bod.PurchaseOrderMinimal;
 import io.logmall.mapper.ParametersJsonMapper;
@@ -177,6 +185,9 @@ public class CreatePurchaseOrder implements Module {
 			PurchaseOrderLine purchaseOrderLine = new PurchaseOrderLine();
 			Item item = new Item();
 			item.setDisplayIdentifier(purchaseOrderLineMinimal.getItemMasterIdentifier());
+			
+			ItemMaster itemMaster = findItemMaster(purchaseOrderLineMinimal.getItemMasterIdentifier());
+			item.setMasterData(itemMaster);
 			purchaseOrderLine.setItem(item);
 
 			purchaseOrderLine.setNumber(purchaseOrderLineMinimal.getLineNumber());
@@ -203,4 +214,23 @@ public class CreatePurchaseOrder implements Module {
 
 		return requestBod;
 	}
+	
+	private ItemMaster findItemMaster(String itemMasterDisplayID) {
+		ItemMaster itemMasterResult = null;
+		ItemMaster itemMasterExample = new ItemMaster();
+		itemMasterExample.setDisplayIdentifier(itemMasterDisplayID);
+		
+		GetByExampleBODBuilder.Builder<ItemMaster> getBODBuilderItemMaster = GetByExampleBODBuilder
+				.newInstance(ItemMaster.class);
+		getBODBuilderItemMaster.withExample(itemMasterExample);
+		
+		GetItemMaster bodBuilderItemMaster = (GetItemMaster) getBODBuilderItemMaster.build();
+		
+		List<ItemMaster> itemMasters = bodBuilderItemMaster.getNouns();
+		if(itemMasters != null && !itemMasters.isEmpty()) {
+			itemMasterResult = itemMasters.get(0);
+		}
+		return itemMasterResult;
+	}
+
 }
