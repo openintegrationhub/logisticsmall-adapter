@@ -178,7 +178,6 @@ public class CreatePurchaseOrder implements Module {
 		Set<Location> locations = new HashSet<>();
 		locations.add(location);
 		customerParty.setLocations(locations);
-
 		purchaseOrder.setCustomer(customerParty);
 
 		for (PurchaseOrderLineMinimal purchaseOrderLineMinimal : purchaseOrderMinimal.getLines()) {
@@ -223,13 +222,13 @@ public class CreatePurchaseOrder implements Module {
 		GetByExampleBODBuilder.Builder<ItemMaster> getBODBuilderItemMaster = GetByExampleBODBuilder
 				.newInstance(ItemMaster.class);
 		getBODBuilderItemMaster.withExample(itemMasterExample);
-		
 		GetItemMaster bodBuilderItemMaster = (GetItemMaster) getBODBuilderItemMaster.build();
 		
 		List<ItemMaster> itemMasters = bodBuilderItemMaster.getNouns();
 		if(itemMasters != null && !itemMasters.isEmpty()) {
 			itemMasterResult = itemMasters.get(0);
 		}
+		LOGGER.info("------------ found ItemMaster: ----- " + itemMasterResult.getDisplayIdentifierId());
 		return itemMasterResult;
 	}
 
