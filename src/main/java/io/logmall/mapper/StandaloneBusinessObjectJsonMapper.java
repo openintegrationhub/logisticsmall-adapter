@@ -11,14 +11,16 @@ public class StandaloneBusinessObjectJsonMapper<T extends StandaloneBusinessObje
 	// private static final Logger LOGGER =
 	// LoggerFactory.getLogger(StandaloneBusinessObjectJsonMapper.class);
 
-	static JAXBContext staticBOJaxbContext = BusinessObjectContextResolver.getContext();
+	BusinessObjectContextResolver businessObjectContextResolver = new BusinessObjectContextResolver();
+	JAXBContext staticBOJaxbContext = businessObjectContextResolver.getContext();
 
 	public StandaloneBusinessObjectJsonMapper(Class<T> standaloneBusinessObjectClass) throws JAXBException {
 		super(standaloneBusinessObjectClass);
 	}
 
 	@Override
-	protected JAXBContext getJAXBContext(Class<T> forClass) throws JAXBException {
-		return StandaloneBusinessObjectDocumentJsonMapper.staticBOJaxbContext;
+	protected JAXBContext getJAXBContext(Class<T> forClass) throws JAXBException {	
+		StandaloneBusinessObjectDocumentJsonMapper documentJsonMapper = new StandaloneBusinessObjectDocumentJsonMapper(forClass);
+		return documentJsonMapper.staticBOJaxbContext;
 	}
 }
