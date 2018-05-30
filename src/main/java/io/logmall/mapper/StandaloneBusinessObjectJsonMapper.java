@@ -19,8 +19,7 @@ public class StandaloneBusinessObjectJsonMapper<T extends StandaloneBusinessObje
 	}
 
 	@Override
-	protected JAXBContext getJAXBContext(Class<T> forClass) throws JAXBException {	
-		StandaloneBusinessObjectDocumentJsonMapper documentJsonMapper = new StandaloneBusinessObjectDocumentJsonMapper(forClass);
-		return documentJsonMapper.staticBOJaxbContext;
+	protected JAXBContext getJAXBContext(Class<T> forClass) throws JAXBException {
+		return staticBOJaxbContext;
 	}
 }

@@ -3,7 +3,6 @@ package io.logmall.mapper;
 import java.io.Serializable;
 import java.io.StringReader;
 import java.io.StringWriter;
-import java.util.Collection;
 
 import javax.json.Json;
 import javax.json.JsonObject;
@@ -70,7 +69,7 @@ public class ParametersJsonMapper<T extends Serializable> {
 			jsonReader.close();
 		}
 	}
-
+	
 	protected Unmarshaller getUnmarshaller() {
 		return unmarshaller;
 	}
@@ -83,7 +82,6 @@ public class ParametersJsonMapper<T extends Serializable> {
 		return marshaller;
 	}
 	
-
 	public void logAsJson(T object) throws JAXBException {
 		StringWriter stringWriter = new StringWriter();
 		getMarshaller().marshal(object, stringWriter);
@@ -91,3 +89,17 @@ public class ParametersJsonMapper<T extends Serializable> {
 		
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

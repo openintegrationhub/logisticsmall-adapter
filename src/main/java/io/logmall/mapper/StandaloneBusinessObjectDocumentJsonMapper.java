@@ -6,11 +6,14 @@ import javax.xml.bind.JAXBException;
 import de.fraunhofer.ccl.bo.converter.xml.oagis.BusinessObjectContextResolver;
 import de.fraunhofer.ccl.bo.model.bod.BusinessObjectDocument;
 import de.fraunhofer.ccl.bo.model.bod.verb.Verb;
-import de.fraunhofer.ccl.bo.model.entity.common.aspect.BusinessObjectReferencable;
 
+import de.fraunhofer.ccl.bo.model.entity.common.aspect.BusinessObjectReferencable;
 
 public class StandaloneBusinessObjectDocumentJsonMapper<T extends BusinessObjectDocument<? extends Verb, ? extends BusinessObjectReferencable>>
 		extends ParametersJsonMapper<T> {
+
+	// private static final Logger LOGGER =
+	// LoggerFactory.getLogger(StandaloneBusinessObjectDocumentJsonMapper.class);
 	BusinessObjectContextResolver businessObjectContextResolver = new BusinessObjectContextResolver();
 	JAXBContext staticBOJaxbContext = businessObjectContextResolver.getContext();
 
@@ -21,8 +24,6 @@ public class StandaloneBusinessObjectDocumentJsonMapper<T extends BusinessObject
 
 	@Override
 	protected JAXBContext getJAXBContext(Class<T> forClass) throws JAXBException {
-		StandaloneBusinessObjectDocumentJsonMapper documentJsonMapper = new StandaloneBusinessObjectDocumentJsonMapper(forClass);
-		return documentJsonMapper.staticBOJaxbContext;
+		return staticBOJaxbContext;
 	}
-
 }
