@@ -85,7 +85,8 @@ public class ParametersJsonMapper<T extends Serializable> {
 	public void logAsJson(T object) throws JAXBException {
 		StringWriter stringWriter = new StringWriter();
 		getMarshaller().marshal(object, stringWriter);
-		LOGGER.info(stringWriter.toString());
+		String jsonPayload = stringWriter.toString();
+		LOGGER.info("--------------------------- JSON Payload -------------------- \n" + jsonPayload + "\n------------------------------------------------------------");
 		
 	}
 }

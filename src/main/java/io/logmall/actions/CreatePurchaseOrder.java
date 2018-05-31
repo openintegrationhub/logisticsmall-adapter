@@ -1,6 +1,6 @@
 package io.logmall.actions;
 
-
+import java.io.StringWriter;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -12,6 +12,7 @@ import javax.xml.bind.JAXBException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import de.fraunhofer.ccl.bo.converter.xml.oagis.JsonFactory;
 import de.fraunhofer.ccl.bo.instancerepository.boundary.rest.api.PartyMasterService;
 import de.fraunhofer.ccl.bo.instancerepository.boundary.rest.api.PurchaseOrderService;
 import de.fraunhofer.ccl.bo.integration.resteasy.ResteasyIntegration;
@@ -60,17 +61,24 @@ public class CreatePurchaseOrder implements Module {
 	public void execute(final ExecutionParameters parameters) {
 		LOGGER.info("Going to create new Minimal Purchase Order");
 		try {
-			// ------ setup data -----
+
 			// body contains the mapped data
 			final JsonObject body = parameters.getMessage().getBody();
 			ParametersJsonMapper<PurchaseOrderMinimal> purchaseOrderMinimalJsonMapper = new ParametersJsonMapper<>(
 					PurchaseOrderMinimal.class);
 			PurchaseOrderMinimal purchaseOrderMinimal = purchaseOrderMinimalJsonMapper.fromJson(body);
-
 			ConfigurationParameters configuration = new ParametersJsonMapper<>(ConfigurationParameters.class)
 					.fromJson(parameters.getConfiguration());
 			LOGGER.info("App Server URL: " + configuration.getServerURLd());
+
 			ChangePurchaseOrder requestBodPurchaseOrder = createPurchaseOrder(purchaseOrderMinimal, configuration);
+			LOGGER.info("RequestBodPurchaseOrder: " + requestBodPurchaseOrder);
+			StringWriter stringWriter = new StringWriter();
+			JsonFactory jsonFactory = new JsonFactory();
+			jsonFactory.createMarshaller(true).marshal(requestBodPurchaseOrder, stringWriter);
+			String jsonPayload = stringWriter.toString();
+			LOGGER.info("--------------------------- JSON Payload -------------------- \n" + jsonPayload
+					+ "\n------------------------------------------------------------");
 
 			@SuppressWarnings({ "rawtypes", "unchecked" })
 			StandaloneBusinessObjectDocumentJsonMapper<BusinessObjectDocument<Change, PurchaseOrder>> standaloneBusinessObjectDocumentJsonMapper = new StandaloneBusinessObjectDocumentJsonMapper(
@@ -184,7 +192,7 @@ public class CreatePurchaseOrder implements Module {
 			PurchaseOrderLine purchaseOrderLine = new PurchaseOrderLine();
 			Item item = new Item();
 			item.setDisplayIdentifier(purchaseOrderLineMinimal.getItemMasterIdentifier());
-			
+
 			ItemMaster itemMaster = findItemMaster(purchaseOrderLineMinimal.getItemMasterIdentifier());
 			item.setMasterData(itemMaster);
 			purchaseOrderLine.setItem(item);
@@ -203,29 +211,30 @@ public class CreatePurchaseOrder implements Module {
 		createBODBuilderPurchaseOrder.forCreationOrReplacement();
 		createBODBuilderPurchaseOrder.withNoun(purchaseOrder);
 		ChangePurchaseOrder requestBod = (ChangePurchaseOrder) createBODBuilderPurchaseOrder.build();
-		
-		
-//		StringWriter stringWriter = new StringWriter();
-//        JsonFactory jsonFactory = new JsonFactory();
-//        jsonFactory.createMarshaller(true).marshal(requestBod, stringWriter);
-//        String jsonPayload = stringWriter.toString();
-//        LOGGER.info("--------------------------- XML Payload -------------------- \n" + jsonPayload + "\n------------------------------------------------------------");
+
+		// StringWriter stringWriter = new StringWriter();
+		// JsonFactory jsonFactory = new JsonFactory();
+		// jsonFactory.createMarshaller(true).marshal(requestBod, stringWriter);
+		// String jsonPayload = stringWriter.toString();
+		// LOGGER.info("--------------------------- XML Payload -------------------- \n"
+		// + jsonPayload +
+		// "\n------------------------------------------------------------");
 
 		return requestBod;
 	}
-	
+
 	private ItemMaster findItemMaster(String itemMasterDisplayID) {
 		ItemMaster itemMasterResult = null;
 		ItemMaster itemMasterExample = new ItemMaster();
 		itemMasterExample.setDisplayIdentifier(itemMasterDisplayID);
-		
+
 		GetByExampleBODBuilder.Builder<ItemMaster> getBODBuilderItemMaster = GetByExampleBODBuilder
 				.newInstance(ItemMaster.class);
 		getBODBuilderItemMaster.withExample(itemMasterExample);
 		GetItemMaster bodBuilderItemMaster = (GetItemMaster) getBODBuilderItemMaster.build();
-		
+
 		List<ItemMaster> itemMasters = bodBuilderItemMaster.getNouns();
-		if(itemMasters != null && !itemMasters.isEmpty()) {
+		if (itemMasters != null && !itemMasters.isEmpty()) {
 			itemMasterResult = itemMasters.get(0);
 		}
 		LOGGER.info("------------ found ItemMaster: ----- " + itemMasterResult.getDisplayIdentifierId());

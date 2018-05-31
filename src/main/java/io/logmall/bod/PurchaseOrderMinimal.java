@@ -20,12 +20,12 @@ public class PurchaseOrderMinimal implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@XmlElement(name = "PurchaseOrderIdentifier")
-	private String PurchaseOrderIdentifier;
-	@XmlElement(name = "MagentoOrderDateTime")
+	private String purchaseOrderIdentifier;
+	@XmlElement(name = "OrderDateTime")
 	@XmlJavaTypeAdapter(DateTimeAdapter.class)
-	private DateTime OrderDateTime;
+	private DateTime orderDateTime;
 	@XmlElement(name = "DeliveryTypeCode")
-	private String DeliveryTypeCode;
+	private String deliveryTypeCode;
 	@XmlElement(name = "Name")
 	private String name;
 	@XmlElement(name = "Address")
@@ -33,6 +33,7 @@ public class PurchaseOrderMinimal implements Serializable {
 	@XmlElement(name = "Firstname")
 	private String firstname;
 	@XmlElement(name = "Lines")
+	
 	private List<PurchaseOrderLineMinimal> lines;
 
 	public boolean addLine(PurchaseOrderLineMinimal line) {
@@ -46,27 +47,27 @@ public class PurchaseOrderMinimal implements Serializable {
 	}
 
 	public String getPurchaseOrderIdentifier() {
-		return PurchaseOrderIdentifier;
+		return purchaseOrderIdentifier;
 	}
 
 	public void setPurchaseOrderIdentifier(String purchaseOrderIdentifier) {
-		PurchaseOrderIdentifier = purchaseOrderIdentifier;
+		this.purchaseOrderIdentifier = purchaseOrderIdentifier;
 	}
 
 	public DateTime getOrderDateTime() {
-		return OrderDateTime;
+		return orderDateTime;
 	}
 
 	public void setOrderDateTime(DateTime orderDateTime) {
-		OrderDateTime = orderDateTime;
+		this.orderDateTime = orderDateTime;
 	}
 
 	public String getDeliveryTypeCode() {
-		return DeliveryTypeCode;
+		return deliveryTypeCode;
 	}
 
 	public void setDeliveryTypeCode(String deliveryTypeCode) {
-		DeliveryTypeCode = deliveryTypeCode;
+		this.deliveryTypeCode = deliveryTypeCode;
 	}
 
 	public String getName() {

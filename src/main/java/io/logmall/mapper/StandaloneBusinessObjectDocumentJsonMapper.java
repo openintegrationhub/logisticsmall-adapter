@@ -14,6 +14,7 @@ public class StandaloneBusinessObjectDocumentJsonMapper<T extends BusinessObject
 
 	// private static final Logger LOGGER =
 	// LoggerFactory.getLogger(StandaloneBusinessObjectDocumentJsonMapper.class);
+	
 	BusinessObjectContextResolver businessObjectContextResolver = new BusinessObjectContextResolver();
 	JAXBContext staticBOJaxbContext = businessObjectContextResolver.getContext();
 
