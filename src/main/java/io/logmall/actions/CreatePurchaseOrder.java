@@ -17,7 +17,6 @@ import de.fraunhofer.ccl.bo.instancerepository.boundary.rest.api.PartyMasterServ
 import de.fraunhofer.ccl.bo.instancerepository.boundary.rest.api.PurchaseOrderService;
 import de.fraunhofer.ccl.bo.integration.resteasy.ResteasyIntegration;
 import de.fraunhofer.ccl.bo.model.bod.BusinessObjectDocument;
-import de.fraunhofer.ccl.bo.model.bod.ChangeItemMaster;
 import de.fraunhofer.ccl.bo.model.bod.ChangePartyMaster;
 import de.fraunhofer.ccl.bo.model.bod.ChangePurchaseOrder;
 import de.fraunhofer.ccl.bo.model.bod.GetItemMaster;
@@ -77,7 +76,7 @@ public class CreatePurchaseOrder implements Module {
 			JsonFactory jsonFactory = new JsonFactory();
 			jsonFactory.createMarshaller(true).marshal(requestBodPurchaseOrder, stringWriter);
 			String jsonPayload = stringWriter.toString();
-			LOGGER.info("--------------------------- JSON Payload -------------------- \n" + jsonPayload
+			LOGGER.info("--------------------------- JSON Payload RequestBodPurchaseOrder -------------------- \n" + jsonPayload
 					+ "\n------------------------------------------------------------");
 
 			@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -212,13 +211,13 @@ public class CreatePurchaseOrder implements Module {
 		createBODBuilderPurchaseOrder.withNoun(purchaseOrder);
 		ChangePurchaseOrder requestBod = (ChangePurchaseOrder) createBODBuilderPurchaseOrder.build();
 
-		// StringWriter stringWriter = new StringWriter();
-		// JsonFactory jsonFactory = new JsonFactory();
-		// jsonFactory.createMarshaller(true).marshal(requestBod, stringWriter);
-		// String jsonPayload = stringWriter.toString();
-		// LOGGER.info("--------------------------- XML Payload -------------------- \n"
-		// + jsonPayload +
-		// "\n------------------------------------------------------------");
+		 StringWriter stringWriter = new StringWriter();
+		 JsonFactory jsonFactory = new JsonFactory();
+		 jsonFactory.createMarshaller(true).marshal(requestBod, stringWriter);
+		 String jsonPayload = stringWriter.toString();
+		 LOGGER.info("--------------------------- Json Payload requestBod ------------------- \n"
+		 + jsonPayload +
+		 "\n------------------------------------------------------------");
 
 		return requestBod;
 	}
