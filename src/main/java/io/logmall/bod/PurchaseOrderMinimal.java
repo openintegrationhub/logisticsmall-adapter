@@ -30,8 +30,8 @@ public class PurchaseOrderMinimal implements Serializable {
 	private String name;
 	@XmlElement(name = "Address")
 	private CustomerAddress address;
-	@XmlElement(name = "Firstname")
-	private String firstname;
+	//@XmlElement(name = "Firstname")
+	//private String firstname;
 	@XmlElement(name = "Lines")
 	
 	private List<PurchaseOrderLineMinimal> lines;
@@ -94,11 +94,11 @@ public class PurchaseOrderMinimal implements Serializable {
 		this.lines = lines;
 	}
 
-	public String getFirstName() {
-		return firstname;
-	}
-
-	public void setFirstName(String firstname) {
-		this.firstname = firstname;
-	}
+//	public String getFirstName() {
+//		return firstname;
+//	}
+//
+//	public void setFirstName(String firstname) {
+//		this.firstname = firstname;
+//	}
 }

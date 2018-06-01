@@ -30,7 +30,7 @@ public class CreateMinimalPurchaseOrderTest {
 	Scanner scanner = null;
 	private static final Logger LOGGER = LoggerFactory.getLogger(CreateMinimalPurchaseOrderTest.class);
 	
-	@Ignore
+@Ignore
 	@Test
 	public void testExecute() {
 		File file = new File(ResourceResolver.class.getClassLoader().getResource(RESOURCE).getFile());
@@ -57,18 +57,16 @@ public class CreateMinimalPurchaseOrderTest {
 			assertEquals("DOOR", purchaseOrderMinimal.getDeliveryTypeCode());
 			assertEquals("Mustermann", purchaseOrderMinimal.getName());
 			//assertEquals("Max", purchaseOrderMinimal.getFirstName());
-//			 assertEquals("Westring", purchaseOrderMinimal.getAddress().getStreet());
-//			 assertEquals("23", purchaseOrderMinimal.getAddress().getNumber());
-//			 assertEquals("41256", purchaseOrderMinimal.getAddress().getPostalCode());
-//			 assertEquals("Dortmund", purchaseOrderMinimal.getAddress().getCity());
-//			 assertEquals("DE", purchaseOrderMinimal.getAddress().getCountryCode());
+			assertEquals("Westring", purchaseOrderMinimal.getAddress().getStreet());
+			assertEquals("23", purchaseOrderMinimal.getAddress().getNumber());
+			assertEquals("41256", purchaseOrderMinimal.getAddress().getPostalCode());
+			assertEquals("Dortmund", purchaseOrderMinimal.getAddress().getCity());
+			assertEquals("DE", purchaseOrderMinimal.getAddress().getCountryCode());
 
 			for (PurchaseOrderLineMinimal purchaseOrderLine : purchaseOrderMinimal.getLines()) {
 				assertEquals("Stk", purchaseOrderLine.getQuantityUnit());
 				assertEquals("10", purchaseOrderLine.getOrderedQuantity().toString());
 			}
-
-			
 			CallbackListener<RespondPurchaseOrder> callbackListener = new CallbackListener<>();
 
 			try {
