@@ -19,6 +19,8 @@ import org.eclipse.persistence.jaxb.UnmarshallerProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import de.fraunhofer.ccl.bo.converter.xml.oagis.JsonFactory;
+
 public class ParametersJsonMapper<T extends Serializable> {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ParametersJsonMapper.class);
@@ -48,8 +50,7 @@ public class ParametersJsonMapper<T extends Serializable> {
 	}
 
 	public T fromJson(JsonObject json) throws JAXBException {
-		LOGGER.info("fromJson: " + json);
-
+		LOGGER.info("incoming data from Json: " + json);		
 		StreamSource jsonStream = new StreamSource(new StringReader(json.toString()));
 		try {
 			return getUnmarshaller().unmarshal(jsonStream, parametersClass).getValue();
@@ -86,7 +87,7 @@ public class ParametersJsonMapper<T extends Serializable> {
 		StringWriter stringWriter = new StringWriter();
 		getMarshaller().marshal(object, stringWriter);
 		String jsonPayload = stringWriter.toString();
-		LOGGER.info("--------------------------- JSON Payload -------------------- \n" + jsonPayload + "\n------------------------------------------------------------");
+		LOGGER.info("--------------------------- Created requestBod -------------------- \n" + jsonPayload + "\n------------------------------------------------------------");
 		
 	}
 }

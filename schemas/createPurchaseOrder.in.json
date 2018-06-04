@@ -11,11 +11,6 @@
 			"required": true,
 			"type": "string"
 		},
-		"DeliveryTypeCode": {
-			"title": "DeliveryTypeCode",
-			"required": true,
-			"type": "string"
-		},
 		"Name": {
 			"title": "Name",
 			"required": true,

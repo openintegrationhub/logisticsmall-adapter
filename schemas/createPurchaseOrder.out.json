@@ -11,11 +11,6 @@
 			"required": true,
 			"type": "string"
 		},
-		"DeliveryTypeCode": {
-			"title": "DeliveryTypeCode",
-			"required": true,
-			"type": "string"
-		},
 		"Name": {
 			"title": "Name",
 			"required": true,
@@ -54,26 +49,9 @@
 			}
 		},
 		"Lines": {
-			"title": "lines",
+			"title": "Lines",
 			"required": true,
-			"type": "array",
-			"properties": {
-				"LineNumber": {
-					"title": "LineNumber",
-					"required": true,
-					"type": "string"
-				},
-				"OrderedQuantity": {
-					"title": "ItemMasterIdentifier",
-					"required": true,
-					"type": "string"
-				},
-				"QuantityUnit": {
-					"title": "QuantityUnit",
-					"required": true,
-					"type": "string"
-				}
-			}
+			"type": "object"
 		}
 	}
 }

@@ -27,6 +27,7 @@ import de.fraunhofer.ccl.bo.model.bod.builder.get.GetByExampleBODBuilder;
 import de.fraunhofer.ccl.bo.model.bod.verb.Change;
 import de.fraunhofer.ccl.bo.model.entity.common.PredefinedMeasureUnitType;
 import de.fraunhofer.ccl.bo.model.entity.common.Quantity;
+import de.fraunhofer.ccl.bo.model.entity.common.QuantityClassification;
 import de.fraunhofer.ccl.bo.model.entity.item.Item;
 import de.fraunhofer.ccl.bo.model.entity.itemmaster.ItemMaster;
 import de.fraunhofer.ccl.bo.model.entity.party.Address;
@@ -64,22 +65,20 @@ public class CreatePurchaseOrder implements Module {
 			PurchaseOrderMinimal purchaseOrderMinimal = purchaseOrderMinimalJsonMapper.fromJson(body);
 			ConfigurationParameters configuration = new ParametersJsonMapper<>(ConfigurationParameters.class)
 					.fromJson(parameters.getConfiguration());
-			LOGGER.info("App Server URL: " + configuration.getServerURLd());
-
+			LOGGER.info("App Server URL to which the data should be sent: " + configuration.getServerURLd());
 			ChangePurchaseOrder requestBodPurchaseOrder = createPurchaseOrder(purchaseOrderMinimal, configuration);
-			LOGGER.info("RequestBodPurchaseOrder: " + requestBodPurchaseOrder);
-			StringWriter stringWriter = new StringWriter();
-			JsonFactory jsonFactory = new JsonFactory();
-			jsonFactory.createMarshaller(true).marshal(requestBodPurchaseOrder, stringWriter);
-			String jsonPayload = stringWriter.toString();
-			LOGGER.info("--------------------------- JSON Payload RequestBodPurchaseOrder -------------------- \n"
-					+ jsonPayload + "\n------------------------------------------------------------");
-
+			
+			
+			
+			
+			
 			@SuppressWarnings({ "rawtypes", "unchecked" })
 			StandaloneBusinessObjectDocumentJsonMapper<BusinessObjectDocument<Change, PurchaseOrder>> standaloneBusinessObjectDocumentJsonMapper = new StandaloneBusinessObjectDocumentJsonMapper(
 					requestBodPurchaseOrder.getClass());
-			standaloneBusinessObjectDocumentJsonMapper.logAsJson(requestBodPurchaseOrder);
-
+			
+			
+			standaloneBusinessObjectDocumentJsonMapper.logAsJson(requestBodPurchaseOrder);			
+			
 			PurchaseOrderService purchaseOrderService = ResteasyIntegration.newInstance()
 					.createClientProxy(PurchaseOrderService.class, configuration.getServerURLd());
 			RespondPurchaseOrder response = (RespondPurchaseOrder) purchaseOrderService.put(requestBodPurchaseOrder);
@@ -88,7 +87,7 @@ public class CreatePurchaseOrder implements Module {
 			JsonObject responseBody = getEventBody(response);
 			Message data = new Message.Builder().body(responseBody).build();
 			// emitting the message to the platform
-			parameters.getEventEmitter().emitData(data); 
+			parameters.getEventEmitter().emitData(data);
 		} catch (Exception e) {
 			LOGGER.error("going to emit exception: " + e.getMessage(), e);
 			parameters.getEventEmitter().emitException(e);
@@ -127,6 +126,7 @@ public class CreatePurchaseOrder implements Module {
 
 	private ChangePurchaseOrder createPurchaseOrder(PurchaseOrderMinimal purchaseOrderMinimal,
 			ConfigurationParameters configuration) throws JAXBException {
+		
 
 		PurchaseOrder purchaseOrder = new PurchaseOrder();
 		purchaseOrder.setDisplayIdentifier(purchaseOrderMinimal.getPurchaseOrderIdentifier());
@@ -134,7 +134,7 @@ public class CreatePurchaseOrder implements Module {
 		purchaseOrder.setFreightCost(MeasureUtil.getMeasure(PredefinedMeasureUnitType.CURRENCY));
 
 		TermsOfDelivery termsOfDelivery = TermsOfDelivery.newEmptyInstance();
-		termsOfDelivery.setDeliveryTypeCode(purchaseOrderMinimal.getDeliveryTypeCode());
+		termsOfDelivery.setDeliveryTypeCode("Door");
 		purchaseOrder.setTermsOfDelivery(termsOfDelivery);
 
 		Address postalAddress = new Address();
@@ -145,37 +145,36 @@ public class CreatePurchaseOrder implements Module {
 		postalAddress.setCountryCode(purchaseOrderMinimal.getAddress().getCountryCode());
 		postalAddress.setCareOfName(purchaseOrderMinimal.getName());
 
+		//-------------------------------------------------
 		PartyMaster partyMaster = new PartyMaster();
 		partyMaster.setName("Customer");
 		partyMaster.setDisplayIdentifier(partyMaster.getName());
-
 		CreateOrReplaceBODBuilder.Builder<PartyMaster> createBODBuilderPartyMaster = CreateOrReplaceBODBuilder
 				.newInstance(PartyMaster.class);
 		createBODBuilderPartyMaster.forCreationOrReplacement();
 		createBODBuilderPartyMaster.withNoun(partyMaster);
 		ChangePartyMaster requestBodPartyMaster = (ChangePartyMaster) createBODBuilderPartyMaster.build();
-
 		PartyMasterService partyMasterService = ResteasyIntegration.newInstance()
 				.createClientProxy(PartyMasterService.class, configuration.getServerURLd());
 		RespondPartyMaster responsePartyMaster = (RespondPartyMaster) partyMasterService.put(requestBodPartyMaster);
 		partyMaster = responsePartyMaster.getNouns().get(0);
-
-		Contact contact = new Contact();
-		contact.setFamilyName(purchaseOrderMinimal.getName());
-		//contact.setGivenName(purchaseOrderMinimal.getFirstName());
-
+		//------------------------------------------------------//
+		
 		Party customerParty = new Party();
 		customerParty.setDisplayIdentifier(purchaseOrderMinimal.getName());
 		customerParty.setMasterData(partyMaster);
-
-		Set<Contact> contacts = new HashSet<>();
-		contacts.add(contact);
-		customerParty.setContacts(contacts);
 
 		Location location = new Location();
 		location.setPostalAddress(postalAddress);
 		Set<Location> locations = new HashSet<>();
 		locations.add(location);
+		
+		Contact contact = new Contact();
+		contact.setFamilyName(purchaseOrderMinimal.getName());
+		contact.setGivenName(purchaseOrderMinimal.getFirstName());
+		Set<Contact> contacts = new HashSet<>();
+		contacts.add(contact);
+		customerParty.setContacts(contacts);
 		customerParty.setLocations(locations);
 		purchaseOrder.setCustomer(customerParty);
 
@@ -189,12 +188,11 @@ public class CreatePurchaseOrder implements Module {
 			purchaseOrderLine.setItem(item);
 
 			purchaseOrderLine.setNumber(purchaseOrderLineMinimal.getLineNumber());
-			Quantity orderedQuantity = new Quantity();
-			orderedQuantity.setUnitName(purchaseOrderLineMinimal.getQuantityUnit());
+			Quantity orderedQuantity = new Quantity();			
+			orderedQuantity.setUnitName("Stk");
 			orderedQuantity.setValue(purchaseOrderLineMinimal.getOrderedQuantity());
 			purchaseOrderLine.setOrderedQuantity(orderedQuantity);
 			purchaseOrder.addItemLine(purchaseOrderLine);
-
 		}
 
 		CreateOrReplaceBODBuilder.Builder<PurchaseOrder> createBODBuilderPurchaseOrder = CreateOrReplaceBODBuilder
@@ -207,7 +205,7 @@ public class CreatePurchaseOrder implements Module {
 		JsonFactory jsonFactory = new JsonFactory();
 		jsonFactory.createMarshaller(true).marshal(requestBod, stringWriter);
 		String jsonPayload = stringWriter.toString();
-		LOGGER.info("--------------------------- Json Payload requestBod ------------------- \n" + jsonPayload
+		LOGGER.info("--------------------------- RequestBod: \"createPurchaseOrder\" before StandaloneBusinessObjectDocumentJsonMapper is called ------------------- \n" + jsonPayload
 				+ "\n------------------------------------------------------------");
 		return requestBod;
 	}

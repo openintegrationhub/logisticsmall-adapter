@@ -13,8 +13,8 @@
 	"Lines": [
 		{
 			"LineNumber": "1",
-			"QuantityUnit": "Stk",
 			"OrderedQuantity": "10",
+			"QuantityUnit": "Stk",
 			"ItemMasterIdentifier": "Zahnpasta 324F"
 		}
 	]
