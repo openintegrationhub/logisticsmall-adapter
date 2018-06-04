@@ -66,68 +66,64 @@ public class CreatePurchaseOrder implements Module {
 					.fromJson(parameters.getConfiguration());
 			LOGGER.info("App Server URL: " + configuration.getServerURLd());
 
-//			ChangePurchaseOrder requestBodPurchaseOrder = createPurchaseOrder(purchaseOrderMinimal, configuration);
-//			LOGGER.info("RequestBodPurchaseOrder: " + requestBodPurchaseOrder);
-//			StringWriter stringWriter = new StringWriter();
-//			JsonFactory jsonFactory = new JsonFactory();
-//			jsonFactory.createMarshaller(true).marshal(requestBodPurchaseOrder, stringWriter);
-//			String jsonPayload = stringWriter.toString();
-//			LOGGER.info("--------------------------- JSON Payload RequestBodPurchaseOrder -------------------- \n"
-//					+ jsonPayload + "\n------------------------------------------------------------");
+			ChangePurchaseOrder requestBodPurchaseOrder = createPurchaseOrder(purchaseOrderMinimal, configuration);
+			LOGGER.info("RequestBodPurchaseOrder: " + requestBodPurchaseOrder);
+			StringWriter stringWriter = new StringWriter();
+			JsonFactory jsonFactory = new JsonFactory();
+			jsonFactory.createMarshaller(true).marshal(requestBodPurchaseOrder, stringWriter);
+			String jsonPayload = stringWriter.toString();
+			LOGGER.info("--------------------------- JSON Payload RequestBodPurchaseOrder -------------------- \n"
+					+ jsonPayload + "\n------------------------------------------------------------");
 
 			@SuppressWarnings({ "rawtypes", "unchecked" })
-//			StandaloneBusinessObjectDocumentJsonMapper<BusinessObjectDocument<Change, PurchaseOrder>> standaloneBusinessObjectDocumentJsonMapper = new StandaloneBusinessObjectDocumentJsonMapper(
-//					requestBodPurchaseOrder.getClass());
-//			standaloneBusinessObjectDocumentJsonMapper.logAsJson(requestBodPurchaseOrder);
+			StandaloneBusinessObjectDocumentJsonMapper<BusinessObjectDocument<Change, PurchaseOrder>> standaloneBusinessObjectDocumentJsonMapper = new StandaloneBusinessObjectDocumentJsonMapper(
+					requestBodPurchaseOrder.getClass());
+			standaloneBusinessObjectDocumentJsonMapper.logAsJson(requestBodPurchaseOrder);
 
-			//PurchaseOrderService purchaseOrderService = ResteasyIntegration.newInstance()
-			//		.createClientProxy(PurchaseOrderService.class, configuration.getServerURLd());
-			//RespondPurchaseOrder response = (RespondPurchaseOrder) purchaseOrderService.put(requestBodPurchaseOrder);
+			PurchaseOrderService purchaseOrderService = ResteasyIntegration.newInstance()
+					.createClientProxy(PurchaseOrderService.class, configuration.getServerURLd());
+			RespondPurchaseOrder response = (RespondPurchaseOrder) purchaseOrderService.put(requestBodPurchaseOrder);
 
-			//LOGGER.info("MinimalPurchaseOrder successfully created:\t" + purchaseOrderMinimal.toString());
-			//JsonObject responseBody = getEventBody(response);
-			Message data = new Message.Builder().body(body).build();
+			LOGGER.info("MinimalPurchaseOrder successfully created:\t" + purchaseOrderMinimal.toString());
+			JsonObject responseBody = getEventBody(response);
+			Message data = new Message.Builder().body(responseBody).build();
 			// emitting the message to the platform
-			parameters.getEventEmitter().emitData(data); //data
+			parameters.getEventEmitter().emitData(data); 
 		} catch (Exception e) {
 			LOGGER.error("going to emit exception: " + e.getMessage(), e);
 			parameters.getEventEmitter().emitException(e);
 		}
 	}
 
-//	private JsonObject getEventBody(RespondPurchaseOrder response) throws JAXBException, NotFoundException {
-//		List<PurchaseOrder> nouns = response.getNounsForIteration();
-//		if (!nouns.isEmpty()) {
-//			PurchaseOrder purchaseOrderNoun = nouns.get(0);
-//			PurchaseOrderMinimal purchaseOrderMinimalNoun = new PurchaseOrderMinimal();
-//			purchaseOrderMinimalNoun.setPurchaseOrderIdentifier(purchaseOrderNoun.getDisplayIdentifierId());
-//			purchaseOrderMinimalNoun.setOrderDateTime(purchaseOrderNoun.getOrderDate());
-//
-//			TermsOfDelivery termsOfDelivery = purchaseOrderNoun.getTermsOfDelivery();
-//			if (termsOfDelivery != null) {
-//				purchaseOrderMinimalNoun.setDeliveryTypeCode(termsOfDelivery.getDeliveryTypeCode());
-//			}
-//
-//			Party customer = purchaseOrderNoun.getCustomer();
-//			if (customer != null) {
-//				purchaseOrderMinimalNoun.setName(customer.getName());
-//
-//				CustomerAddress address = new CustomerAddress();
-//				Address postalAdress = purchaseOrderNoun.getCustomer().getMasterData().getPostalAddress();
-//				address.setStreet(postalAdress.getStreet());
-//				address.setNumber(postalAdress.getNumber());
-//				address.setPostalCode(postalAdress.getPostalCode());
-//				address.setCity(postalAdress.getCity());
-//				address.setCountryCode(postalAdress.getCountryCode());
-//				purchaseOrderMinimalNoun.setAddress(address);
-//			}
-//
-//			ParametersJsonMapper<PurchaseOrderMinimal> mapper = new ParametersJsonMapper<>(PurchaseOrderMinimal.class);
-//			JsonObject jsonObject = mapper.toJson(purchaseOrderMinimalNoun);
-//			return jsonObject;
-//		} else
-//			throw new NotFoundException("No Item Master found");
-//	}
+	private JsonObject getEventBody(RespondPurchaseOrder response) throws JAXBException, NotFoundException {
+		List<PurchaseOrder> nouns = response.getNounsForIteration();
+		if (!nouns.isEmpty()) {
+			PurchaseOrder purchaseOrderNoun = nouns.get(0);
+			PurchaseOrderMinimal purchaseOrderMinimalNoun = new PurchaseOrderMinimal();
+			purchaseOrderMinimalNoun.setPurchaseOrderIdentifier(purchaseOrderNoun.getDisplayIdentifierId());
+			purchaseOrderMinimalNoun.setOrderDateTime(purchaseOrderNoun.getOrderDate());
+			TermsOfDelivery termsOfDelivery = purchaseOrderNoun.getTermsOfDelivery();
+			if (termsOfDelivery != null) {
+				purchaseOrderMinimalNoun.setDeliveryTypeCode(termsOfDelivery.getDeliveryTypeCode());
+			}
+			Party customer = purchaseOrderNoun.getCustomer();
+			if (customer != null) {
+				purchaseOrderMinimalNoun.setName(customer.getName());
+				CustomerAddress address = new CustomerAddress();
+				Address postalAdress = purchaseOrderNoun.getCustomer().getMasterData().getPostalAddress();
+				address.setStreet(postalAdress.getStreet());
+				address.setNumber(postalAdress.getNumber());
+				address.setPostalCode(postalAdress.getPostalCode());
+				address.setCity(postalAdress.getCity());
+				address.setCountryCode(postalAdress.getCountryCode());
+				purchaseOrderMinimalNoun.setAddress(address);
+			}
+			ParametersJsonMapper<PurchaseOrderMinimal> mapper = new ParametersJsonMapper<>(PurchaseOrderMinimal.class);
+			JsonObject jsonObject = mapper.toJson(purchaseOrderMinimalNoun);
+			return jsonObject;
+		} else
+			throw new NotFoundException("No Item Master found");
+	}
 
 	private ChangePurchaseOrder createPurchaseOrder(PurchaseOrderMinimal purchaseOrderMinimal,
 			ConfigurationParameters configuration) throws JAXBException {
