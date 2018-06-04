@@ -8,6 +8,7 @@ import javax.xml.bind.JAXBException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import ch.qos.logback.core.joran.conditional.ElseAction;
 import de.fraunhofer.ccl.bo.converter.xml.oagis.BusinessObjectContextResolver;
 import de.fraunhofer.ccl.bo.model.bod.BusinessObjectDocument;
 import de.fraunhofer.ccl.bo.model.bod.verb.Verb;
@@ -18,21 +19,27 @@ public class StandaloneBusinessObjectDocumentJsonMapper<T extends BusinessObject
 		extends ParametersJsonMapper<T> {
 	private static final Logger LOGGER = LoggerFactory.getLogger(StandaloneBusinessObjectDocumentJsonMapper.class);
 	
-	BusinessObjectContextResolver businessObjectContextResolver = new BusinessObjectContextResolver();
-	JAXBContext staticBOJaxbContext = businessObjectContextResolver.getContext();
-
+	
+	static JAXBContext staticBOJaxbContext;
+	
+	static {
+		try {
+			staticBOJaxbContext = new BusinessObjectContextResolver().getContext();
+		} catch (JAXBException e) {
+			LOGGER.error(e.getMessage(), e);
+		}
+	}
+	
 	public StandaloneBusinessObjectDocumentJsonMapper(Class<T> standaloneBusinessObjectDocumentClass)
 			throws JAXBException {
 		super(standaloneBusinessObjectDocumentClass);
-		StringWriter stringWriter = new StringWriter();
-		getMarshaller().marshal(standaloneBusinessObjectDocumentClass, stringWriter);
-		String jsonPayload = stringWriter.toString();
-		LOGGER.info("--------------------------- JSON Payload standaloneBusinessObjectDocumentClass-------------------- \n" + jsonPayload + "\n------------------------------------------------------------");
-	
+		if (staticBOJaxbContext == null)
+			throw new IllegalStateException("jaxbcontext must not be null");
+		
 	}
 
 	@Override
 	protected JAXBContext getJAXBContext(Class<T> forClass) throws JAXBException {
-		return staticBOJaxbContext;
+		return StandaloneBusinessObjectDocumentJsonMapper.staticBOJaxbContext;
 	}
 }

@@ -19,7 +19,6 @@ import org.eclipse.persistence.jaxb.UnmarshallerProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.fraunhofer.ccl.bo.converter.xml.oagis.JsonFactory;
 
 public class ParametersJsonMapper<T extends Serializable> {
 
@@ -46,7 +45,11 @@ public class ParametersJsonMapper<T extends Serializable> {
 	}
 
 	protected JAXBContext getJAXBContext(Class<T> forClass) throws JAXBException {
-		return JAXBContext.newInstance(parametersClass);
+		JAXBContext context= JAXBContext.newInstance(parametersClass);
+		if(context == null) {
+			throw new IllegalStateException("context must not be null");
+		}
+		return context;
 	}
 
 	public T fromJson(JsonObject json) throws JAXBException {

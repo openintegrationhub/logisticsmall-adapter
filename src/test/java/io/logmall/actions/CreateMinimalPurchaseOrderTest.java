@@ -56,7 +56,7 @@ public class CreateMinimalPurchaseOrderTest {
 			assertEquals("2018-02-15T11:01:12.369+01:00", purchaseOrderMinimal.getOrderDateTime().toString());
 			assertEquals("DOOR", purchaseOrderMinimal.getDeliveryTypeCode());
 			assertEquals("Mustermann", purchaseOrderMinimal.getName());
-			//assertEquals("Max", purchaseOrderMinimal.getFirstName());
+			assertEquals("Max", purchaseOrderMinimal.getFirstName());
 			assertEquals("Westring", purchaseOrderMinimal.getAddress().getStreet());
 			assertEquals("23", purchaseOrderMinimal.getAddress().getNumber());
 			assertEquals("41256", purchaseOrderMinimal.getAddress().getPostalCode());

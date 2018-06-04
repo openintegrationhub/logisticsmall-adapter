@@ -35,7 +35,7 @@ public class CreateMinimalItemMasterTest {
 	Scanner scanner = null;
 	private static final Logger LOGGER = LoggerFactory.getLogger(CreateMinimalItemMasterTest.class);
 
-	@Ignore
+//	@Ignore
 	@Test
 	public void testExecute() {
 		File file = new File(ResourceResolver.class.getClassLoader().getResource(RESOURCE).getFile());
@@ -76,7 +76,7 @@ public class CreateMinimalItemMasterTest {
 		}
 
 	}
-	@Ignore
+	//@Ignore
 	@Test
 	public void testMarshal() throws JAXBException {
 		ItemMasterMinimal itemMasterMinimal = new ItemMasterMinimal();
