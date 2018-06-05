@@ -30,7 +30,7 @@ public class CreateMinimalPurchaseOrderTest {
 	Scanner scanner = null;
 	private static final Logger LOGGER = LoggerFactory.getLogger(CreateMinimalPurchaseOrderTest.class);
 	
-
+	@Ignore
 	@Test
 	public void testExecute() {
 		File file = new File(ResourceResolver.class.getClassLoader().getResource(RESOURCE).getFile());
