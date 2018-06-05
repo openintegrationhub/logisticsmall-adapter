@@ -6,11 +6,6 @@
 			"required": true,
 			"type": "string"
 		},
-		"OrderDateTime": {
-			"title": "OrderDateTime",
-			"required": true,
-			"type": "string"
-		},
 		"Name": {
 			"title": "Name",
 			"required": true,

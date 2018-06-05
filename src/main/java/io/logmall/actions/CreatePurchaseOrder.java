@@ -130,7 +130,7 @@ public class CreatePurchaseOrder implements Module {
 
 		PurchaseOrder purchaseOrder = new PurchaseOrder();
 		purchaseOrder.setDisplayIdentifier(purchaseOrderMinimal.getPurchaseOrderIdentifier());
-		purchaseOrder.setOrderDate(purchaseOrderMinimal.getOrderDateTime());
+		//purchaseOrder.setOrderDate(purchaseOrderMinimal.getOrderDateTime());
 		purchaseOrder.setFreightCost(MeasureUtil.getMeasure(PredefinedMeasureUnitType.CURRENCY));
 
 		TermsOfDelivery termsOfDelivery = TermsOfDelivery.newEmptyInstance();
