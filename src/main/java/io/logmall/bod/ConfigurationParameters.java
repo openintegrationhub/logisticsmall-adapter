@@ -12,7 +12,8 @@ public class ConfigurationParameters implements Serializable{
 
 	
 	
-	public static final String OTC_URL_CONFIGURATION_VALUE = "https://otc.logistics-mall.com/instance-repository-resteasy/rest";
+	//public static final String OTC_URL_CONFIGURATION_VALUE = "https://otc.logistics-mall.com/instance-repository-resteasy/rest";
+	public static final String LOCALHOST_URL = "http://localhost:8080/instance-repository-resteasy/rest";
 	
 	public static final String LOGATA_DEV_URL_CONFIGURATION_VALUE = "https://logata-dev.logistics-mall.com/instance-repository-resteasy/rest";
 

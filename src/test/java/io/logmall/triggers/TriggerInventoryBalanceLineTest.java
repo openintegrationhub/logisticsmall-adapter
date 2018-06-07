@@ -4,6 +4,7 @@ import javax.json.JsonObject;
 import javax.xml.bind.JAXBException;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +16,7 @@ import io.logmall.bod.InventoryBalanceParameters;
 import io.logmall.mapper.ParametersJsonMapper;
 import io.logmall.util.ExecutionParametersUtil;
 
-
+@Ignore
 public class TriggerInventoryBalanceLineTest {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(TriggerInventoryBalanceLineTest.class);
@@ -40,7 +41,7 @@ public class TriggerInventoryBalanceLineTest {
 	public void testMarshaller() throws JAXBException {
 		ConfigurationParameters configurationParameters = new ConfigurationParameters();
 		configurationParameters.setItemMaster("1");
-		configurationParameters.setServerURLd(ConfigurationParameters.OTC_URL_CONFIGURATION_VALUE);
+		configurationParameters.setServerURLd(ConfigurationParameters.LOCALHOST_URL);
 		ParametersJsonMapper<ConfigurationParameters> mapper = new ParametersJsonMapper<>(
 				ConfigurationParameters.class);
 		JsonObject jsonObject = mapper.toJson(configurationParameters);

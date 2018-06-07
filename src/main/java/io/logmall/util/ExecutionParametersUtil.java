@@ -60,7 +60,7 @@ public final class ExecutionParametersUtil {
 		ConfigurationParameters configuration;
 		if (configurationParameters == null) {
 			configuration = new ConfigurationParameters();
-			configuration.setServerURLd(ConfigurationParameters.OTC_URL_CONFIGURATION_VALUE);
+			configuration.setServerURLd(ConfigurationParameters.LOCALHOST_URL);
 		} else {
 			configuration = configurationParameters;
 		}

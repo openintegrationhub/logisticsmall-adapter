@@ -6,6 +6,11 @@
 			"required": true,
 			"type": "string"
 		},
+		"OrderDateTime": {
+			"title": "OrderDateTime",
+			"required": true,
+			"type": "string"
+		},
 		"DeliveryTypeCode": {
 			"title": "DeliveryTypeCode",
 			"required": true,

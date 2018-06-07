@@ -24,7 +24,7 @@ public class ParametersJsonMapperTest {
 
 	private static final String RESOURCE = "MinimalItemMaster.json";
 	Scanner scanner = null;
-//	@Ignore
+@Ignore
 	@Test
 	public void testItemMasterFromJson() {
 		File file = new File(ResourceResolver.class.getClassLoader().getResource(RESOURCE).getFile());

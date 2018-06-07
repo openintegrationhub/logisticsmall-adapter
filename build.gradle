@@ -13,7 +13,7 @@ targetCompatibility = 1.8
 
 
 repositories {
-	/*mavenLocal()*/
+	mavenLocal()
     maven {
         url 'https://oss.sonatype.org/content/repositories/snapshots'   
     }

@@ -18,6 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.fraunhofer.ccl.bo.model.bod.RespondPurchaseOrder;
+import de.fraunhofer.ccl.bo.model.bod.RespondShipment;
 import io.elastic.api.ExecutionParameters;
 import io.logmall.bod.PurchaseOrderLineMinimal;
 import io.logmall.bod.PurchaseOrderMinimal;
@@ -30,7 +31,6 @@ public class CreateMinimalPurchaseOrderTest {
 	Scanner scanner = null;
 	private static final Logger LOGGER = LoggerFactory.getLogger(CreateMinimalPurchaseOrderTest.class);
 	
-	@Ignore
 	@Test
 	public void testExecute() {
 		File file = new File(ResourceResolver.class.getClassLoader().getResource(RESOURCE).getFile());
@@ -67,7 +67,7 @@ public class CreateMinimalPurchaseOrderTest {
 				assertEquals("Stk", purchaseOrderLine.getQuantityUnit());
 				assertEquals("10", purchaseOrderLine.getOrderedQuantity().toString());
 			}
-			CallbackListener<RespondPurchaseOrder> callbackListener = new CallbackListener<>();
+			CallbackListener<RespondShipment> callbackListener = new CallbackListener<>();
 
 			try {
 				ExecutionParameters parameters = ExecutionParametersUtil.getExecutionParameters(jsonObject,
@@ -79,7 +79,7 @@ public class CreateMinimalPurchaseOrderTest {
 				Assert.fail(e.getMessage());
 			}
 			try {
-				callbackListener.wait(RespondPurchaseOrder.class);
+				callbackListener.wait(RespondShipment.class);
 			} catch (Throwable e) {
 				LOGGER.error(e.getMessage(), e);
 			}

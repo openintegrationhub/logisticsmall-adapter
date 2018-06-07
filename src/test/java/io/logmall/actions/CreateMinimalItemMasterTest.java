@@ -29,13 +29,13 @@ import io.logmall.bod.ItemMasterMinimal;
 import io.logmall.mapper.ParametersJsonMapper;
 import io.logmall.res.ResourceResolver;
 import io.logmall.util.ExecutionParametersUtil;
-
+@Ignore
 public class CreateMinimalItemMasterTest {
 	private static final String RESOURCE = "MinimalItemMaster.json";
 	Scanner scanner = null;
 	private static final Logger LOGGER = LoggerFactory.getLogger(CreateMinimalItemMasterTest.class);
 
-//	@Ignore
+
 	@Test
 	public void testExecute() {
 		File file = new File(ResourceResolver.class.getClassLoader().getResource(RESOURCE).getFile());
@@ -76,7 +76,7 @@ public class CreateMinimalItemMasterTest {
 		}
 
 	}
-	//@Ignore
+
 	@Test
 	public void testMarshal() throws JAXBException {
 		ItemMasterMinimal itemMasterMinimal = new ItemMasterMinimal();

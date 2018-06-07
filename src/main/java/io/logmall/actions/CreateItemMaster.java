@@ -31,7 +31,6 @@ import io.logmall.mapper.StandaloneBusinessObjectDocumentJsonMapper;
 import io.logmall.util.MeasureUtil;
 
 public class CreateItemMaster implements Module {
-	public MeasureUtil measureUtil = new MeasureUtil();
 	private static final Logger LOGGER = LoggerFactory.getLogger(CreateItemMaster.class);
 
 	/**
