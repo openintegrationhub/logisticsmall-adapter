@@ -41,7 +41,7 @@ public class TriggerInventoryBalanceLineTest {
 	public void testMarshaller() throws JAXBException {
 		ConfigurationParameters configurationParameters = new ConfigurationParameters();
 		configurationParameters.setItemMaster("1");
-		configurationParameters.setServerURLd(ConfigurationParameters.LOCALHOST_URL);
+		configurationParameters.setServerURLd(ConfigurationParameters.LOGATA_DEV_URL_CONFIGURATION_VALUE);
 		ParametersJsonMapper<ConfigurationParameters> mapper = new ParametersJsonMapper<>(
 				ConfigurationParameters.class);
 		JsonObject jsonObject = mapper.toJson(configurationParameters);
