@@ -223,7 +223,7 @@ public class CreatePurchaseOrder implements Module {
 
 		TermsOfDelivery termsOfDelivery = TermsOfDelivery.newEmptyInstance();
 		termsOfDelivery.setDeliveryTypeCode("Door");
-		
+		shipment.setType("SHP");
 		shipment.setTermsOfDelivery(termsOfDelivery);
 		shipment.setVolume(MeasureUtil.getMeasure(PredefinedMeasureUnitType.VOLUME));
 		shipment.setLoadingMeter(MeasureUtil.getMeasure(PredefinedMeasureUnitType.LENGTH));
