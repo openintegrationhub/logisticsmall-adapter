@@ -1,6 +1,5 @@
 package io.logmall.mapper;
 
-import java.io.StringWriter;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -8,12 +7,12 @@ import javax.xml.bind.JAXBException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import ch.qos.logback.core.joran.conditional.ElseAction;
 import de.fraunhofer.ccl.bo.converter.xml.oagis.BusinessObjectContextResolver;
 import de.fraunhofer.ccl.bo.model.bod.BusinessObjectDocument;
 import de.fraunhofer.ccl.bo.model.bod.verb.Verb;
+import de.fraunhofer.ccl.bo.model.entity.common.BusinessObjectReferencable;
 
-import de.fraunhofer.ccl.bo.model.entity.common.aspect.BusinessObjectReferencable;
+
 
 public class StandaloneBusinessObjectDocumentJsonMapper<T extends BusinessObjectDocument<? extends Verb, ? extends BusinessObjectReferencable>>
 		extends ParametersJsonMapper<T> {

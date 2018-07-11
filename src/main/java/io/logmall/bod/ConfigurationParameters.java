@@ -6,16 +6,28 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
+
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ConfigurationParameters implements Serializable{
 
+	public static final String URL_CONFIGURATION_KEY = "http://localhost:8080/instance-repository-resteasy/rest";
+	//public static final String URL_CONFIGURATION_KEY = "https://otc.logistics-mall.com/instance-repository-resteasy/rest";
+
+	//	public static final String OTC_URL_CONFIGURATION;
+//	public static final String LOCALHOST_URL;
 	
+//	static {
+//		LOCALHOST_URL = "{\"" + ConfigurationParameters.URL_CONFIGURATION_KEY
+//				+ "\": \"http://localhost:8080/instance-repository-resteasy/rest\"}";	
+//		OTC_URL_CONFIGURATION = "{\"" + ConfigurationParameters.URL_CONFIGURATION_KEY
+//				+ "\": \"https://otc.logistics-mall.com/instance-repository-resteasy/rest\"}";
+//	}
+
 	
 	//public static final String OTC_URL_CONFIGURATION_VALUE = "https://otc.logistics-mall.com/instance-repository-resteasy/rest";
-	public static final String LOCALHOST_URL = "http://localhost:8080/instance-repository-resteasy/rest";
-	
-	public static final String LOGATA_DEV_URL_CONFIGURATION_VALUE = "https://logata-dev.logistics-mall.com/instance-repository-resteasy/rest";
+	//public static final String LOCALHOST_URL = "http://localhost:8080/instance-repository-resteasy/rest";
+	//public static final String LOGATA_DEV_URL_CONFIGURATION_VALUE = "https://logata-dev.logistics-mall.com/instance-repository-resteasy/rest";
 
 	
 	private static final long serialVersionUID = 1L;

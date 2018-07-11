@@ -18,7 +18,6 @@ import javax.xml.bind.Marshaller;
 
 import org.eclipse.persistence.jaxb.MarshallerProperties;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +28,7 @@ import io.logmall.bod.ItemMasterMinimal;
 import io.logmall.mapper.ParametersJsonMapper;
 import io.logmall.res.ResourceResolver;
 import io.logmall.util.ExecutionParametersUtil;
-@Ignore
+
 public class CreateMinimalItemMasterTest {
 	private static final String RESOURCE = "MinimalItemMaster.json";
 	Scanner scanner = null;
@@ -74,7 +73,6 @@ public class CreateMinimalItemMasterTest {
 				scanner.close();
 			}
 		}
-
 	}
 
 	@Test
@@ -94,4 +92,5 @@ public class CreateMinimalItemMasterTest {
 		marshaller.marshal(itemMasterMinimal, stringWriter);
 		LOGGER.info(stringWriter.toString());
 	}
+	
 }

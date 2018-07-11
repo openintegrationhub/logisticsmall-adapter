@@ -42,9 +42,9 @@ dependencies {
     compile 'org.jboss.resteasy:resteasy-client:3.0.14.Final'
 	compile 'org.jboss.logging:jboss-logging:3.1.4.GA'
    
-    compile 'de.fraunhofer.ccl.bo:instance-repository-jaxb:2.1.3-elasticio'
-    compile 'de.fraunhofer.ccl.bo:instance-repository-resteasy:2.1.3-elasticio:lib'
-    compile 'de.fraunhofer.ccl.bo:instance-repository-businessobjects:2.1.3-elasticio'
+    compile 'de.fraunhofer.ccl.bo:instance-repository-jaxb:2.0.30'
+    compile 'de.fraunhofer.ccl.bo:instance-repository-resteasy:2.0.30:lib'
+    compile 'de.fraunhofer.ccl.bo:instance-repository-businessobjects:2.0.30'
         
     compile 'io.elastic:sailor-jvm:2.0.1'
    	

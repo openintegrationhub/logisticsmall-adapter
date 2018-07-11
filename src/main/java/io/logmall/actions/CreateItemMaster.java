@@ -11,11 +11,9 @@ import org.slf4j.LoggerFactory;
 
 import de.fraunhofer.ccl.bo.instancerepository.boundary.rest.api.ItemMasterService;
 import de.fraunhofer.ccl.bo.integration.resteasy.ResteasyIntegration;
-import de.fraunhofer.ccl.bo.model.bod.BusinessObjectDocument;
 import de.fraunhofer.ccl.bo.model.bod.ChangeItemMaster;
 import de.fraunhofer.ccl.bo.model.bod.RespondItemMaster;
 import de.fraunhofer.ccl.bo.model.bod.builder.change.CreateOrReplaceBODBuilder;
-import de.fraunhofer.ccl.bo.model.bod.verb.Change;
 import de.fraunhofer.ccl.bo.model.entity.common.PredefinedMeasureUnitType;
 import de.fraunhofer.ccl.bo.model.entity.common.Quantity;
 import de.fraunhofer.ccl.bo.model.entity.common.QuantityClassification;
@@ -27,7 +25,6 @@ import io.elastic.api.Module;
 import io.logmall.bod.ConfigurationParameters;
 import io.logmall.bod.ItemMasterMinimal;
 import io.logmall.mapper.ParametersJsonMapper;
-import io.logmall.mapper.StandaloneBusinessObjectDocumentJsonMapper;
 import io.logmall.util.MeasureUtil;
 
 public class CreateItemMaster implements Module {
@@ -54,9 +51,9 @@ public class CreateItemMaster implements Module {
 
 			ChangeItemMaster requestBod = createItemMaster(itemMasterMinimal);
 			@SuppressWarnings({ "rawtypes", "unchecked" })
-			StandaloneBusinessObjectDocumentJsonMapper<BusinessObjectDocument<Change, ItemMaster>> standaloneBusinessObjectDocumentJsonMapper = new StandaloneBusinessObjectDocumentJsonMapper(
-					requestBod.getClass());
-			standaloneBusinessObjectDocumentJsonMapper.logAsJson(requestBod);
+			//StandaloneBusinessObjectDocumentJsonMapper<BusinessObjectDocument<Change, ItemMaster>> standaloneBusinessObjectDocumentJsonMapper = new StandaloneBusinessObjectDocumentJsonMapper(
+			//		requestBod.getClass());
+			//SstandaloneBusinessObjectDocumentJsonMapper.logAsJson(requestBod);
 			// ----- setup communication -----
 			// contains action's configuration
 			ConfigurationParameters configuration = new ParametersJsonMapper<>(ConfigurationParameters.class).fromJson(parameters.getConfiguration());

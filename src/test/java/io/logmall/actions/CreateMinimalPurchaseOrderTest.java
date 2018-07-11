@@ -30,7 +30,7 @@ public class CreateMinimalPurchaseOrderTest {
 	private static final String RESOURCE = "MinimalPurchaseOrder.json";
 	Scanner scanner = null;
 	private static final Logger LOGGER = LoggerFactory.getLogger(CreateMinimalPurchaseOrderTest.class);
-	@Ignore
+	//@Ignore
 	@Test
 	public void testExecute() {
 		File file = new File(ResourceResolver.class.getClassLoader().getResource(RESOURCE).getFile());
@@ -54,7 +54,6 @@ public class CreateMinimalPurchaseOrderTest {
 
 			assertEquals("196615", purchaseOrderMinimal.getPurchaseOrderIdentifier());
 			assertEquals("2018-02-15T11:01:12.369+01:00", purchaseOrderMinimal.getOrderDateTime().toString());
-			assertEquals("DOOR", purchaseOrderMinimal.getDeliveryTypeCode());
 			assertEquals("Mustermann", purchaseOrderMinimal.getName());
 			assertEquals("Max", purchaseOrderMinimal.getFirstName());
 			assertEquals("Westring", purchaseOrderMinimal.getAddress().getStreet());

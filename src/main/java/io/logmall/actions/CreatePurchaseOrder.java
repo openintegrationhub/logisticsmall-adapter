@@ -13,31 +13,8 @@ import javax.xml.bind.JAXBException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.fraunhofer.ccl.bo.converter.xml.oagis.JsonFactory;
-import de.fraunhofer.ccl.bo.instancerepository.boundary.rest.api.PartyMasterService;
-import de.fraunhofer.ccl.bo.instancerepository.boundary.rest.api.ShipmentService;
-import de.fraunhofer.ccl.bo.integration.resteasy.ResteasyIntegration;
 import de.fraunhofer.ccl.bo.model.bod.BusinessObjectDocument;
-import de.fraunhofer.ccl.bo.model.bod.ChangePartyMaster;
 import de.fraunhofer.ccl.bo.model.bod.ChangeShipment;
-import de.fraunhofer.ccl.bo.model.bod.GetItemMaster;
-import de.fraunhofer.ccl.bo.model.bod.RespondPartyMaster;
-import de.fraunhofer.ccl.bo.model.bod.RespondShipment;
-import de.fraunhofer.ccl.bo.model.bod.builder.change.CreateOrReplaceBODBuilder;
-import de.fraunhofer.ccl.bo.model.bod.builder.get.GetByExampleBODBuilder;
-import de.fraunhofer.ccl.bo.model.bod.verb.Change;
-import de.fraunhofer.ccl.bo.model.entity.common.PredefinedMeasureUnitType;
-import de.fraunhofer.ccl.bo.model.entity.common.Quantity;
-import de.fraunhofer.ccl.bo.model.entity.item.Item;
-import de.fraunhofer.ccl.bo.model.entity.itemmaster.ItemMaster;
-import de.fraunhofer.ccl.bo.model.entity.party.Address;
-import de.fraunhofer.ccl.bo.model.entity.party.Contact;
-import de.fraunhofer.ccl.bo.model.entity.party.Location;
-import de.fraunhofer.ccl.bo.model.entity.party.Party;
-import de.fraunhofer.ccl.bo.model.entity.partymaster.PartyMaster;
-import de.fraunhofer.ccl.bo.model.entity.partymaster.TermsOfDelivery;
-import de.fraunhofer.ccl.bo.model.entity.shipment.Shipment;
-import de.fraunhofer.ccl.bo.model.entity.shipment.ShipmentItemLine;
 import io.elastic.api.ExecutionParameters;
 import io.elastic.api.Message;
 import io.elastic.api.Module;
@@ -48,6 +25,38 @@ import io.logmall.bod.PurchaseOrderMinimal;
 import io.logmall.mapper.ParametersJsonMapper;
 import io.logmall.mapper.StandaloneBusinessObjectDocumentJsonMapper;
 import io.logmall.util.MeasureUtil;
+
+import de.fraunhofer.ccl.bo.converter.xml.oagis.JsonFactory;
+import de.fraunhofer.ccl.bo.instancerepository.boundary.rest.api.PartyMasterService;
+import de.fraunhofer.ccl.bo.instancerepository.boundary.rest.api.PurchaseOrderService;
+import de.fraunhofer.ccl.bo.instancerepository.boundary.rest.api.ShipmentService;
+import de.fraunhofer.ccl.bo.integration.resteasy.ResteasyIntegration;
+import de.fraunhofer.ccl.bo.model.bod.ChangePartyMaster;
+import de.fraunhofer.ccl.bo.model.bod.ChangePurchaseOrder;
+import de.fraunhofer.ccl.bo.model.bod.GetItemMaster;
+import de.fraunhofer.ccl.bo.model.bod.RespondPartyMaster;
+import de.fraunhofer.ccl.bo.model.bod.RespondPurchaseOrder;
+import de.fraunhofer.ccl.bo.model.bod.RespondShipment;
+import de.fraunhofer.ccl.bo.model.bod.builder.change.CreateOrReplaceBODBuilder;
+import de.fraunhofer.ccl.bo.model.bod.builder.get.GetByExampleBODBuilder;
+import de.fraunhofer.ccl.bo.model.bod.verb.Change;
+import de.fraunhofer.ccl.bo.model.entity.businessobject.BusinessObject;
+import de.fraunhofer.ccl.bo.model.entity.common.PredefinedMeasureUnitType;
+import de.fraunhofer.ccl.bo.model.entity.common.Quantity;
+import de.fraunhofer.ccl.bo.model.entity.common.QuantityClassification;
+import de.fraunhofer.ccl.bo.model.entity.item.Item;
+import de.fraunhofer.ccl.bo.model.entity.itemmaster.ItemMaster;
+import de.fraunhofer.ccl.bo.model.entity.party.Address;
+import de.fraunhofer.ccl.bo.model.entity.party.Contact;
+import de.fraunhofer.ccl.bo.model.entity.party.Location;
+import de.fraunhofer.ccl.bo.model.entity.party.Party;
+import de.fraunhofer.ccl.bo.model.entity.partymaster.PartyMaster;
+import de.fraunhofer.ccl.bo.model.entity.partymaster.TermsOfDelivery;
+import de.fraunhofer.ccl.bo.model.entity.purchaseorder.PurchaseOrder;
+import de.fraunhofer.ccl.bo.model.entity.purchaseorder.PurchaseOrderLine;
+import de.fraunhofer.ccl.bo.model.entity.shipment.Shipment;
+import de.fraunhofer.ccl.bo.model.entity.shipment.ShipmentItemLine;
+
 
 public class CreatePurchaseOrder implements Module {
 
@@ -89,16 +98,17 @@ public class CreatePurchaseOrder implements Module {
 		
 		Shipment shipment = new Shipment();
 		shipment.setDisplayIdentifier(purchaseOrderMinimal.getPurchaseOrderIdentifier());
-		//shipment.setOrderDate(purchaseOrderMinimal.getOrderDateTime());
-
+		
 		TermsOfDelivery termsOfDelivery = TermsOfDelivery.newEmptyInstance();
 		termsOfDelivery.setDeliveryTypeCode("Door");
-		shipment.setType("SHP");
 		shipment.setTermsOfDelivery(termsOfDelivery);
+		shipment.setDateOfShipment(purchaseOrderMinimal.getOrderDateTime());
+		shipment.setType("SHP");
 		shipment.setVolume(MeasureUtil.getMeasure(PredefinedMeasureUnitType.VOLUME));
 		shipment.setLoadingMeter(MeasureUtil.getMeasure(PredefinedMeasureUnitType.LENGTH));
 		shipment.setNetWeight(MeasureUtil.getMeasure(PredefinedMeasureUnitType.WEIGHT));
 		shipment.setGrossWeight(MeasureUtil.getMeasure(PredefinedMeasureUnitType.WEIGHT));
+		
 		Address postalAddress = completePostalAddress(purchaseOrderMinimal);
 		PartyMaster partyMaster = giveBOIDFromPartyMaster(configuration);		
 		Party customerParty = createCustomerParty(purchaseOrderMinimal, partyMaster, postalAddress);

@@ -60,7 +60,7 @@ public final class ExecutionParametersUtil {
 		ConfigurationParameters configuration;
 		if (configurationParameters == null) {
 			configuration = new ConfigurationParameters();
-			configuration.setServerURLd(ConfigurationParameters.LOGATA_DEV_URL_CONFIGURATION_VALUE);
+			configuration.setServerURLd(ConfigurationParameters.URL_CONFIGURATION_KEY);
 		} else {
 			configuration = configurationParameters;
 		}
