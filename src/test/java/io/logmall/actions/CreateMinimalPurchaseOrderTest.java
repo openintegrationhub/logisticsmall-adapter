@@ -12,12 +12,10 @@ import javax.json.Json;
 import javax.json.JsonObject;
 
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.fraunhofer.ccl.bo.model.bod.RespondPurchaseOrder;
 import de.fraunhofer.ccl.bo.model.bod.RespondShipment;
 import io.elastic.api.ExecutionParameters;
 import io.logmall.bod.PurchaseOrderLineMinimal;
