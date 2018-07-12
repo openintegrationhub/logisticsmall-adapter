@@ -111,8 +111,8 @@ public class CreatePurchaseOrder implements Module {
 		shipment.setConsignor(customerParty);
 
 		for (PurchaseOrderLineMinimal purchaseOrderLineMinimal : purchaseOrderMinimal.getLines()) {
-			ShipmentItemLine shipmentItemLine = new ShipmentItemLine();
-			Item item = new Item();
+			ShipmentItemLine shipmentItemLine = ShipmentItemLine.newEmptyInstance();
+			Item item = Item.newEmptyInstance();
 			item.setDisplayIdentifier(purchaseOrderLineMinimal.getItemMasterIdentifier());
 			item.setMasterData(findItemMaster(purchaseOrderLineMinimal.getItemMasterIdentifier()));
 			
@@ -149,17 +149,17 @@ public class CreatePurchaseOrder implements Module {
 
 	private Party createCustomerParty(PurchaseOrderMinimal purchaseOrderMinimal, PartyMaster partyMaster,
 			Address postalAddress) {
-		Party customerParty = new Party();
+		Party customerParty = Party.newEmptyInstance();
 		customerParty.setDisplayIdentifier(purchaseOrderMinimal.getName());
 		customerParty.setName(purchaseOrderMinimal.getName());
 		customerParty.setMasterData(partyMaster);
 
-		Location location = new Location();
+		Location location = Location.newEmptyInstance();
 		location.setPostalAddress(postalAddress);
 		Set<Location> locations = new HashSet<>();
 		locations.add(location);
 		
-		Contact contact = new Contact();
+		Contact contact = Contact.newEmptyInstance();
 		contact.setFamilyName(purchaseOrderMinimal.getName());
 		contact.setGivenName(purchaseOrderMinimal.getFirstName());
 		Set<Contact> contacts = new HashSet<>();
@@ -170,7 +170,7 @@ public class CreatePurchaseOrder implements Module {
 	}
 
 	private PartyMaster giveBOIDFromPartyMaster(ConfigurationParameters configuration) throws JAXBException {
-		PartyMaster partyMaster = new PartyMaster();
+		PartyMaster partyMaster = PartyMaster.newEmptyInstance();
 		partyMaster.setName("Customer");
 		partyMaster.setDisplayIdentifier(partyMaster.getName());
 		CreateOrReplaceBODBuilder.Builder<PartyMaster> createBODBuilderPartyMaster = CreateOrReplaceBODBuilder
@@ -186,7 +186,7 @@ public class CreatePurchaseOrder implements Module {
 	}
 
 	private Address completePostalAddress(PurchaseOrderMinimal purchaseOrderMinimal) {
-		Address postalAddress = new Address();
+		Address postalAddress = Address.newEmptyInstance();
 		postalAddress.setStreet(purchaseOrderMinimal.getAddress().getStreet());
 		postalAddress.setNumber(purchaseOrderMinimal.getAddress().getNumber());
 		postalAddress.setPostalCode(purchaseOrderMinimal.getAddress().getPostalCode());
