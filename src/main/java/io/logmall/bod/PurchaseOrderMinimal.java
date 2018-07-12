@@ -101,4 +101,6 @@ public class PurchaseOrderMinimal implements Serializable {
 	public void setFirstName(String firstname) {
 		this.firstname = firstname;
 	}
+	
+	
 }

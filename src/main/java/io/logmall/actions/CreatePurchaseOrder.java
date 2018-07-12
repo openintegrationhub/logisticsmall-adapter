@@ -12,7 +12,6 @@ import javax.xml.bind.JAXBException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import de.fraunhofer.ccl.bo.model.bod.BusinessObjectDocument;
 import de.fraunhofer.ccl.bo.model.bod.ChangeShipment;
 import io.elastic.api.ExecutionParameters;
@@ -67,16 +66,19 @@ public class CreatePurchaseOrder implements Module {
 			ConfigurationParameters configuration = new ParametersJsonMapper<>(ConfigurationParameters.class)
 					.fromJson(parameters.getConfiguration());
 			LOGGER.info("App Server URL to which the data should be sent: " + configuration.getServerURLd());
+			
 			ChangeShipment requestBodShipment = createShipment(purchaseOrderMinimal, configuration);
+			LOGGER.info("request Bod Shipment LanguageCode= : " + requestBodShipment.getLanguageCode() + "\n" + 
+			"request Bod Shipment" + requestBodShipment.getBodId()+ "\n"  );
 			
 			@SuppressWarnings({ "rawtypes", "unchecked" })
 			StandaloneBusinessObjectDocumentJsonMapper<BusinessObjectDocument<Change, Shipment>> standaloneBusinessObjectDocumentJsonMapper = new StandaloneBusinessObjectDocumentJsonMapper(
 					requestBodShipment.getClass());
 			standaloneBusinessObjectDocumentJsonMapper.logAsJson(requestBodShipment);			
 			
-			ShipmentService purchaseOrderService = ResteasyIntegration.newInstance()
+			ShipmentService shipmentService = ResteasyIntegration.newInstance()
 					.createClientProxy(ShipmentService.class, configuration.getServerURLd());
-			RespondShipment response = (RespondShipment) purchaseOrderService.put(requestBodShipment);
+			RespondShipment response = (RespondShipment) shipmentService.put(requestBodShipment);
 			LOGGER.info("MinimalPurchaseOrder successfully created:\t" + purchaseOrderMinimal.toString());	
 			// emitting the message to the platform
 			parameters.getEventEmitter().emitData(new Message.Builder().body(getEventBody(response)).build());
@@ -89,7 +91,7 @@ public class CreatePurchaseOrder implements Module {
 	private ChangeShipment createShipment(PurchaseOrderMinimal purchaseOrderMinimal,
 			ConfigurationParameters configuration) throws JAXBException {
 		
-		Shipment shipment = new Shipment();
+		Shipment shipment = new Shipment();//Shipment.newEmptyInstance();
 		shipment.setDisplayIdentifier(purchaseOrderMinimal.getPurchaseOrderIdentifier());
 		
 		TermsOfDelivery termsOfDelivery = TermsOfDelivery.newEmptyInstance();
@@ -101,6 +103,7 @@ public class CreatePurchaseOrder implements Module {
 		shipment.setLoadingMeter(MeasureUtil.getMeasure(PredefinedMeasureUnitType.LENGTH));
 		shipment.setNetWeight(MeasureUtil.getMeasure(PredefinedMeasureUnitType.WEIGHT));
 		shipment.setGrossWeight(MeasureUtil.getMeasure(PredefinedMeasureUnitType.WEIGHT));
+		
 		
 		Address postalAddress = completePostalAddress(purchaseOrderMinimal);
 		PartyMaster partyMaster = giveBOIDFromPartyMaster(configuration);		
@@ -196,18 +199,18 @@ public class CreatePurchaseOrder implements Module {
 	private JsonObject getEventBody(RespondShipment response) throws JAXBException, NotFoundException {
 		List<Shipment> nouns = response.getNounsForIteration();
 		if (!nouns.isEmpty()) {
-			Shipment purchaseOrderNoun = nouns.get(0);
+			Shipment shipmentNoun = nouns.get(0);
 			PurchaseOrderMinimal purchaseOrderMinimalNoun = new PurchaseOrderMinimal();
-			purchaseOrderMinimalNoun.setPurchaseOrderIdentifier(purchaseOrderNoun.getDisplayIdentifierId());
-			purchaseOrderMinimalNoun.setOrderDateTime(purchaseOrderNoun.getDateOfShipment());
-			TermsOfDelivery termsOfDelivery = purchaseOrderNoun.getTermsOfDelivery();
+			purchaseOrderMinimalNoun.setPurchaseOrderIdentifier(shipmentNoun.getDisplayIdentifierId());
+			purchaseOrderMinimalNoun.setOrderDateTime(shipmentNoun.getDateOfShipment());
+			TermsOfDelivery termsOfDelivery = shipmentNoun.getTermsOfDelivery();
 			if (termsOfDelivery != null) {
 				purchaseOrderMinimalNoun.setDeliveryTypeCode(termsOfDelivery.getDeliveryTypeCode());
 			}
-			Party customer = purchaseOrderNoun.getConsignee();
+			Party customer = shipmentNoun.getConsignee();
 			if (customer != null) {
 				purchaseOrderMinimalNoun.setName(customer.getName());
-				CustomerAddress address = giveCustomerAddressInformation(purchaseOrderNoun);
+				CustomerAddress address = giveCustomerAddressInformation(shipmentNoun);
 				purchaseOrderMinimalNoun.setAddress(address);
 			}
 			ParametersJsonMapper<PurchaseOrderMinimal> mapper = new ParametersJsonMapper<>(PurchaseOrderMinimal.class);
@@ -217,9 +220,9 @@ public class CreatePurchaseOrder implements Module {
 			throw new NotFoundException("No Item Master found");
 	}
 
-	private CustomerAddress giveCustomerAddressInformation(Shipment purchaseOrderNoun) {
+	private CustomerAddress giveCustomerAddressInformation(Shipment shipmentNoun) {
 		CustomerAddress address = new CustomerAddress();
-		Address postalAdress = purchaseOrderNoun.getConsignor().getMasterData().getPostalAddress();
+		Address postalAdress = shipmentNoun.getConsignor().getMasterData().getPostalAddress();
 		address.setStreet(postalAdress.getStreet());
 		address.setNumber(postalAdress.getNumber());
 		address.setPostalCode(postalAdress.getPostalCode());
@@ -246,121 +249,4 @@ public class CreatePurchaseOrder implements Module {
 		LOGGER.info("------------ found ItemMaster: ----- " + itemMasterResult.getDisplayIdentifierId());
 		return itemMasterResult;
 	}
-	
-	
-//	private JsonObject getEventBody(RespondPurchaseOrder response) throws JAXBException, NotFoundException {
-//	List<PurchaseOrder> nouns = response.getNounsForIteration();
-//	if (!nouns.isEmpty()) {
-//		PurchaseOrder purchaseOrderNoun = nouns.get(0);
-//		PurchaseOrderMinimal purchaseOrderMinimalNoun = new PurchaseOrderMinimal();
-//		purchaseOrderMinimalNoun.setPurchaseOrderIdentifier(purchaseOrderNoun.getDisplayIdentifierId());
-//		purchaseOrderMinimalNoun.setOrderDateTime(purchaseOrderNoun.getOrderDate());
-//		TermsOfDelivery termsOfDelivery = purchaseOrderNoun.getTermsOfDelivery();
-//		if (termsOfDelivery != null) {
-//			purchaseOrderMinimalNoun.setDeliveryTypeCode(termsOfDelivery.getDeliveryTypeCode());
-//		}
-//		Party customer = purchaseOrderNoun.getCustomer();
-//		if (customer != null) {
-//			purchaseOrderMinimalNoun.setName(customer.getName());
-//			CustomerAddress address = new CustomerAddress();
-//			Address postalAdress = purchaseOrderNoun.getCustomer().getMasterData().getPostalAddress();
-//			address.setStreet(postalAdress.getStreet());
-//			address.setNumber(postalAdress.getNumber());
-//			address.setPostalCode(postalAdress.getPostalCode());
-//			address.setCity(postalAdress.getCity());
-//			address.setCountryCode(postalAdress.getCountryCode());
-//			purchaseOrderMinimalNoun.setAddress(address);
-//		}
-//		ParametersJsonMapper<PurchaseOrderMinimal> mapper = new ParametersJsonMapper<>(PurchaseOrderMinimal.class);
-//		JsonObject jsonObject = mapper.toJson(purchaseOrderMinimalNoun);
-//		return jsonObject;
-//	} else
-//		throw new NotFoundException("No Item Master found");
-//}
-
-//private ChangePurchaseOrder createPurchaseOrder(PurchaseOrderMinimal purchaseOrderMinimal,
-//		ConfigurationParameters configuration) throws JAXBException {
-//	
-//	PurchaseOrder purchaseOrder = new PurchaseOrder();
-//	purchaseOrder.setDisplayIdentifier(purchaseOrderMinimal.getPurchaseOrderIdentifier());
-//	purchaseOrder.setOrderDate(purchaseOrderMinimal.getOrderDateTime());
-//	purchaseOrder.setFreightCost(MeasureUtil.getMeasure(PredefinedMeasureUnitType.CURRENCY));
-//
-//	TermsOfDelivery termsOfDelivery = TermsOfDelivery.newEmptyInstance();
-//	termsOfDelivery.setDeliveryTypeCode("Door");
-//	purchaseOrder.setTermsOfDelivery(termsOfDelivery);
-//
-//	Address postalAddress = new Address();
-//	postalAddress.setStreet(purchaseOrderMinimal.getAddress().getStreet());
-//	postalAddress.setNumber(purchaseOrderMinimal.getAddress().getNumber());
-//	postalAddress.setPostalCode(purchaseOrderMinimal.getAddress().getPostalCode());
-//	postalAddress.setCity(purchaseOrderMinimal.getAddress().getCity());
-//	postalAddress.setCountryCode(purchaseOrderMinimal.getAddress().getCountryCode());
-//	postalAddress.setCareOfName(purchaseOrderMinimal.getName());
-//
-//	//-------------------------------------------------
-//	PartyMaster partyMaster = new PartyMaster();
-//	partyMaster.setName("Customer");
-//	partyMaster.setDisplayIdentifier(partyMaster.getName());
-//	CreateOrReplaceBODBuilder.Builder<PartyMaster> createBODBuilderPartyMaster = CreateOrReplaceBODBuilder
-//			.newInstance(PartyMaster.class);
-//	createBODBuilderPartyMaster.forCreationOrReplacement();
-//	createBODBuilderPartyMaster.withNoun(partyMaster);
-//	ChangePartyMaster requestBodPartyMaster = (ChangePartyMaster) createBODBuilderPartyMaster.build();
-//	PartyMasterService partyMasterService = ResteasyIntegration.newInstance()
-//			.createClientProxy(PartyMasterService.class, configuration.getServerURLd());
-//	RespondPartyMaster responsePartyMaster = (RespondPartyMaster) partyMasterService.put(requestBodPartyMaster);
-//	partyMaster = responsePartyMaster.getNouns().get(0);
-//	//------------------------------------------------------//
-//	
-//	Party customerParty = new Party();
-//	customerParty.setDisplayIdentifier(purchaseOrderMinimal.getName());
-//	customerParty.setMasterData(partyMaster);
-//
-//	Location location = new Location();
-//	location.setPostalAddress(postalAddress);
-//	Set<Location> locations = new HashSet<>();
-//	locations.add(location);
-//	
-//	Contact contact = new Contact();
-//	contact.setFamilyName(purchaseOrderMinimal.getName());
-//	contact.setGivenName(purchaseOrderMinimal.getFirstName());
-//	Set<Contact> contacts = new HashSet<>();
-//	contacts.add(contact);
-//	customerParty.setContacts(contacts);
-//	customerParty.setLocations(locations);
-//	purchaseOrder.setCustomer(customerParty);
-//
-//	for (PurchaseOrderLineMinimal purchaseOrderLineMinimal : purchaseOrderMinimal.getLines()) {
-//		PurchaseOrderLine purchaseOrderLine = new PurchaseOrderLine();
-//		Item item = new Item();
-//		item.setDisplayIdentifier(purchaseOrderLineMinimal.getItemMasterIdentifier());
-//
-//		ItemMaster itemMaster = findItemMaster(purchaseOrderLineMinimal.getItemMasterIdentifier());
-//		item.setMasterData(itemMaster);
-//		
-//		purchaseOrderLine.setItem(item);
-//		
-//		purchaseOrderLine.setNumber(purchaseOrderLineMinimal.getLineNumber());
-//		Quantity orderedQuantity = new Quantity();			
-//		orderedQuantity.setUnitName("Stk");
-//		orderedQuantity.setValue(purchaseOrderLineMinimal.getOrderedQuantity());
-//		purchaseOrderLine.setOrderedQuantity(orderedQuantity);
-//		purchaseOrder.addItemLine(purchaseOrderLine);
-//	}
-//
-//	CreateOrReplaceBODBuilder.Builder<PurchaseOrder> createBODBuilderPurchaseOrder = CreateOrReplaceBODBuilder
-//			.newInstance(PurchaseOrder.class);
-//	createBODBuilderPurchaseOrder.forCreationOrReplacement();
-//	createBODBuilderPurchaseOrder.withNoun(purchaseOrder);
-//	ChangePurchaseOrder requestBod = (ChangePurchaseOrder) createBODBuilderPurchaseOrder.build();
-//
-//	StringWriter stringWriter = new StringWriter();
-//	JsonFactory jsonFactory = new JsonFactory();
-//	jsonFactory.createMarshaller(true).marshal(requestBod, stringWriter);
-//	String jsonPayload = stringWriter.toString();
-//	LOGGER.info("--------------------------- RequestBod: \"createPurchaseOrder\" before StandaloneBusinessObjectDocumentJsonMapper is called ------------------- \n" + jsonPayload
-//			+ "\n------------------------------------------------------------");
-//	return requestBod;
-//}
 }
