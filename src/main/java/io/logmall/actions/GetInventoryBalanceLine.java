@@ -41,7 +41,7 @@ public class GetInventoryBalanceLine {
 
 		// contains action's configuration
 		ConfigurationParameters configuration = null;
-		try {
+		try { 
 			configuration = new ParametersJsonMapper<>(ConfigurationParameters.class)
 					.fromJson(parameters.getConfiguration());
 			LOGGER.info("App Server URL: " + configuration.getServerURLd());

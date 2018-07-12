@@ -12,24 +12,14 @@ import javax.xml.bind.JAXBException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import de.fraunhofer.ccl.bo.model.bod.BusinessObjectDocument;
-import de.fraunhofer.ccl.bo.model.bod.ChangeShipment;
-import io.elastic.api.ExecutionParameters;
-import io.elastic.api.Message;
-import io.elastic.api.Module;
-import io.logmall.bod.ConfigurationParameters;
-import io.logmall.bod.CustomerAddress;
-import io.logmall.bod.PurchaseOrderLineMinimal;
-import io.logmall.bod.PurchaseOrderMinimal;
-import io.logmall.mapper.ParametersJsonMapper;
-import io.logmall.mapper.StandaloneBusinessObjectDocumentJsonMapper;
-import io.logmall.util.MeasureUtil;
 
 import de.fraunhofer.ccl.bo.converter.xml.oagis.JsonFactory;
 import de.fraunhofer.ccl.bo.instancerepository.boundary.rest.api.PartyMasterService;
 import de.fraunhofer.ccl.bo.instancerepository.boundary.rest.api.ShipmentService;
 import de.fraunhofer.ccl.bo.integration.resteasy.ResteasyIntegration;
+import de.fraunhofer.ccl.bo.model.bod.BusinessObjectDocument;
 import de.fraunhofer.ccl.bo.model.bod.ChangePartyMaster;
+import de.fraunhofer.ccl.bo.model.bod.ChangeShipment;
 import de.fraunhofer.ccl.bo.model.bod.GetItemMaster;
 import de.fraunhofer.ccl.bo.model.bod.RespondPartyMaster;
 import de.fraunhofer.ccl.bo.model.bod.RespondShipment;
@@ -48,6 +38,16 @@ import de.fraunhofer.ccl.bo.model.entity.partymaster.PartyMaster;
 import de.fraunhofer.ccl.bo.model.entity.partymaster.TermsOfDelivery;
 import de.fraunhofer.ccl.bo.model.entity.shipment.Shipment;
 import de.fraunhofer.ccl.bo.model.entity.shipment.ShipmentItemLine;
+import io.elastic.api.ExecutionParameters;
+import io.elastic.api.Message;
+import io.elastic.api.Module;
+import io.logmall.bod.ConfigurationParameters;
+import io.logmall.bod.CustomerAddress;
+import io.logmall.bod.PurchaseOrderLineMinimal;
+import io.logmall.bod.PurchaseOrderMinimal;
+import io.logmall.mapper.ParametersJsonMapper;
+import io.logmall.mapper.StandaloneBusinessObjectDocumentJsonMapper;
+import io.logmall.util.MeasureUtil;
 
 
 public class CreatePurchaseOrder implements Module {
@@ -91,7 +91,7 @@ public class CreatePurchaseOrder implements Module {
 	private ChangeShipment createShipment(PurchaseOrderMinimal purchaseOrderMinimal,
 			ConfigurationParameters configuration) throws JAXBException {
 		
-		Shipment shipment = new Shipment();//Shipment.newEmptyInstance();
+		Shipment shipment = Shipment.newEmptyInstance();
 		shipment.setDisplayIdentifier(purchaseOrderMinimal.getPurchaseOrderIdentifier());
 		
 		TermsOfDelivery termsOfDelivery = TermsOfDelivery.newEmptyInstance();
