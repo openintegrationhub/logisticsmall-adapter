@@ -12,32 +12,8 @@ import javax.xml.bind.JAXBException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import de.fraunhofer.ccl.bo.converter.xml.oagis.JsonFactory;
-import de.fraunhofer.ccl.bo.instancerepository.boundary.rest.api.PartyMasterService;
-import de.fraunhofer.ccl.bo.instancerepository.boundary.rest.api.ShipmentService;
-import de.fraunhofer.ccl.bo.integration.resteasy.ResteasyIntegration;
 import de.fraunhofer.ccl.bo.model.bod.BusinessObjectDocument;
-import de.fraunhofer.ccl.bo.model.bod.ChangePartyMaster;
 import de.fraunhofer.ccl.bo.model.bod.ChangeShipment;
-import de.fraunhofer.ccl.bo.model.bod.GetItemMaster;
-import de.fraunhofer.ccl.bo.model.bod.RespondPartyMaster;
-import de.fraunhofer.ccl.bo.model.bod.RespondShipment;
-import de.fraunhofer.ccl.bo.model.bod.builder.change.CreateOrReplaceBODBuilder;
-import de.fraunhofer.ccl.bo.model.bod.builder.get.GetByExampleBODBuilder;
-import de.fraunhofer.ccl.bo.model.bod.verb.Change;
-import de.fraunhofer.ccl.bo.model.entity.common.PredefinedMeasureUnitType;
-import de.fraunhofer.ccl.bo.model.entity.common.Quantity;
-import de.fraunhofer.ccl.bo.model.entity.item.Item;
-import de.fraunhofer.ccl.bo.model.entity.itemmaster.ItemMaster;
-import de.fraunhofer.ccl.bo.model.entity.party.Address;
-import de.fraunhofer.ccl.bo.model.entity.party.Contact;
-import de.fraunhofer.ccl.bo.model.entity.party.Location;
-import de.fraunhofer.ccl.bo.model.entity.party.Party;
-import de.fraunhofer.ccl.bo.model.entity.partymaster.PartyMaster;
-import de.fraunhofer.ccl.bo.model.entity.partymaster.TermsOfDelivery;
-import de.fraunhofer.ccl.bo.model.entity.shipment.Shipment;
-import de.fraunhofer.ccl.bo.model.entity.shipment.ShipmentItemLine;
 import io.elastic.api.ExecutionParameters;
 import io.elastic.api.Message;
 import io.elastic.api.Module;
@@ -48,6 +24,31 @@ import io.logmall.bod.PurchaseOrderMinimal;
 import io.logmall.mapper.ParametersJsonMapper;
 import io.logmall.mapper.StandaloneBusinessObjectDocumentJsonMapper;
 import io.logmall.util.MeasureUtil;
+
+import de.fraunhofer.ccl.bo.converter.xml.oagis.JsonFactory;
+import de.fraunhofer.ccl.bo.instancerepository.boundary.rest.api.PartyMasterService;
+import de.fraunhofer.ccl.bo.instancerepository.boundary.rest.api.ShipmentService;
+import de.fraunhofer.ccl.bo.integration.resteasy.ResteasyIntegration;
+import de.fraunhofer.ccl.bo.model.bod.ChangePartyMaster;
+import de.fraunhofer.ccl.bo.model.bod.GetItemMaster;
+import de.fraunhofer.ccl.bo.model.bod.RespondPartyMaster;
+import de.fraunhofer.ccl.bo.model.bod.RespondShipment;
+import de.fraunhofer.ccl.bo.model.bod.builder.change.CreateOrReplaceBODBuilder;
+import de.fraunhofer.ccl.bo.model.bod.builder.get.GetByExampleBODBuilder;
+import de.fraunhofer.ccl.bo.model.bod.verb.Change;
+import de.fraunhofer.ccl.bo.model.entity.common.PredefinedMeasureUnitType;
+import de.fraunhofer.ccl.bo.model.entity.common.Quantity;
+import de.fraunhofer.ccl.bo.model.entity.common.Status;
+import de.fraunhofer.ccl.bo.model.entity.item.Item;
+import de.fraunhofer.ccl.bo.model.entity.itemmaster.ItemMaster;
+import de.fraunhofer.ccl.bo.model.entity.party.Address;
+import de.fraunhofer.ccl.bo.model.entity.party.Contact;
+import de.fraunhofer.ccl.bo.model.entity.party.Location;
+import de.fraunhofer.ccl.bo.model.entity.party.Party;
+import de.fraunhofer.ccl.bo.model.entity.partymaster.PartyMaster;
+import de.fraunhofer.ccl.bo.model.entity.partymaster.TermsOfDelivery;
+import de.fraunhofer.ccl.bo.model.entity.shipment.Shipment;
+import de.fraunhofer.ccl.bo.model.entity.shipment.ShipmentItemLine;
 
 
 public class CreatePurchaseOrder implements Module {
@@ -91,14 +92,15 @@ public class CreatePurchaseOrder implements Module {
 	private ChangeShipment createShipment(PurchaseOrderMinimal purchaseOrderMinimal,
 			ConfigurationParameters configuration) throws JAXBException {
 		
-		Shipment shipment = Shipment.newEmptyInstance();
+		Shipment shipment = new Shipment();
 		shipment.setDisplayIdentifier(purchaseOrderMinimal.getPurchaseOrderIdentifier());
-		
+
 		TermsOfDelivery termsOfDelivery = TermsOfDelivery.newEmptyInstance();
 		termsOfDelivery.setDeliveryTypeCode("Door");
 		shipment.setTermsOfDelivery(termsOfDelivery);
 		shipment.setDateOfShipment(purchaseOrderMinimal.getOrderDateTime());
 		shipment.setType("SHP");
+		shipment.setStatus(new Status("Pending"));
 		shipment.setVolume(MeasureUtil.getMeasure(PredefinedMeasureUnitType.VOLUME));
 		shipment.setLoadingMeter(MeasureUtil.getMeasure(PredefinedMeasureUnitType.LENGTH));
 		shipment.setNetWeight(MeasureUtil.getMeasure(PredefinedMeasureUnitType.WEIGHT));
@@ -111,8 +113,8 @@ public class CreatePurchaseOrder implements Module {
 		shipment.setConsignor(customerParty);
 
 		for (PurchaseOrderLineMinimal purchaseOrderLineMinimal : purchaseOrderMinimal.getLines()) {
-			ShipmentItemLine shipmentItemLine = ShipmentItemLine.newEmptyInstance();
-			Item item = Item.newEmptyInstance();
+			ShipmentItemLine shipmentItemLine = new ShipmentItemLine();
+			Item item = new Item();
 			item.setDisplayIdentifier(purchaseOrderLineMinimal.getItemMasterIdentifier());
 			item.setMasterData(findItemMaster(purchaseOrderLineMinimal.getItemMasterIdentifier()));
 			
@@ -149,17 +151,17 @@ public class CreatePurchaseOrder implements Module {
 
 	private Party createCustomerParty(PurchaseOrderMinimal purchaseOrderMinimal, PartyMaster partyMaster,
 			Address postalAddress) {
-		Party customerParty = Party.newEmptyInstance();
+		Party customerParty = new Party();
 		customerParty.setDisplayIdentifier(purchaseOrderMinimal.getName());
 		customerParty.setName(purchaseOrderMinimal.getName());
 		customerParty.setMasterData(partyMaster);
 
-		Location location = Location.newEmptyInstance();
+		Location location = new Location();
 		location.setPostalAddress(postalAddress);
 		Set<Location> locations = new HashSet<>();
 		locations.add(location);
 		
-		Contact contact = Contact.newEmptyInstance();
+		Contact contact = new Contact();
 		contact.setFamilyName(purchaseOrderMinimal.getName());
 		contact.setGivenName(purchaseOrderMinimal.getFirstName());
 		Set<Contact> contacts = new HashSet<>();
@@ -170,7 +172,7 @@ public class CreatePurchaseOrder implements Module {
 	}
 
 	private PartyMaster giveBOIDFromPartyMaster(ConfigurationParameters configuration) throws JAXBException {
-		PartyMaster partyMaster = PartyMaster.newEmptyInstance();
+		PartyMaster partyMaster = new PartyMaster();
 		partyMaster.setName("Customer");
 		partyMaster.setDisplayIdentifier(partyMaster.getName());
 		CreateOrReplaceBODBuilder.Builder<PartyMaster> createBODBuilderPartyMaster = CreateOrReplaceBODBuilder
@@ -186,7 +188,7 @@ public class CreatePurchaseOrder implements Module {
 	}
 
 	private Address completePostalAddress(PurchaseOrderMinimal purchaseOrderMinimal) {
-		Address postalAddress = Address.newEmptyInstance();
+		Address postalAddress = new Address();
 		postalAddress.setStreet(purchaseOrderMinimal.getAddress().getStreet());
 		postalAddress.setNumber(purchaseOrderMinimal.getAddress().getNumber());
 		postalAddress.setPostalCode(purchaseOrderMinimal.getAddress().getPostalCode());

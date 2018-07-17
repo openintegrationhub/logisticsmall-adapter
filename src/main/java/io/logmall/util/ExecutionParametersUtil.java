@@ -60,11 +60,9 @@ public final class ExecutionParametersUtil {
 		ConfigurationParameters configuration;
 		if (configurationParameters == null) {
 			configuration = new ConfigurationParameters();
-			configuration.setServerURLd(ConfigurationParameters.URL_CONFIGURATION_KEY);
 		} else {
 			configuration = configurationParameters;
 		}
-		
 		JsonObject jsonObject;
 		try {
 			jsonObject = new ParametersJsonMapper<ConfigurationParameters>(ConfigurationParameters.class).toJson(configuration);
