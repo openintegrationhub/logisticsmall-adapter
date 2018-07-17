@@ -24,7 +24,7 @@ import io.logmall.bod.PurchaseOrderMinimal;
 import io.logmall.mapper.ParametersJsonMapper;
 import io.logmall.res.ResourceResolver;
 import io.logmall.util.ExecutionParametersUtil;
-
+@Ignore
 public class CreateMinimalPurchaseOrderTest {
 	private static final String RESOURCE = "MinimalPurchaseOrder.json";
 	Scanner scanner = null;
