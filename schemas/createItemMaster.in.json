@@ -1,11 +1,6 @@
 {
 	"type": "object",
 	"properties": {
-		"BaseQuantityClassificationUnit" : {
-			"title": "BaseQuantityClassificationUnit",
-			"required": true,
-			"type": "string"
-		},
 		"StatusCode" : {
 			"title": "StatusCode",
 			"required": true,
