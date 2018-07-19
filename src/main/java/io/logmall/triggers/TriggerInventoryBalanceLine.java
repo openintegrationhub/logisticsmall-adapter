@@ -46,11 +46,11 @@ public class TriggerInventoryBalanceLine implements Module {
 
 	private JsonObject getEventBody(String itemMasterStr) throws JAXBException, NotFoundException {
 
-		if (itemMasterStr == null)
-			throw new NotFoundException("No item master");
+//		if (itemMasterStr == null)
+//			throw new NotFoundException("No item master");
 		
 		InventoryBalanceParameters parameters = new InventoryBalanceParameters();
-		parameters.setItemMaster(itemMasterStr);
+//		parameters.setItemMaster(itemMasterStr);
 		
 		ParametersJsonMapper<InventoryBalanceParameters> mapper = new ParametersJsonMapper<>(InventoryBalanceParameters.class);
 		return mapper.toJson(parameters);

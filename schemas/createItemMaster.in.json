@@ -1,21 +1,10 @@
 {
 	"type": "object",
 	"properties": {
-		"StatusCode" : {
-			"title": "StatusCode",
+		"Itemmasters": {
+			"title": "Itemmasters",
 			"required": true,
-			"type": "string"
-		},
-		"Identifier": {
-			"title": "Identifier",
-			"required": true,
-			"type": "string"
-		},
-		"Description": {
-			"title": "Description",
-			"required": false,
-			"type": "string"
+			"type": "object"
 		}
 	}
 }
-
