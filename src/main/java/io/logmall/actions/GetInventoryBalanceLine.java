@@ -91,6 +91,7 @@ public class GetInventoryBalanceLine {
 							LOGGER.error(e.getMessage(), e);
 						}
 						Message data = new Message.Builder().body(responseBody).build();
+						LOGGER.info("inventory Balances: " + responseBody);
 						parameters.getEventEmitter().emitData(data);
 					}
 					parameters.getEventEmitter().emitSnapshot(actualCreationDate);
