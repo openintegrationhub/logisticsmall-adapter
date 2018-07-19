@@ -8,9 +8,11 @@ import org.slf4j.LoggerFactory;
 import io.elastic.api.ExecutionParameters;
 import io.elastic.api.Message;
 import io.elastic.api.Module;
+import io.logmall.actions.GetInventoryBalanceLine;
 import io.logmall.bod.ConfigurationParameters;
 import io.logmall.bod.InventoryBalanceParameters;
 import io.logmall.mapper.ParametersJsonMapper;
+import io.logmall.util.ExecutionParametersUtil;
 
 public class TriggerInventoryBalanceLine implements Module {
 
@@ -28,15 +30,17 @@ public class TriggerInventoryBalanceLine implements Module {
 		LOGGER.info("Read InventoryBalance data");
 		try {
 			// contains trigger's configuration
-			ConfigurationParameters configuration = new ParametersJsonMapper<>(ConfigurationParameters.class)
-					.fromJson(parameters.getConfiguration());
-			LOGGER.info("App Server URL: " + configuration.getServerURLd());
+//			ConfigurationParameters configuration = new ParametersJsonMapper<>(ConfigurationParameters.class)
+//					.fromJson(parameters.getConfiguration());
+//			LOGGER.info("App Server URL: " + configuration.getServerURLd());
 
-			String itemMaster = configuration.getItemMaster();
-			JsonObject responseBody = getEventBody(itemMaster);
-			Message data;
-			data = new Message.Builder().body(responseBody).build();
-			parameters.getEventEmitter().emitData(data);
+			new GetInventoryBalanceLine().execute(parameters);
+
+//			String itemMaster = configuration.getItemMaster();
+//			JsonObject responseBody = getEventconfigurationBody(itemMaster);
+//			Message data;
+//			data = new Message.Builder().body(responseBody).build();
+//			parameters.getEventEmitter().emitData(data);
 
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage(), e);
