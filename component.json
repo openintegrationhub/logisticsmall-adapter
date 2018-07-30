@@ -9,6 +9,12 @@
 				"required": true,
 				"viewClass": "TextFieldWithNoteView",
 				"note": "Example URL <b>https://tenant.logistics-mall.com</b>"
+			},
+			"apiKey": {
+				"label": "API key",
+				"required": true,
+				"viewClass": "TextFieldWithNoteView",
+				"note": "Please use <b>logmall-elasticio</b> as API key"
 			}
 		}
 	},

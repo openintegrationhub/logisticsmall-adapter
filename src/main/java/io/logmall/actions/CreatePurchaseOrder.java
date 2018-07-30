@@ -120,7 +120,7 @@ public class CreatePurchaseOrder implements Module {
 			
 			shipmentItemLine.setItem(item);
 			shipmentItemLine.setNumber(purchaseOrderLineMinimal.getLineNumber());
-			
+		
 			Quantity orderedQuantity = new Quantity();			
 			orderedQuantity.setUnitName("Stk");
 			orderedQuantity.setValue(purchaseOrderLineMinimal.getOrderedQuantity());

@@ -55,8 +55,8 @@ public class GetInventoryBalanceLine {
 			BusinessObjectDocument<Get, InventoryBalance> requestBod = bodBuilder.build();
 
 			InventoryBalanceService restService = null;
-			restService = ResteasyIntegration.newInstance().createClientProxy(InventoryBalanceService.class,
-					configuration.getServerURLd());
+			restService = ResteasyIntegration.newInstance().createClientProxyWithKey(InventoryBalanceService.class,
+					configuration.getServerURLd(), configuration.getApiKey());
 			ShowInventoryBalance resultBod = (ShowInventoryBalance) restService.get(requestBod);
 
 			ParametersJsonMapper<InventoryBalanceLineMinimal> mapper = null;

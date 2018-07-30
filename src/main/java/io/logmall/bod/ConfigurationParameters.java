@@ -19,6 +19,7 @@ public class ConfigurationParameters implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private String itemMaster;
+	private String apiKey;
 	
 	private String serverURLd = SERVER_URL_LOCALHOST;
 
@@ -37,5 +38,12 @@ public class ConfigurationParameters implements Serializable{
 	public void setServerURLd(String serverURLd) {
 		this.serverURLd = serverURLd;
 	}
+	
+	public void setApiKey(String apiKey) {
+		this.apiKey = apiKey;
+	}
 
+	public String getApiKey() {
+		return apiKey;
+	}
 }
