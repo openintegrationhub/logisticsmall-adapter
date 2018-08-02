@@ -78,7 +78,7 @@ public class CreatePurchaseOrder implements Module {
 			standaloneBusinessObjectDocumentJsonMapper.logAsJson(requestBodShipment);			
 			
 			ShipmentService shipmentService = ResteasyIntegration.newInstance()
-					.createClientProxy(ShipmentService.class, configuration.getServerURLd());
+					.createClientProxyWithKey(ShipmentService.class, configuration.getServerURLd(), configuration.getApiKey());
 			RespondShipment response = (RespondShipment) shipmentService.put(requestBodShipment);
 			LOGGER.info("MinimalPurchaseOrder successfully created:\t" + purchaseOrderMinimal.toString());	
 			// emitting the message to the platform

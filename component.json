@@ -5,13 +5,13 @@
 	"credentials": {
 		"fields": {
 			"serverURLd": {
-				"label": "Managed App Server URL",
+				"label": "Managed App Server URL: ",
 				"required": true,
 				"viewClass": "TextFieldWithNoteView",
 				"note": "Example URL <b>https://tenant.logistics-mall.com</b>"
 			},
 			"apiKey": {
-				"label": "API key",
+				"label": "Organization API key: ",
 				"required": true,
 				"viewClass": "TextFieldWithNoteView",
 				"note": "Please use <b>logmall-elasticio</b> as API key"
