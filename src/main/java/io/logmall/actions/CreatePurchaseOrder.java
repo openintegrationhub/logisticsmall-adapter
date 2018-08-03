@@ -26,6 +26,7 @@ import io.logmall.mapper.StandaloneBusinessObjectDocumentJsonMapper;
 import io.logmall.util.MeasureUtil;
 
 import de.fraunhofer.ccl.bo.converter.xml.oagis.JsonFactory;
+import de.fraunhofer.ccl.bo.instancerepository.boundary.rest.api.ItemMasterService;
 import de.fraunhofer.ccl.bo.instancerepository.boundary.rest.api.PartyMasterService;
 import de.fraunhofer.ccl.bo.instancerepository.boundary.rest.api.ShipmentService;
 import de.fraunhofer.ccl.bo.integration.resteasy.ResteasyIntegration;
@@ -67,6 +68,7 @@ public class CreatePurchaseOrder implements Module {
 			ConfigurationParameters configuration = new ParametersJsonMapper<>(ConfigurationParameters.class)
 					.fromJson(parameters.getConfiguration());
 			LOGGER.info("App Server URL to which the data should be sent: " + configuration.getServerURLd());
+			LOGGER.info("Api Key: " + configuration.getApiKey());
 			
 			ChangeShipment requestBodShipment = createShipment(purchaseOrderMinimal, configuration);
 			LOGGER.info("request Bod Shipment LanguageCode= : " + requestBodShipment.getLanguageCode() + "\n" + 
@@ -181,7 +183,7 @@ public class CreatePurchaseOrder implements Module {
 		createBODBuilderPartyMaster.withNoun(partyMaster);
 		ChangePartyMaster requestBodPartyMaster = (ChangePartyMaster) createBODBuilderPartyMaster.build();
 		PartyMasterService partyMasterService = ResteasyIntegration.newInstance()
-				.createClientProxy(PartyMasterService.class, configuration.getServerURLd());
+				.createClientProxyWithKey(PartyMasterService.class, configuration.getServerURLd(), configuration.getApiKey());
 		RespondPartyMaster responsePartyMaster = (RespondPartyMaster) partyMasterService.put(requestBodPartyMaster);
 		partyMaster = responsePartyMaster.getNouns().get(0);
 		return partyMaster;

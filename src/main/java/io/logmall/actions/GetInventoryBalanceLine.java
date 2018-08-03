@@ -45,6 +45,7 @@ public class GetInventoryBalanceLine {
 			configuration = new ParametersJsonMapper<>(ConfigurationParameters.class)
 					.fromJson(parameters.getConfiguration());
 			LOGGER.info("App Server URL: " + configuration.getServerURLd());
+			LOGGER.info("App Server URL: " + configuration.getApiKey());
 			String jpql = "SELECT entity FROM InventoryBalance entity ORDER BY entity.creationDateTime DESC";
 
 			GetByJpqlBODBuilder.Builder<InventoryBalance> bodBuilder = GetByJpqlBODBuilder
