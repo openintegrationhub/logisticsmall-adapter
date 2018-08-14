@@ -71,9 +71,9 @@ public class GetInventoryBalanceLine {
 				LOGGER.info("SNAPSHOT VALUE: " + parameters.getSnapshot().toString());
 				if (this.hasInventoryBalanceBeenUpdated(mallBalance, actualCreationDate, parameters.getSnapshot())) {
 					for (InventoryBalanceLine mallBalanceItem : mallBalance.getItemLines()) {
-						if (hasInvalidItemOrQuantity(mallBalanceItem)) {
-							continue;
-						}
+//						if (hasInvalidItemOrQuantity(mallBalanceItem)) {
+//							continue;
+//						}
 
 						Quantity availableQuantity = mallBalanceItem.getAvailableQuantity();
 						BigDecimal quantityValue = availableQuantity.getValue();
@@ -127,11 +127,12 @@ public class GetInventoryBalanceLine {
 
 	private boolean hasInventoryBalanceBeenUpdated(InventoryBalance mallBalance, JsonObject actualCreationDate,
 			JsonObject snapshotCreationDate) {
-		return mallBalance.getItemLines() != null && !actualCreationDate.equals(snapshotCreationDate);
+		return mallBalance.getItemLines() != null && !mallBalance.getItemLines().isEmpty() && !actualCreationDate.equals(snapshotCreationDate);
 	}
 
 	private static boolean hasInvalidItemOrQuantity(InventoryBalanceLine mallBalanceItem) {
-		return mallBalanceItem == null || mallBalanceItem.getItem() == null || mallBalanceItem.getItem().getMasterData() == null
+		return mallBalanceItem == null || mallBalanceItem.getAvailableQuantity() == null
+				|| mallBalanceItem.getItem() == null || mallBalanceItem.getItem().getMasterData() == null
 				|| mallBalanceItem.getItem().getMasterData().getDisplayIdentifierId() == null;
 	}
 }
