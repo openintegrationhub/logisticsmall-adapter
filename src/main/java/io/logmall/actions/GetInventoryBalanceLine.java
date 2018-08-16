@@ -71,9 +71,9 @@ public class GetInventoryBalanceLine {
 				LOGGER.info("SNAPSHOT VALUE: " + parameters.getSnapshot().toString());
 				if (this.hasInventoryBalanceBeenUpdated(mallBalance, actualCreationDate, parameters.getSnapshot())) {
 					for (InventoryBalanceLine mallBalanceItem : mallBalance.getItemLines()) {
-//						if (hasInvalidItemOrQuantity(mallBalanceItem)) {
-//							continue;
-//						}
+						if (hasInvalidItemOrQuantity(mallBalanceItem)) {
+							continue;
+						}
 
 						Quantity availableQuantity = mallBalanceItem.getAvailableQuantity();
 						BigDecimal quantityValue = availableQuantity.getValue();
@@ -93,6 +93,7 @@ public class GetInventoryBalanceLine {
 						}
 						Message data = new Message.Builder().body(responseBody).build();
 						LOGGER.info("inventory Balances: " + responseBody);
+						
 						parameters.getEventEmitter().emitData(data);
 					}
 					parameters.getEventEmitter().emitSnapshot(actualCreationDate);
