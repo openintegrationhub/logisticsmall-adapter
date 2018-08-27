@@ -1,5 +1,6 @@
 package io.logmall.actions;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.json.JsonObject;
@@ -17,6 +18,7 @@ import de.fraunhofer.ccl.bo.model.bod.RespondItemMaster;
 import de.fraunhofer.ccl.bo.model.bod.builder.change.CreateOrReplaceBODBuilder;
 import de.fraunhofer.ccl.bo.model.bod.verb.Change;
 import de.fraunhofer.ccl.bo.model.entity.common.PredefinedMeasureUnitType;
+import de.fraunhofer.ccl.bo.model.entity.common.PredefinedQuantityType;
 import de.fraunhofer.ccl.bo.model.entity.common.Quantity;
 import de.fraunhofer.ccl.bo.model.entity.common.QuantityClassification;
 import de.fraunhofer.ccl.bo.model.entity.common.Status;
@@ -132,7 +134,11 @@ public class CreateItemMaster implements Module {
 	}
 
 	private Quantity generateNewQuantity() {
-		Quantity quantity = new Quantity();
+		Quantity quantity = Quantity.newEmptyInstance();
+        quantity.setValue(BigDecimal.ZERO);
+        quantity.setUnitName(PredefinedQuantityType.getForCOUNTABLE().iterator().next().getUnit());
+        quantity.setType(PredefinedQuantityType.COUNTABLE);
+        quantity.setScale(0);
 		return quantity;
 	}
 }
