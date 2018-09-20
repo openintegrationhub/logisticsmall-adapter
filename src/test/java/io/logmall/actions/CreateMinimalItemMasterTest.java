@@ -57,9 +57,9 @@ public class CreateMinimalItemMasterTest {
 			ItemMasterMinimal itemMasterMinimal = itemMasterMinimalJsonMapper.fromJson(jsonObject);
 			assertEquals("5", itemMasterMinimal.getBaseQuantityClassificationUnit());
 			
-			
 			CallbackListener<RespondItemMaster> callbackListener = new CallbackListener<>();
 			ExecutionParameters parameters = ExecutionParametersUtil.getExecutionParameters(jsonObject,callbackListener.getCallBack());
+			
 			itemMasterMinimal = itemMasterMinimalJsonMapper.fromJson(parameters.getMessage().getBody());
 			assertEquals("","5", itemMasterMinimal.getBaseQuantityClassificationUnit());
 			

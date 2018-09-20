@@ -9,44 +9,62 @@ public class CustomerAddress implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@XmlElement(name="Street")
-	private String Street;
+	private String street;
 	@XmlElement(name="Number")
-	private String Number;
+	private String number;
 	@XmlElement(name="PostalCode")
-	private String PostalCode;
+	private String postalCode;
 	@XmlElement(name="City")
-	private String City;
+	private String city;
 	@XmlElement(name="CountryCode")
-	private String CountryCode;
+	private String countryCode;
+	
+	@XmlElement(name = "Email")
+	private String email;
+	
+	@XmlElement(name = "Phone")
+	private String phone;
 	
 	public String getStreet() {
-		return Street;
+		return street;
 	}
 	public void setStreet(String street) {
-		Street = street;
+		this.street = street;
 	}
 	public String getNumber() {
-		return Number;
+		return number;
 	}
 	public void setNumber(String number) {
-		Number = number;
+		this.number = number;
 	}
 	public String getPostalCode() {
-		return PostalCode;
+		return postalCode;
 	}
 	public void setPostalCode(String postalCode) {
-		PostalCode = postalCode;
+		this.postalCode = postalCode;
 	}
 	public String getCity() {
-		return City;
+		return city;
 	}
 	public void setCity(String city) {
-		City = city;
+		this.city = city;
 	}
 	public String getCountryCode() {
-		return CountryCode;
+		return countryCode;
 	}
 	public void setCountryCode(String countryCode) {
-		CountryCode = countryCode;
+		this.countryCode = countryCode;
 	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}	
 }

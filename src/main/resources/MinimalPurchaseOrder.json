@@ -1,5 +1,5 @@
 {
-	"PurchaseOrderIdentifier": "196615",
+	"PurchaseOrderIdentifier": "196615_NEU",
 	"OrderDateTime": "2018-02-15T11:01:12.369+01:00",
 	"Name": "Mustermann",
 	"Firstname": "Max",
@@ -8,14 +8,16 @@
 		"Number": "23",
 		"PostalCode": "41256",
 		"City": "Dortmund",
-		"CountryCode": "DE"
+		"CountryCode": "DE",
+		"Email": "max@mustermann.com",
+		"Phone": "01739862889520"
 	},
 	"Lines": [
 		{
 			"LineNumber": "1",
 			"OrderedQuantity": "10",
 			"QuantityUnit": "Stk",
-			"ItemMasterIdentifier": "Zahnpasta 324F"
+			"ItemMasterIdentifier": "ItemMaster-0001"
 		}
 	]
 }

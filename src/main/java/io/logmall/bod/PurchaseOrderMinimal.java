@@ -13,6 +13,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import org.joda.time.DateTime;
 
 import de.fraunhofer.ccl.bo.converter.xml.oagis.adapter.DateTimeAdapter;
+import de.fraunhofer.ccl.bo.model.entity.party.Communication;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -33,8 +34,9 @@ public class PurchaseOrderMinimal implements Serializable {
 	@XmlElement(name = "Firstname")
 	private String firstname;
 	@XmlElement(name = "Lines")
-	
 	private List<PurchaseOrderLineMinimal> lines;
+
+	
 
 	public boolean addLine(PurchaseOrderLineMinimal line) {
 		if(line == null) {
@@ -101,6 +103,5 @@ public class PurchaseOrderMinimal implements Serializable {
 	public void setFirstName(String firstname) {
 		this.firstname = firstname;
 	}
-	
 	
 }

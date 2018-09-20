@@ -53,10 +53,8 @@ public final class ExecutionParametersUtil {
 			inputMessage = new Message.Builder().body(body).build();
 		else
 			inputMessage = new Message.Builder().build();
-		
 		ExecutionParameters.Builder executionParametersBuilder = new ExecutionParameters.Builder(inputMessage,
 				eventEmitter);
-
 		ConfigurationParameters configuration;
 		if (configurationParameters == null) {
 			configuration = new ConfigurationParameters();
@@ -70,7 +68,6 @@ public final class ExecutionParametersUtil {
 		} catch (JAXBException e) {
 			LOGGER.error(e.getMessage(), e);
 		}
-
 		return executionParametersBuilder.build();
 	}
 

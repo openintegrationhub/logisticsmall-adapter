@@ -3,6 +3,7 @@ package io.logmall.actions;
 import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -12,25 +13,15 @@ import javax.xml.bind.JAXBException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import de.fraunhofer.ccl.bo.model.bod.BusinessObjectDocument;
-import de.fraunhofer.ccl.bo.model.bod.ChangeShipment;
-import io.elastic.api.ExecutionParameters;
-import io.elastic.api.Message;
-import io.elastic.api.Module;
-import io.logmall.bod.ConfigurationParameters;
-import io.logmall.bod.CustomerAddress;
-import io.logmall.bod.PurchaseOrderLineMinimal;
-import io.logmall.bod.PurchaseOrderMinimal;
-import io.logmall.mapper.ParametersJsonMapper;
-import io.logmall.mapper.StandaloneBusinessObjectDocumentJsonMapper;
-import io.logmall.util.MeasureUtil;
 
 import de.fraunhofer.ccl.bo.converter.xml.oagis.JsonFactory;
 import de.fraunhofer.ccl.bo.instancerepository.boundary.rest.api.ItemMasterService;
 import de.fraunhofer.ccl.bo.instancerepository.boundary.rest.api.PartyMasterService;
 import de.fraunhofer.ccl.bo.instancerepository.boundary.rest.api.ShipmentService;
 import de.fraunhofer.ccl.bo.integration.resteasy.ResteasyIntegration;
+import de.fraunhofer.ccl.bo.model.bod.BusinessObjectDocument;
 import de.fraunhofer.ccl.bo.model.bod.ChangePartyMaster;
+import de.fraunhofer.ccl.bo.model.bod.ChangeShipment;
 import de.fraunhofer.ccl.bo.model.bod.GetItemMaster;
 import de.fraunhofer.ccl.bo.model.bod.RespondPartyMaster;
 import de.fraunhofer.ccl.bo.model.bod.RespondShipment;
@@ -43,13 +34,25 @@ import de.fraunhofer.ccl.bo.model.entity.common.Status;
 import de.fraunhofer.ccl.bo.model.entity.item.Item;
 import de.fraunhofer.ccl.bo.model.entity.itemmaster.ItemMaster;
 import de.fraunhofer.ccl.bo.model.entity.party.Address;
+import de.fraunhofer.ccl.bo.model.entity.party.Communication;
 import de.fraunhofer.ccl.bo.model.entity.party.Contact;
 import de.fraunhofer.ccl.bo.model.entity.party.Location;
 import de.fraunhofer.ccl.bo.model.entity.party.Party;
+import de.fraunhofer.ccl.bo.model.entity.party.TelephoneCommunication;
 import de.fraunhofer.ccl.bo.model.entity.partymaster.PartyMaster;
 import de.fraunhofer.ccl.bo.model.entity.partymaster.TermsOfDelivery;
 import de.fraunhofer.ccl.bo.model.entity.shipment.Shipment;
 import de.fraunhofer.ccl.bo.model.entity.shipment.ShipmentItemLine;
+import io.elastic.api.ExecutionParameters;
+import io.elastic.api.Message;
+import io.elastic.api.Module;
+import io.logmall.bod.ConfigurationParameters;
+import io.logmall.bod.CustomerAddress;
+import io.logmall.bod.PurchaseOrderLineMinimal;
+import io.logmall.bod.PurchaseOrderMinimal;
+import io.logmall.mapper.ParametersJsonMapper;
+import io.logmall.mapper.StandaloneBusinessObjectDocumentJsonMapper;
+import io.logmall.util.MeasureUtil;
 
 
 public class CreatePurchaseOrder implements Module {
@@ -77,10 +80,9 @@ public class CreatePurchaseOrder implements Module {
 			@SuppressWarnings({ "rawtypes", "unchecked" })
 			StandaloneBusinessObjectDocumentJsonMapper<BusinessObjectDocument<Change, Shipment>> standaloneBusinessObjectDocumentJsonMapper = new StandaloneBusinessObjectDocumentJsonMapper(
 					requestBodShipment.getClass());
-			standaloneBusinessObjectDocumentJsonMapper.logAsJson(requestBodShipment);			
+			standaloneBusinessObjectDocumentJsonMapper.logAsJson(requestBodShipment);		
+			ShipmentService shipmentService = getService(ShipmentService.class, configuration.getServerURLd(), configuration.getApiKey());
 			
-			ShipmentService shipmentService = ResteasyIntegration.newInstance()
-					.createClientProxyWithKey(ShipmentService.class, configuration.getServerURLd(), configuration.getApiKey());
 			RespondShipment response = (RespondShipment) shipmentService.put(requestBodShipment);
 			LOGGER.info("MinimalPurchaseOrder successfully created:\t" + purchaseOrderMinimal.toString());	
 			// emitting the message to the platform
@@ -107,12 +109,14 @@ public class CreatePurchaseOrder implements Module {
 		shipment.setLoadingMeter(MeasureUtil.getMeasure(PredefinedMeasureUnitType.LENGTH));
 		shipment.setNetWeight(MeasureUtil.getMeasure(PredefinedMeasureUnitType.WEIGHT));
 		shipment.setGrossWeight(MeasureUtil.getMeasure(PredefinedMeasureUnitType.WEIGHT));
-		
+	
 		
 		Address postalAddress = completePostalAddress(purchaseOrderMinimal);
 		PartyMaster partyMaster = giveBOIDFromPartyMaster(configuration);		
+		
 		Party customerParty = createCustomerParty(purchaseOrderMinimal, partyMaster, postalAddress);
 		shipment.setConsignor(customerParty);
+	
 
 		for (PurchaseOrderLineMinimal purchaseOrderLineMinimal : purchaseOrderMinimal.getLines()) {
 			ShipmentItemLine shipmentItemLine = new ShipmentItemLine();
@@ -154,10 +158,10 @@ public class CreatePurchaseOrder implements Module {
 	private Party createCustomerParty(PurchaseOrderMinimal purchaseOrderMinimal, PartyMaster partyMaster,
 			Address postalAddress) {
 		Party customerParty = new Party();
-		customerParty.setDisplayIdentifier(purchaseOrderMinimal.getName());
-		customerParty.setName(purchaseOrderMinimal.getName());
+		customerParty.setName(purchaseOrderMinimal.getAddress().getEmail());
+//		customerParty.setDisplayIdentifier(purchaseOrderMinimal.getAddress().getEmail());
 		customerParty.setMasterData(partyMaster);
-
+		
 		Location location = new Location();
 		location.setPostalAddress(postalAddress);
 		Set<Location> locations = new HashSet<>();
@@ -168,6 +172,16 @@ public class CreatePurchaseOrder implements Module {
 		contact.setGivenName(purchaseOrderMinimal.getFirstName());
 		Set<Contact> contacts = new HashSet<>();
 		contacts.add(contact);
+		
+		Communication communication = new Communication();
+		communication.setEmailAddress(purchaseOrderMinimal.getAddress().getEmail());
+		TelephoneCommunication telephoneCommunication = new TelephoneCommunication();
+		telephoneCommunication.setDialNumber(purchaseOrderMinimal.getAddress().getPhone());
+		communication.setPhone(telephoneCommunication);
+		Set<Communication> communications = new HashSet<>();
+		communications.add(communication);
+		contact.addCommunication(communication);
+		
 		customerParty.setContacts(contacts);
 		customerParty.setLocations(locations);
 		return customerParty;
@@ -182,8 +196,7 @@ public class CreatePurchaseOrder implements Module {
 		createBODBuilderPartyMaster.forCreationOrReplacement();
 		createBODBuilderPartyMaster.withNoun(partyMaster);
 		ChangePartyMaster requestBodPartyMaster = (ChangePartyMaster) createBODBuilderPartyMaster.build();
-		PartyMasterService partyMasterService = ResteasyIntegration.newInstance()
-				.createClientProxyWithKey(PartyMasterService.class, configuration.getServerURLd(), configuration.getApiKey());
+		PartyMasterService partyMasterService = getService(PartyMasterService.class, configuration.getServerURLd(), configuration.getApiKey());
 		RespondPartyMaster responsePartyMaster = (RespondPartyMaster) partyMasterService.put(requestBodPartyMaster);
 		partyMaster = responsePartyMaster.getNouns().get(0);
 		return partyMaster;
@@ -197,7 +210,21 @@ public class CreatePurchaseOrder implements Module {
 		postalAddress.setCity(purchaseOrderMinimal.getAddress().getCity());
 		postalAddress.setCountryCode(purchaseOrderMinimal.getAddress().getCountryCode());
 		postalAddress.setCareOfName(purchaseOrderMinimal.getName());
+
 		return postalAddress;
+	}
+
+	private <T> T getService(Class<T> serviceClass, String serverUrl, String apiKey) throws JAXBException {
+		T service;
+		if(apiKey== null) {
+			service = ResteasyIntegration.newInstance()
+					.createClientProxy(serviceClass, serverUrl);
+		}
+		else {
+			service = ResteasyIntegration.newInstance()
+					.createClientProxyWithKey(serviceClass, serverUrl, apiKey);
+		}
+		return service;
 	}
 	
 	private JsonObject getEventBody(RespondShipment response) throws JAXBException, NotFoundException {
@@ -211,9 +238,16 @@ public class CreatePurchaseOrder implements Module {
 			if (termsOfDelivery != null) {
 				purchaseOrderMinimalNoun.setDeliveryTypeCode(termsOfDelivery.getDeliveryTypeCode());
 			}
-			Party customer = shipmentNoun.getConsignee();
+			Party customer = shipmentNoun.getConsignor();
 			if (customer != null) {
-				purchaseOrderMinimalNoun.setName(customer.getName());
+				Set<Contact> contacts = shipmentNoun.getConsignor().getContacts();
+				Iterator<Contact> contactIterator = contacts.iterator();
+				if(contactIterator.hasNext()) {
+					Contact contact = contactIterator.next();
+					purchaseOrderMinimalNoun.setName(contact.getFamilyName());
+					purchaseOrderMinimalNoun.setFirstName(contact.getGivenName());
+				}
+				
 				CustomerAddress address = giveCustomerAddressInformation(shipmentNoun);
 				purchaseOrderMinimalNoun.setAddress(address);
 			}
@@ -225,13 +259,32 @@ public class CreatePurchaseOrder implements Module {
 	}
 
 	private CustomerAddress giveCustomerAddressInformation(Shipment shipmentNoun) {
-		CustomerAddress address = new CustomerAddress();
-		Address postalAdress = shipmentNoun.getConsignor().getMasterData().getPostalAddress();
-		address.setStreet(postalAdress.getStreet());
-		address.setNumber(postalAdress.getNumber());
-		address.setPostalCode(postalAdress.getPostalCode());
-		address.setCity(postalAdress.getCity());
-		address.setCountryCode(postalAdress.getCountryCode());
+		CustomerAddress address = new CustomerAddress();	
+		
+		Set<Location> locations = shipmentNoun.getConsignor().getLocations();
+		Iterator<Location> locationIterator = locations.iterator();
+		if(locationIterator.hasNext()) {
+			Location location = locationIterator.next();
+			Address postalAddress = location.getPostalAddress();
+			address.setStreet(postalAddress.getStreet());
+			address.setNumber(postalAddress.getNumber());
+			address.setPostalCode(postalAddress.getPostalCode());
+			address.setCity(postalAddress.getCity());
+			address.setCountryCode(postalAddress.getCountryCode());
+		}
+		Set<Contact> contacts = shipmentNoun.getConsignor().getContacts();
+		Iterator<Contact> contactIterator = contacts.iterator();
+		if(contactIterator.hasNext()) {
+			Contact contact = contactIterator.next();
+			Set<Communication> communications = contact.getCommunications();
+			Iterator<Communication> commucationsIterator = communications.iterator();
+			if(commucationsIterator.hasNext()) {
+				Communication communication = commucationsIterator.next();
+				address.setEmail(communication.getEmailAddress());
+				address.setPhone(communication.getDialNumber());
+			}
+		}
+		
 		return address;
 	}
 	
