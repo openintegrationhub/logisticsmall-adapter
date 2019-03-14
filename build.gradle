@@ -10,37 +10,48 @@ version = '1.0.0'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
+
+
 repositories {
+	mavenLocal()
     maven {
-        url "https://oss.sonatype.org/content/repositories/snapshots"
+        url 'https://oss.sonatype.org/content/repositories/snapshots'   
     }
-    
+    maven {
+    credentials {
+                username 'anonymous'
+                password 'anonymous'
+            }
+            url 'https://nexus.logistics-mall.com/repository/logistics-mall-public'
+    }
     mavenCentral()
-    mavenLocal()
 }
 
 dependencies {
-    compile "io.elastic:sailor-jvm:2.0.1"
-    compile "org.glassfish.jersey.core:jersey-client:2.25.1"
-    compile "org.glassfish.jersey.media:jersey-media-json-processing:2.25.1"
-    
-    compile "de.fraunhofer.ccl.bo:instance-repository-businessobjects:2.0.30"
-    compile "de.fraunhofer.ccl.bo:instance-repository-jaxb:2.0.30"
-    compile "de.fraunhofer.ccl.bo:instance-repository-resteasy:2.0.30:client"
-   	compile "com.google.code.gson:gson:2.8.2"
+	
+	compile 'org.joda:joda-money:0.6'
+	compile 'joda-time:joda-time:2.6'
+	compile 'org.jadira.usertype:usertype.core:3.0.0.CR1'
+	compile 'org.jadira.usertype:usertype.spi:3.0.0.CR1'
+
+ 	compile 'org.eclipse.persistence:org.eclipse.persistence.moxy:2.5.1'
+	compile 'org.eclipse.persistence:org.eclipse.persistence.antlr:2.5.1'
+  	compile 'org.eclipse.persistence:org.eclipse.persistence.asm:2.5.1'
+	compile 'org.eclipse.persistence:org.eclipse.persistence.core:2.5.1'
+   
+    compile 'org.jboss.resteasy:resteasy-client:3.0.14.Final'
+	compile 'org.jboss.logging:jboss-logging:3.1.4.GA'
+   
+    compile 'de.fraunhofer.ccl.bo:instance-repository-jaxb:2.0.30-test'
+    compile 'de.fraunhofer.ccl.bo:instance-repository-resteasy:2.0.30:lib'
+    compile 'de.fraunhofer.ccl.bo:instance-repository-businessobjects:2.0.30'
+        
+    compile 'io.elastic:sailor-jvm:2.0.1'
    	
-   	testCompile "junit:junit:4.11" 
-    
+   	testCompile 'junit:junit:4.11'
+   	testCompile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.2'
 }
 
-sourceSets {
-
-    test {
-        java {
-            srcDirs = ["src/test/java"]
-        }
-    }
-}
 
 uploadArchives {
     repositories {
@@ -50,4 +61,18 @@ uploadArchives {
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.0'
+}
+
+configurations.all {
+    exclude module: 'slf4j-log4j12'
+}
+
+testClasses.doFirst {
+
+	println "Test classpath is:- "
+	
+	sourceSets.test.runtimeClasspath.getFiles().each { file ->
+		println "file: \"" + file + "\""
+	}
+
 }

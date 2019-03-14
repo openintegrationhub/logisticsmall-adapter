@@ -1,100 +1,78 @@
 {
-  "title": "logistics mall API",
-  "description": "elastic.io component for connecting to logistics mall",
-  "docsUrl": "https://confluence.logistics-mall.com/",
-  "credentials": {
-    "fields": {
-      "apiKey": {
-        "label": "API key",
-        "required": true,
-        "viewClass": "TextFieldWithNoteView",
-        "note": "Please use <b>elasticio</b> as API key. For more details see <a href='https://petstore.elastic.io/docs/' target='_blank'>Petstore API docs</a>."
-      }
-    },
-    "verifier": "io.elastic.petstore.ApiKeyVerifier"
-  },
-  "triggers": {
-    "getPetsByStatus": {
-      "main": "io.elastic.petstore.triggers.GetPetsByStatus",
-      "type": "polling",
-      "title": "Get Pets By Status (HttpClient)",
-      "description": "Retrieves pets from the Petstore API by given pet status using Apache HttpClient",
-      "fields": {
-        "status": {
-          "label": "Pet Status",
-          "required": true,
-          "viewClass": "SelectView",
-          "model": {
-            "available": "Available",
-            "pending": "Pending",
-            "sold": "Sold"
-          },
-          "prompt": "Select Pet Status"
-        }
-      },
-      "metadata": {
-        "out": "./schemas/getPetsByStatus.out.json"
-      }
-    },
-    "getPetsByStatusJaxRs": {
-      "main": "io.elastic.petstore.triggers.GetPetsByStatusJaxRs",
-      "type": "polling",
-      "title": "Get Pets By Status (JAX-RS)",
-      "description": "Retrieves pets from the Petstore API by given pet status using Java API for RESTful Web Services (JAX-RS)",
-      "fields": {
-        "status": {
-          "label": "Pet Status",
-          "required": true,
-          "viewClass": "SelectView",
-          "model": {
-            "available": "Available",
-            "pending": "Pending",
-            "sold": "Sold"
-          },
-          "prompt": "Select Pet Status"
-        }
-      },
-      "metadata": {
-        "out": "./schemas/getPetsByStatus.out.json"
-      }
-    },
-    "getPetsByStatusWithDynamicSelectModel": {
-      "main": "io.elastic.petstore.triggers.GetPetsByStatus",
-      "type": "polling",
-      "title": "Get Pets By Status With Dynamic Select Model",
-      "description": "Retrieves pets from the Petstore API by given pet status. The available statuses are retrieved from the Petstore API dynamically.",
-      "fields": {
-        "status": {
-          "label": "Pet Status",
-          "required": true,
-          "viewClass": "SelectView",
-          "model": "io.elastic.petstore.providers.PetStatusModelProvider",
-          "prompt": "Select Pet Status"
-        }
-      },
-      "metadata": {
-        "out": "./schemas/getPetsByStatus.out.json"
-      }
-    }
-  },
-  "actions": {
-    "createPet": {
-      "main": "io.elastic.petstore.actions.CreatePet",
-      "title": "Create a Pet",
-      "description": "Creates a new Pet",
-      "metadata": {
-        "in": "./schemas/createPet.in.json",
-        "out": "./schemas/createPet.out.json"
-      }
-    },
-    "createShipment": {
-      "main": "io.logmall.actions.CreateShipment",
-      "title": "Create a Shipment",
-      "description": "Creates a new Shipment",
-      "metadata": {
-        "in": "./schemas/createShipment.in.json",
-        "out": "./schemas/createShipment.out.json"
-      }
-    }
-  }
+	"title": "logistics mall API",
+	"description": "elastic.io component for connecting to logistics mall",
+	"docsUrl": "https://confluence.logistics-mall.com/",
+	"credentials": {
+		"fields": {
+			"serverURLd": {
+				"label": "Managed App Server URL: ",
+				"required": true,
+				"viewClass": "TextFieldWithNoteView",
+				"note": "Example URL <b>https://tenant.logistics-mall.com</b>"
+			},
+			"apiKey": {
+				"label": "Organization API key: ",
+				"required": true,
+				"viewClass": "TextFieldWithNoteView",
+				"note": "Please use <b>logmall-elasticio</b> as API key"
+			}
+		}
+	},
+	"triggers": {
+		"triggerItemMaster": {
+			"main": "io.logmall.triggers.TriggerItemMaster",
+			"type": "polling",
+			"title": "Triggers creation of an Item",
+			"description": "Retrieves items from the logistics mall API",
+			"metadata": {
+				"out": "./schemas/getItemMasterSchema.out.json"
+			}
+		},
+		"triggerInventoryBalanceLine": {
+			"main": "io.logmall.triggers.TriggerInventoryBalanceLine",
+			"type": "polling",
+			"title": "Triggers retrieving of an Inventory Balance Line",
+			"description": "Retrieves Inventory Balance Line from the logistics mall API by given item master",
+			"metadata": {
+				"out": "./schemas/triggerInventoryBalanceParameters.out.json"
+			}
+		},"triggerCreatePurchaseOrder": {
+			"main": "io.logmall.triggers.TriggerPurchaseOrder",
+			"type": "polling",
+			"title": "Triggers creation of a Purchase Order",
+			"description": "Retrieves Purchase Order from the logistics mall API by given Purchase",
+			"metadata": {
+				"out": "./schemas/getPurchaseOrderSchema.out.json"
+			}
+		}
+	},
+	"actions": {
+		"createItemMaster": {
+			"main": "io.logmall.actions.CreateItemMaster",
+			"title": "Create an Item Master",
+			"description": "Creates a new Item Master",
+			"metadata": {
+				"in": "./schemas/createItemMaster.in.json",
+				"out": "./schemas/createItemMaster.out.json"
+			}
+		},
+		"getInventoryBalanceLine": {
+			"main": "io.logmall.actions.GetInventoryBalanceLine",
+			"title": "Get Inventory Balance",
+			"description": "Gets available inventory line for given item master",
+			"metadata": {
+				"in": "./schemas/getInventoryBalanceLine.in.json",
+				"out": "./schemas/getInventoryBalanceLine.out.json"
+			}
+		},	
+		"createPurchaseOrder": {
+			"main": "io.logmall.actions.CreatePurchaseOrder",
+			"title": "Create a Purchase Order",
+			"description": "Creates a new Purchase Order",
+			"metadata": {
+				"in": "./schemas/createPurchaseOrder.in.json",
+				"out": "./schemas/createPurchaseOrder.out.json"
+			}
+		}
+	}
 }

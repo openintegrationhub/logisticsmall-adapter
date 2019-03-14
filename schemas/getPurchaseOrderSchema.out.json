@@ -1,0 +1,62 @@
+{
+	"type": "object",
+	"properties": {
+		"PurchaseOrderIdentifier": {
+			"title": "PurchaseOrderIdentifier",
+			"required": true,
+			"type": "string"
+		},
+		"OrderDateTime": {
+			"title": "OrderDateTime",
+			"required": true,
+			"type": "string"
+		},
+		"DeliveryTypeCode": {
+			"title": "DeliveryTypeCode",
+			"required": true,
+			"type": "string"
+		},
+		"Name": {
+			"title": "Name",
+			"required": true,
+			"type": "string"
+		},
+		"FirstName": {
+			"title": "FirstName",
+			"required": true,
+			"type": "string"
+		},
+		"Address": {
+			"title": "Address",
+			"required": true,
+			"type": "object",
+			"properties": {
+				"Street": {
+					"title": "Street",
+					"required": true,
+					"type": "string"
+				},
+				"PostalCode": {
+					"title": "PostalCode",
+					"required": true,
+					"type": "string"
+				},
+				"City": {
+					"title": "City",
+					"required": true,
+					"type": "string"
+				},
+				"CountryCode": {
+					"title": "CountryCode",
+					"required": true,
+					"type": "string"
+				}
+			}
+		},
+		"Lines": {
+			"title": "Lines",
+			"required": true,
+			"type": "object"
+		}
+	}
+}

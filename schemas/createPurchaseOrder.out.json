@@ -1,0 +1,20 @@
+{
+	"type": "object",
+	"properties": {
+		"PurchaseOrderIdentifier": {
+			"title": "PurchaseOrderIdentifier",
+			"required": true,
+			"type": "string"
+		},
+		"Email": {
+			"title": "Email",
+			"required": true,
+			"type": "string"
+		},
+		"Phone": {
+			"title": "Phone",
+			"required": true,
+			"type": "string"
+		}
+	}
+}

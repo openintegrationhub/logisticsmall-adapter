@@ -1,0 +1,10 @@
+{
+	"type": "object",
+	"properties": {
+		"Itemmasters": {
+			"title": "Itemmasters",
+			"required": true,
+			"type": "object"
+		}
+	}
+}
